@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "@discordjs/rest": "^0.3.0",
+    "discord-api-types": "^0.27.3",
+    "dotenv": "^16.0.0",
+    "undici": "^4.14.1",
+    "ws": "^8.5.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.0"
+  },
+  "name": "tiscord",
+  "version": "1.0.0",
+  "description": "a discord lib",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc && node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiboon/tiscord.git"
+  },
+  "author": "xiboon",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/xiboon/tiscord/issues"
+  },
+  "homepage": "https://github.com/xiboon/tiscord#readme"
+}
