@@ -2,8 +2,6 @@
   "dependencies": {
     "@discordjs/rest": "^0.3.0",
     "discord-api-types": "^0.27.3",
-    "dotenv": "^16.0.0",
-    "undici": "^4.14.1",
     "ws": "^8.5.0"
   },
   "devDependencies": {
