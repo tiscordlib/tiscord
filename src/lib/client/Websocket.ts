@@ -18,12 +18,14 @@ export class WebSocketManager {
             data = JSON.parse(data.toString());
             switch (data.op) {
                 case 0:
+                    this.sequence = data.s;
                     switch (data.t) {
                         case 'READY':
                             this.client.emit('ready', this.client);
                             break;
                         case 'MESSAGE_CREATE':
                             data.d.client = this.client;
+
                             this.client.emit('message', new Message(data.d));
                             break;
                         case 'INTERACTION_CREATE':
@@ -36,7 +38,7 @@ export class WebSocketManager {
                     break;
                 case 10:
                     setInterval(() => {
-                        this.ws.send(JSON.stringify({ op: 1 }));
+                        this.ws.send(JSON.stringify({ op: 1, d: this.sequence || null }));
                     }, data.d.heartbeat_interval);
                     break;
             }
