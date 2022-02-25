@@ -1,12 +1,12 @@
-import { MessageOptions } from 'lib';
+import { Client, MessageOptions } from '../';
 import { GuildChannel } from './GuildChannel';
 
 export class TextChannel extends GuildChannel {
     lastMessageId: any;
     defaultArchiveDuration: any;
     send: (options: MessageOptions) => void;
-    constructor(data: any) {
-        super(data);
+    constructor(client: Client, data: any) {
+        super(client, data);
         this.nsfw = data.nsfw;
         this.lastMessageId = data.last_message_id;
         this.defaultArchiveDuration = data.default_archive_duration;

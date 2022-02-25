@@ -1,7 +1,6 @@
 import { EventEmitter } from 'ws';
 import { REST } from '@discordjs/rest';
-import { ClientOptions } from '../util/ClientOptions';
-import { WebSocketManager } from './Websocket';
+import { ClientOptions, WebSocketManager } from '../';
 export class Client extends EventEmitter {
     token: string;
     intents: number;

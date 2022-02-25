@@ -1,3 +1,4 @@
+import { Client } from '../';
 import { Channel } from './Channel';
 
 export class GuildChannel extends Channel {
@@ -7,8 +8,8 @@ export class GuildChannel extends Channel {
     topic: string;
     nsfw: boolean;
     permissions: any;
-    constructor(data: any) {
-        super(data);
+    constructor(client: Client, data: any) {
+        super(client, data);
         this.guildId = data.guild_id;
         this.position = data.position;
         this.permissionOverwrites = data.permission_overwrites;

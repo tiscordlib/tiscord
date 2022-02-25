@@ -1,4 +1,5 @@
 import { APIInteraction, InteractionType } from 'discord-api-types/v9';
+import { Client } from '..//client/Client';
 import { User } from './User';
 export class Interaction {
     applicationId: string;
@@ -12,7 +13,9 @@ export class Interaction {
     channelId: string;
     guildLocale: string;
     locale: string;
-    constructor(data: APIInteraction) {
+    client: Client;
+    constructor(client: Client, data: APIInteraction) {
+        this.client = client;
         this.id = data.id;
         this.applicationId = data.application_id;
         this.type = InteractionType[data.type];
@@ -22,7 +25,6 @@ export class Interaction {
         this.channelId = data.channel_id;
         this.data = data.data;
         this.raw = data;
-        this.locale = data.user.locale;
         this.guildLocale = data.guild_locale;
     }
 }

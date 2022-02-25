@@ -1,5 +1,5 @@
 import { APIChannel } from 'discord-api-types/v9';
-import { Client } from '../client/Client';
+import { Client } from '../';
 
 export class Channel {
     type: any;

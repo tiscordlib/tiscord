@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { Message, Client } from './lib';
+import { Message, Client, CommandInteraction } from './lib';
 const client = new Client({ token: process.env.TOKEN, intents: 513 });
 process.on('uncaughtException', err => {
     console.error(err);
@@ -20,6 +20,12 @@ client.on('message', async (message: Message) => {
         } else {
             message.reply({ content: 'ur not kubus lmfao', allowedMentions: { parse: [] } });
         }
+    }
+});
+client.on('interaction', async (interaction: CommandInteraction) => {
+    if (interaction.name === 'test') {
+        const hi = interaction.options.get('hi');
+        interaction.reply({ content: `you are ${hi.value}` });
     }
 });
 client.login();

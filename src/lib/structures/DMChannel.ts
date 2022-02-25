@@ -1,3 +1,4 @@
+import { Client } from '../';
 import { Channel } from './Channel';
 
 export class DMChannel extends Channel {
@@ -7,8 +8,8 @@ export class DMChannel extends Channel {
     icon: any;
     ownerId: any;
     applicationId: any;
-    constructor(data: any) {
-        super(data);
+    constructor(client: Client, data: any) {
+        super(client, data);
         this.owner = data.owner;
         this.lastMessageId = data.last_message_id;
         this.applicationId = data.application_id;

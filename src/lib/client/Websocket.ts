@@ -1,6 +1,5 @@
-import { Message } from '../structures/Message';
 import WebSocket from 'ws';
-import { Client } from './Client';
+import { CommandInteraction, Interaction, Client, Message } from '../';
 
 export class WebSocketManager {
     token: string;
@@ -27,6 +26,12 @@ export class WebSocketManager {
                             data.d.client = this.client;
                             this.client.emit('message', new Message(data.d));
                             break;
+                        case 'INTERACTION_CREATE':
+                            if (data.d.type === 2) {
+                                this.client.emit('interaction', new CommandInteraction(this.client, data.d));
+                            } else {
+                                this.client.emit('interaction', new Interaction(this.client, data.d));
+                            }
                     }
                     break;
                 case 10:
