@@ -7,6 +7,7 @@
     "ws": "^8.5.0"
   },
   "devDependencies": {
+    "@types/node": "^17.0.21",
     "@types/ws": "^8.5.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
@@ -15,13 +16,14 @@
     "eslint-plugin-prettier": "^4.0.0"
   },
   "name": "tiscord",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "a discord lib",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "dev": "tsc && node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",

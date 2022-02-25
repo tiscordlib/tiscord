@@ -1,31 +1,32 @@
-import 'dotenv/config';
-import { Message, Client, CommandInteraction } from './lib';
-const client = new Client({ token: process.env.TOKEN, intents: 513 });
-process.on('uncaughtException', err => {
-    console.error(err);
-});
-client.on('ready', async () => {
-    console.log('Ready!');
-});
-client.on('message', async (message: Message) => {
-    if (message.content.startsWith('hh!eval')) {
-        if (message.author.id === '707675871355600967') {
-            const code = eval(message.content.slice(7));
-            await message.reply({
-                content: code,
-                allowedMentions: {
-                    parse: []
-                }
-            });
-        } else {
-            message.reply({ content: 'ur not kubus lmfao', allowedMentions: { parse: [] } });
-        }
-    }
-});
-client.on('interaction', async (interaction: CommandInteraction) => {
-    if (interaction.name === 'test') {
-        const hi = interaction.options.get('hi');
-        interaction.reply({ content: `you are ${hi.value}` });
-    }
-});
-client.login();
+import { Client } from './client/Client';
+import { WebSocketManager } from './client/Websocket';
+import { Channel } from './structures/Channel';
+import { CommandInteraction } from './structures/CommandInteraction';
+import { DMChannel } from './structures/DMChannel';
+import { GuildChannel } from './structures/GuildChannel';
+import { Interaction } from './structures/Interaction';
+import { Member } from './structures/Member';
+import { Message } from './structures/Message';
+import { TextChannel } from './structures/TextChannel';
+import { ThreadChannel } from './structures/ThreadChannel';
+import { User } from './structures/User';
+import { ClientOptions } from './util/ClientOptions';
+import { MessageData } from './util/MessageData';
+import { MessageOptions } from './util/MessageOptions';
+export {
+    Client,
+    WebSocketManager,
+    Channel,
+    DMChannel,
+    GuildChannel,
+    TextChannel,
+    ThreadChannel,
+    User,
+    Member,
+    Message,
+    MessageData,
+    MessageOptions,
+    CommandInteraction,
+    Interaction,
+    ClientOptions
+};

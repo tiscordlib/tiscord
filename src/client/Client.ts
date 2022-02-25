@@ -1,4 +1,4 @@
-import { EventEmitter } from 'ws';
+import { EventEmitter } from 'node:events';
 import { REST } from '@discordjs/rest';
 import { ClientOptions, WebSocketManager } from '../';
 export class Client extends EventEmitter {

@@ -1,5 +1,5 @@
 import { APIInteraction, InteractionType } from 'discord-api-types/v9';
-import { Client } from '..//client/Client';
+import { Client } from '../client/Client';
 import { User } from './User';
 export class Interaction {
     applicationId: string;
