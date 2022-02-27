@@ -2,9 +2,9 @@
 a bad discord lib
 
 # TODO
-- [ ] caching system
-- [ ] add a way to get users/guilds/channels/members
-- [ ] add more structures
+- [x] caching system
+- [x] add a way to get users/guilds/channels/members
+- [x] add more structures
 - [ ] add more events
 - [ ] write tests
 - [ ] create docs
