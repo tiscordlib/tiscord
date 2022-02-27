@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { APIAllowedMentions } from 'discord-api-types/v9';
+import { APIAllowedMentions } from 'discord-api-types/v10';
 
 export class MessageOptions {
     content: string;

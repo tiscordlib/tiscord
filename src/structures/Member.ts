@@ -1,5 +1,5 @@
-import { APIGuildMember } from 'discord-api-types/v9';
-import { User } from './User';
+import { APIGuildMember } from 'discord-api-types/v10';
+import { User, Client } from '../';
 
 export class Member {
     roles: string[];
@@ -10,9 +10,10 @@ export class Member {
     avatar: string;
     nick: string;
     user: User;
-    raw: APIGuildMember;
-    constructor(data: APIGuildMember) {
-        this.user = new User(data.user);
+    raw?: APIGuildMember;
+    id: string;
+    constructor(client: Client, data: APIGuildMember) {
+        this.user = new User(client, data.user);
         this.nick = data.nick;
         this.avatar = data.avatar;
         this.joinedAt = data.joined_at;
@@ -20,6 +21,7 @@ export class Member {
         this.deaf = data.deaf;
         this.mute = data.mute;
         this.roles = data.roles;
-        this.raw = data;
+        if (client.raw) this.raw = data;
+        this.id = this.user.id;
     }
 }

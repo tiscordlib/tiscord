@@ -1,10 +1,11 @@
-import { Client, MessageOptions } from '../';
+import { Client, MessageManager, MessageOptions } from '../';
 import { GuildChannel } from './GuildChannel';
 
 export class TextChannel extends GuildChannel {
     lastMessageId: any;
     defaultArchiveDuration: any;
     send: (options: MessageOptions) => void;
+    messages: MessageManager;
     constructor(client: Client, data: any) {
         super(client, data);
         this.nsfw = data.nsfw;
@@ -15,5 +16,6 @@ export class TextChannel extends GuildChannel {
             const res = this.client.rest.post(`/channels/${this.id}/messages`, { body: parsedData });
             return res;
         };
+        this.messages = new MessageManager(this.client, this);
     }
 }

@@ -6,3 +6,5 @@ a bad discord lib
 - [ ] add a way to get users/guilds/channels/members
 - [ ] add more structures
 - [ ] add more events
+- [ ] write tests
+- [ ] create docs

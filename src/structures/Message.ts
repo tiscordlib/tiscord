@@ -1,17 +1,14 @@
+/* eslint-disable require-atomic-updates */
 /* eslint-disable camelcase */
-
+import { Client, User, Guild, APIError, TextChannel } from '../';
 import { MessageData } from '../util/MessageData';
-import { Client } from '../client/Client';
 import { MessageOptions } from '../util/MessageOptions';
-import { APIUser } from 'discord-api-types/v9';
 import { MessageTypes, SystemMessageTypes } from '../util/MessageTypes';
-import { APIError } from '../errors/APIError';
-import { User } from './User';
 export class Message {
     id: string;
     channelId: string;
     guildId: string;
-    author: APIUser;
+    author: User;
     timestamp: number;
     content: string;
     tts: boolean;
@@ -36,12 +33,14 @@ export class Message {
     raw: any;
     reply: (data: MessageOptions) => Promise<unknown>;
     client: Client;
-    constructor(data: MessageData) {
+    guild: Guild;
+    channel: TextChannel;
+    constructor(client: Client, data: MessageData) {
         this.client = data.client;
         this.id = data.id;
         this.channelId = data.channel_id;
         this.guildId = data.guild_id;
-        this.author = new User(data.author);
+        this.author = new User(client, data.author);
         this.content = data.content;
         this.timestamp = new Date(data.timestamp).getTime() / 1000;
         this.tts = data.tts;
@@ -70,8 +69,12 @@ export class Message {
             }
             const parsedData = new MessageOptions(data);
             parsedData.message_reference = { message_id: this.id };
-            const res = this.client.rest.post(`/channels/${this.channelId}/messages`, { body: parsedData });
+            const res = this.channel.send(parsedData);
             return res;
         };
+    }
+    async guilds() {
+        this.guild = await this.client.guilds.get(this.guildId);
+        this.channel = new TextChannel(this.client, (await this.guild.channels.get(this.channelId)).raw);
     }
 }

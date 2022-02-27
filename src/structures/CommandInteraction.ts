@@ -1,4 +1,4 @@
-import { ApplicationCommandType } from 'discord-api-types/v9';
+import { ApplicationCommandType } from 'discord-api-types/v10';
 import { Client, MessageOptions } from '../';
 import { Interaction } from './Interaction';
 

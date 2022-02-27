@@ -13,8 +13,8 @@ export class WebSocketManager {
         this.intents = client.intents;
     }
     connect() {
-        this.ws = new WebSocket('wss://gateway.discord.gg/?v=9&encoding=json');
-        this.ws.on('message', (data: any) => {
+        this.ws = new WebSocket('wss://gateway.discord.gg/?v=10&encoding=json');
+        this.ws.on('message', async (data: any) => {
             data = JSON.parse(data.toString());
             switch (data.op) {
                 case 0:
@@ -24,9 +24,9 @@ export class WebSocketManager {
                             this.client.emit('ready', this.client);
                             break;
                         case 'MESSAGE_CREATE':
-                            data.d.client = this.client;
-
-                            this.client.emit('message', new Message(data.d));
+                            const message = new Message(this.client, data.d);
+                            await message.guilds();
+                            this.client.emit('message', message);
                             break;
                         case 'INTERACTION_CREATE':
                             if (data.d.type === 2) {

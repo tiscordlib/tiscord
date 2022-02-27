@@ -1,9 +1,9 @@
-import { Client } from '../';
 import { Channel } from './Channel';
+import { Client } from '../';
 
 export class GuildChannel extends Channel {
-    guildId: any;
-    position: any;
+    guildId: string;
+    position: number;
     permissionOverwrites: any;
     topic: string;
     nsfw: boolean;
