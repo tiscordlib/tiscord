@@ -14,6 +14,11 @@ import {
 import { EventEmitter } from 'node:events';
 import { REST } from '@discordjs/rest';
 
+/**
+ *  The main client class
+ *  @param {ClientOptions} options - Options for the client
+ *  @class
+ */
 export class Client extends EventEmitter {
     token: string;
     intents: number;

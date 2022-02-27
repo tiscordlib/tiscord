@@ -1,6 +1,11 @@
 import WebSocket from 'ws';
 import { CommandInteraction, Interaction, Client, Message } from '../';
 
+/**
+ *  Main websocket class.
+ *  @param {Client} client - Client instance
+ *  @class
+ */
 export class WebSocketManager {
     token: string;
     ws: WebSocket;

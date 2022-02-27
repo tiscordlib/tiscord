@@ -11,7 +11,10 @@
     "@typescript-eslint/parser": "^5.11.0",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0"
+    "eslint-plugin-prettier": "^4.0.0",
+    "typedoc": "^0.22.12",
+    "typedoc-just-the-docs-theme": "^0.0.1",
+    "typedoc-plugin-markdown": "^3.11.14"
   },
   "name": "tiscord",
   "version": "0.2.3",
@@ -20,7 +23,8 @@
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "docs": "npx jsdoc --configure jsdoc.json --verbose"
   },
   "repository": {
     "type": "git",

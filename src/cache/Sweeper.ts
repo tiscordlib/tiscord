@@ -1,5 +1,10 @@
 import { Client, Message } from '../';
 
+/**
+ *  Exports functions to clean up the cache
+ *  @param {Client} client - the client to sweep the cache
+ *  @class
+ */
 export class Sweeper {
     constructor(client: Client) {
         this.client = client;
