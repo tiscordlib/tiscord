@@ -34,10 +34,8 @@ export class Message {
     guild: Guild;
     channel: TextChannel;
     constructor(client: Client, data: APIMessage) {
-        console.log(client.api);
         this.client = client;
         this.id = data.id;
-        console.log(this.client.api);
         this.channelId = data.channel_id;
         this.guildId = data.guild_id;
         this.author = new User(client, data.author);
