@@ -14,12 +14,11 @@
     "eslint-plugin-prettier": "^4.0.0"
   },
   "name": "tiscord",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a discord lib",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc && node .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build"
   },

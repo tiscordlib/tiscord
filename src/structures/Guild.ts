@@ -1,5 +1,5 @@
 import { APIGuild } from 'discord-api-types/v10';
-import { Channel, ChannelManager, Client, Member, MemberManager, Role } from '../';
+import { Channel, ChannelManager, Client, Member, MemberManager, Role, RolesManager } from '../';
 import { ThreadChannel } from './ThreadChannel';
 
 export class Guild {
@@ -79,7 +79,7 @@ export class Guild {
         this.verificationLevel = data.verification_level;
         this.defaultMessageNotifications = data.default_message_notifications;
         this.explicitContentFilter = data.explicit_content_filter;
-        this.roles = data.roles;
+        this.roles = new RolesManager(client, this.id);
         this.emojis = data.emojis;
         this.features = data.features;
         this.mfaLevel = data.mfa_level;
