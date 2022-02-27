@@ -3,4 +3,6 @@ export interface ClientOptions {
     intents: number;
     api?: string;
     rawDataStorage?: boolean;
+    messageLifetime?: number;
+    sweepInterval?: number;
 }

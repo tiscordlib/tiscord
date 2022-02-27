@@ -7,7 +7,8 @@ import {
     Guild,
     Channel,
     User,
-    Cache
+    Cache,
+    Sweeper
 } from '../';
 
 import { EventEmitter } from 'node:events';
@@ -31,12 +32,17 @@ export class Client extends EventEmitter {
         roles: Cache;
     };
     raw: boolean;
+    messageTtl: number;
+    sweepInterval: number;
+    sweeper: Sweeper;
     constructor(options: ClientOptions) {
         super();
         this.token = options.token;
         this.intents = options.intents;
         this.raw = options.rawDataStorage;
         this.api = options.api || '1';
+        this.messageTtl = options.messageLifetime || 100;
+        this.sweepInterval = options.sweepInterval || 100;
         this.rest = new REST({
             api: 'https://discord.com/api',
             version: this.api
@@ -53,6 +59,10 @@ export class Client extends EventEmitter {
             messages: new Cache(),
             roles: new Cache()
         };
+        this.sweeper = new Sweeper(this);
+        setInterval(() => {
+            this.sweeper.sweep();
+        }, this.sweepInterval);
     }
     login() {
         this.ws = new WebSocketManager(this);

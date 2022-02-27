@@ -18,6 +18,7 @@ import { MessageManager } from './managers/MessageManager';
 import { MessageOptions } from './util/MessageOptions';
 import { Role } from './structures/Role';
 import { RolesManager } from './managers/RolesManager';
+import { Sweeper } from './cache/Sweeper';
 import { TextChannel } from './structures/TextChannel';
 import { ThreadChannel } from './structures/ThreadChannel';
 import { User } from './structures/User';
@@ -45,6 +46,7 @@ export {
     MessageOptions,
     Role,
     RolesManager,
+    Sweeper,
     TextChannel,
     ThreadChannel,
     User,
