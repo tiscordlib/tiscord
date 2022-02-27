@@ -1,9 +1,7 @@
 /* eslint-disable require-atomic-updates */
 /* eslint-disable camelcase */
-import { Client, User, Guild, APIError, TextChannel } from '../';
-import { MessageData } from '../util/MessageData';
-import { MessageOptions } from '../util/MessageOptions';
-import { MessageTypes, SystemMessageTypes } from '../util/MessageTypes';
+import { APIMessage } from 'discord-api-types/v10';
+import { Client, User, Guild, APIError, TextChannel, MessageOptions, MessageTypes, SystemMessageTypes } from '../';
 export class Message {
     id: string;
     channelId: string;
@@ -35,9 +33,11 @@ export class Message {
     client: Client;
     guild: Guild;
     channel: TextChannel;
-    constructor(client: Client, data: MessageData) {
-        this.client = data.client;
+    constructor(client: Client, data: APIMessage) {
+        console.log(client.api);
+        this.client = client;
         this.id = data.id;
+        console.log(this.client.api);
         this.channelId = data.channel_id;
         this.guildId = data.guild_id;
         this.author = new User(client, data.author);
@@ -67,9 +67,8 @@ export class Message {
             if (SystemMessageTypes.includes(MessageTypes[this.type])) {
                 throw new APIError('Cannot reply to system messages.');
             }
-            const parsedData = new MessageOptions(data);
-            parsedData.message_reference = { message_id: this.id };
-            const res = this.channel.send(parsedData);
+            data.replyTo = this.id;
+            const res = this.channel.send(data);
             return res;
         };
     }

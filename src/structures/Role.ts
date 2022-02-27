@@ -22,8 +22,8 @@ export class Role {
         this.permissions = data.permissions;
         this.managed = data.managed;
         this.mentionable = data.mentionable;
-        this.botId = data.tags.bot_id;
-        this.integrationId = data.tags.integration_id;
+        if (data.tags?.bot_id) this.botId = data.tags.bot_id;
+        if (data.tags?.integration_id) this.integrationId = data.tags.integration_id;
         if (client.raw) this.raw = data;
     }
 }

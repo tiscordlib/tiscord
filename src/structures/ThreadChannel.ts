@@ -1,4 +1,5 @@
-import { Client, TextChannel } from '../';
+import { Client } from '../';
+import { TextChannel } from './TextChannel';
 export class ThreadChannel extends TextChannel {
     memberCount: any;
     messageCount: any;

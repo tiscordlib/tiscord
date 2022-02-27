@@ -1,3 +1,4 @@
+import { MessageTypes, SystemMessageTypes } from './util/MessageTypes';
 import { APIError } from './errors/APIError';
 import { Cache } from './cache/Cache';
 import { Channel } from './structures/Channel';
@@ -13,7 +14,6 @@ import { Interaction } from './structures/Interaction';
 import { Member } from './structures/Member';
 import { MemberManager } from './managers/MemberManager';
 import { Message } from './structures/Message';
-import { MessageData } from './util/MessageData';
 import { MessageManager } from './managers/MessageManager';
 import { MessageOptions } from './util/MessageOptions';
 import { Role } from './structures/Role';
@@ -41,15 +41,16 @@ export {
     Member,
     MemberManager,
     Message,
-    MessageData,
     MessageManager,
     MessageOptions,
     Role,
     RolesManager,
     Sweeper,
-    TextChannel,
     ThreadChannel,
+    TextChannel,
     User,
     UserManager,
-    WebSocketManager
+    WebSocketManager,
+    MessageTypes,
+    SystemMessageTypes
 };

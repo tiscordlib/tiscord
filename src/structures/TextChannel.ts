@@ -1,4 +1,5 @@
 import { Client, MessageManager, MessageOptions } from '../';
+// eslint-disable-next-line no-duplicate-imports
 import { GuildChannel } from './GuildChannel';
 
 export class TextChannel extends GuildChannel {

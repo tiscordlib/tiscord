@@ -11,7 +11,7 @@ export class Channel {
         this.id = data.id;
         this.type = data.type;
         this.name = data.name;
-        if (client.raw) this.raw = data;
+        this.raw = data;
         this.client = client;
     }
 }
