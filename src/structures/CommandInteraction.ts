@@ -2,12 +2,22 @@ import { ApplicationCommandType } from 'discord-api-types/v10';
 import { Client, MessageOptions } from '../';
 import { Interaction } from './Interaction';
 
+/**
+ * Command interaction class
+ *  @param {Client} client - Client instance
+ *  @param {string} command - Command name
+ *  @class
+ *  @property {string} commandType - command type
+ *  @property {string} name - command name
+ *  @property {string} commandId - command id
+ *  @property {Map} options - Command option map
+ *  @extends {Interaction}
+ */
 export class CommandInteraction extends Interaction {
     commandType: string;
     name: string;
     commandId: string;
     options: Map<string, { name: string; value: any; type: number; options: any; focused: boolean }>;
-    reply: (options: MessageOptions) => any;
     constructor(client: Client, data: any) {
         super(client, data);
         this.commandId = data.data.id;
@@ -19,11 +29,17 @@ export class CommandInteraction extends Interaction {
                 this.options.set(option.name, option);
             }
         );
-        this.reply = (options: MessageOptions) => {
-            const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
-                body: { type: 4, data: options }
-            });
-            return res;
-        };
+    }
+
+    /**
+     * Reply to the interaction
+     * @param {MessageOptions} options - message options
+     * @returns {Promise<any>}
+     */
+    async reply(options: MessageOptions) {
+        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
+            body: { type: 4, data: options }
+        });
+        return res;
     }
 }

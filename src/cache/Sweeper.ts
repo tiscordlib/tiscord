@@ -10,6 +10,11 @@ export class Sweeper {
         this.client = client;
     }
     client: Client;
+
+    /**
+     * Cleans up the message cache
+     * @returns {void}
+     */
     async sweep() {
         const date = Date.now() / 1000 - this.client.messageTtl;
         this.client.cache.messages.caches.forEach(cache => {

@@ -4,6 +4,9 @@ import { CommandInteraction, Interaction, Client, Message } from '../';
 /**
  *  Main websocket class.
  *  @param {Client} client - Client instance
+ *  @property {Client} client - Client instance
+ *  @property {string} token - Client token
+ *  @property {number} intents - Client intents
  *  @class
  */
 export class WebSocketManager {
@@ -17,6 +20,11 @@ export class WebSocketManager {
         this.token = client.token;
         this.intents = client.intents;
     }
+
+    /**
+     * Connects to the websocket
+     * @returns {void}
+     */
     connect() {
         this.ws = new WebSocket('wss://gateway.discord.gg/?v=10&encoding=json');
         this.ws.on('message', async (data: any) => {
@@ -49,6 +57,11 @@ export class WebSocketManager {
             }
         });
     }
+
+    /**
+     * Logs into the gateway
+     * @returns {void}
+     */
     identify() {
         this.ws.send(
             JSON.stringify({

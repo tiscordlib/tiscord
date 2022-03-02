@@ -6,10 +6,17 @@
         "outDir": "dist",
         "moduleResolution": "node",
         "baseUrl": "src",
+        "rootDir": "src",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "declaration": true
-    }
+        "declaration": true,
+        "removeComments": false
+    },
+    "exclude": [
+        "./node_modules",
+        "./docs",
+        "./dist"
+    ],
 }

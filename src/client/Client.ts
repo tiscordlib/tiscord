@@ -16,7 +16,19 @@ import { REST } from '@discordjs/rest';
 
 /**
  *  The main client class
- *  @param {ClientOptions} options - Options for the client
+ *  @param {ClientOptions} options - Client options
+ *  @property {string} token - Bot token
+ *  @property {number} intents - Gateway intents
+ *  @property {REST} rest - The REST client
+ *  @property {object} cache - The cache object
+ *  @property {Sweeper} sweeper - Cache sweeper
+ *  @property {GuildManager} guilds - Guild manager
+ *  @property {UserManager} users - User manager
+ *  @property {ChannelManager} channels - Channel manager
+ *  @property {WebSocketManager} ws - Websocket manager
+ * @property {string} api - The API version
+ * @property {}
+ *  @extends EventEmitter
  *  @class
  */
 export class Client extends EventEmitter {
@@ -69,7 +81,12 @@ export class Client extends EventEmitter {
             this.sweeper.sweep();
         }, this.sweepInterval);
     }
-    login() {
+
+    /**
+     * Log into discord
+     * @returns {void}
+     */
+    login(): void {
         this.ws = new WebSocketManager(this);
         this.ws.connect();
         this.ws.ws.on('open', () => {

@@ -1,6 +1,18 @@
 /* eslint-disable camelcase */
 import { APIAllowedMentions } from 'discord-api-types/v10';
 
+/**
+ * Message options, used for parsing messages to an api readable format
+ * @param {any} data - Message data
+ * @class
+ * @property {string} content - Message content
+ * @property {any[]} embeds - Message embeds
+ * @property {APIAllowedMentions} allowed_mentions - Allowed mentions
+ * @property {any[]} components - Message components
+ * @property {string[]} sticker_ids - Sticker IDs
+ * @property {number} flags - Message flags
+ * @property {any} message_reference - Message reference
+ */
 export class MessageOptions {
     content: string;
     embeds?: any[];
@@ -16,7 +28,7 @@ export class MessageOptions {
         components?: any[];
         stickers?: string[];
         flags?: number;
-        replyTo?: any;
+        replyTo?: string;
     }) {
         if (typeof data.content !== 'string') throw new TypeError('`content` must be a string.');
         this.content = data.content;

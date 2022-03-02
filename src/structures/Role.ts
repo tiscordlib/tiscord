@@ -1,6 +1,23 @@
 import { APIRole } from 'discord-api-types/v10';
 import { Client } from '../';
 
+/**
+ * Role class
+ * @param {Client} client - Client instance
+ * @param {APIRole} data - Role data
+ * @class
+ * @property {string} id - Role ID
+ * @property {string} name - Role name
+ * @property {string} color - Role color
+ * @property {string} hoist - Is the role hoisted
+ * @property {string} position - Role position
+ * @property {string} managed - Is the role managed
+ * @property {string} mentionable - Is the role mentionable
+ * @property {string} raw - Raw role data
+ * @property {string} integrationId - Integration ID
+ * @property {string} permissions - Permissions
+ * @property {string} botId - Bot ID
+ */
 export class Role {
     id: string;
     name: string;

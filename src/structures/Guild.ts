@@ -1,7 +1,68 @@
-import { APIGuild } from 'discord-api-types/v10';
+import {
+    APIEmoji,
+    APIGuild,
+    APIGuildScheduledEvent,
+    APIStageInstance,
+    APISticker,
+    GatewayVoiceState,
+    GuildFeature
+} from 'discord-api-types/v10';
 import { Channel, ChannelManager, Client, Member, MemberManager, Role, RolesManager } from '../';
 import { ThreadChannel } from './ThreadChannel';
 
+/**
+ * Guild class
+ * @param {Client} client - Client instance
+ * @param {APIGuild} data - Guild data
+ * @class
+ * @property {Client} client - Client instance
+ * @property {string} ownerId - Guild owner ID
+ * @property {User} owner - Guild owner
+ * @property {string} discoverySplash - Discovery splash hash
+ * @property {string} iconHash - Icon hash
+ * @property {string} icon - Icon
+ * @property {string} name - Guild name
+ * @property {string} id - Guild ID
+ * @property {boolean} premiumProgressBarEnabled - Whether the boost progress bar enabled
+ * @property {APIGuildScheduledEvent[]} scheduledEvents - Scheduled events
+ * @property {APISticker[]} stickers - Guild stickers
+ * @property {APIStageInstance[]} stageInstances - Guild stage instances
+ * @property {number} nsfwLevel - NSFW level
+ * @property {number} maxVideoChannelUsers - How many users can be on a video channel
+ * @property {string} publicUpdatesChannelId - Public update channel ID
+ * @property {string} locale - Guild locale
+ * @property {number} boosterCount - Amount of boosters
+ * @property {number} premiumTier - Server boost tier
+ * @property {string} banner - Banner hash
+ * @property {string} description - Guild description
+ * @property {string} vanityUrlCode - Guild vanity invite
+ * @property {number} maxMembers - How many members can this guild handle
+ * @property {any[]} presences - Guild presences
+ * @property {ThreadChannel[]} threads - Guild threads
+ * @property {ChannelManager} channels - Guild channels
+ * @property {MemberManager} members - Guild members
+ * @property {any} voiceStates - Guild voice states
+ * @property {number} memberCount - Guild member count
+ * @property {boolean} available - Whether the guild is available
+ * @property {boolean} large - Whether the guild is large (by default 50+ members)
+ * @property {string} joinedAt - When the guild was joined
+ * @property {string} rulesChannelId - Rules channel ID
+ * @property {string} systemChannelFlags - System channel flags
+ * @property {string} systemChannelId - System channel ID
+ * @property {string} applicationId - Application ID, if an application owns the guild.
+ * @property {number} mfaLevel - 2FA level
+ * @property {GuildFeature[]} features - Guild features
+ * @property {APIEmoji[]} emojis - Guild emojis
+ * @property {RolesManager} roles - Guild roles
+ * @property {number} explicitContentFilter - Explicit content filter level
+ * @property {number} defaultMessageNotifications - Default message notification level
+ * @property {number} verificationLevel - Verification level
+ * @property {string} widgetChannelId - Widget channel ID
+ * @property {boolean} widgetEnabled - Whether the guild widget enabled
+ * @property {number} afkTimeout - AFK timeout
+ * @property {string} afkChannelId - AFK channel ID
+ * @property {string} permissions - Guild permissions
+ */
 export class Guild {
     client: Client;
     ownerId: string;
@@ -13,24 +74,24 @@ export class Guild {
     name: string;
     id: string;
     premiumProgressBarEnabled: boolean;
-    scheduledEvents: any;
-    stickers: any;
-    stageInstances: any;
-    nsfwLevel: any;
+    scheduledEvents: APIGuildScheduledEvent[];
+    stickers: APISticker[];
+    stageInstances: APIStageInstance[];
+    nsfwLevel: number;
     maxVideoChannelUsers: number;
     publicUpdatesChannelId: string;
     locale: string;
     boosterCount: number;
-    premiumTier: any;
+    premiumTier: number;
     banner: string;
     description: string;
     vanityUrlCode: string;
     maxMembers: number;
-    presences: any;
+    presences: any[];
     threads: ThreadChannel[];
     channels: ChannelManager;
     members: MemberManager;
-    voiceStates: any;
+    voiceStates: Omit<GatewayVoiceState, 'guild_id'>[];
     memberCount: number;
     available: boolean;
     large: boolean;
@@ -39,13 +100,13 @@ export class Guild {
     systemChannelFlags: any;
     systemChannelId: string;
     applicationId: string;
-    mfaLevel: any;
-    features: any;
-    emojis: any;
-    roles: any;
-    explicitContentFilter: any;
-    defaultMessageNotifications: any;
-    verificationLevel: any;
+    mfaLevel: number;
+    features: GuildFeature[];
+    emojis: APIEmoji[];
+    roles: RolesManager;
+    explicitContentFilter: number;
+    defaultMessageNotifications: number;
+    verificationLevel: number;
     widgetChannelId: string;
     widgetEnabled: boolean;
     afkTimeout: number;

@@ -24,6 +24,11 @@ export const MessageTypes = [
     'GUILD_INVITE_REMINDER',
     'CONTEXT_MENU_COMMAND'
 ];
+
+/**
+ * System message types
+ * @type {string[]}
+ */
 export const SystemMessageTypes = exports.MessageTypes.filter(
     type => type && !['DEFAULT', 'REPLY', 'APPLICATION_COMMAND', 'CONTEXT_MENU_COMMAND'].includes(type)
 );
