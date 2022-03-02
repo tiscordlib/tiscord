@@ -17,7 +17,7 @@
     "jsdoc": "^3.6.10"
   },
   "name": "tiscord",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "a discord lib",
   "main": "dist/index.js",
   "scripts": {
