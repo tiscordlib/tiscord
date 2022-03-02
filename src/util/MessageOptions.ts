@@ -3,7 +3,7 @@ import { APIAllowedMentions } from 'discord-api-types/v10';
 
 /**
  * Message options, used for parsing messages to an api readable format
- * @param {any} data - Message data
+ * @param {MessageOptions} data - Message data
  * @class
  * @property {string} content - Message content
  * @property {any[]} embeds - Message embeds
@@ -21,15 +21,7 @@ export class MessageOptions {
     sticker_ids?: string[];
     flags?: number;
     message_reference?: any;
-    constructor(data: {
-        content: string;
-        embeds?: any[];
-        allowedMentions?: APIAllowedMentions;
-        components?: any[];
-        stickers?: string[];
-        flags?: number;
-        replyTo?: string;
-    }) {
+    constructor(data: MessageOptions) {
         if (typeof data.content !== 'string') throw new TypeError('`content` must be a string.');
         this.content = data.content;
         if (data.embeds) this.embeds = data.embeds;
@@ -40,6 +32,18 @@ export class MessageOptions {
         if (data.flags) this.flags = data.flags;
     }
 }
+
+/**
+ * Message options type
+ * @typedef {MessageOptions} MessageOptions
+ * @property {string} content - Message content
+ * @property {any[]} embeds - Message embeds
+ * @property {APIAllowedMentions} allowedMentions - Allowed mentions
+ * @property {any[]} components - Message components
+ * @property {string[]} stickers - Sticker IDs
+ * @property {number} flags - Message flags
+ * @property {any} replyTo - Message reference
+ */
 export interface MessageOptions {
     content: string;
     embeds?: any[];
