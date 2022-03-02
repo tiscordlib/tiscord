@@ -9,3 +9,7 @@ a bad discord lib
 - [ ] add more events
 - [ ] write tests
 - [ ] create docs
+
+# Links 
+- [Documentation](https://tiscord.me/)
+- [Support](https://discord.gg/exUr7bjRjb)
