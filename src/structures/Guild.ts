@@ -16,7 +16,8 @@ import {
     Role,
     RolesManager,
     GuildEditOptions,
-    GuildEditOptionsType
+    GuildEditOptionsType,
+    APIError
 } from '../';
 import { ThreadChannel } from './ThreadChannel';
 
@@ -183,7 +184,12 @@ export class Guild {
         this.premiumProgressBarEnabled = data.premium_progress_bar_enabled;
         if (client.raw) this.raw = data;
     }
-    edit(data: GuildEditOptionsType) {
-        return this.client.rest.patch(`/guilds/${this.id}`, { body: new GuildEditOptions(data) });
+    async edit(data: GuildEditOptionsType) {
+        const request = (await this.client.rest.patch(`/guilds/${this.id}`, {
+            body: new GuildEditOptions(data)
+        })) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
     }
 }
