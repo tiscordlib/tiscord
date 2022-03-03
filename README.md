@@ -8,7 +8,9 @@ a bad discord lib
 - [ ] add more methods (timeout, ban, kick, etc.)
 - [ ] add more events
 - [ ] write tests
-- [ ] create docs
+- [x] create docs
+- [ ] add resuming (gateway)
+- [ ] make the lib error when theres gateway or api error
 
 # Links 
 - [Documentation](https://tiscord.me/)
