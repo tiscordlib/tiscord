@@ -50,12 +50,12 @@ export class Member {
      * @param {string} reason - The reason of the kick. This will be shown in the audit logs
      */
     async kick(reason?: string) {
-        const request = await this.client.rest.delete(`/guilds/${this.guildId}/members/${this.id}`, {
+        const request = (await this.client.rest.delete(`/guilds/${this.guildId}/members/${this.id}`, {
             headers: { 'X-Audit-Log-Reason': reason }
-        });
+        })) as any;
 
-        if (!request.ok) {
-            throw new APIError(request.body.message);
+        if (request?.code) {
+            throw new APIError(request?.message);
         }
     }
 }
