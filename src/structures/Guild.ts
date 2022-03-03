@@ -115,7 +115,7 @@ export class Guild {
     raw?: APIGuild;
     constructor(client: Client, data: APIGuild) {
         data.members?.forEach(member => {
-            client.cache.members.set(data.id, new Member(client, member));
+            client.cache.members.set(data.id, new Member(client, member, this.id));
         });
         data.channels?.forEach(channel => {
             client.cache.channels.set(data.id, new Channel(client, channel));

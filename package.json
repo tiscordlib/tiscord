@@ -3,6 +3,7 @@
     "@discordjs/rest": "^0.3.0",
     "clean-jsdoc-theme": "^3.3.3",
     "discord-api-types": "^0.27.3",
+    "prettier": "^2.5.1",
     "ws": "^8.5.0"
   },
   "devDependencies": {

@@ -28,7 +28,8 @@ export class MemberManager {
         if (cache && !fetch) return cache;
         const data = new Member(
             this.client,
-            (await this.client.rest.get(`/guilds/${this.guild}/members/${id}`)) as APIGuildMember
+            (await this.client.rest.get(`/guilds/${this.guild}/members/${id}`)) as APIGuildMember,
+            this.guild
         );
         this.client.cache.members.set(this.guild, data);
         return data;
