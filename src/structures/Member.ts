@@ -1,5 +1,5 @@
 import { APIGuildMember } from 'discord-api-types/v10';
-import { User, Client } from '../';
+import { User, Client, APIError } from '../';
 
 /**
  * Member class
@@ -18,6 +18,7 @@ import { User, Client } from '../';
  * @property {APIGuildMember} raw - Raw member data
  */
 export class Member {
+    client: Client;
     roles: string[];
     mute: boolean;
     deaf: boolean;
@@ -28,8 +29,10 @@ export class Member {
     user: User;
     raw?: APIGuildMember;
     id: string;
-    constructor(client: Client, data: APIGuildMember) {
+    guildId: string;
+    constructor(client: Client, data: APIGuildMember, guildId: string) {
         this.user = new User(client, data.user);
+        this.client = client;
         this.nick = data.nick;
         this.avatar = data.avatar;
         this.joinedAt = data.joined_at;
@@ -39,5 +42,20 @@ export class Member {
         this.roles = data.roles;
         if (client.raw) this.raw = data;
         this.id = this.user.id;
+        this.guildId = guildId;
+    }
+
+    /**
+     * Kick the member from the server
+     * @param {string} reason - The reason of the kick. This will be shown in the audit logs
+     */
+    async kick(reason?: string) {
+        const request = await this.client.rest.delete(`/guilds/${this.guildId}/members/${this.id}`, {
+            headers: { 'X-Audit-Log-Reason': reason }
+        });
+
+        if (!request.ok) {
+            throw new APIError(request.body.message);
+        }
     }
 }
