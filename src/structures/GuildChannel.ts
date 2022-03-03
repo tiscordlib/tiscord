@@ -1,5 +1,6 @@
 import { Channel } from './Channel';
-import { Client } from '../';
+import { APIError, Client } from '../';
+import { ChannelOptions } from '../util/ChannelOptions';
 
 /**
  * A guild channel class.
@@ -22,5 +23,29 @@ export class GuildChannel extends Channel {
         this.position = data.position;
         this.permissionOverwrites = data.permission_overwrites;
         this.permissions = data.permissions;
+    }
+
+    /**
+     * Delete the channel
+     * @param {string} reason - Reason of the deletion
+     */
+    async delete(reason?: string) {
+        const request = (await this.client.rest.delete(`/channels/${this.id}`, {
+            reason
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    async edit(newChannel: ChannelOptions) {
+        const request = (await this.client.rest.patch(`/channels/${this.id}`, {
+            body: new ChannelOptions(newChannel)
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
     }
 }
