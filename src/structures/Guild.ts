@@ -7,7 +7,17 @@ import {
     GatewayVoiceState,
     GuildFeature
 } from 'discord-api-types/v10';
-import { Channel, ChannelManager, Client, Member, MemberManager, Role, RolesManager } from '../';
+import {
+    Channel,
+    ChannelManager,
+    Client,
+    Member,
+    MemberManager,
+    Role,
+    RolesManager,
+    GuildEditOptions,
+    GuildEditOptionsType
+} from '../';
 import { ThreadChannel } from './ThreadChannel';
 
 /**
@@ -172,5 +182,8 @@ export class Guild {
         this.scheduledEvents = data.guild_scheduled_events;
         this.premiumProgressBarEnabled = data.premium_progress_bar_enabled;
         if (client.raw) this.raw = data;
+    }
+    edit(data: GuildEditOptionsType) {
+        return this.client.rest.patch(`/guilds/${this.id}`, { body: new GuildEditOptions(data) });
     }
 }
