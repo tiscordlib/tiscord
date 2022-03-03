@@ -7,7 +7,7 @@ import {
     GatewayVoiceState,
     GuildFeature
 } from 'discord-api-types/v10';
-import { Channel, ChannelManager, Client, Member, MemberManager, Role, RolesManager } from '../';
+import { APIError, Channel, ChannelManager, Client, Member, MemberManager, Role, RolesManager } from '../';
 import { ThreadChannel } from './ThreadChannel';
 
 /**
@@ -172,5 +172,20 @@ export class Guild {
         this.scheduledEvents = data.guild_scheduled_events;
         this.premiumProgressBarEnabled = data.premium_progress_bar_enabled;
         if (client.raw) this.raw = data;
+    }
+
+    /**
+     * Unban the member from the server
+     * @param {number} userId - The ID of the user you want to unban
+     * @param {string} reason - The reason of the ban. This will be shown in the audit logs
+     */
+    async unban(userId: string, reason?: string) {
+        const request = (await this.client.rest.put(`/guilds/${this.id}/bans/${userId}`, {
+            reason
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
     }
 }
