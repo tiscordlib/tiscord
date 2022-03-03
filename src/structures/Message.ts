@@ -1,7 +1,7 @@
 /* eslint-disable require-atomic-updates */
 /* eslint-disable camelcase */
 import { APIInteraction, APIMessage, APIMessageReference, MessageFlags } from 'discord-api-types/v10';
-import { Client, User, Guild, APIError, TextChannel, MessageOptions, MessageTypes, SystemMessageTypes } from '../';
+import { APIError, Client, Guild, MessageOptions, MessageTypes, SystemMessageTypes, TextChannel, User } from '../';
 import { Interaction } from './Interaction';
 import { ThreadChannel } from './ThreadChannel';
 
@@ -116,7 +116,34 @@ export class Message {
             throw new APIError('Cannot reply to system messages.');
         }
         data.replyTo = this.id;
-        const res = this.channel.send(data);
-        return res;
+        return this.channel.send(data);
+    }
+
+    /**
+     * Delete the message
+     * @param {string} reason - Reason of the deletion
+     */
+    async delete(reason?: string) {
+        const request = (await this.client.rest.delete(`/channels/${this.channelId}/messages/${this.id}`, {
+            reason
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Edit the message
+     * @param {MessageOptions} newMessage - The new message
+     */
+    async edit(newMessage: MessageOptions) {
+        const request = (await this.client.rest.patch(`/channels/${this.channelId}/messages/${this.id}`, {
+            body: new MessageOptions(newMessage)
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
     }
 }
