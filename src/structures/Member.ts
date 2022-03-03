@@ -58,4 +58,21 @@ export class Member {
             throw new APIError(request?.message);
         }
     }
+
+    /**
+     * Ban the member from the server
+     * @param {string} reason - The reason of the ban. This will be shown in the audit logs
+     * @param {number} deleteMessageAfter - Number of days to delete messages for
+     */
+    async ban(reason?: string, deleteMessageAfter?: number) {
+        const request = (await this.client.rest.put(`/guilds/${this.guildId}/bans/${this.id}`, {
+            reason,
+            // eslint-disable-next-line camelcase
+            body: { delete_message_days: deleteMessageAfter }
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
 }
