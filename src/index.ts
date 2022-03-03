@@ -24,7 +24,7 @@ import { ThreadChannel } from './structures/ThreadChannel';
 import { User } from './structures/User';
 import { UserManager } from './managers/UserManager';
 import { WebSocketManager } from './client/Websocket';
-
+import { GuildEditOptions, GuildEditOptionsType } from 'util/GuildEditOptions';
 export {
     APIError,
     Cache,
@@ -52,5 +52,7 @@ export {
     UserManager,
     WebSocketManager,
     MessageTypes,
-    SystemMessageTypes
+    SystemMessageTypes,
+    GuildEditOptions,
+    GuildEditOptionsType
 };

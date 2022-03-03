@@ -1,4 +1,4 @@
-import { Client, MessageManager, MessageOptions } from '../';
+import { APIError, Client, MessageManager, MessageOptions } from '../';
 // eslint-disable-next-line no-duplicate-imports
 import { GuildChannel } from './GuildChannel';
 
@@ -35,7 +35,10 @@ export class TextChannel extends GuildChannel {
      */
     send(options: MessageOptions) {
         const parsedData = new MessageOptions(options);
-        const res = this.client.rest.post(`/channels/${this.id}/messages`, { body: parsedData });
-        return res;
+        const request = this.client.rest.post(`/channels/${this.id}/messages`, { body: parsedData }) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request;
     }
 }
