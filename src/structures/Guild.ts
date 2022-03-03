@@ -184,10 +184,30 @@ export class Guild {
         this.premiumProgressBarEnabled = data.premium_progress_bar_enabled;
         if (client.raw) this.raw = data;
     }
+
+    /**
+     * Ban the member from the server
+     * @param {GuildEditOptionsType} data - The stuff you want to edit
+     */
     async edit(data: GuildEditOptionsType) {
         const request = (await this.client.rest.patch(`/guilds/${this.id}`, {
             body: new GuildEditOptions(data)
         })) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Unban a banned user from the server
+     * @param {string} userId - The ID of the user you want to unban
+     * @param {string} reason - Reason of the unban
+     */
+    async unban(userId: string, reason?: string) {
+        const request = (await this.client.rest.delete(`/guilds/${this.id}/bans/${userId}`, {
+            reason
+        })) as any;
+
         if (request?.code) {
             throw new APIError(request?.message);
         }
