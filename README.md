@@ -40,18 +40,18 @@ a bad discord lib
   * [ ] Create Emoji Class
 
 * [ ] [Guild](https://discord.com/developers/docs/resources/guild)
-  * [ ] Create Guild Channel
+  * [X] Create Guild Channel
   * [ ] Modify Guild Channel Position
   * [ ] Search Guild Members
-  * [ ] Edit Guild Member
-  * [ ] Add Role to Member
-  * [ ] Remove Role from Member
-  * [ ] Get Guild Bans
-  * [ ] Get Guild Ban
-  * [ ] Create Guild Role
-  * [ ] Modify Guild Role Position
-  * [ ] Modify Guild Role
-  * [ ] Delete Guild Role
+  * [X] Edit Guild Member
+  * [X] Add Role to Member
+  * [X] Remove Role from Member
+  * [X] Get Guild Bans
+  * [X] Get Guild Ban
+  * [X] Create Guild Role
+  * [X] Modify Guild Role Position
+  * [X] Modify Guild Role
+  * [X] Delete Guild Role
   * [ ] Get Guild Voice Regions
   * [ ] Get Guild Invites
   * [ ] Get Guild Integrations

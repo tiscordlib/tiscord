@@ -1,5 +1,6 @@
 import { APIGuildMember } from 'discord-api-types/v10';
 import { User, Client, APIError } from '../';
+import { MemberOptions } from '../util/MemberOptions';
 
 /**
  * Member class
@@ -69,6 +70,52 @@ export class Member {
             reason,
             // eslint-disable-next-line camelcase
             body: { delete_message_days: deleteMessageAfter }
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Edit the member
+     * @param {string} reason - The reason of the ban. This will be shown in the audit logs
+     * @param {MemberOptions} data - Data of the new members values
+     */
+    async edit(data: MemberOptions, reason?: string) {
+        const request = (await this.client.rest.patch(`/guilds/${this.guildId}/members/${this.id}`, {
+            reason,
+            body: new MemberOptions(data)
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Add a role to a member
+     * @param {MemberOptions} roleId - ID of the role
+     * @param {string} reason - The reason of the role add. This will be shown in the audit logs
+     */
+    async addRole(roleId: string, reason?: string) {
+        const request = (await this.client.rest.put(`/guilds/{guild.id}/members/${this.id}/roles/${roleId}`, {
+            reason
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Remove a role from a member
+     * @param {MemberOptions} roleId - ID of the role
+     * @param {string} reason - The reason of the role removal. This will be shown in the audit logs
+     */
+    async removeRole(roleId: string, reason?: string) {
+        const request = (await this.client.rest.delete(`/guilds/{guild.id}/members/${this.id}/roles/${roleId}`, {
+            reason
         })) as any;
 
         if (request?.code) {

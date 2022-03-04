@@ -20,6 +20,9 @@ import {
     APIError
 } from '../';
 import { ThreadChannel } from './ThreadChannel';
+import { ChannelOptions } from '../util/ChannelOptions';
+import { GuildBan } from './GuildBan';
+import { RoleOptions } from '../util/RoleOptions';
 
 /**
  * Guild class
@@ -205,6 +208,115 @@ export class Guild {
      */
     async unban(userId: string, reason?: string) {
         const request = (await this.client.rest.delete(`/guilds/${this.id}/bans/${userId}`, {
+            reason
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Create a channel in the guild
+     * @param {ChannelOptions} data - Data of the new channel
+     * @param {string} reason - Reason of the creation
+     */
+    async createChannel(data: ChannelOptions, reason?: string) {
+        const request = (await this.client.rest.post(`/guilds/${this.id}/channels`, {
+            reason,
+            body: new ChannelOptions(data)
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Returns a list of bans in the guild
+     * @returns {Promise<Array<GuildBan>>}
+     */
+    async getBans(): Promise<Array<GuildBan>> {
+        const request = (await this.client.rest.get(`/guilds/${this.id}/bans`)) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+
+        return request.map(b => new GuildBan(this.client, b));
+    }
+
+    /**
+     * Returns a list of bans in the guild
+     * @param {string} userId - The ID of the user to get the ban of
+     * @returns {Promise<GuildBan>}
+     */
+    async getBan(userId: string): Promise<GuildBan> {
+        const request = (await this.client.rest.get(`/guilds/${this.id}/bans/${userId}`)) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+
+        return new GuildBan(this.client, request);
+    }
+
+    /**
+     * Creates a role in the guild
+     * @param {RoleOptions} data - Data of the new role
+     * @param {string} reason - Reason of the creation
+     */
+    async createRole(data: RoleOptions, reason?: string) {
+        const request = (await this.client.rest.post(`/guilds/${this.id}/roles`, {
+            reason,
+            body: new RoleOptions(data)
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Modify a roles position
+     * @param {number} roleId - ID of the role
+     * @param {number} position - Data of the new role
+     * @param {string} reason - Reason of the edit
+     */
+    async modifyRolePosition(roleId: number, position: number, reason?: string) {
+        const request = (await this.client.rest.patch(`/guilds/${this.id}/roles`, {
+            reason,
+            body: { id: roleId, position }
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Modify a role
+     * @param {RoleOptions} data - Data of the new role
+     * @param {string} reason - Reason of the modify
+     */
+    async modifyRole(data: RoleOptions, reason?: string) {
+        const request = (await this.client.rest.patch(`/guilds/${this.id}/roles`, {
+            reason,
+            body: new RoleOptions(data)
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Deletes a role in the guild
+     * @param {number} roleId - ID of the role
+     * @param {string} reason - Reason of the creation
+     */
+    async deleteRole(roleId: number, reason?: string) {
+        const request = (await this.client.rest.delete(`/guilds/${this.id}/roles/${roleId}`, {
             reason
         })) as any;
 

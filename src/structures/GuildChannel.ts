@@ -39,9 +39,13 @@ export class GuildChannel extends Channel {
         }
     }
 
-    async edit(newChannel: ChannelOptions) {
+    /**
+     * Edit the channel
+     * @param {ChannelOptions} data - Data of the channels new values
+     */
+    async edit(data: ChannelOptions) {
         const request = (await this.client.rest.patch(`/channels/${this.id}`, {
-            body: new ChannelOptions(newChannel)
+            body: new ChannelOptions(data)
         })) as any;
 
         if (request?.code) {
