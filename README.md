@@ -50,10 +50,10 @@ a bad discord lib
   * [ ] Integration Create
   * [ ] Integration Update
   * [ ] Integration Delete
-  * [ ] Interaction Create
+  * [x] Interaction Create
   * [ ] Invite Create
   * [ ] Invite Delete
-  * [ ] Message Create
+  * [x] Message Create
   * [ ] Message Update
   * [ ] Message Delete
   * [ ] Message Delete Bulk
