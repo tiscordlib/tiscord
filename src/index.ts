@@ -26,6 +26,7 @@ import { TextChannel } from './structures/TextChannel';
 import { ThreadChannel } from './structures/ThreadChannel';
 import { Role } from './structures/Role';
 import { User } from './structures/User';
+import { VoiceChannel } from 'structures/VoiceChannel';
 
 import { ClientOptions } from './util/ClientOptions';
 import { GuildEditOptions, GuildEditOptionsType } from './util/GuildEditOptions';
@@ -62,5 +63,6 @@ export {
     SystemMessageTypes,
     GuildEditOptions,
     GuildEditOptionsType,
-    GatewayError
+    GatewayError,
+    VoiceChannel
 };

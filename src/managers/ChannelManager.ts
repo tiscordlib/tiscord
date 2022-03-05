@@ -1,5 +1,5 @@
 import { APIChannel } from 'discord-api-types/v10';
-import { Client, DMChannel, GuildChannel, TextChannel, ThreadChannel } from '../';
+import { Client, DMChannel, GuildChannel, TextChannel, ThreadChannel, VoiceChannel } from '../';
 
 /**
  * Class managing channels
@@ -30,6 +30,9 @@ export class ChannelManager {
             case 1:
                 data = new DMChannel(this.client, data);
                 break;
+            case 2:
+                data = new VoiceChannel(this.client, data);
+                break;
             case 10:
                 data = new ThreadChannel(this.client, data);
                 break;
@@ -38,6 +41,9 @@ export class ChannelManager {
                 break;
             case 12:
                 data = new ThreadChannel(this.client, data);
+                break;
+            case 13:
+                data = new VoiceChannel(this.client, data);
                 break;
             default:
                 data = new GuildChannel(this.client, data);
