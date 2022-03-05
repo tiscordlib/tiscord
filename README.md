@@ -41,7 +41,7 @@ a bad discord lib
 
 * [ ] [Guild](https://discord.com/developers/docs/resources/guild)
   * [X] Create Guild Channel
-  * [ ] Modify Guild Channel Position
+  * [X] Modify Guild Channel Position
   * [X] Edit Guild Member
   * [X] Add Role to Member
   * [X] Remove Role from Member
@@ -52,7 +52,7 @@ a bad discord lib
   * [X] Modify Guild Role
   * [X] Delete Guild Role
   * [ ] Get Guild Voice Regions
-  * [ ] Get Guild Invites
+  * [X] Get Guild Invites
   * [ ] Get Guild Integrations
   * [ ] Delete Guild Integration
   * [ ] Get Guild Vanity URL

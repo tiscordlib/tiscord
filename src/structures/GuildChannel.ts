@@ -52,4 +52,25 @@ export class GuildChannel extends Channel {
             throw new APIError(request?.message);
         }
     }
+
+    /**
+     * Modify the position of the channel
+     * @param {number} position - Sorting position of the channel
+     * @param {number} parentId - The new parent ID for the channel that is moved
+     * @param {boolean} lockPermissions - Whether to sync the permission overwrites with the new parent, if moving to a new category
+     */
+    async modifyPosition(position: number, parentId: number, lockPermissions?: boolean) {
+        const request = (await this.client.rest.patch(`/guilds/${this.guildId}/channels`, {
+            body: {
+                id: this.id,
+                position,
+                lock_permissions: lockPermissions,
+                parent_id: parentId
+            }
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
 }
