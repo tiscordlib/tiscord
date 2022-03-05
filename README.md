@@ -11,8 +11,68 @@ a bad discord lib
 - [x] add resuming (gateway)
 - [x] make the lib error when theres gateway or api error
 
+* [ ] [Events](https://discord.com/developers/docs/topics/gateway#commands-and-events-gateway-events)
+  * [x] Hello
+  * [x] Ready
+  * [ ] Resumed
+  * [ ] Reconnect
+  * [ ] Invalid Session
+  * [ ] Channel Create
+  * [ ] Channel Update
+  * [ ] Channel Delete
+  * [ ] Channel Pins Update
+  * [ ] Thread Create
+  * [ ] Thread Update
+  * [ ] Thread Delete
+  * [ ] Thread List Sync
+  * [ ] Thread Member Update
+  * [ ] Thread Members Update
+  * [ ] Guild Create
+  * [ ] Guild Update
+  * [ ] Guild Delete
+  * [ ] Guild Ban Add
+  * [ ] Guild Ban Remove
+  * [ ] Guild Emojis Update
+  * [ ] Guild Stickers Update
+  * [ ] Guild Integrations Update
+  * [ ] Guild Member Add
+  * [ ] Guild Member Remove
+  * [ ] Guild Member Update
+  * [ ] Guild Members Chunk
+  * [ ] Guild Role Create
+  * [ ] Guild Role Update
+  * [ ] Guild Role Delete
+  * [ ] Guild Scheduled Event Create
+  * [ ] Guild Scheduled Event Update
+  * [ ] Guild Scheduled Event Delete
+  * [ ] Guild Scheduled Event User Add
+  * [ ] Guild Scheduled Event User Remove
+  * [ ] Integration Create
+  * [ ] Integration Update
+  * [ ] Integration Delete
+  * [ ] Interaction Create
+  * [ ] Invite Create
+  * [ ] Invite Delete
+  * [ ] Message Create
+  * [ ] Message Update
+  * [ ] Message Delete
+  * [ ] Message Delete Bulk
+  * [ ] Message Reaction Add
+  * [ ] Message Reaction Remove
+  * [ ] Message Reaction Remove All
+  * [ ] Message Reaction Remove Emoji
+  * [ ] Presence Update
+  * [ ] Stage Instance Create
+  * [ ] Stage Instance Update
+  * [ ] Stage Instance Delete
+  * [ ] Typing Start
+  * [ ] User Update
+  * [ ] Voice State Update
+  * [ ] Voice Server Update
+  * [ ] Webhooks Update
+
 * [ ] [Channel](https://discord.com/developers/docs/resources/channel)
-  * [ ] Bulk Delete Messages
+  * [x] Bulk Delete Messages
   * [ ] Get Channel Invites
   * [ ] Create Channel Invite
   * [ ] Trigger Typing
