@@ -1,9 +1,18 @@
 /* eslint-disable require-atomic-updates */
 /* eslint-disable camelcase */
 import { APIInteraction, APIMessage, APIMessageReference, MessageFlags } from 'discord-api-types/v10';
-import { APIError, Client, Guild, MessageOptions, MessageTypes, SystemMessageTypes, TextChannel, User } from '../';
-import { Interaction } from './Interaction';
-import { ThreadChannel } from './ThreadChannel';
+import {
+    APIError,
+    Client,
+    Guild,
+    MessageOptions,
+    MessageTypes,
+    SystemMessageTypes,
+    TextChannel,
+    User,
+    Interaction,
+    ThreadChannel
+} from '../';
 
 /**
  * Message class

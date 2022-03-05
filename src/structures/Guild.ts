@@ -17,12 +17,13 @@ import {
     RolesManager,
     GuildEditOptions,
     GuildEditOptionsType,
-    APIError
+    APIError,
+    ThreadChannel,
+    ChannelOptions,
+    GuildBan,
+    RoleOptions,
+    Invite
 } from '../';
-import { ThreadChannel } from './ThreadChannel';
-import { ChannelOptions } from '../util/ChannelOptions';
-import { GuildBan } from './GuildBan';
-import { RoleOptions } from '../util/RoleOptions';
 
 /**
  * Guild class
@@ -323,5 +324,19 @@ export class Guild {
         if (request?.code) {
             throw new APIError(request?.message);
         }
+    }
+
+    /**
+     * Gets the invites of the guild
+     * @returns {Promise<Array<Invite>>}
+     */
+    async invites(): Promise<Array<Invite>> {
+        const request = (await this.client.rest.get(`/guilds/${this.id}/invites`)) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+
+        return request.map(i => new Invite(this.client, i));
     }
 }

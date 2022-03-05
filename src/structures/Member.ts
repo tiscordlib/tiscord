@@ -1,6 +1,5 @@
 import { APIGuildMember } from 'discord-api-types/v10';
-import { User, Client, APIError } from '../';
-import { MemberOptions } from '../util/MemberOptions';
+import { User, Client, APIError, MemberOptions } from '../';
 
 /**
  * Member class

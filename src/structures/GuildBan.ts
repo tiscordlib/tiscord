@@ -1,6 +1,5 @@
 import { APIBan } from 'discord-api-types/v10';
-import { User } from './User';
-import { Client } from '../client/Client';
+import { User, Client } from '../';
 
 /**
  * Guild ban class
