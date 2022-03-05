@@ -42,7 +42,6 @@ a bad discord lib
 * [ ] [Guild](https://discord.com/developers/docs/resources/guild)
   * [X] Create Guild Channel
   * [ ] Modify Guild Channel Position
-  * [ ] Search Guild Members
   * [X] Edit Guild Member
   * [X] Add Role to Member
   * [X] Remove Role from Member
