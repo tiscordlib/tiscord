@@ -3,7 +3,7 @@ import { User } from './User';
 import { Client } from '../client/Client';
 
 /**
- * GuildBan class
+ * Guild ban class
  * @param {Client} client - Client instance
  * @param {APIBan} data - Ban data
  * @class
