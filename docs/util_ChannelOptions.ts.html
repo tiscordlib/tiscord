@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tiscord documentation DMChannel</title>
+  <title>Tiscord documentation util/ChannelOptions.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -101,394 +103,102 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Class</p>
-                    <h1>DMChannel</h1>
+                    <p>Source</p>
+                    <h1>util/ChannelOptions.ts</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
-    
-        <h2><span class="attribs"><span class="type-signature"></span></span>DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description"><p>DM Channel class</p></div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class='vertical-section'>
-                <div class="members">
-                    <div class="member">
-                        <div class=name>
-                            <span class="tag">Constructor</span>
-                        </div>
-                        
-
-
-    
-    <h4 class="name" id="DMChannel">
-        <a class="href-link" href="#DMChannel">#</a>
-        
-        <span class="code-name">
-            
-                new DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>client</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type"><a href="Client.html">Client</a></code>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Client instance</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>data</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type">APIChannel</code>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Channel data</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-<div class="table-container">
-    <table class="props table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>lastMessageId</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>ID of last message</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>applicationId</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>ID of application (exists only if an application created the DM)</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>ownerId</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>ID of DM creator</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>icon</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Icon hash</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>recipients</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">Array.&lt;<a href="User.html">User</a>></code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Array of recipient users</p></td>
-</tr>
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
     
-        <p class="tag-source">
-            <a href="structures_DMChannel.ts.html" class="button">View Source</a>
-            <span>
-                <a href="structures_DMChannel.ts.html">structures/DMChannel.ts</a>, <a href="structures_DMChannel.ts.html#line16">line 16</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    </div>
-                </div>
-            </div>
-        
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="Channel.html">Channel</a></li>
-    </ul>
-
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="DMChannel.html">DMChannel</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable camelcase */
+import { OverwriteType, ChannelType, APIVoiceRegion, VideoQualityMode } from 'discord-api-types/v10';
+
+/**
+ * Message options, used for parsing messages to an api readable format
+ * @param {ChannelOptions} data - Message data
+ * @class
+ * @property {string} name - Channels name
+ * @property {ChannelType} type - Channels type
+ * @property {number} position - Channels position
+ * @property {string} topic - Channels topic
+ * @property {boolean} nsfw - If channel is NSFW or not
+ * @property {number} rate_limit_per_user - Channels rate limit per user
+ * @property {number} bitrate - Channels bitrate
+ * @property {number} user_limit - Channels user limit
+ * @property {Array&lt;OverwriteType>} permission_overwrites - Channels permission overwrites
+ * @property {number} parent_id - Channels parent ID
+ * @property {APIVoiceRegion} rtc_region - Channels voice region
+ * @property {VideoQualityMode} video_quality_mode - Channels video quality mode
+ * @property {number} default_auto_archive_duration - Channels default auto archive duration (threads)
+ */
+export class ChannelOptions {
+    name: string;
+    type: ChannelType;
+    position?: number;
+    topic?: string;
+    nsfw?: boolean;
+    rate_limit_per_user?: number;
+    bitrate?: number;
+    user_limit?: number;
+    permission_overwrites?: Array&lt;OverwriteType>;
+    parent_id?: number;
+    rtc_region?: APIVoiceRegion;
+    video_quality_mode?: VideoQualityMode;
+    default_auto_archive_duration?: number;
+    constructor(data: ChannelOptions) {
+        this.name = data.name;
+        this.type = data.type;
+        if (data.position) this.position = data.position;
+        if (data.topic) this.topic = data.topic;
+        if (data.nsfw) this.nsfw = data.nsfw;
+        if (data.rate_limit_per_user) this.rate_limit_per_user = data.rate_limit_per_user;
+        if (data.bitrate) this.bitrate = data.bitrate;
+        if (data.user_limit) this.user_limit = data.user_limit;
+        if (data.parent_id) this.parent_id = data.parent_id;
+        if (data.rtc_region) this.rtc_region = data.rtc_region;
+        if (data.video_quality_mode) this.video_quality_mode = data.video_quality_mode;
+        if (data.default_auto_archive_duration) this.default_auto_archive_duration = data.default_auto_archive_duration;
+    }
+}
+
+/**
+ * Message options type
+ * @typedef {ChannelOptions} MessageOptions
+ * @property {string} name - Channels name
+ * @property {ChannelType} type - Channels type
+ * @property {number} position - Channels position
+ * @property {string} topic - Channels topic
+ * @property {boolean} nsfw - If channel is NSFW or not
+ * @property {number} rate_limit_per_user - Channels rate limit per user
+ * @property {number} bitrate - Channels bitrate
+ * @property {number} user_limit - Channels user limit
+ * @property {Array&lt;OverwriteType>} permission_overwrites - Channels permission overwrites
+ * @property {number} parent_id - Channels parent ID
+ * @property {APIVoiceRegion} rtc_region - Channels voice region
+ * @property {VideoQualityMode} video_quality_mode - Channels video quality mode
+ * @property {number} default_auto_archive_duration - Channels default auto archive duration (threads)
+ */
+export interface ChannelOptions {
+    name: string;
+    type: ChannelType;
+    position?: number;
+    topic?: string;
+    nsfw?: boolean;
+    rate_limit_per_user?: number;
+    bitrate?: number;
+    user_limit?: number;
+    permission_overwrites?: Array&lt;OverwriteType>;
+    parent_id?: number;
+    rtc_region?: APIVoiceRegion;
+    video_quality_mode?: VideoQualityMode;
+    default_auto_archive_duration?: number;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

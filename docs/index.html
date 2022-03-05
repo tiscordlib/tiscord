@@ -94,7 +94,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="ChannelOptions.html">ChannelOptions</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildBan.html">GuildBan</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildEditOptions.html">GuildEditOptions</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="MemberOptions.html">MemberOptions</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleOptions.html">RoleOptions</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li><li><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li></ul></div>
                 
             </nav>
         </div>
@@ -135,10 +135,77 @@
 <li>[x] caching system</li>
 <li>[x] add a way to get users/guilds/channels/members</li>
 <li>[x] add more structures</li>
-<li>[ ] add more methods (timeout, ban, kick, etc.)</li>
 <li>[ ] add more events</li>
 <li>[ ] write tests</li>
-<li>[ ] create docs</li>
+<li>[x] create docs</li>
+<li>[ ] add resuming (gateway)</li>
+<li>[ ] make the lib error when theres gateway or api error</li>
+</ul>
+<ul>
+<li>
+<p>[ ] <a href="https://discord.com/developers/docs/resources/channel">Channel</a></p>
+<ul>
+<li>[ ] Bulk Delete Messages</li>
+<li>[ ] Get Channel Invites</li>
+<li>[ ] Create Channel Invite</li>
+<li>[ ] Trigger Typing</li>
+<li>[ ] Get Pinned Messages</li>
+<li>[ ] Pin Message</li>
+<li>[ ] Unpin Message</li>
+<li>[ ] Join Thread</li>
+<li>[ ] Start Thread</li>
+<li>[ ] Leave Thread</li>
+<li>[ ] Add Thread Member</li>
+<li>[ ] Remove Thread Member</li>
+<li>[ ] Get Thread Member</li>
+<li>[ ] List Thread Members</li>
+<li>[ ] List Active Threads</li>
+<li>[ ] List Public Archived Threads</li>
+<li>[ ] List Private Archived Threads</li>
+<li>[ ] List Joined Private Archived Threads</li>
+</ul>
+</li>
+<li>
+<p>[ ] <a href="https://discord.com/developers/docs/resources/emoji">Emoji</a></p>
+<ul>
+<li>[ ] List Guild Emojis</li>
+<li>[ ] Get Guild Emoji</li>
+<li>[ ] Create Guild Emoji</li>
+<li>[ ] Modify Guild Emoji</li>
+<li>[ ] Delete Guild Emoji</li>
+<li>[ ] Create Emoji Class</li>
+</ul>
+</li>
+<li>
+<p>[ ] <a href="https://discord.com/developers/docs/resources/guild">Guild</a></p>
+<ul>
+<li>[X] Create Guild Channel</li>
+<li>[ ] Modify Guild Channel Position</li>
+<li>[X] Edit Guild Member</li>
+<li>[X] Add Role to Member</li>
+<li>[X] Remove Role from Member</li>
+<li>[X] Get Guild Bans</li>
+<li>[X] Get Guild Ban</li>
+<li>[X] Create Guild Role</li>
+<li>[X] Modify Guild Role Position</li>
+<li>[X] Modify Guild Role</li>
+<li>[X] Delete Guild Role</li>
+<li>[ ] Get Guild Voice Regions</li>
+<li>[ ] Get Guild Invites</li>
+<li>[ ] Get Guild Integrations</li>
+<li>[ ] Delete Guild Integration</li>
+<li>[ ] Get Guild Vanity URL</li>
+<li>[ ] Get Guild Welcome Screen</li>
+<li>[ ] Modify Guild Welcome Screen</li>
+<li>[ ] Modify User Voice State</li>
+<li>[ ] Modify Current User Voice State</li>
+</ul>
+</li>
+</ul>
+<h1>Links</h1>
+<ul>
+<li><a href="https://tiscord.me/">Documentation</a></li>
+<li><a href="https://discord.gg/exUr7bjRjb">Support</a></li>
 </ul></article>
     </section>
 

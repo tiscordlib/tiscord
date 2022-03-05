@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tiscord documentation DMChannel</title>
+  <title>Tiscord documentation GuildEditOptions</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -102,7 +102,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Class</p>
-                    <h1>DMChannel</h1>
+                    <h1>GuildEditOptions</h1>
                 </header>
                 
 
@@ -113,9 +113,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>GuildEditOptions<span class="signature">(data)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>DM Channel class</p></div>
+            <div class="class-description"><p>Options for editing guilds</p></div>
         
     
 </header>
@@ -134,12 +134,12 @@
 
 
     
-    <h4 class="name" id="DMChannel">
-        <a class="href-link" href="#DMChannel">#</a>
+    <h4 class="name" id="GuildEditOptions">
+        <a class="href-link" href="#GuildEditOptions">#</a>
         
         <span class="code-name">
             
-                new DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span>
+                new GuildEditOptions<span class="signature">(data)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -182,38 +182,13 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>client</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type"><a href="Client.html">Client</a></code>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Client instance</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
       <td class="name"><code>data</code></td>
   
 
   <td class="type">
   
       
-<code class="param-type">APIChannel</code>
+<code class="param-type"><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></code>
 
 
   
@@ -223,7 +198,7 @@
 
   
 
-  <td class="description last"><p>Channel data</p></td>
+  <td class="description last"><p>Options data</p></td>
 </tr>
 
 
@@ -262,7 +237,7 @@
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>lastMessageId</code></td>
+        <td class="name"><code>name</code></td>
     
 
     <td class="type">
@@ -278,20 +253,20 @@
 
     
 
-    <td class="description last"><p>ID of last message</p></td>
+    <td class="description last"><p>Guild name</p></td>
 </tr>
 
         
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>applicationId</code></td>
+        <td class="name"><code>verification_level</code></td>
     
 
     <td class="type">
     
         
-<code class="param-type">string</code>
+<code class="param-type">number</code>
 
 
     
@@ -301,14 +276,60 @@
 
     
 
-    <td class="description last"><p>ID of application (exists only if an application created the DM)</p></td>
+    <td class="description last"><p>Guild verification level</p></td>
 </tr>
 
         
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>ownerId</code></td>
+        <td class="name"><code>explicit_content_filter</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">number</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Guild explicit content filter level</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>defaultMessageNotifications</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">number</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Guild default message notifications level</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>afk_channel_id</code></td>
     
 
     <td class="type">
@@ -324,7 +345,30 @@
 
     
 
-    <td class="description last"><p>ID of DM creator</p></td>
+    <td class="description last"><p>Guild AFK channel ID</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>afk_timeout</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">number</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Guild AFK timeout</p></td>
 </tr>
 
         
@@ -337,6 +381,29 @@
     <td class="type">
     
         
+<code class="param-type">any</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Guild icon</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>owner_id</code></td>
+    
+
+    <td class="type">
+    
+        
 <code class="param-type">string</code>
 
 
@@ -347,20 +414,20 @@
 
     
 
-    <td class="description last"><p>Icon hash</p></td>
+    <td class="description last"><p>new owner id</p></td>
 </tr>
 
         
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>recipients</code></td>
+        <td class="name"><code>splash</code></td>
     
 
     <td class="type">
     
         
-<code class="param-type">Array.&lt;<a href="User.html">User</a>></code>
+<code class="param-type">any</code>
 
 
     
@@ -370,7 +437,53 @@
 
     
 
-    <td class="description last"><p>Array of recipient users</p></td>
+    <td class="description last"><p>Guild splash</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>discovery_splash</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">any</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Guild discovery splash</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>banner</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">any</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Guild banner</p></td>
 </tr>
 
         
@@ -413,9 +526,9 @@
 
     
         <p class="tag-source">
-            <a href="structures_DMChannel.ts.html" class="button">View Source</a>
+            <a href="util_GuildEditOptions.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_DMChannel.ts.html">structures/DMChannel.ts</a>, <a href="structures_DMChannel.ts.html#line16">line 16</a>
+                <a href="util_GuildEditOptions.ts.html">util/GuildEditOptions.ts</a>, <a href="util_GuildEditOptions.ts.html#line18">line 18</a>
             </span>
         </p>
     
@@ -450,17 +563,6 @@
     </div>
     
     
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="Channel.html">Channel</a></li>
-    </ul>
-
-
-    
 
     
 
@@ -468,7 +570,7 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="DMChannel.html">DMChannel</a></dt>
+            <dt><a href="GuildEditOptions.html">GuildEditOptions</a></dt>
             <dd></dd>
         </dl>
     

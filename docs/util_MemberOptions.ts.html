@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tiscord documentation DMChannel</title>
+  <title>Tiscord documentation util/MemberOptions.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -101,394 +103,67 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Class</p>
-                    <h1>DMChannel</h1>
+                    <p>Source</p>
+                    <h1>util/MemberOptions.ts</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
-    
-        <h2><span class="attribs"><span class="type-signature"></span></span>DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description"><p>DM Channel class</p></div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class='vertical-section'>
-                <div class="members">
-                    <div class="member">
-                        <div class=name>
-                            <span class="tag">Constructor</span>
-                        </div>
-                        
-
-
-    
-    <h4 class="name" id="DMChannel">
-        <a class="href-link" href="#DMChannel">#</a>
-        
-        <span class="code-name">
-            
-                new DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>client</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type"><a href="Client.html">Client</a></code>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Client instance</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>data</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type">APIChannel</code>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Channel data</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-<div class="table-container">
-    <table class="props table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>lastMessageId</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>ID of last message</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>applicationId</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>ID of application (exists only if an application created the DM)</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>ownerId</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>ID of DM creator</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>icon</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Icon hash</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>recipients</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">Array.&lt;<a href="User.html">User</a>></code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Array of recipient users</p></td>
-</tr>
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
     
-        <p class="tag-source">
-            <a href="structures_DMChannel.ts.html" class="button">View Source</a>
-            <span>
-                <a href="structures_DMChannel.ts.html">structures/DMChannel.ts</a>, <a href="structures_DMChannel.ts.html#line16">line 16</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    </div>
-                </div>
-            </div>
-        
-    
-    </div>
-    
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="Channel.html">Channel</a></li>
-    </ul>
-
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="DMChannel.html">DMChannel</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable camelcase */
+
+/**
+ * Member options, used for parsing members to an api readable format
+ * @param {MemberOptions} data - Member data
+ * @class
+ * @property {string} nick - Members nickname
+ * @property {Array&lt;string>} roles - Members roles
+ * @property {boolean} mute - If member is muted in a voice channel or not
+ * @property {boolean} deaf - If member is deaf in a voice channel or not
+ * @property {string} channel_id - ID of channel to move user to (if they are connected to voice)
+ * @property {Date} communication_disabled_until - When the member's timeout will expire
+ */
+export class MemberOptions {
+    nick: string;
+    roles: Array&lt;string>;
+    mute: boolean;
+    deaf: boolean;
+    channel_id: string;
+    communication_disabled_until?: Date;
+    constructor(data: MemberOptions) {
+        this.nick = data.nick;
+        this.roles = data.roles;
+        this.mute = data.mute;
+        this.deaf = data.deaf;
+        this.channel_id = data.channel_id;
+        if (data.communication_disabled_until) this.communication_disabled_until = data.communication_disabled_until;
+    }
+}
+
+/**
+ * Message options type
+ * @typedef {MemberOptions} MessageOptions
+ * @property {string} nick - Members nickname
+ * @property {Array&lt;string>} roles - Members roles
+ * @property {boolean} mute - If member is muted in a voice channel or not
+ * @property {boolean} deaf - If member is deaf in a voice channel or not
+ * @property {string} channel_id - ID of channel to move user to (if they are connected to voice)
+ * @property {Date} communication_disabled_until - When the member's timeout will expire
+ */
+export interface MemberOptions {
+    nick: string;
+    roles: Array&lt;string>;
+    mute: boolean;
+    deaf: boolean;
+    channel_id: string;
+    communication_disabled_until?: Date;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

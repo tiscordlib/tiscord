@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tiscord documentation DMChannel</title>
+  <title>Tiscord documentation GuildBan</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -102,7 +102,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Class</p>
-                    <h1>DMChannel</h1>
+                    <h1>GuildBan</h1>
                 </header>
                 
 
@@ -113,9 +113,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>GuildBan<span class="signature">(client, data)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>DM Channel class</p></div>
+            <div class="class-description"><p>Guild ban class</p></div>
         
     
 </header>
@@ -134,12 +134,12 @@
 
 
     
-    <h4 class="name" id="DMChannel">
-        <a class="href-link" href="#DMChannel">#</a>
+    <h4 class="name" id="GuildBan">
+        <a class="href-link" href="#GuildBan">#</a>
         
         <span class="code-name">
             
-                new DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span>
+                new GuildBan<span class="signature">(client, data)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -213,7 +213,7 @@
   <td class="type">
   
       
-<code class="param-type">APIChannel</code>
+<code class="param-type">APIBan</code>
 
 
   
@@ -223,7 +223,7 @@
 
   
 
-  <td class="description last"><p>Channel data</p></td>
+  <td class="description last"><p>Ban data</p></td>
 </tr>
 
 
@@ -262,7 +262,30 @@
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>lastMessageId</code></td>
+        <td class="name"><code>client</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type"><a href="Client.html">Client</a></code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Client instance</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>reason</code></td>
     
 
     <td class="type">
@@ -278,20 +301,20 @@
 
     
 
-    <td class="description last"><p>ID of last message</p></td>
+    <td class="description last"><p>Reason of the ban</p></td>
 </tr>
 
         
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>applicationId</code></td>
+        <td class="name"><code>user</code></td>
     
 
     <td class="type">
     
         
-<code class="param-type">string</code>
+<code class="param-type"><a href="User.html">User</a></code>
 
 
     
@@ -301,76 +324,7 @@
 
     
 
-    <td class="description last"><p>ID of application (exists only if an application created the DM)</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>ownerId</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>ID of DM creator</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>icon</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Icon hash</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>recipients</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">Array.&lt;<a href="User.html">User</a>></code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Array of recipient users</p></td>
+    <td class="description last"><p>Banned user</p></td>
 </tr>
 
         
@@ -413,9 +367,9 @@
 
     
         <p class="tag-source">
-            <a href="structures_DMChannel.ts.html" class="button">View Source</a>
+            <a href="structures_GuildBan.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_DMChannel.ts.html">structures/DMChannel.ts</a>, <a href="structures_DMChannel.ts.html#line16">line 16</a>
+                <a href="structures_GuildBan.ts.html">structures/GuildBan.ts</a>, <a href="structures_GuildBan.ts.html#line12">line 12</a>
             </span>
         </p>
     
@@ -450,17 +404,6 @@
     </div>
     
     
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="Channel.html">Channel</a></li>
-    </ul>
-
-
-    
 
     
 
@@ -468,7 +411,7 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="DMChannel.html">DMChannel</a></dt>
+            <dt><a href="GuildBan.html">GuildBan</a></dt>
             <dd></dd>
         </dl>
     

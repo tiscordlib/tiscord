@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tiscord documentation DMChannel</title>
+  <title>Tiscord documentation MemberOptions</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -101,8 +101,8 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Class</p>
-                    <h1>DMChannel</h1>
+                    <p>Interface</p>
+                    <h1>MemberOptions</h1>
                 </header>
                 
 
@@ -113,9 +113,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description"><p>DM Channel class</p></div>
+        <h2>MemberOptions</h2>
         
     
 </header>
@@ -124,116 +122,10 @@
     <div class="container-overview">
     
         
-            <div class='vertical-section'>
-                <div class="members">
-                    <div class="member">
-                        <div class=name>
-                            <span class="tag">Constructor</span>
-                        </div>
-                        
-
-
-    
-    <h4 class="name" id="DMChannel">
-        <a class="href-link" href="#DMChannel">#</a>
-        
-        <span class="code-name">
-            
-                new DMChannel<span class="signature">(client, data)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
+            <div class="description"><p>Message options type</p></div>
         
 
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>client</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type"><a href="Client.html">Client</a></code>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Client instance</p></td>
-</tr>
-
-
         
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>data</code></td>
-  
-
-  <td class="type">
-  
-      
-<code class="param-type">APIChannel</code>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Channel data</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
 
 
     <h5 class="subsection-title">Properties:</h5>
@@ -262,7 +154,7 @@
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>lastMessageId</code></td>
+        <td class="name"><code>nick</code></td>
     
 
     <td class="type">
@@ -278,14 +170,83 @@
 
     
 
-    <td class="description last"><p>ID of last message</p></td>
+    <td class="description last"><p>Members nickname</p></td>
 </tr>
 
         
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>applicationId</code></td>
+        <td class="name"><code>roles</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">Array.&lt;string></code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Members roles</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>mute</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">boolean</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>If member is muted in a voice channel or not</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>deaf</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">boolean</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>If member is deaf in a voice channel or not</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>channel_id</code></td>
     
 
     <td class="type">
@@ -301,20 +262,20 @@
 
     
 
-    <td class="description last"><p>ID of application (exists only if an application created the DM)</p></td>
+    <td class="description last"><p>ID of channel to move user to (if they are connected to voice)</p></td>
 </tr>
 
         
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>ownerId</code></td>
+        <td class="name"><code>communication_disabled_until</code></td>
     
 
     <td class="type">
     
         
-<code class="param-type">string</code>
+<code class="param-type">Date</code>
 
 
     
@@ -324,53 +285,7 @@
 
     
 
-    <td class="description last"><p>ID of DM creator</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>icon</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Icon hash</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>recipients</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">Array.&lt;<a href="User.html">User</a>></code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Array of recipient users</p></td>
+    <td class="description last"><p>When the member's timeout will expire</p></td>
 </tr>
 
         
@@ -413,53 +328,19 @@
 
     
         <p class="tag-source">
-            <a href="structures_DMChannel.ts.html" class="button">View Source</a>
+            <a href="util_MemberOptions.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_DMChannel.ts.html">structures/DMChannel.ts</a>, <a href="structures_DMChannel.ts.html#line16">line 16</a>
+                <a href="util_MemberOptions.ts.html">util/MemberOptions.ts</a>, <a href="util_MemberOptions.ts.html#line33">line 33</a>
             </span>
         </p>
     
 </dl>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    </div>
-                </div>
-            </div>
         
     
     </div>
     
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="Channel.html">Channel</a></li>
-    </ul>
-
-
     
 
     
@@ -468,7 +349,7 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="DMChannel.html">DMChannel</a></dt>
+            <dt><a href="MemberOptions.html">MemberOptions</a></dt>
             <dd></dd>
         </dl>
     
