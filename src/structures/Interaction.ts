@@ -1,7 +1,6 @@
 import { APIInteraction, InteractionType } from 'discord-api-types/v10';
 
-import { Client } from '../client/Client';
-import { User } from './User';
+import { Client, User } from '../';
 
 /**
  * Interaction class
