@@ -1,31 +1,37 @@
-import { MessageTypes, SystemMessageTypes } from './util/MessageTypes';
-import { APIError } from './errors/APIError';
 import { Cache } from './cache/Cache';
-import { Channel } from './structures/Channel';
-import { ChannelManager } from './managers/ChannelManager';
+import { Sweeper } from './cache/Sweeper';
+
 import { Client } from './client/Client';
-import { ClientOptions } from './util/ClientOptions';
+import { WebSocketManager } from './client/Websocket';
+
+import { GatewayError } from './errors/GatewayError';
+import { APIError } from './errors/APIError';
+
+import { ChannelManager } from './managers/ChannelManager';
+import { GuildManager } from './managers/GuildManager';
+import { MemberManager } from './managers/MemberManager';
+import { MessageManager } from './managers/MessageManager';
+import { RolesManager } from './managers/RolesManager';
+import { UserManager } from './managers/UserManager';
+
+import { Channel } from './structures/Channel';
 import { CommandInteraction } from './structures/CommandInteraction';
 import { DMChannel } from './structures/DMChannel';
 import { Guild } from './structures/Guild';
 import { GuildChannel } from './structures/GuildChannel';
-import { GuildManager } from './managers/GuildManager';
 import { Interaction } from './structures/Interaction';
 import { Member } from './structures/Member';
-import { MemberManager } from './managers/MemberManager';
 import { Message } from './structures/Message';
-import { MessageManager } from './managers/MessageManager';
-import { MessageOptions } from './util/MessageOptions';
-import { Role } from './structures/Role';
-import { RolesManager } from './managers/RolesManager';
-import { Sweeper } from './cache/Sweeper';
 import { TextChannel } from './structures/TextChannel';
 import { ThreadChannel } from './structures/ThreadChannel';
+import { Role } from './structures/Role';
 import { User } from './structures/User';
-import { UserManager } from './managers/UserManager';
-import { WebSocketManager } from './client/Websocket';
+
+import { ClientOptions } from './util/ClientOptions';
 import { GuildEditOptions, GuildEditOptionsType } from './util/GuildEditOptions';
-import { GatewayError } from './errors/GatewayError';
+import { MessageTypes, SystemMessageTypes } from './util/MessageTypes';
+import { MessageOptions } from './util/MessageOptions';
+
 export {
     APIError,
     Cache,
