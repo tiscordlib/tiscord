@@ -29,6 +29,7 @@ import { User } from './structures/User';
 import { VoiceChannel } from './structures/VoiceChannel';
 
 import { ClientOptions } from './util/ClientOptions';
+import { ChannelOptions } from './util/ChannelOptions';
 import { GuildEditOptions, GuildEditOptionsType } from './util/GuildEditOptions';
 import { MessageTypes, SystemMessageTypes } from './util/MessageTypes';
 import { MessageOptions } from './util/MessageOptions';
@@ -38,6 +39,7 @@ export {
     Cache,
     Channel,
     ChannelManager,
+    ChannelOptions,
     Client,
     ClientOptions,
     CommandInteraction,
