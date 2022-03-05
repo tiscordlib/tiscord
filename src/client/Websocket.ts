@@ -1,5 +1,5 @@
 import WebSocket from 'ws';
-import { CommandInteraction, Interaction, Client, Message } from '../';
+import { CommandInteraction, Interaction, Client, Message, GatewayError } from '../';
 
 /**
  *  Main websocket class.
@@ -7,6 +7,7 @@ import { CommandInteraction, Interaction, Client, Message } from '../';
  *  @property {Client} client - Client instance
  *  @property {string} token - Client token
  *  @property {number} intents - Client intents
+ *  @property {string} sessionId - Client session id
  *  @class
  */
 export class WebSocketManager {
@@ -15,6 +16,7 @@ export class WebSocketManager {
     sequence: any;
     intents: number;
     client: Client;
+    sessionId: string;
     constructor(client: Client) {
         this.client = client;
         this.token = client.token;
@@ -34,6 +36,7 @@ export class WebSocketManager {
                     this.sequence = data.s;
                     switch (data.t) {
                         case 'READY':
+                            this.sessionId = data.d.session_id;
                             this.client.emit('ready', this.client);
                             break;
                         case 'MESSAGE_CREATE':
@@ -47,6 +50,7 @@ export class WebSocketManager {
                             } else {
                                 this.client.emit('interaction', new Interaction(this.client, data.d));
                             }
+                            break;
                     }
                     break;
                 case 10:
@@ -54,6 +58,26 @@ export class WebSocketManager {
                         this.ws.send(JSON.stringify({ op: 1, d: this.sequence || null }));
                     }, data.d.heartbeat_interval);
                     break;
+            }
+        });
+        this.ws.on('close', (code, message) => {
+            if ([4004, 4011, 4012, 4013, 4014].includes(code)) {
+                throw new GatewayError(message.toString());
+            } else {
+                this.ws.close();
+                this.connect();
+                this.ws.on('open', () => {
+                    this.ws.send(
+                        JSON.stringify({
+                            op: 6,
+                            d: {
+                                token: this.token,
+                                session_id: this.sessionId,
+                                seq: this.sequence
+                            }
+                        })
+                    );
+                });
             }
         });
     }

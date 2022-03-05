@@ -8,8 +8,8 @@ a bad discord lib
 - [ ] add more events
 - [ ] write tests
 - [x] create docs
-- [ ] add resuming (gateway)
-- [ ] make the lib error when theres gateway or api error
+- [x] add resuming (gateway)
+- [x] make the lib error when theres gateway or api error
 
 * [ ] [Channel](https://discord.com/developers/docs/resources/channel)
   * [ ] Bulk Delete Messages
