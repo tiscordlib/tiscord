@@ -1,6 +1,5 @@
 import { Channel } from './Channel';
-import { APIError, Client } from '../';
-import { ChannelOptions } from '../util/ChannelOptions';
+import { APIError, Client, ChannelOptions } from '../';
 
 /**
  * A guild channel class.

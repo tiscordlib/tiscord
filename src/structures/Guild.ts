@@ -17,13 +17,13 @@ import {
     RolesManager,
     GuildEditOptions,
     GuildEditOptionsType,
-    APIError
+    APIError,
+    ThreadChannel,
+    ChannelOptions,
+    GuildBan,
+    RoleOptions,
+    Invite
 } from '../';
-import { ThreadChannel } from './ThreadChannel';
-import { ChannelOptions } from '../util/ChannelOptions';
-import { GuildBan } from './GuildBan';
-import { RoleOptions } from '../util/RoleOptions';
-import { Invite } from './Invite';
 
 /**
  * Guild class

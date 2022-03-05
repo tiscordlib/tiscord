@@ -1,6 +1,5 @@
 import { ApplicationCommandType } from 'discord-api-types/v10';
-import { Client, MessageOptions } from '../';
-import { Interaction } from './Interaction';
+import { Client, MessageOptions, Interaction } from '../';
 
 /**
  * Command interaction class

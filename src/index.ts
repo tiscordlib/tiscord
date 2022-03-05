@@ -26,11 +26,16 @@ import { TextChannel } from './structures/TextChannel';
 import { ThreadChannel } from './structures/ThreadChannel';
 import { Role } from './structures/Role';
 import { User } from './structures/User';
+import { GuildBan } from './structures/GuildBan';
+import { Invite } from './structures/Invite';
 
 import { ClientOptions } from './util/ClientOptions';
+import { ChannelOptions } from './util/ChannelOptions';
+import { RoleOptions } from './util/RoleOptions';
 import { GuildEditOptions, GuildEditOptionsType } from './util/GuildEditOptions';
 import { MessageTypes, SystemMessageTypes } from './util/MessageTypes';
 import { MessageOptions } from './util/MessageOptions';
+import { MemberOptions } from './util/MemberOptions';
 
 export {
     APIError,
@@ -62,5 +67,10 @@ export {
     SystemMessageTypes,
     GuildEditOptions,
     GuildEditOptionsType,
-    GatewayError
+    GatewayError,
+    ChannelOptions,
+    GuildBan,
+    Invite,
+    RoleOptions,
+    MemberOptions
 };
