@@ -41,4 +41,21 @@ export class TextChannel extends GuildChannel {
         }
         return request;
     }
+
+    /**
+     * Bulk delete messges
+     * @param amount - Amount of messages to delete (between 2 and 100)
+     * @returns
+     */
+    async bulkDelete(amount: number) {
+        if (amount < 2 || amount > 100) throw new APIError('You can only bulk delete between 2 and 100 messages.');
+        const messageIds = (await this.messages.fetch(amount)).map(m => m.id);
+        const request = this.client.rest.post(`/channels/${this.id}/messages/bulk-delete`, {
+            body: { messages: messageIds }
+        }) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request;
+    }
 }
