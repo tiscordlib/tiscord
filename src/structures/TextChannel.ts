@@ -57,4 +57,11 @@ export class TextChannel extends GuildChannel {
         }
         return request;
     }
+    async typing() {
+        const request = (await this.client.rest.post(`/channels/${this.id}/typing`)) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request;
+    }
 }

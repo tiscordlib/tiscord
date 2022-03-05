@@ -73,9 +73,9 @@ a bad discord lib
 
 * [ ] [Channel](https://discord.com/developers/docs/resources/channel)
   * [x] Bulk Delete Messages
-  * [ ] Get Channel Invites
+  * [x] Get Channel Invites
   * [ ] Create Channel Invite
-  * [ ] Trigger Typing
+  * [x] Trigger Typing
   * [ ] Get Pinned Messages
   * [ ] Pin Message
   * [ ] Unpin Message
