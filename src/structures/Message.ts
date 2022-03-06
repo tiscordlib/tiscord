@@ -155,4 +155,20 @@ export class Message {
             throw new APIError(request?.message);
         }
     }
+    async pin(reason?: string) {
+        const request = (await this.client.rest.put(`/channels/${this.channelId}/pins/${this.id}`, { reason })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+    async unpin(reason?: string) {
+        const request = (await this.client.rest.delete(`/channels/${this.channelId}/pins/${this.id}`, {
+            reason
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
 }

@@ -96,7 +96,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="ChannelOptions.html">ChannelOptions</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="GatewayError.html">GatewayError</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildBan.html">GuildBan</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildEditOptions.html">GuildEditOptions</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="MemberOptions.html">MemberOptions</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleOptions.html">RoleOptions</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="VoiceChannel.html">VoiceChannel</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li><li><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="ChannelOptions.html">ChannelOptions</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="GatewayError.html">GatewayError</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildBan.html">GuildBan</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildEditOptions.html">GuildEditOptions</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Invite.html">Invite</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="MemberOptions.html">MemberOptions</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleOptions.html">RoleOptions</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="VoiceChannel.html">VoiceChannel</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li><li><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></li><li><a href="InviteData.html">InviteData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li></ul></div>
                 
             </nav>
         </div>
@@ -132,12 +132,13 @@ import {
     RolesManager,
     GuildEditOptions,
     GuildEditOptionsType,
-    APIError
+    APIError,
+    ThreadChannel,
+    ChannelOptions,
+    GuildBan,
+    RoleOptions,
+    Invite
 } from '../';
-import { ThreadChannel } from './ThreadChannel';
-import { ChannelOptions } from '../util/ChannelOptions';
-import { GuildBan } from './GuildBan';
-import { RoleOptions } from '../util/RoleOptions';
 
 /**
  * Guild class
@@ -307,9 +308,10 @@ export class Guild {
      * Ban the member from the server
      * @param {GuildEditOptionsType} data - The stuff you want to edit
      */
-    async edit(data: GuildEditOptionsType) {
+    async edit(data: GuildEditOptionsType, reason?: string) {
         const request = (await this.client.rest.patch(`/guilds/${this.id}`, {
-            body: new GuildEditOptions(data)
+            body: new GuildEditOptions(data),
+            reason
         })) as any;
         if (request?.code) {
             throw new APIError(request?.message);
@@ -438,6 +440,20 @@ export class Guild {
         if (request?.code) {
             throw new APIError(request?.message);
         }
+    }
+
+    /**
+     * Gets the invites of the guild
+     * @returns {Promise&lt;Array&lt;Invite>>}
+     */
+    async invites(): Promise&lt;Array&lt;Invite>> {
+        const request = (await this.client.rest.get(`/guilds/${this.id}/invites`)) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+
+        return request.map(i => new Invite(this.client, i));
     }
 }
 </code></pre>

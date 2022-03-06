@@ -54,7 +54,7 @@ export class Invite {
         if (data.approximate_member_count) this.approximate_member_count = data.approximate_member_count;
         if (data.expires_at) this.expires_at = data.expires_at;
         if (data.guild_scheduled_event) this.guild_scheduled_event = data.guild_scheduled_event;
-        this.raw = data;
+        if (client.raw) this.raw = data;
         this.client = client;
     }
 }

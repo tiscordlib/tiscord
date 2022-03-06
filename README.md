@@ -74,11 +74,11 @@ a bad discord lib
 * [ ] [Channel](https://discord.com/developers/docs/resources/channel)
   * [x] Bulk Delete Messages
   * [x] Get Channel Invites
-  * [ ] Create Channel Invite
+  * [x] Create Channel Invite
   * [x] Trigger Typing
   * [ ] Get Pinned Messages
-  * [ ] Pin Message
-  * [ ] Unpin Message
+  * [x] Pin Message
+  * [x] Unpin Message
   * [ ] Join Thread
   * [ ] Start Thread
   * [ ] Leave Thread

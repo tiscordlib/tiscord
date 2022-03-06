@@ -1,5 +1,5 @@
 import { Channel } from './Channel';
-import { APIError, Client, ChannelOptions } from '../';
+import { APIError, Client, ChannelOptions, InviteData, InviteOptions } from '../';
 import { Invite } from './Invite';
 
 /**
@@ -79,5 +79,16 @@ export class GuildChannel extends Channel {
         if (request?.code) {
             throw new APIError(request?.message);
         }
+    }
+    async createInvite(data?: InviteData, reason?: string) {
+        const request = (await this.client.rest.post(`/channels/${this.id}/invites`, {
+            body: new InviteOptions(data),
+            reason
+        })) as any;
+
+        if (request?.message) {
+            throw new APIError(request?.message);
+        }
+        return new Invite(this.client, request);
     }
 }

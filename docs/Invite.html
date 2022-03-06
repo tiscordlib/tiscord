@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tiscord documentation GuildBan</title>
+  <title>Tiscord documentation Invite</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -102,7 +102,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Class</p>
-                    <h1>GuildBan</h1>
+                    <h1>Invite</h1>
                 </header>
                 
 
@@ -113,9 +113,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>GuildBan<span class="signature">(client, data)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Invite<span class="signature">(client, data)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Guild ban class</p></div>
+            <div class="class-description"><p>Channel class</p></div>
         
     
 </header>
@@ -134,12 +134,12 @@
 
 
     
-    <h4 class="name" id="GuildBan">
-        <a class="href-link" href="#GuildBan">#</a>
+    <h4 class="name" id="Invite">
+        <a class="href-link" href="#Invite">#</a>
         
         <span class="code-name">
             
-                new GuildBan<span class="signature">(client, data)</span><span class="type-signature"></span>
+                new Invite<span class="signature">(client, data)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -213,7 +213,7 @@
   <td class="type">
   
       
-<code class="param-type">APIBan</code>
+<code class="param-type">APIInvite</code>
 
 
   
@@ -223,7 +223,7 @@
 
   
 
-  <td class="description last"><p>Ban data</p></td>
+  <td class="description last"><p>Channel data</p></td>
 </tr>
 
 
@@ -285,7 +285,7 @@
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>reason</code></td>
+        <td class="name"><code>code</code></td>
     
 
     <td class="type">
@@ -301,20 +301,20 @@
 
     
 
-    <td class="description last"><p>Reason of the ban</p></td>
+    <td class="description last"><p>Invites code</p></td>
 </tr>
 
         
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>user</code></td>
+        <td class="name"><code>guild</code></td>
     
 
     <td class="type">
     
         
-<code class="param-type"><a href="User.html">User</a></code>
+<code class="param-type">APIPartialGuild</code>
 
 
     
@@ -324,7 +324,237 @@
 
     
 
-    <td class="description last"><p>Banned user</p></td>
+    <td class="description last"><p>Invites guild</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>channel</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">APIChannel</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Invites channel</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>inviter</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">APIUser</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The user who created the invite</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>target_type</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">number</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The type of target for this voice channel invite</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>target_user</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">APIUser</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The user whose stream to display for this voice channel stream invite</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>target_application</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">Partial.&lt;APIApplication></code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The embedded application to open for this voice channel embedded application invite</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>approximate_presence_count</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">number</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Approximate count of online members in the invite</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>approximate_member_count</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">number</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Approximate count of total members in the invite</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>expires_at</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">string</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>When the invite expires</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>guild_scheduled_event</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">APIGuildScheduledEvent</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Guild scheduled event data</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>raw</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">APIInvite</code>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Raw channel data</p></td>
 </tr>
 
         
@@ -362,14 +592,21 @@
     
 
     
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://discord.com/developers/docs/resources/invite#invite-object">https://discord.com/developers/docs/resources/invite#invite-object</a></li>
+        </ul>
+    </dd>
+    
 
     
 
     
         <p class="tag-source">
-            <a href="structures_GuildBan.ts.html" class="button">View Source</a>
+            <a href="structures_Invite.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_GuildBan.ts.html">structures/GuildBan.ts</a>, <a href="structures_GuildBan.ts.html#line12">line 12</a>
+                <a href="structures_Invite.ts.html">structures/Invite.ts</a>, <a href="structures_Invite.ts.html#line22">line 22</a>
             </span>
         </p>
     
@@ -411,7 +648,7 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="GuildBan.html">GuildBan</a></dt>
+            <dt><a href="Invite.html">Invite</a></dt>
             <dd></dd>
         </dl>
     

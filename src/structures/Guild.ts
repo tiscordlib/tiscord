@@ -193,9 +193,10 @@ export class Guild {
      * Ban the member from the server
      * @param {GuildEditOptionsType} data - The stuff you want to edit
      */
-    async edit(data: GuildEditOptionsType) {
+    async edit(data: GuildEditOptionsType, reason?: string) {
         const request = (await this.client.rest.patch(`/guilds/${this.id}`, {
-            body: new GuildEditOptions(data)
+            body: new GuildEditOptions(data),
+            reason
         })) as any;
         if (request?.code) {
             throw new APIError(request?.message);

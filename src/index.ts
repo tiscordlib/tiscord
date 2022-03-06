@@ -34,6 +34,7 @@ import { ClientOptions } from './util/ClientOptions';
 import { ChannelOptions } from './util/ChannelOptions';
 import { RoleOptions } from './util/RoleOptions';
 import { GuildEditOptions, GuildEditOptionsType } from './util/GuildEditOptions';
+import { InviteOptions, InviteData } from './util/InviteOptions';
 import { MessageTypes, SystemMessageTypes } from './util/MessageTypes';
 import { MessageOptions } from './util/MessageOptions';
 import { MemberOptions } from './util/MemberOptions';
@@ -74,5 +75,7 @@ export {
     GuildBan,
     Invite,
     RoleOptions,
-    MemberOptions
+    MemberOptions,
+    InviteOptions,
+    InviteData
 };
