@@ -113,7 +113,7 @@ export class Message {
      */
     async guilds() {
         this.guild = await this.client.guilds.get(this.guildId);
-        this.channel = new TextChannel(this.client, (await this.guild.channels.get(this.channelId)).raw);
+        this.channel = await this.guild.channels.get(this.channelId);
     }
 
     /**

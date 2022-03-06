@@ -79,11 +79,11 @@ a bad discord lib
   * [x] Get Pinned Messages
   * [x] Pin Message
   * [x] Unpin Message
-  * [ ] Join Thread
-  * [ ] Start Thread
+  * [x] Join Thread
+  * [x] Start Thread
   * [ ] Leave Thread
-  * [ ] Add Thread Member
-  * [ ] Remove Thread Member
+  * [x] Add Thread Member
+  * [x] Remove Thread Member
   * [ ] Get Thread Member
   * [ ] List Thread Members
   * [ ] List Active Threads
