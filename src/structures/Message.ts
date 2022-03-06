@@ -83,7 +83,7 @@ export class Message {
         this.guildId = data.guild_id;
         this.author = new User(client, data.author);
         this.content = data.content;
-        this.timestamp = new Date(data.timestamp).getTime() / 1000;
+        this.timestamp = Math.round(new Date(data.timestamp).getTime() / 1000);
         this.tts = data.tts;
         this.mentions = data.mentions || [];
         this.mentionRoles = data.mention_roles || [];
