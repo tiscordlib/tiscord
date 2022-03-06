@@ -80,8 +80,8 @@ a bad discord lib
   * [x] Pin Message
   * [x] Unpin Message
   * [x] Join Thread
-  * [x] Start Thread
-  * [ ] Leave Thread
+  * [ ] Start Thread
+  * [x] Leave Thread
   * [x] Add Thread Member
   * [x] Remove Thread Member
   * [ ] Get Thread Member
