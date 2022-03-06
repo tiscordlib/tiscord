@@ -11,7 +11,9 @@ import {
     TextChannel,
     User,
     Interaction,
-    ThreadChannel
+    ThreadChannel,
+    ThreadData,
+    BaseThreadOptions
 } from '../';
 
 /**
@@ -180,5 +182,24 @@ export class Message {
         if (request?.code) {
             throw new APIError(request?.message);
         }
+    }
+
+    /**
+     * Create a thread on this message.
+     * @param data - Thread data
+     * @returns {Promise<any>}
+     */
+    async createThread(data: ThreadData) {
+        // check if the message is in a text or news channel
+        if (![0, 5].includes(this.channel.type)) {
+            throw new APIError("Can't create a thread in a non-text channel.");
+        }
+        const request = (await this.client.rest.post(`/channels/${this.channel.id}/messages/${this.id}/threads`, {
+            body: new BaseThreadOptions(data)
+        })) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request;
     }
 }

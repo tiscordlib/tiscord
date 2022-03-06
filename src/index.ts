@@ -38,7 +38,7 @@ import { InviteOptions, InviteData } from './util/InviteOptions';
 import { MessageTypes, SystemMessageTypes } from './util/MessageTypes';
 import { MessageOptions } from './util/MessageOptions';
 import { MemberOptions } from './util/MemberOptions';
-
+import { ThreadOptions, ThreadData, BaseThreadOptions } from './util/ThreadOptions';
 export {
     APIError,
     Cache,
@@ -77,5 +77,8 @@ export {
     RoleOptions,
     MemberOptions,
     InviteOptions,
-    InviteData
+    InviteData,
+    ThreadData,
+    ThreadOptions,
+    BaseThreadOptions
 };

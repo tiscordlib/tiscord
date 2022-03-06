@@ -1,4 +1,4 @@
-import { APIError, Client, Message, MessageManager, MessageOptions } from '../';
+import { APIError, Client, Message, MessageManager, MessageOptions, ThreadData, ThreadOptions } from '../';
 import { GuildChannel } from './GuildChannel';
 
 /**
@@ -80,5 +80,20 @@ export class TextChannel extends GuildChannel {
             throw new APIError(request?.message);
         }
         return request.map(m => new Message(this.client, m));
+    }
+
+    /**
+     * Create a thread in this channel
+     * @param {ThreadData} data - Thread data
+     * @returns {Promise<any>}
+     */
+    async createThread(data: ThreadData) {
+        const request = (await this.client.rest.post(`/channels/${this.id}/threads`, {
+            body: new ThreadOptions(data)
+        })) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request;
     }
 }
