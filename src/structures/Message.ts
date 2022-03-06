@@ -105,7 +105,7 @@ export class Message {
         this.thread = data.thread ? new ThreadChannel(client, data.thread) : undefined;
         this.components = data.components;
         this.stickers = data.sticker_items;
-        this.raw = data;
+        if (client.raw) this.raw = data;
     }
 
     /**
@@ -155,6 +155,11 @@ export class Message {
             throw new APIError(request?.message);
         }
     }
+
+    /**
+     * Pin this message
+     * @param {string} [reason] - Reason for pinning the message
+     */
     async pin(reason?: string) {
         const request = (await this.client.rest.put(`/channels/${this.channelId}/pins/${this.id}`, { reason })) as any;
 
@@ -162,6 +167,11 @@ export class Message {
             throw new APIError(request?.message);
         }
     }
+
+    /**
+     *  Unpin this message
+     * @param {string} [reason] - Reason for unpinning the message
+     */
     async unpin(reason?: string) {
         const request = (await this.client.rest.delete(`/channels/${this.channelId}/pins/${this.id}`, {
             reason

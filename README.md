@@ -76,7 +76,7 @@ a bad discord lib
   * [x] Get Channel Invites
   * [x] Create Channel Invite
   * [x] Trigger Typing
-  * [ ] Get Pinned Messages
+  * [x] Get Pinned Messages
   * [x] Pin Message
   * [x] Unpin Message
   * [ ] Join Thread

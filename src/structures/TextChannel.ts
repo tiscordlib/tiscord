@@ -1,4 +1,4 @@
-import { APIError, Client, MessageManager, MessageOptions } from '../';
+import { APIError, Client, Message, MessageManager, MessageOptions } from '../';
 import { GuildChannel } from './GuildChannel';
 
 /**
@@ -57,11 +57,28 @@ export class TextChannel extends GuildChannel {
         }
         return request;
     }
+
+    /**
+     * Trigger typing status in the channel
+     * @returns {any}
+     */
     async typing() {
         const request = (await this.client.rest.post(`/channels/${this.id}/typing`)) as any;
         if (request?.code) {
             throw new APIError(request?.message);
         }
         return request;
+    }
+
+    /**
+     * Get all pinned messages from a channel
+     * @returns {Message[]}
+     */
+    async getPinned() {
+        const request = (await this.client.rest.get(`/channels/${this.id}/pins`)) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request.map(m => new Message(this.client, m));
     }
 }
