@@ -71,7 +71,7 @@ a bad discord lib
   * [ ] Voice Server Update
   * [ ] Webhooks Update
 
-* [ ] [Channel](https://discord.com/developers/docs/resources/channel)
+* [x] [Channel](https://discord.com/developers/docs/resources/channel)
   * [x] Bulk Delete Messages
   * [x] Get Channel Invites
   * [x] Create Channel Invite

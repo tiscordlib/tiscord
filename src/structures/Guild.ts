@@ -340,7 +340,12 @@ export class Guild {
 
         return request.map(i => new Invite(this.client, i));
     }
-    async getThreads() {
+
+    /**
+     * Get active threads in this guild
+     * @returns {Promise<ThreadChannel[]>}
+     */
+    async getActiveThreads() {
         const request = (await this.client.rest.get(`/guilds/${this.id}/threads/active`)) as any;
 
         if (request?.code) {

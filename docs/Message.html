@@ -94,7 +94,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="ChannelOptions.html">ChannelOptions</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="GatewayError.html">GatewayError</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildBan.html">GuildBan</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildEditOptions.html">GuildEditOptions</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Invite.html">Invite</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="MemberOptions.html">MemberOptions</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleOptions.html">RoleOptions</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="VoiceChannel.html">VoiceChannel</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li><li><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></li><li><a href="InviteData.html">InviteData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="BaseThreadOptions.html">BaseThreadOptions</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="ChannelOptions.html">ChannelOptions</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="GatewayError.html">GatewayError</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildBan.html">GuildBan</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildEditOptions.html">GuildEditOptions</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Invite.html">Invite</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="MemberOptions.html">MemberOptions</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleOptions.html">RoleOptions</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="ThreadMember.html">ThreadMember</a></li><li><a href="ThreadOptions.html">ThreadOptions</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="VoiceChannel.html">VoiceChannel</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li><li><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></li><li><a href="InviteData.html">InviteData</a></li><li><a href="ThreadData.html">ThreadData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li></ul></div>
                 
             </nav>
         </div>
@@ -965,6 +965,176 @@
 
 
     
+    <h4 class="name" id="createThread">
+        <a class="href-link" href="#createThread">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                createThread<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;any>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Create a thread on this message.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Thread data</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="structures_Message.ts.html" class="button">View Source</a>
+            <span>
+                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line232">line 232</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Promise.&lt;any></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
     <h4 class="name" id="delete">
         <a class="href-link" href="#delete">#</a>
         
@@ -1085,7 +1255,7 @@
         <p class="tag-source">
             <a href="structures_Message.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line185">line 185</a>
+                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line203">line 203</a>
             </span>
         </p>
     
@@ -1237,7 +1407,7 @@
         <p class="tag-source">
             <a href="structures_Message.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line192">line 192</a>
+                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line210">line 210</a>
             </span>
         </p>
     
@@ -1338,7 +1508,7 @@
         <p class="tag-source">
             <a href="structures_Message.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line171">line 171</a>
+                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line189">line 189</a>
             </span>
         </p>
     
@@ -1502,7 +1672,7 @@
         <p class="tag-source">
             <a href="structures_Message.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line199">line 199</a>
+                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line217">line 217</a>
             </span>
         </p>
     
@@ -1654,7 +1824,7 @@
         <p class="tag-source">
             <a href="structures_Message.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line178">line 178</a>
+                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line196">line 196</a>
             </span>
         </p>
     
@@ -1818,7 +1988,7 @@
         <p class="tag-source">
             <a href="structures_Message.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line206">line 206</a>
+                <a href="structures_Message.ts.html">structures/Message.ts</a>, <a href="structures_Message.ts.html#line224">line 224</a>
             </span>
         </p>
     

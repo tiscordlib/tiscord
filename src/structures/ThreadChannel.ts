@@ -83,6 +83,11 @@ export class ThreadChannel extends TextChannel {
         }
         return new ThreadMember(request);
     }
+
+    /**
+     * Get a list of members in this thread
+     * @returns {Promise<ThreadMember[]>}
+     */
     async listMembers() {
         const request = (await this.client.rest.get(`/channels/${this.id}/thread-members`)) as any;
         if (request?.code) {

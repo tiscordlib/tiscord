@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tiscord documentation MessageOptions</title>
+  <title>Tiscord documentation ThreadOptions</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -101,8 +101,8 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Interface</p>
-                    <h1>MessageOptions</h1>
+                    <p>Class</p>
+                    <h1>ThreadOptions</h1>
                 </header>
                 
 
@@ -113,7 +113,9 @@
 
 <header>
     
-        <h2>MessageOptions</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ThreadOptions<span class="signature">(data)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>Thread option class</p></div>
         
     
 </header>
@@ -122,10 +124,91 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Message options type</p></div>
+            <div class='vertical-section'>
+                <div class="members">
+                    <div class="member">
+                        <div class=name>
+                            <span class="tag">Constructor</span>
+                        </div>
+                        
+
+
+    
+    <h4 class="name" id="ThreadOptions">
+        <a class="href-link" href="#ThreadOptions">#</a>
+        
+        <span class="code-name">
+            
+                new ThreadOptions<span class="signature">(data)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
         
 
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="ThreadData.html">ThreadData</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Thread data</p></td>
+</tr>
+
+
         
+        </tbody>
+    </table>
+</div>
+
+
+
 
 
     <h5 class="subsection-title">Properties:</h5>
@@ -154,122 +237,7 @@
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>content</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">string</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Message content</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>embeds</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">Array.&lt;any></code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Message embeds</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>allowedMentions</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">APIAllowedMentions</code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Allowed mentions</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>components</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">Array.&lt;any></code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Message components</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>stickers</code></td>
-    
-
-    <td class="type">
-    
-        
-<code class="param-type">Array.&lt;string></code>
-
-
-    
-    </td>
-
-    
-
-    
-
-    <td class="description last"><p>Sticker IDs</p></td>
-</tr>
-
-        
-            
-<tr class="deep-level-0">
-    
-        <td class="name"><code>flags</code></td>
+        <td class="name"><code>type</code></td>
     
 
     <td class="type">
@@ -285,20 +253,20 @@
 
     
 
-    <td class="description last"><p>Message flags</p></td>
+    <td class="description last"><p>Thread type</p></td>
 </tr>
 
         
             
 <tr class="deep-level-0">
     
-        <td class="name"><code>replyTo</code></td>
+        <td class="name"><code>invitable</code></td>
     
 
     <td class="type">
     
         
-<code class="param-type">any</code>
+<code class="param-type">boolean</code>
 
 
     
@@ -308,7 +276,7 @@
 
     
 
-    <td class="description last"><p>Message reference</p></td>
+    <td class="description last"><p>Whether the thread is invitable</p></td>
 </tr>
 
         
@@ -351,19 +319,53 @@
 
     
         <p class="tag-source">
-            <a href="util_MessageOptions.ts.html" class="button">View Source</a>
+            <a href="util_ThreadOptions.ts.html" class="button">View Source</a>
             <span>
-                <a href="util_MessageOptions.ts.html">util/MessageOptions.ts</a>, <a href="util_MessageOptions.ts.html#line43">line 43</a>
+                <a href="util_ThreadOptions.ts.html">util/ThreadOptions.ts</a>, <a href="util_ThreadOptions.ts.html#line31">line 31</a>
             </span>
         </p>
     
 </dl>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
         
     
     </div>
     
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="BaseThreadOptions.html">BaseThreadOptions</a></li>
+    </ul>
+
+
     
 
     
@@ -372,7 +374,7 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="MessageOptions.html">MessageOptions</a></dt>
+            <dt><a href="ThreadOptions.html">ThreadOptions</a></dt>
             <dd></dd>
         </dl>
     
