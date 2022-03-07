@@ -331,7 +331,7 @@ export class Guild {
      * Gets the invites of the guild
      * @returns {Promise<Array<Invite>>}
      */
-    async invites(): Promise<Array<Invite>> {
+    async getInvites(): Promise<Array<Invite>> {
         const request = (await this.client.rest.get(`/guilds/${this.id}/invites`)) as any;
 
         if (request?.code) {
@@ -339,5 +339,14 @@ export class Guild {
         }
 
         return request.map(i => new Invite(this.client, i));
+    }
+    async getThreads() {
+        const request = (await this.client.rest.get(`/guilds/${this.id}/threads/active`)) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+
+        return request.threads.map(i => new ThreadChannel(this.client, i));
     }
 }

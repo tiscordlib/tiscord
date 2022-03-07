@@ -1,5 +1,6 @@
 import { APIError, Client, Message, MessageManager, MessageOptions, ThreadData, ThreadOptions } from '../';
 import { GuildChannel } from './GuildChannel';
+import { ThreadChannel } from './ThreadChannel';
 
 /**
  * A guild channel class.
@@ -94,6 +95,27 @@ export class TextChannel extends GuildChannel {
         if (request?.code) {
             throw new APIError(request?.message);
         }
-        return request;
+        return new ThreadChannel(this.client, request);
+    }
+    async getPublicArchivedThreads() {
+        const request = (await this.client.rest.get(`/channels/${this.id}/threads/archived/public`)) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request.threads.map(t => new ThreadChannel(this.client, t));
+    }
+    async getPrivateArchivedThreads() {
+        const request = (await this.client.rest.get(`/channels/${this.id}/threads/archived/private`)) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request.threads.map(t => new ThreadChannel(this.client, t));
+    }
+    async getJoinedPrivateArchivedThreads() {
+        const request = (await this.client.rest.get(`/channels/${this.id}/users/@me/threads/archived/private`)) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request.threads.map(t => new ThreadChannel(this.client, t));
     }
 }

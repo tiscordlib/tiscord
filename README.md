@@ -84,12 +84,12 @@ a bad discord lib
   * [x] Leave Thread
   * [x] Add Thread Member
   * [x] Remove Thread Member
-  * [ ] Get Thread Member
-  * [ ] List Thread Members
-  * [ ] List Active Threads
-  * [ ] List Public Archived Threads
-  * [ ] List Private Archived Threads
-  * [ ] List Joined Private Archived Threads
+  * [x] Get Thread Member
+  * [x] List Thread Members
+  * [x] List Active Threads
+  * [x] List Public Archived Threads
+  * [x] List Private Archived Threads
+  * [x] List Joined Private Archived Threads
 
 * [ ] [Emoji](https://discord.com/developers/docs/resources/emoji)
   * [ ] List Guild Emojis

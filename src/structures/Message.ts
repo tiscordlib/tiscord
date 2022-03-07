@@ -200,6 +200,6 @@ export class Message {
         if (request?.code) {
             throw new APIError(request?.message);
         }
-        return request;
+        return new ThreadChannel(this.client, request);
     }
 }

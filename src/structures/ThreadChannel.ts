@@ -1,5 +1,6 @@
 import { APIError, Client } from '../';
 import { TextChannel } from './TextChannel';
+import { ThreadMember } from './ThreadMember';
 
 /**
  * A thread channel class.
@@ -68,5 +69,25 @@ export class ThreadChannel extends TextChannel {
             throw new APIError(request?.message);
         }
         return request;
+    }
+
+    /**
+     *
+     * @param member - ID of the member
+     * @returns
+     */
+    async getMember(member: string) {
+        const request = (await this.client.rest.get(`/channels/${this.id}/thread-members/${member}`)) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return new ThreadMember(request);
+    }
+    async listMembers() {
+        const request = (await this.client.rest.get(`/channels/${this.id}/thread-members`)) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request.map((member: any) => new ThreadMember(member));
     }
 }
