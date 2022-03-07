@@ -193,9 +193,10 @@ export class Guild {
      * Ban the member from the server
      * @param {GuildEditOptionsType} data - The stuff you want to edit
      */
-    async edit(data: GuildEditOptionsType) {
+    async edit(data: GuildEditOptionsType, reason?: string) {
         const request = (await this.client.rest.patch(`/guilds/${this.id}`, {
-            body: new GuildEditOptions(data)
+            body: new GuildEditOptions(data),
+            reason
         })) as any;
         if (request?.code) {
             throw new APIError(request?.message);
@@ -330,7 +331,7 @@ export class Guild {
      * Gets the invites of the guild
      * @returns {Promise<Array<Invite>>}
      */
-    async invites(): Promise<Array<Invite>> {
+    async getInvites(): Promise<Array<Invite>> {
         const request = (await this.client.rest.get(`/guilds/${this.id}/invites`)) as any;
 
         if (request?.code) {
@@ -338,5 +339,19 @@ export class Guild {
         }
 
         return request.map(i => new Invite(this.client, i));
+    }
+
+    /**
+     * Get active threads in this guild
+     * @returns {Promise<ThreadChannel[]>}
+     */
+    async getActiveThreads() {
+        const request = (await this.client.rest.get(`/guilds/${this.id}/threads/active`)) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+
+        return request.threads.map(i => new ThreadChannel(this.client, i));
     }
 }

@@ -94,7 +94,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="ChannelOptions.html">ChannelOptions</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildBan.html">GuildBan</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildEditOptions.html">GuildEditOptions</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="MemberOptions.html">MemberOptions</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleOptions.html">RoleOptions</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li><li><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="BaseThreadOptions.html">BaseThreadOptions</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="ChannelOptions.html">ChannelOptions</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="GatewayError.html">GatewayError</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildBan.html">GuildBan</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildEditOptions.html">GuildEditOptions</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Invite.html">Invite</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="MemberOptions.html">MemberOptions</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleOptions.html">RoleOptions</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="ThreadMember.html">ThreadMember</a></li><li><a href="ThreadOptions.html">ThreadOptions</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="VoiceChannel.html">VoiceChannel</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li><li><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></li><li><a href="InviteData.html">InviteData</a></li><li><a href="ThreadData.html">ThreadData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li><li><a href="global.html#threadWrapper">threadWrapper</a></li></ul></div>
                 
             </nav>
         </div>
@@ -138,31 +138,94 @@
 <li>[ ] add more events</li>
 <li>[ ] write tests</li>
 <li>[x] create docs</li>
-<li>[ ] add resuming (gateway)</li>
-<li>[ ] make the lib error when theres gateway or api error</li>
+<li>[x] add resuming (gateway)</li>
+<li>[x] make the lib error when theres gateway or api error</li>
 </ul>
 <ul>
 <li>
-<p>[ ] <a href="https://discord.com/developers/docs/resources/channel">Channel</a></p>
+<p>[ ] <a href="https://discord.com/developers/docs/topics/gateway#commands-and-events-gateway-events">Events</a></p>
 <ul>
-<li>[ ] Bulk Delete Messages</li>
-<li>[ ] Get Channel Invites</li>
-<li>[ ] Create Channel Invite</li>
-<li>[ ] Trigger Typing</li>
-<li>[ ] Get Pinned Messages</li>
-<li>[ ] Pin Message</li>
-<li>[ ] Unpin Message</li>
-<li>[ ] Join Thread</li>
-<li>[ ] Start Thread</li>
-<li>[ ] Leave Thread</li>
-<li>[ ] Add Thread Member</li>
-<li>[ ] Remove Thread Member</li>
-<li>[ ] Get Thread Member</li>
-<li>[ ] List Thread Members</li>
-<li>[ ] List Active Threads</li>
-<li>[ ] List Public Archived Threads</li>
-<li>[ ] List Private Archived Threads</li>
-<li>[ ] List Joined Private Archived Threads</li>
+<li>[x] Hello</li>
+<li>[x] Ready</li>
+<li>[ ] Resumed</li>
+<li>[ ] Reconnect</li>
+<li>[ ] Invalid Session</li>
+<li>[ ] Channel Create</li>
+<li>[ ] Channel Update</li>
+<li>[ ] Channel Delete</li>
+<li>[ ] Channel Pins Update</li>
+<li>[ ] Thread Create</li>
+<li>[ ] Thread Update</li>
+<li>[ ] Thread Delete</li>
+<li>[ ] Thread List Sync</li>
+<li>[ ] Thread Member Update</li>
+<li>[ ] Thread Members Update</li>
+<li>[ ] Guild Create</li>
+<li>[ ] Guild Update</li>
+<li>[ ] Guild Delete</li>
+<li>[ ] Guild Ban Add</li>
+<li>[ ] Guild Ban Remove</li>
+<li>[ ] Guild Emojis Update</li>
+<li>[ ] Guild Stickers Update</li>
+<li>[ ] Guild Integrations Update</li>
+<li>[ ] Guild Member Add</li>
+<li>[ ] Guild Member Remove</li>
+<li>[ ] Guild Member Update</li>
+<li>[ ] Guild Members Chunk</li>
+<li>[ ] Guild Role Create</li>
+<li>[ ] Guild Role Update</li>
+<li>[ ] Guild Role Delete</li>
+<li>[ ] Guild Scheduled Event Create</li>
+<li>[ ] Guild Scheduled Event Update</li>
+<li>[ ] Guild Scheduled Event Delete</li>
+<li>[ ] Guild Scheduled Event User Add</li>
+<li>[ ] Guild Scheduled Event User Remove</li>
+<li>[ ] Integration Create</li>
+<li>[ ] Integration Update</li>
+<li>[ ] Integration Delete</li>
+<li>[x] Interaction Create</li>
+<li>[ ] Invite Create</li>
+<li>[ ] Invite Delete</li>
+<li>[x] Message Create</li>
+<li>[ ] Message Update</li>
+<li>[ ] Message Delete</li>
+<li>[ ] Message Delete Bulk</li>
+<li>[ ] Message Reaction Add</li>
+<li>[ ] Message Reaction Remove</li>
+<li>[ ] Message Reaction Remove All</li>
+<li>[ ] Message Reaction Remove Emoji</li>
+<li>[ ] Presence Update</li>
+<li>[ ] Stage Instance Create</li>
+<li>[ ] Stage Instance Update</li>
+<li>[ ] Stage Instance Delete</li>
+<li>[ ] Typing Start</li>
+<li>[ ] User Update</li>
+<li>[ ] Voice State Update</li>
+<li>[ ] Voice Server Update</li>
+<li>[ ] Webhooks Update</li>
+</ul>
+</li>
+<li>
+<p>[x] <a href="https://discord.com/developers/docs/resources/channel">Channel</a></p>
+<ul>
+<li>[x] Bulk Delete Messages</li>
+<li>[x] Get Channel Invites</li>
+<li>[x] Create Channel Invite</li>
+<li>[x] Trigger Typing</li>
+<li>[x] Get Pinned Messages</li>
+<li>[x] Pin Message</li>
+<li>[x] Unpin Message</li>
+<li>[x] Join Thread</li>
+<li>[x] Start Thread</li>
+<li>[x] Leave Thread</li>
+<li>[x] Add Thread Member</li>
+<li>[x] Remove Thread Member</li>
+<li>[x] Get Thread Member</li>
+<li>[x] List Thread Members</li>
+<li>[x] List Active Threads</li>
+<li>[x] List Public Archived Threads</li>
+<li>[x] List Private Archived Threads</li>
+<li>[x] List Joined Private Archived Threads</li>
 </ul>
 </li>
 <li>
@@ -180,7 +243,7 @@
 <p>[ ] <a href="https://discord.com/developers/docs/resources/guild">Guild</a></p>
 <ul>
 <li>[X] Create Guild Channel</li>
-<li>[ ] Modify Guild Channel Position</li>
+<li>[X] Modify Guild Channel Position</li>
 <li>[X] Edit Guild Member</li>
 <li>[X] Add Role to Member</li>
 <li>[X] Remove Role from Member</li>
@@ -191,7 +254,7 @@
 <li>[X] Modify Guild Role</li>
 <li>[X] Delete Guild Role</li>
 <li>[ ] Get Guild Voice Regions</li>
-<li>[ ] Get Guild Invites</li>
+<li>[X] Get Guild Invites</li>
 <li>[ ] Get Guild Integrations</li>
 <li>[ ] Delete Guild Integration</li>
 <li>[ ] Get Guild Vanity URL</li>

@@ -39,12 +39,12 @@ export class MessageManager {
      * @param {number} limit - Max number of messages to return (1-100)
      * @returns {Promise<Array<Message>>}
      */
-    async fetchMessages(around?: string, before?: string, after?: string, limit?: number): Promise<Array<Message>> {
+    async fetch(limit?: number, around?: string, before?: string, after?: string): Promise<Array<Message>> {
         const params = new URLSearchParams();
-        params.append('around', around);
-        params.append('before', before);
-        params.append('after', after);
-        params.append('limit', limit.toString());
+        if (around) params.append('around', around);
+        if (before) params.append('before', before);
+        if (after) params.append('after', after);
+        if (limit) params.append('limit', limit.toString());
 
         const request = (await this.client.rest.get(`/channels/${this.channel.id}/messages`, {
             query: params

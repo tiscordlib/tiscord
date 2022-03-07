@@ -11,7 +11,9 @@ import {
     TextChannel,
     User,
     Interaction,
-    ThreadChannel
+    ThreadChannel,
+    ThreadData,
+    BaseThreadOptions
 } from '../';
 
 /**
@@ -83,7 +85,7 @@ export class Message {
         this.guildId = data.guild_id;
         this.author = new User(client, data.author);
         this.content = data.content;
-        this.timestamp = new Date(data.timestamp).getTime() / 1000;
+        this.timestamp = Math.round(new Date(data.timestamp).getTime() / 1000);
         this.tts = data.tts;
         this.mentions = data.mentions || [];
         this.mentionRoles = data.mention_roles || [];
@@ -105,7 +107,7 @@ export class Message {
         this.thread = data.thread ? new ThreadChannel(client, data.thread) : undefined;
         this.components = data.components;
         this.stickers = data.sticker_items;
-        this.raw = data;
+        if (client.raw) this.raw = data;
     }
 
     /**
@@ -113,7 +115,7 @@ export class Message {
      */
     async guilds() {
         this.guild = await this.client.guilds.get(this.guildId);
-        this.channel = new TextChannel(this.client, (await this.guild.channels.get(this.channelId)).raw);
+        this.channel = await this.guild.channels.get(this.channelId);
     }
 
     /**
@@ -154,5 +156,50 @@ export class Message {
         if (request?.code) {
             throw new APIError(request?.message);
         }
+    }
+
+    /**
+     * Pin this message
+     * @param {string} [reason] - Reason for pinning the message
+     */
+    async pin(reason?: string) {
+        const request = (await this.client.rest.put(`/channels/${this.channelId}/pins/${this.id}`, { reason })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     *  Unpin this message
+     * @param {string} [reason] - Reason for unpinning the message
+     */
+    async unpin(reason?: string) {
+        const request = (await this.client.rest.delete(`/channels/${this.channelId}/pins/${this.id}`, {
+            reason
+        })) as any;
+
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+    }
+
+    /**
+     * Create a thread on this message.
+     * @param data - Thread data
+     * @returns {Promise<any>}
+     */
+    async createThread(data: ThreadData) {
+        // check if the message is in a text or news channel
+        if (![0, 5].includes(this.channel.type)) {
+            throw new APIError("Can't create a thread in a non-text channel.");
+        }
+        const request = (await this.client.rest.post(`/channels/${this.channel.id}/messages/${this.id}/threads`, {
+            body: new BaseThreadOptions(data)
+        })) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return new ThreadChannel(this.client, request);
     }
 }

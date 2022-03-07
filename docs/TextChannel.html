@@ -94,7 +94,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="ChannelOptions.html">ChannelOptions</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildBan.html">GuildBan</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildEditOptions.html">GuildEditOptions</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="MemberOptions.html">MemberOptions</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleOptions.html">RoleOptions</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li><li><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="APIError.html">APIError</a></li><li><a href="BaseThreadOptions.html">BaseThreadOptions</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Channel.html">Channel</a></li><li><a href="ChannelManager.html">ChannelManager</a></li><li><a href="ChannelOptions.html">ChannelOptions</a></li><li><a href="Client.html">Client</a></li><li><a href="CommandInteraction.html">CommandInteraction</a></li><li><a href="DMChannel.html">DMChannel</a></li><li><a href="GatewayError.html">GatewayError</a></li><li><a href="Guild.html">Guild</a></li><li><a href="GuildBan.html">GuildBan</a></li><li><a href="GuildChannel.html">GuildChannel</a></li><li><a href="GuildEditOptions.html">GuildEditOptions</a></li><li><a href="GuildManager.html">GuildManager</a></li><li><a href="Interaction.html">Interaction</a></li><li><a href="Invite.html">Invite</a></li><li><a href="Member.html">Member</a></li><li><a href="MemberManager.html">MemberManager</a></li><li><a href="MemberOptions.html">MemberOptions</a></li><li><a href="Message.html">Message</a></li><li><a href="MessageManager.html">MessageManager</a></li><li><a href="MessageOptions.html">MessageOptions</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleOptions.html">RoleOptions</a></li><li><a href="RolesManager.html">RolesManager</a></li><li><a href="Sweeper.html">Sweeper</a></li><li><a href="TextChannel.html">TextChannel</a></li><li><a href="ThreadChannel.html">ThreadChannel</a></li><li><a href="ThreadMember.html">ThreadMember</a></li><li><a href="ThreadOptions.html">ThreadOptions</a></li><li><a href="User.html">User</a></li><li><a href="UserManager.html">UserManager</a></li><li><a href="VoiceChannel.html">VoiceChannel</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="ClientOptions.html">ClientOptions</a></li><li><a href="GuildEditOptionsType.html">GuildEditOptionsType</a></li><li><a href="InviteData.html">InviteData</a></li><li><a href="ThreadData.html">ThreadData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li><li><a href="global.html#threadWrapper">threadWrapper</a></li></ul></div>
                 
             </nav>
         </div>
@@ -490,6 +490,343 @@
 
 
     
+    <h4 class="name" id="bulkDelete">
+        <a class="href-link" href="#bulkDelete">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                bulkDelete<span class="signature">(amount)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Bulk delete messges</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>amount</code></td>
+  
+
+  <td class="type">
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Amount of messages to delete (between 2 and 100)</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="structures_TextChannel.ts.html" class="button">View Source</a>
+            <span>
+                <a href="structures_TextChannel.ts.html">structures/TextChannel.ts</a>, <a href="structures_TextChannel.ts.html#line149">line 149</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="createThread">
+        <a class="href-link" href="#createThread">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                createThread<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;any>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Create a thread in this channel</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="ThreadData.html">ThreadData</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Thread data</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="structures_TextChannel.ts.html" class="button">View Source</a>
+            <span>
+                <a href="structures_TextChannel.ts.html">structures/TextChannel.ts</a>, <a href="structures_TextChannel.ts.html#line171">line 171</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Promise.&lt;any></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
     <h4 class="name" id="delete">
         <a class="href-link" href="#delete">#</a>
         
@@ -804,6 +1141,709 @@
 
 
     
+    <h4 class="name" id="getJoinedPrivateArchivedThreads">
+        <a class="href-link" href="#getJoinedPrivateArchivedThreads">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                getJoinedPrivateArchivedThreads<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;<a href="ThreadChannel.html">ThreadChannel</a>>>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Get all private archived threads in this channel that the bot joined.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="structures_TextChannel.ts.html" class="button">View Source</a>
+            <span>
+                <a href="structures_TextChannel.ts.html">structures/TextChannel.ts</a>, <a href="structures_TextChannel.ts.html#line192">line 192</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Promise.&lt;Array.&lt;<a href="ThreadChannel.html">ThreadChannel</a>>></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="getPinned">
+        <a class="href-link" href="#getPinned">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                getPinned<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Message.html">Message</a>>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Get all pinned messages from a channel</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="structures_TextChannel.ts.html" class="button">View Source</a>
+            <span>
+                <a href="structures_TextChannel.ts.html">structures/TextChannel.ts</a>, <a href="structures_TextChannel.ts.html#line163">line 163</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Array.&lt;<a href="Message.html">Message</a>></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="getPrivateArchivedThreads">
+        <a class="href-link" href="#getPrivateArchivedThreads">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                getPrivateArchivedThreads<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;<a href="ThreadChannel.html">ThreadChannel</a>>>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Get all private archived threads in this channel</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="structures_TextChannel.ts.html" class="button">View Source</a>
+            <span>
+                <a href="structures_TextChannel.ts.html">structures/TextChannel.ts</a>, <a href="structures_TextChannel.ts.html#line185">line 185</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Promise.&lt;Array.&lt;<a href="ThreadChannel.html">ThreadChannel</a>>></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="getPublicArchivedThreads">
+        <a class="href-link" href="#getPublicArchivedThreads">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                getPublicArchivedThreads<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;<a href="ThreadChannel.html">ThreadChannel</a>>>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Get all public archived threads in this channel</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="structures_TextChannel.ts.html" class="button">View Source</a>
+            <span>
+                <a href="structures_TextChannel.ts.html">structures/TextChannel.ts</a>, <a href="structures_TextChannel.ts.html#line178">line 178</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Promise.&lt;Array.&lt;<a href="ThreadChannel.html">ThreadChannel</a>>></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="modifyPosition">
+        <a class="href-link" href="#modifyPosition">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                modifyPosition<span class="signature">(position, parentId, lockPermissions)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Modify the position of the channel</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>position</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">number</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Sorting position of the channel</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>parentId</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">number</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The new parent ID for the channel that is moved</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>lockPermissions</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">boolean</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Whether to sync the permission overwrites with the new parent, if moving to a new category</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="GuildChannel.html#modifyPosition">GuildChannel#modifyPosition</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="structures_GuildChannel.ts.html" class="button">View Source</a>
+            <span>
+                <a href="structures_GuildChannel.ts.html">structures/GuildChannel.ts</a>, <a href="structures_GuildChannel.ts.html#line64">line 64</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
     <h4 class="name" id="send">
         <a class="href-link" href="#send">#</a>
         
@@ -920,7 +1960,7 @@
         <p class="tag-source">
             <a href="structures_TextChannel.ts.html" class="button">View Source</a>
             <span>
-                <a href="structures_TextChannel.ts.html">structures/TextChannel.ts</a>, <a href="structures_TextChannel.ts.html#line53">line 53</a>
+                <a href="structures_TextChannel.ts.html">structures/TextChannel.ts</a>, <a href="structures_TextChannel.ts.html#line141">line 141</a>
             </span>
         </p>
     
@@ -942,6 +1982,130 @@
 
 
 
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="typing">
+        <a class="href-link" href="#typing">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                typing<span class="signature">()</span><span class="type-signature"> &rarr; {any}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Trigger typing status in the channel</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="structures_TextChannel.ts.html" class="button">View Source</a>
+            <span>
+                <a href="structures_TextChannel.ts.html">structures/TextChannel.ts</a>, <a href="structures_TextChannel.ts.html#line156">line 156</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">any</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
 
 
 

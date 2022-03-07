@@ -1,5 +1,6 @@
 import { Channel } from './Channel';
-import { APIError, Client, ChannelOptions } from '../';
+import { APIError, Client, ChannelOptions, InviteData, InviteOptions } from '../';
+import { Invite } from './Invite';
 
 /**
  * A guild channel class.
@@ -51,6 +52,13 @@ export class GuildChannel extends Channel {
             throw new APIError(request?.message);
         }
     }
+    async getInvites() {
+        const request = (await this.client.rest.get(`/channels/${this.id}/invites`)) as any;
+        if (request?.code) {
+            throw new APIError(request?.message);
+        }
+        return request.map(i => new Invite(this.client, i));
+    }
 
     /**
      * Modify the position of the channel
@@ -71,5 +79,16 @@ export class GuildChannel extends Channel {
         if (request?.code) {
             throw new APIError(request?.message);
         }
+    }
+    async createInvite(data?: InviteData, reason?: string) {
+        const request = (await this.client.rest.post(`/channels/${this.id}/invites`, {
+            body: new InviteOptions(data),
+            reason
+        })) as any;
+
+        if (request?.message) {
+            throw new APIError(request?.message);
+        }
+        return new Invite(this.client, request);
     }
 }
