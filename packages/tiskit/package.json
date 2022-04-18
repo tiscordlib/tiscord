@@ -2,7 +2,7 @@
   "name": "tiskit",
   "description": "TypeScript decorator driven handler package for Tiscord.",
   "main": "dist/index.js",
-  "version": "0.3.0",
+  "version": "0.3.1-alpha.0",
   "scripts": {
     "build": "tsc",
     "lint": "eslint ./src",
