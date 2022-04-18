@@ -57,7 +57,6 @@ import { VoiceChannel } from './structures/VoiceChannel';
 import { WebSocketManager } from './client/Websocket';
 // @ts-ignore
 import { version } from '../package.json';
-
 export {
     Attachment,
     APIError,
