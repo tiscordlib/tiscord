@@ -1,0 +1,32 @@
+name: Publish dev version of package
+on: 
+  push:
+    branches: [ main ]
+jobs:
+  publish:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Node v17
+        uses: actions/setup-node@v2
+        with:
+          node-version: 17
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Register Problem Matcher
+        run: echo "##[add-matcher].github/tsc.json"
+
+      - name: Run TypeScript compiler
+        run: npm run build
+
+      - name: Set NPM token
+        run: echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
+      
+      - name: Publish package
+        run: lerna publish --canary --dist-tag dev
