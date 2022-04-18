@@ -26,7 +26,7 @@
     "lint": "eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build",
-    "docs": "npx jsdoc --configure ../../jsdoc.json --verbose"
+    "docs": "npx jsdoc --configure ./jsdoc.json --verbose"
   },
   "repository": {
     "type": "git",

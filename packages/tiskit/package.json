@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint ./src",
-    "docs": "npx jsdoc --configure ../../jsdoc.json --verbose"
+    "docs": "npx jsdoc --configure ./jsdoc.json --verbose"
   },
   "author": "Sadie Katherine",
   "license": "MIT",
