@@ -59,6 +59,7 @@ export class Client extends EventEmitter {
         roles: Cache | FakeCache;
         threadMembers: Cache | FakeCache;
     };
+    _events: Map<string, any>;
     raw: boolean;
     cacheOptions: CacheOptions;
     debugLogs: boolean;
