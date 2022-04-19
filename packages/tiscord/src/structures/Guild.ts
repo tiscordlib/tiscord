@@ -13,10 +13,8 @@ import {
     ChannelManager,
     ChannelOptions,
     Client,
-    DMChannel,
     Emoji,
     GuildBan,
-    GuildChannel,
     GuildEditOptions,
     GuildEditOptionsType,
     Invite,
@@ -26,9 +24,8 @@ import {
     RoleOptions,
     RolesManager,
     Sticker,
-    TextChannel,
     ThreadChannel,
-    VoiceChannel
+    channelType
 } from '../';
 
 /**
@@ -142,32 +139,7 @@ export class Guild {
             client.cache.roles.set(data.id, new Role(client, role));
         });
         data.channels?.forEach((channel: any) => {
-            switch (channel.type) {
-                case 0:
-                    channel = new TextChannel(this.client, channel);
-                    break;
-                case 1:
-                    channel = new DMChannel(this.client, channel);
-                    break;
-                case 2:
-                    channel = new VoiceChannel(this.client, channel);
-                    break;
-                case 10:
-                    channel = new ThreadChannel(this.client, channel);
-                    break;
-                case 11:
-                    channel = new ThreadChannel(this.client, channel);
-                    break;
-                case 12:
-                    channel = new ThreadChannel(this.client, channel);
-                    break;
-                case 13:
-                    channel = new VoiceChannel(this.client, channel);
-                    break;
-                default:
-                    channel = new GuildChannel(this.client, channel);
-                    break;
-            }
+            channel = channelType(client, channel);
             if (!channel.guildId) channel.guildId = this.id;
             if (channel.type !== 1) channel.guilds();
             client.cache.channels.set(data.id, channel);
