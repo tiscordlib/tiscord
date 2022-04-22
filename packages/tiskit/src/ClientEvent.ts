@@ -4,7 +4,7 @@ import { Extension } from './Extension';
  * Represents an event in an extension. This should not be interfaced with directly but through the {@link ClientEvent} decorator in an extension class.
  * @class
  * @param {string} eventName - The name of the event method.
- * @param {(...args: any[]) => any} eventCallback - The callback of that event method.
+ * @param {function} eventCallback - The callback of that event method.
  * @param {string} emittedName - The name of the event that'll be emitted by the base library.
  */
 export class Event {
@@ -22,7 +22,7 @@ export class Event {
 /**
  * Mark an extension method as an event.
  * @param {string} emittedName The name of the event tha>t'll be emitted by Tiscord, defaults to method name.
- * @returns {(target: Extension, propertyKey: string, eventCallback: PropertyDescriptor) => void}
+ * @returns {function}
  */
 export function ClientEvent(
     emittedName?: string
