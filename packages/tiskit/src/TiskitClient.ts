@@ -1,6 +1,6 @@
 import { Client, ClientOptions } from 'tiscord';
 import { Event } from './ClientEvent';
-import { Extension } from './Extenstion';
+import { Extension } from './Extension';
 
 interface TiskitClientOptions {
     // eslint-disable-next-line lines-around-comment
