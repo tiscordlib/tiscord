@@ -1,6 +1,5 @@
-import { Client, DMChannel, GuildChannel, TextChannel, ThreadChannel, VoiceChannel } from '../';
-
-import { APIChannel } from 'discord-api-types/v10';
+import { APIChannel, ChannelType } from 'discord-api-types/v10';
+import { Client, channelType } from '../';
 
 /**
  * Class managing channels
@@ -23,34 +22,8 @@ export class ChannelManager {
     async get(channel: string, fetch?) {
         const cached = this.client.cache.channels.get(channel);
         if (cached && !fetch) return cached;
-        let data: any = (await this.client.rest.get(`/channels/${channel}`)) as APIChannel;
-        switch (data.type) {
-            case 0:
-                data = new TextChannel(this.client, data);
-                break;
-            case 1:
-                data = new DMChannel(this.client, data);
-                break;
-            case 2:
-                data = new VoiceChannel(this.client, data);
-                break;
-            case 10:
-                data = new ThreadChannel(this.client, data);
-                break;
-            case 11:
-                data = new ThreadChannel(this.client, data);
-                break;
-            case 12:
-                data = new ThreadChannel(this.client, data);
-                break;
-            case 13:
-                data = new VoiceChannel(this.client, data);
-                break;
-            default:
-                data = new GuildChannel(this.client, data);
-                break;
-        }
-        if (data.type !== 1) await data.guilds();
+        const data: any = channelType(this.client, (await this.client.rest.get(`/channels/${channel}`)) as APIChannel);
+        if (data.type !== ChannelType.DM) await data.guilds();
         this.client.cache.channels.set(data.id, data);
         return data;
     }

@@ -1,6 +1,6 @@
 import { ClientEvent, Event } from './ClientEvent';
 
-import { Extension } from './Extenstion';
+import { Extension } from './Extension';
 import Tiscord from 'tiscord';
 import { TiskitClient } from './TiskitClient';
 

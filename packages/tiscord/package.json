@@ -37,5 +37,6 @@
   "bugs": {
     "url": "https://github.com/tiscordlib/tiscord/issues"
   },
-  "homepage": "https://github.com/tiscordlib/tiscord#readme"
+  "homepage": "https://github.com/tiscordlib/tiscord#readme",
+  "gitHead": "f705f7215f3c59cdd9046b8337546a5276c8de22"
 }

@@ -1,4 +1,6 @@
-import { Channel, Client, Guild, Member, Role, TextChannel, ThreadChannel, User, VoiceChannel } from '../';
+import { Client, Guild, Member, Role, User, channelType } from '../';
+
+import { ChannelType } from 'discord-api-types/v10';
 
 /**
  * A class for parsing interaction options.
@@ -116,34 +118,13 @@ export class InteractionOptions {
      * @returns {Channel}
      */
     getChannel(name: string) {
-        let channel;
         const option = this.options.get(name);
         if (!option) return null;
         if (option.type !== 7) throw new TypeError(`Option '${name}' is not a channel`);
         const channelData = this.resolved.channels[option.value];
-        switch (channelData.type) {
-            case 0:
-                channel = new TextChannel(this.client, channelData);
-                break;
-            case 2:
-                channel = new VoiceChannel(this.client, channelData);
-                break;
-            case 10:
-                channel = new ThreadChannel(this.client, channelData);
-                break;
-            case 11:
-                channel = new ThreadChannel(this.client, channelData);
-                break;
-            case 12:
-                channel = new ThreadChannel(this.client, channelData);
-                break;
-            case 13:
-                channel = new VoiceChannel(this.client, channelData);
-                break;
-            default:
-                channel = new Channel(this.client, channelData);
-                break;
-        }
+        const channel = channelType(this.client, channelData);
+        // @ts-ignore
+        if (channel.type === ChannelType.DM) channel?.guilds();
         return channel;
     }
 

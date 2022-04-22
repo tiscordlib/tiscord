@@ -34,7 +34,6 @@ import { version } from '../../package.json';
  *  @property {ChannelManager} channels - Channel manager
  *  @property {WebSocketManager} ws - Websocket manager
  *  @property {string} api - The API version
- *  @property {Map} events - The event map
  *  @property {CacheOptions} cacheOptions - Cache options
  *  @property {boolean} debugLogs - Whether to enable debug logs
  * @property {User} user - The current user
@@ -60,8 +59,8 @@ export class Client extends EventEmitter {
         roles: Cache | FakeCache;
         threadMembers: Cache | FakeCache;
     };
+    _events: Map<string, any>;
     raw: boolean;
-    events: Map<string, any>;
     cacheOptions: CacheOptions;
     debugLogs: boolean;
     constructor(options: ClientOptions) {

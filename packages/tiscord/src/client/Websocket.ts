@@ -49,11 +49,11 @@ export class WebSocketManager {
                                 `Bot user: ${this.client.user.username}#${this.client.user.discriminator}`
                             );
                             this.client.debug(`Bot guild count: ${this.client.cache.guilds.size}`);
-                            this.client.events = new EventManager().events;
+                            this.client._events = new EventManager().events;
                             this.client.emit('ready', this.client);
                             break;
                         default:
-                            const event = this.client.events?.get(data.t);
+                            const event = this.client._events?.get(data.t);
                             if (event) {
                                 await event(this.client, data);
                             }

@@ -55,6 +55,7 @@ import { User } from './structures/User';
 import { UserManager } from './managers/UserManager';
 import { VoiceChannel } from './structures/VoiceChannel';
 import { WebSocketManager } from './client/Websocket';
+import { channelType } from './util/channelType';
 // @ts-ignore
 import { version } from '../package.json';
 
@@ -84,6 +85,7 @@ export {
     RawMessageOptions,
     FakeCache,
     RepliableInteraction,
+    channelType,
     Interaction,
     Member,
     MemberEdit,
