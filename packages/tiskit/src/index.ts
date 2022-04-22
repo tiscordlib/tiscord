@@ -1,7 +1,5 @@
-import { ClientEvent, Event } from './ClientEvent';
-
-import { Extension } from './Extension';
-import Tiscord from 'tiscord';
+import { Event } from './Event';
 import { TiskitClient } from './TiskitClient';
 
-export { TiskitClient, Extension, ClientEvent, Event, Tiscord };
+export * from 'tiscord';
+export { TiskitClient, Event };
