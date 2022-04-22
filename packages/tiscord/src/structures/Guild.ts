@@ -132,7 +132,7 @@ export class Guild {
     afkChannelId: string;
     permissions: string;
     raw?: APIGuild;
-    me: Member;
+    me: Member | void;
     constructor(client: Client, data: APIGuild) {
         this.client = client;
         data.roles?.forEach(role => {
