@@ -31,7 +31,7 @@ export class TiskitClient extends Client {
      * Adds an event to the client.
      * @param {Event} event - The event to add.
      */
-    async addEvent(event: Event) {
+    addEvent(event: Event) {
         const parent = this.events.get(event.emittedName);
 
         if (parent) {
@@ -43,5 +43,15 @@ export class TiskitClient extends Client {
         this.on(event.emittedName, (...args) => {
             event.eventCallback(this, ...args);
         });
+    }
+
+    /**
+     * Adds multiple events to the client.
+     * @param {Event[]} events - The events to add.
+     */
+    addEvents(...events: Event[]) {
+        for (const event of events) {
+            this.addEvent(event);
+        }
     }
 }
