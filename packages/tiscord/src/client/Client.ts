@@ -8,7 +8,11 @@ import {
     FakeMap,
     Guild,
     GuildManager,
+    Member,
+    Message,
     MessageCache,
+    Role,
+    ThreadMember,
     User,
     UserManager,
     WebSocketManager
@@ -51,13 +55,13 @@ export class Client extends EventEmitter {
     channels: ChannelManager;
     user: User;
     cache: {
-        members: Cache | FakeCache;
+        members: Cache<Member> | FakeCache;
         guilds: Map<string, Guild> | FakeMap;
         channels: Map<string, Channel>;
         users: Map<string, User>;
-        messages: Cache | FakeCache;
-        roles: Cache | FakeCache;
-        threadMembers: Cache | FakeCache;
+        messages: Cache<Message> | FakeCache;
+        roles: Cache<Role> | FakeCache;
+        threadMembers: Cache<ThreadMember> | FakeCache;
     };
     _events: Map<string, any>;
     raw: boolean;

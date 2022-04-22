@@ -3,8 +3,8 @@
  *  @class
  */
 
-export class Cache {
-    caches: Map<string, Map<string, any>>;
+export class Cache<T> {
+    caches: Map<string, Map<string, T>>;
     constructor() {
         this.caches = new Map();
     }
@@ -14,7 +14,7 @@ export class Cache {
      * @param {string} object - object id to get
      * @returns {any}
      */
-    get(parent: string, object: string): any {
+    get(parent: string, object: string): T {
         return this.caches.get(parent)?.get(object);
     }
 
