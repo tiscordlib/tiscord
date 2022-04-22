@@ -5,13 +5,13 @@ interface TiskitClientOptions {
     // eslint-disable-next-line lines-around-comment
     /**
      * A list of Guild IDs to limit your commands to.
-     * @type string[]
+     * @type {string[]}
      */
     testGuilds?: string[];
 
     /**
      * Options for the Tiscord client.
-     * @type ClientOptions
+     * @type {ClientOptions}
      */
     tiscordOptions: ClientOptions;
 }
