@@ -1,5 +1,5 @@
 import { Client, ClientOptions } from 'tiscord';
-import { Event } from './Event';
+import { Event, EventConstructor } from './Event';
 
 interface TiskitClientOptions {
     // eslint-disable-next-line lines-around-comment
@@ -29,16 +29,16 @@ export class TiskitClient extends Client {
 
     /**
      * Adds an event to the client.
-     * @param {Event} event - The event to add.
+     * @param {EventConstructor} event - The event to add.
      */
-    addEvent(event: Event) {
-        const parent = this.events.get(event.emittedName);
+    addEvent(event: EventConstructor) {
+        const parent = this.events.has(event.emittedName);
 
         if (parent) {
             throw new TypeError(`Event ${event.eventName} already exists`);
         }
 
-        this.events.set(event.eventName, event);
+        this.events.set(event.eventName, new Event(event));
 
         this.on(event.emittedName, (...args) => {
             event.eventCallback(this, ...args);
@@ -47,9 +47,9 @@ export class TiskitClient extends Client {
 
     /**
      * Adds multiple events to the client.
-     * @param {Event[]} events - The events to add.
+     * @param {EventConstructor[]} events - The events to add.
      */
-    addEvents(...events: Event[]) {
+    addEvents(...events: EventConstructor[]) {
         for (const event of events) {
             this.addEvent(event);
         }

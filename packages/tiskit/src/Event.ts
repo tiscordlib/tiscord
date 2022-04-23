@@ -1,6 +1,6 @@
 import { TiskitClient } from './TiskitClient';
 
-interface EventConstructor {
+export interface EventConstructor {
     // eslint-disable-next-line lines-around-comment
     /**
      * A unique key to represent this event.
@@ -28,7 +28,7 @@ interface EventConstructor {
  * @param {function} eventCallback - The callback of that event method.
  * @param {string} emittedName - The name of the event that'll be emitted by the base library.
  */
-export class Event implements EventConstructor {
+export class Event {
     eventName: string;
     eventCallback: (client: TiskitClient, ...args: any[]) => any;
     emittedName: string;
