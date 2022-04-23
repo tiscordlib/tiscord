@@ -23,7 +23,7 @@ import { Emoji } from './structures/Emoji';
 import { EventManager } from './managers/EventManager';
 import { FakeCache } from './cache/FakeCache';
 import { FakeMap } from './cache/FakeMap';
-import { FollowupMessage } from 'structures/FollowupMessage';
+import { FollowupMessage } from './structures/FollowupMessage';
 import { GatewayError } from './errors/GatewayError';
 import { Guild } from './structures/Guild';
 import { GuildBan } from './structures/GuildBan';
