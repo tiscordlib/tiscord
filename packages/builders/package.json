@@ -1,24 +1,19 @@
 {
-  "dependencies": {
-    "@discordjs/rest": "^0.3.0",
-    "discord-api-types": "^0.31.0",
-    "ws": "^8.5.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^17.0.21",
-    "@types/ws": "^8.5.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
-    "eslint": "^8.9.0",
     "clean-jsdoc-theme": "^3.3.4",
+    "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jsdoc": "^3.6.10",
     "prettier": "^2.5.1"
   },
-  "name": "tiscord",
+  "name": "@tiscordlib/builders",
   "version": "1.0.0",
-  "description": "a discord lib",
+  "description": "Discord builders for tiscord.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -36,6 +31,5 @@
   "bugs": {
     "url": "https://github.com/tiscordlib/tiscord/issues"
   },
-  "homepage": "https://github.com/tiscordlib/tiscord#readme",
-  "gitHead": "f705f7215f3c59cdd9046b8337546a5276c8de22"
+  "homepage": "https://github.com/tiscordlib/tiscord#readme"
 }
