@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "@discordjs/rest": "^0.3.0",
-    "clean-jsdoc-theme": "^3.3.4",
     "discord-api-types": "^0.31.0",
     "ws": "^8.5.0"
   },
@@ -10,8 +9,8 @@
     "@types/ws": "^8.5.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
-    "better-docs": "^2.7.2",
     "eslint": "^8.9.0",
+    "clean-jsdoc-theme": "^3.3.4",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jsdoc": "^3.6.10",
