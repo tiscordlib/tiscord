@@ -1,5 +1,9 @@
 import { APIInteraction, ApplicationCommandType, ComponentType, InteractionType } from 'discord-api-types/v10';
 import { Client, Guild, Member, User } from '../';
+import { ButtonInteraction } from './ButtonInteraction';
+import { CommandInteraction } from './CommandInteraction';
+import { RepliableInteraction } from './RepliableInteraction';
+import { SelectMenuInteraction } from './SelectMenuInteraction';
 
 /**
  * Interaction class
@@ -65,9 +69,11 @@ export class Interaction {
      * Indicates whether this interaction is a {@link CommandInteraction}.
      * @returns {boolean}
      */
-    isCommand() {
+    isCommand(): this is CommandInteraction {
         return this.type === InteractionType.ApplicationCommand;
     }
+
+    // TODO: Add classes for each type of command.
 
     /**
      * Indicates whether this interaction is a {@link ChatInputCommandInteraction}.
@@ -118,10 +124,10 @@ export class Interaction {
     }
 
     /**
-     * Indicates whether this interaction is a {@link MessageComponentInteraction}.
+     * Indicates whether this interaction is a {@link ButtonInteraction} or {@link SelectMenuInteraction}.
      * @returns {boolean}
      */
-    isMessageComponent() {
+    isMessageComponent(): this is ButtonInteraction | SelectMenuInteraction {
         return this.type === InteractionType.MessageComponent;
     }
 
@@ -129,7 +135,7 @@ export class Interaction {
      * Indicates whether this interaction is a {@link ButtonInteraction}.
      * @returns {boolean}
      */
-    isButton() {
+    isButton(): this is ButtonInteraction {
         return this.isMessageComponent() && this.data.type === ComponentType.Button;
     }
 
@@ -137,15 +143,15 @@ export class Interaction {
      * Indicates whether this interaction is a {@link SelectMenuInteraction}.
      * @returns {boolean}
      */
-    isSelectMenu() {
+    isSelectMenu(): this is SelectMenuInteraction {
         return this.isMessageComponent() && this.data.type === ComponentType.SelectMenu;
     }
 
     /**
-     * Indicates whether this interaction can be replied to.
+     * Indicates whether this interaction's class extends {@link RepliableInteraction}.
      * @returns {boolean}
      */
-    isRepliable() {
+    isRepliable(): this is RepliableInteraction {
         return ![InteractionType.Ping, InteractionType.ApplicationCommandAutocomplete].includes(this.type);
     }
 }
