@@ -1,5 +1,6 @@
-import { Client, ClientOptions } from 'tiscord';
+import { Client, ClientOptions, CommandInteraction } from 'tiscord';
 import { Event, EventConstructor } from './Event';
+import { Plugin } from './Plugin';
 
 interface TiskitClientOptions {
     // eslint-disable-next-line lines-around-comment
@@ -22,9 +23,16 @@ interface TiskitClientOptions {
  */
 export class TiskitClient extends Client {
     events = new Map<string, Event>();
+    plugins = new Map<string, Plugin>();
 
     constructor(options: TiskitClientOptions) {
         super(options.tiscordOptions);
+
+        this.on('interactionCreate', (interactaction: CommandInteraction) => {
+            if (interactaction.isChatInputCommand()) {
+                interactaction.reply({ content: 'hi' });
+            }
+        });
     }
 
     /**
@@ -53,5 +61,10 @@ export class TiskitClient extends Client {
         for (const event of events) {
             this.addEvent(event);
         }
+    }
+
+    insertPlugin(plugin: Plugin) {
+        this.addEvents(...plugin.eventStore[0]);
+        this.plugins.set(plugin.defaultName, plugin);
     }
 }
