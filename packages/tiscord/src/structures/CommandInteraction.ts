@@ -1,6 +1,4 @@
-import { Client, InteractionOptions, RepliableInteraction } from '../';
-
-import { ApplicationCommandType } from 'discord-api-types/v10';
+import { Client, RepliableInteraction } from '../';
 
 /**
  * Command interaction class
@@ -15,16 +13,14 @@ import { ApplicationCommandType } from 'discord-api-types/v10';
  *  @extends {RepliableInteraction}
  */
 export class CommandInteraction extends RepliableInteraction {
-    commandType: keyof typeof ApplicationCommandType;
+    commandType: number;
     name: string;
     commandId: string;
-    options: InteractionOptions;
     constructor(client: Client, data: any) {
         super(client, data);
         this.commandId = data.data.id;
         this.name = data.data.name;
         // @ts-ignore
-        this.commandType = ApplicationCommandType[data.data.type];
-        this.options = new InteractionOptions(client, data.data.options, data.data.resolved, this.guild);
+        this.commandType = data.data.type;
     }
 }

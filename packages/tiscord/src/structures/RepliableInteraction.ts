@@ -64,4 +64,9 @@ export class RepliableInteraction extends Interaction {
     async deleteReply() {
         await this.client.rest.delete(`/webhook/${this.client.user.id}/${this.token}/`);
     }
+    async replyInfo(data: string) {
+        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
+            body: { type: 13, data }
+        });
+    }
 }

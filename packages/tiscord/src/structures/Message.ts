@@ -14,8 +14,6 @@ import {
     ThreadData,
     User
 } from '../';
-/* eslint-disable require-atomic-updates */
-/* eslint-disable camelcase */
 import {
     APIInteraction,
     APIMessage,

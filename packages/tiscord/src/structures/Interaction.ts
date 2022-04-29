@@ -1,9 +1,13 @@
 import { APIInteraction, ApplicationCommandType, ComponentType, InteractionType } from 'discord-api-types/v10';
 import { Client, Guild, Member, User } from '../';
+// we cant import from ../ because of circular dependency
 import { ButtonInteraction } from './ButtonInteraction';
 import { CommandInteraction } from './CommandInteraction';
 import { RepliableInteraction } from './RepliableInteraction';
 import { SelectMenuInteraction } from './SelectMenuInteraction';
+import { ChatInputCommandInteraction } from './ChatInputCommandInteraction';
+import { UserContextMenuCommandInteraction } from './UserContextMenuCommandInteraction';
+import { MessageContextMenuCommandInteraction } from './MessageContextMenuCommandInteraction';
 
 /**
  * Interaction class
@@ -63,8 +67,6 @@ export class Interaction {
         client.cache.users.set(this.user.id, this.user);
     }
 
-    // those type checks were actually taken from d.js, thanks 👍
-
     /**
      * Indicates whether this interaction is a {@link CommandInteraction}.
      * @returns {boolean}
@@ -73,21 +75,19 @@ export class Interaction {
         return this.type === InteractionType.ApplicationCommand;
     }
 
-    // TODO: Add classes for each type of command.
-
     /**
      * Indicates whether this interaction is a {@link ChatInputCommandInteraction}.
      * @returns {boolean}
      */
-    isChatInputCommand() {
+    isChatInputCommand(): this is ChatInputCommandInteraction {
         return this.isCommand() && this.type === ApplicationCommandType.ChatInput;
     }
 
     /**
-     * Indicates whether this interaction is a {@link ContextMenuCommandInteraction}
+     * Indicates whether this interaction is a context menu command.
      * @returns {boolean}
      */
-    isContextMenuCommand() {
+    isContextMenuCommand(): this is UserContextMenuCommandInteraction | MessageContextMenuCommandInteraction {
         return this.isCommand() && [ApplicationCommandType.User, ApplicationCommandType.Message].includes(this.type);
     }
 
@@ -95,7 +95,7 @@ export class Interaction {
      * Indicates whether this interaction is a {@link UserContextMenuCommandInteraction}
      * @returns {boolean}
      */
-    isUserContextMenuCommand() {
+    isUserContextMenuCommand(): this is UserContextMenuCommandInteraction {
         return this.isContextMenuCommand() && this.type === ApplicationCommandType.User;
     }
 
@@ -103,12 +103,12 @@ export class Interaction {
      * Indicates whether this interaction is a {@link MessageContextMenuCommandInteraction}
      * @returns {boolean}
      */
-    isMessageContextMenuCommand() {
+    isMessageContextMenuCommand(): this is MessageContextMenuCommandInteraction {
         return this.isContextMenuCommand() && this.type === ApplicationCommandType.Message;
     }
 
     /**
-     * Indicates whether this interaction is a {@link ModalSubmitInteraction}
+     * Indicates whether this interaction is a modal submit interaction
      * @returns {boolean}
      */
     isModalSubmit() {
@@ -116,7 +116,7 @@ export class Interaction {
     }
 
     /**
-     * Indicates whether this interaction is an {@link AutocompleteInteraction}
+     * Indicates whether this interaction is an autocomplete interaction
      * @returns {boolean}
      */
     isAutocomplete() {

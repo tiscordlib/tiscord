@@ -17,13 +17,11 @@ import { ChannelManager } from './managers/ChannelManager';
 import { ChannelOptions } from './util/ChannelOptions';
 import { Client } from './client/Client';
 import { ClientOptions } from './util/ClientOptions';
-import { CommandInteraction } from './structures/CommandInteraction';
 import { DMChannel } from './structures/DMChannel';
 import { Emoji } from './structures/Emoji';
 import { EventManager } from './managers/EventManager';
 import { FakeCache } from './cache/FakeCache';
 import { FakeMap } from './cache/FakeMap';
-import { FollowupMessage } from './structures/FollowupMessage';
 import { GatewayError } from './errors/GatewayError';
 import { Guild } from './structures/Guild';
 import { GuildBan } from './structures/GuildBan';
@@ -40,7 +38,6 @@ import { Message } from './structures/Message';
 import { MessageCache } from './cache/MessageCache';
 import { MessageManager } from './managers/MessageManager';
 import { Permissions } from './util/Permissions';
-import { RepliableInteraction } from './structures/RepliableInteraction';
 import { Role } from './structures/Role';
 import { RoleOptions } from './util/RoleOptions';
 import { RolesManager } from './managers/RolesManager';
@@ -58,6 +55,11 @@ import { WebSocketManager } from './client/Websocket';
 import { channelType } from './util/channelType';
 // @ts-ignore
 import { version } from '../package.json';
+import { FollowupMessage } from './structures/FollowupMessage';
+import { RepliableInteraction } from './structures/RepliableInteraction';
+import { CommandInteraction } from './structures/CommandInteraction';
+import { MessageContextMenuCommandInteraction } from './structures/MessageContextMenuCommandInteraction';
+import { UserContextMenuCommandInteraction } from './structures/UserContextMenuCommandInteraction';
 
 export {
     Attachment,
@@ -75,6 +77,8 @@ export {
     Application,
     FollowupMessage,
     CommandInteraction,
+    MessageContextMenuCommandInteraction,
+    UserContextMenuCommandInteraction,
     EventManager,
     DMChannel,
     Guild,
