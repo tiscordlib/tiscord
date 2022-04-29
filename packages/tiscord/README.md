@@ -4,7 +4,6 @@ a fast and object oriented discord lib
 
 some info
 - this lib isnt done yet, shouldnt use in production
-- types are handled by the discord-api-types library
 - we strongly recommend using typescript, its not required though
 
 # TODO
