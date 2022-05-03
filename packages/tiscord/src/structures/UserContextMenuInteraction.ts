@@ -8,7 +8,7 @@ import { Client, CommandInteraction, User } from '../';
  * @property {User} target The user the interaction is for.
  * @extends {CommandInteraction}
  */
-export class UserContextMenuCommandInteraction extends CommandInteraction {
+export class UserContextMenuInteraction extends CommandInteraction {
     target: User;
     constructor(client: Client, data: APIUserApplicationCommandInteraction) {
         super(client, data);

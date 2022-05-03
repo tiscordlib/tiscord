@@ -8,7 +8,6 @@ import {
     ThreadData,
     ThreadOptions
 } from '../';
-
 import { GuildChannel } from './GuildChannel';
 import { threadWrapper } from '../util/threadWrapper';
 
@@ -129,7 +128,6 @@ export class TextChannel extends GuildChannel {
             throw new APIError(request?.message);
         }
         return threadWrapper(this.client, request);
-        // return new ThreadChannel(this.client, request);
     }
 
     /**

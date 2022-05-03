@@ -58,8 +58,8 @@ import { version } from '../package.json';
 import { FollowupMessage } from './structures/FollowupMessage';
 import { RepliableInteraction } from './structures/RepliableInteraction';
 import { CommandInteraction } from './structures/CommandInteraction';
-import { MessageContextMenuCommandInteraction } from './structures/MessageContextMenuCommandInteraction';
-import { UserContextMenuCommandInteraction } from './structures/UserContextMenuCommandInteraction';
+import { MessageContextMenuInteraction } from './structures/MessageContextMenuInteraction';
+import { UserContextMenuInteraction } from './structures/UserContextMenuInteraction';
 
 export {
     Attachment,
@@ -76,9 +76,10 @@ export {
     Integration,
     Application,
     FollowupMessage,
+    RepliableInteraction,
     CommandInteraction,
-    MessageContextMenuCommandInteraction,
-    UserContextMenuCommandInteraction,
+    MessageContextMenuInteraction,
+    UserContextMenuInteraction,
     EventManager,
     DMChannel,
     Guild,
@@ -88,7 +89,6 @@ export {
     SelectMenuOption,
     RawMessageOptions,
     FakeCache,
-    RepliableInteraction,
     channelType,
     Interaction,
     Member,
@@ -101,9 +101,9 @@ export {
     Permissions,
     Role,
     RolesManager,
+    TextChannel,
     ThreadChannel,
     CacheOptions,
-    TextChannel,
     User,
     UserManager,
     WebSocketManager,

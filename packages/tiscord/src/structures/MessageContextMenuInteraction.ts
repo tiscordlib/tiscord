@@ -1,5 +1,5 @@
 import { APIMessageApplicationCommandInteraction } from 'discord-api-types/v10';
-import { Client, CommandInteraction, Message } from '../';
+import { Client, CommandInteraction, Message } from '..';
 
 /**
  * Represents a message context menu command interaction.
@@ -8,7 +8,7 @@ import { Client, CommandInteraction, Message } from '../';
  * @property {Message} target The user the interaction is for.
  * @extends {CommandInteraction}
  */
-export class MessageContextMenuCommandInteraction extends CommandInteraction {
+export class MessageContextMenuInteraction extends CommandInteraction {
     target: Message;
     constructor(client: Client, data: APIMessageApplicationCommandInteraction) {
         super(client, data);

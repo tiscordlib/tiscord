@@ -50,7 +50,6 @@ export class RepliableInteraction extends Interaction {
      */
     async followUp(options: RawMessageOptions) {
         options = new MessageOptions(options);
-        console.log(options);
         return new FollowupMessage(
             this.client,
             this.client.rest.post(`/webhooks/${this.client.user.id}/${this.token}`, { body: options }),
@@ -63,10 +62,5 @@ export class RepliableInteraction extends Interaction {
 */
     async deleteReply() {
         await this.client.rest.delete(`/webhook/${this.client.user.id}/${this.token}/`);
-    }
-    async replyInfo(data: string) {
-        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
-            body: { type: 13, data }
-        });
     }
 }

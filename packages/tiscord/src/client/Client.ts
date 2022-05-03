@@ -4,6 +4,7 @@ import {
     Channel,
     ChannelManager,
     ClientOptions,
+    EventManager,
     FakeCache,
     FakeMap,
     Guild,
@@ -48,7 +49,7 @@ export class Client extends EventEmitter {
     token: string;
     intents: number;
     ws: WebSocketManager;
-    api: string;
+    apiVersion: string;
     rest: REST;
     users: UserManager;
     guilds: GuildManager;
@@ -63,7 +64,7 @@ export class Client extends EventEmitter {
         roles: Cache<Role> | FakeCache;
         threadMembers: Cache<ThreadMember> | FakeCache;
     };
-    _events: Map<string, any>;
+    _wsEvents: EventManager = new EventManager();
     raw: boolean;
     cacheOptions: CacheOptions;
     debugLogs: boolean;
@@ -79,10 +80,10 @@ export class Client extends EventEmitter {
             });
         }
         this.raw = options.rawDataStorage;
-        this.api = options.api || '10';
+        this.apiVersion = options.api || '10';
         this.rest = new REST({
             api: 'https://discord.com/api',
-            version: this.api
+            version: this.apiVersion
         });
         this.rest.setToken(this.token);
         this.users = new UserManager(this);
@@ -101,7 +102,7 @@ export class Client extends EventEmitter {
         this.debug(`OS Version: ${type()} ${release()} ${arch()}`);
         this.debug(`Node.js version: ${process.version}`);
         this.debug(`Tiscord version: ${version}`);
-        this.debug(`API version: ${this.api}`);
+        this.debug(`API version: ${this.apiVersion}`);
     }
 
     /**
@@ -111,7 +112,7 @@ export class Client extends EventEmitter {
     login(): void {
         this.ws = new WebSocketManager(this);
         this.ws.connect();
-        this.ws.ws.on('open', () => {
+        this.ws.connection.on('open', () => {
             this.ws.identify();
         });
     }

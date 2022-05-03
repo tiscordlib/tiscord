@@ -6,8 +6,8 @@ import { CommandInteraction } from './CommandInteraction';
 import { RepliableInteraction } from './RepliableInteraction';
 import { SelectMenuInteraction } from './SelectMenuInteraction';
 import { ChatInputCommandInteraction } from './ChatInputCommandInteraction';
-import { UserContextMenuCommandInteraction } from './UserContextMenuCommandInteraction';
-import { MessageContextMenuCommandInteraction } from './MessageContextMenuCommandInteraction';
+import { UserContextMenuInteraction } from './UserContextMenuInteraction';
+import { MessageContextMenuInteraction } from './MessageContextMenuInteraction';
 
 /**
  * Interaction class
@@ -58,8 +58,6 @@ export class Interaction {
         this.user = new User(client, data.user || this.member.user);
         this.channelId = data.channel_id;
         this.data = data.data;
-        // @ts-ignore
-        this.data.type = data.data.type;
         if (client.raw) this.raw = data;
         this.guildLocale = data.guild_locale;
         // @ts-ignore
@@ -87,7 +85,7 @@ export class Interaction {
      * Indicates whether this interaction is a context menu command.
      * @returns {boolean}
      */
-    isContextMenuCommand(): this is UserContextMenuCommandInteraction | MessageContextMenuCommandInteraction {
+    isContextMenuCommand(): this is UserContextMenuInteraction | MessageContextMenuInteraction {
         return this.isCommand() && [ApplicationCommandType.User, ApplicationCommandType.Message].includes(this.type);
     }
 
@@ -95,15 +93,15 @@ export class Interaction {
      * Indicates whether this interaction is a {@link UserContextMenuCommandInteraction}
      * @returns {boolean}
      */
-    isUserContextMenuCommand(): this is UserContextMenuCommandInteraction {
+    isUserContextMenuCommand(): this is UserContextMenuInteraction {
         return this.isContextMenuCommand() && this.type === ApplicationCommandType.User;
     }
 
     /**
-     * Indicates whether this interaction is a {@link MessageContextMenuCommandInteraction}
+     * Indicates whether this interaction is a {@link MessageContextMenuInteraction}
      * @returns {boolean}
      */
-    isMessageContextMenuCommand(): this is MessageContextMenuCommandInteraction {
+    isMessageContextMenuCommand(): this is MessageContextMenuInteraction {
         return this.isContextMenuCommand() && this.type === ApplicationCommandType.Message;
     }
 

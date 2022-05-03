@@ -1,4 +1,5 @@
-import { Client, RepliableInteraction } from '../';
+import { Client } from '../';
+import { RepliableInteraction } from './RepliableInteraction';
 
 /**
  * Command interaction class
