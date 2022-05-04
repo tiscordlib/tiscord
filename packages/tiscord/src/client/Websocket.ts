@@ -1,4 +1,4 @@
-import { Client, EventManager, GatewayError, Guild, User } from '../';
+import { Client, GatewayError } from '../';
 
 import WebSocket from 'ws';
 
@@ -25,8 +25,8 @@ export class WebSocketManager {
         this.intents = client.intents;
         try {
             this.erlpack = require('erlpack');
-        } catch {
-        }
+            // eslint-disable-next-line
+        } catch { }
     }
 
     /**
@@ -93,9 +93,9 @@ export class WebSocketManager {
                     $device: 'tiscord'
                 }
             }
-        }
-        );
+        });
     }
+
     /**
      * Send data to send to the websocket
      * @param data - data to send
@@ -103,7 +103,7 @@ export class WebSocketManager {
     send(data: any) {
         if (this.erlpack) data = this.erlpack.pack(data);
         else data = JSON.stringify(data);
-        this.connection.send(data)
+        this.connection.send(data);
     }
 
     /**
@@ -122,7 +122,7 @@ export class WebSocketManager {
      * @param {boolean} etf - whether to use erlpack
      * @returns {string}
      */
-    getGateway(api: string, etf: boolean) {
+    getGateway(api: number, etf: boolean) {
         return `wss://gateway.discord.gg/?v=${api}&encoding=${etf ? 'etf' : 'json'}`;
     }
 }

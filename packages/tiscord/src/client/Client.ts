@@ -22,7 +22,7 @@ import {
 import { arch, release, type } from 'os';
 import { EventEmitter } from 'events';
 import { GatewayIntentBits } from 'discord-api-types/v10';
-import { REST } from '@discordjs/rest';
+import { REST } from './REST';
 // @ts-ignore
 import { version } from '../../package.json';
 
@@ -49,7 +49,7 @@ export class Client extends EventEmitter {
     token: string;
     intents: number;
     ws: WebSocketManager;
-    apiVersion: string;
+    apiVersion: number;
     rest: REST;
     users: UserManager;
     guilds: GuildManager;
@@ -80,12 +80,12 @@ export class Client extends EventEmitter {
             });
         }
         this.raw = options.rawDataStorage;
-        this.apiVersion = options.api || '10';
+        this.apiVersion = options.api || 10;
         this.rest = new REST({
-            api: 'https://discord.com/api',
-            version: this.apiVersion
+            baseURL: 'https://discord.com/api',
+            version: this.apiVersion,
+            auth: `Bot ${this.token}`
         });
-        this.rest.setToken(this.token);
         this.users = new UserManager(this);
         this.guilds = new GuildManager(this);
         this.channels = new ChannelManager(this);
