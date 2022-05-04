@@ -35,7 +35,7 @@ export class EventManager {
     list: Map<string, any>;
     constructor() {
         this.list = new Map();
-        this.register('READY', ready)
+        this.register('READY', ready);
     }
     registerAll() {
         this.register('MESSAGE_CREATE', messageCreate);

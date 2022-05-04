@@ -1,4 +1,4 @@
-import { Client, EventManager, Guild, User } from "../";
+import { Client, Guild, User } from '../';
 
 export async function ready(client: Client, data: { d: any }) {
     client.ws.sessionId = data.d.session_id;
@@ -8,9 +8,7 @@ export async function ready(client: Client, data: { d: any }) {
         client.cache.guilds.set(g.id, g);
     });
     client.debug('Received ready event from gateway');
-    client.debug(
-        `Bot user: ${client.user.username}#${client.user.discriminator}`
-    );
+    client.debug(`Bot user: ${client.user.username}#${client.user.discriminator}`);
     client.debug(`Bot guild count: ${client.cache.guilds.size}`);
     client._wsEvents.registerAll();
     client.emit('ready', client);
