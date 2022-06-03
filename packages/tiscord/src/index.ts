@@ -60,6 +60,10 @@ import { RepliableInteraction } from './structures/RepliableInteraction';
 import { CommandInteraction } from './structures/CommandInteraction';
 import { MessageContextMenuInteraction } from './structures/MessageContextMenuInteraction';
 import { UserContextMenuInteraction } from './structures/UserContextMenuInteraction';
+import { ChatInputCommandInteraction } from './structures/ChatInputCommandInteraction';
+import { SelectMenuInteraction } from './structures/SelectMenuInteraction';
+import { ButtonInteraction } from './structures/ButtonInteraction';
+import { ModalInteraction } from './structures/ModalInteraction';
 
 export {
     Attachment,
@@ -122,11 +126,15 @@ export {
     InviteData,
     ThreadData,
     ThreadMember,
+    ModalInteraction,
     ThreadOptions,
     MessageCache,
     BaseThreadOptions,
     version,
+    ChatInputCommandInteraction,
     CDNOptions,
     FakeMap,
-    Sticker
+    Sticker,
+    ButtonInteraction,
+    SelectMenuInteraction
 };

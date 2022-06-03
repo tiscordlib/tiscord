@@ -36,6 +36,8 @@ export class EventManager {
     constructor() {
         this.list = new Map();
         this.register('READY', ready);
+        this.register('GUILD_CREATE', guildCreate);
+
     }
     registerAll() {
         this.register('MESSAGE_CREATE', messageCreate);
@@ -52,7 +54,6 @@ export class EventManager {
         this.register('THREAD_LIST_SYNC', threadListSync);
         this.register('THREAD_MEMBER_UPDATE', threadMemberUpdate);
         this.register('THREAD_MEMBERS_UPDATE', threadMembersUpdate);
-        this.register('GUILD_CREATE', guildCreate);
         this.register('GUILD_UPDATE', guildUpdate);
         this.register('GUILD_DELETE', guildDelete);
         this.register('GUILD_BAN_ADD', guildBanAdd);

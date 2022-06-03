@@ -8,6 +8,7 @@ import { SelectMenuInteraction } from './SelectMenuInteraction';
 import { ChatInputCommandInteraction } from './ChatInputCommandInteraction';
 import { UserContextMenuInteraction } from './UserContextMenuInteraction';
 import { MessageContextMenuInteraction } from './MessageContextMenuInteraction';
+import { ModalInteraction } from './ModalInteraction';
 
 /**
  * Interaction class
@@ -52,7 +53,7 @@ export class Interaction {
         this.type = data.type;
         this.guildId = data.guild_id;
         this.token = data.token;
-        if (data.user) data.member.user = data.user;
+        if (data.user && data.member) data.member.user = data.user;
         if (data.member) this.member = new Member(client, data.member, this.guild);
         this.member?.setup();
         this.user = new User(client, data.user || this.member.user);
@@ -78,7 +79,7 @@ export class Interaction {
      * @returns {boolean}
      */
     isChatInputCommand(): this is ChatInputCommandInteraction {
-        return this.isCommand() && this.type === ApplicationCommandType.ChatInput;
+        return this.isCommand() && this.data.type === ApplicationCommandType.ChatInput;
     }
 
     /**
@@ -86,7 +87,9 @@ export class Interaction {
      * @returns {boolean}
      */
     isContextMenuCommand(): this is UserContextMenuInteraction | MessageContextMenuInteraction {
-        return this.isCommand() && [ApplicationCommandType.User, ApplicationCommandType.Message].includes(this.type);
+        return (
+            this.isCommand() && [ApplicationCommandType.User, ApplicationCommandType.Message].includes(this.data.type)
+        );
     }
 
     /**
@@ -94,7 +97,7 @@ export class Interaction {
      * @returns {boolean}
      */
     isUserContextMenuCommand(): this is UserContextMenuInteraction {
-        return this.isContextMenuCommand() && this.type === ApplicationCommandType.User;
+        return this.isContextMenuCommand() && this.data.type === ApplicationCommandType.User;
     }
 
     /**
@@ -102,14 +105,14 @@ export class Interaction {
      * @returns {boolean}
      */
     isMessageContextMenuCommand(): this is MessageContextMenuInteraction {
-        return this.isContextMenuCommand() && this.type === ApplicationCommandType.Message;
+        return this.isContextMenuCommand() && this.data.type === ApplicationCommandType.Message;
     }
 
     /**
      * Indicates whether this interaction is a modal submit interaction
      * @returns {boolean}
      */
-    isModalSubmit() {
+    isModalSubmit(): this is ModalInteraction {
         return this.type === InteractionType.ModalSubmit;
     }
 
@@ -134,7 +137,7 @@ export class Interaction {
      * @returns {boolean}
      */
     isButton(): this is ButtonInteraction {
-        return this.isMessageComponent() && this.data.type === ComponentType.Button;
+        return this.isMessageComponent() && this.data.component_type === ComponentType.Button;
     }
 
     /**
@@ -142,7 +145,7 @@ export class Interaction {
      * @returns {boolean}
      */
     isSelectMenu(): this is SelectMenuInteraction {
-        return this.isMessageComponent() && this.data.type === ComponentType.SelectMenu;
+        return this.isMessageComponent() && this.data.component_type === ComponentType.SelectMenu;
     }
 
     /**

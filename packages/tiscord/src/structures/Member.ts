@@ -63,7 +63,7 @@ export class Member {
      * Internal function, sets permissions and other stuff
      */
     async setup() {
-        this.roles = await Promise.all(this.roles.map(role => this.guild?.roles.get(role)));
+        this.roles = await Promise.all(this.roles.map(role => this.guild?.roles?.get(role)));
         this.permissions = new Permissions(this.roles.map(r => BigInt(r?.permissions)));
     }
 

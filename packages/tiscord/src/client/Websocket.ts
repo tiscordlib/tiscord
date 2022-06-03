@@ -59,7 +59,7 @@ export class WebSocketManager {
             if ([4004, 4011, 4012, 4013, 4014].includes(code)) {
                 throw new GatewayError(message.toString());
             }
-            this.client.debug(`Disconnected from gateway. Code: ${code}`);
+            this.client.debug(`Disconnected from gateway. Code: ${code}`, 'gateway');
             this.connection.close();
             this.connect();
             this.connection.on('open', () => {
@@ -80,8 +80,8 @@ export class WebSocketManager {
      * @returns {void}
      */
     identify() {
-        this.client.debug('Identifying with gateway.');
-        this.client.debug(`Intents: ${this.intents}`);
+        this.client.debug('Identifying with gateway.', 'gateway');
+        this.client.debug(`Intents: ${this.intents}`, 'gateway');
         this.send({
             op: 2,
             d: {

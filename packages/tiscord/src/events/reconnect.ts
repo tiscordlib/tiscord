@@ -1,7 +1,7 @@
 import { Client } from '../';
 
 export async function reconnect(client: Client) {
-    client.debug('Received reconnect event, reconnecting to gateway');
+    client.debug('Received reconnect event, reconnecting to gateway', 'gateway');
     client.ws.connection.close();
     client.ws.connect();
     client.ws.connection.on('open', () => {

@@ -21,10 +21,11 @@ import {
 
 import { arch, release, type } from 'os';
 import { EventEmitter } from 'events';
-import { GatewayIntentBits } from 'discord-api-types/v10';
+import { GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
 import { REST } from './REST';
 // @ts-ignore
 import { version } from '../../package.json';
+import { Events } from '../util/Events';
 
 /**
  *  The main client class
@@ -55,6 +56,7 @@ export class Client extends EventEmitter {
     guilds: GuildManager;
     channels: ChannelManager;
     user: User;
+    on: <K extends keyof Events>(s: K, listener: (Events[K])) => this;
     cache: {
         members: Cache<Member> | FakeCache;
         guilds: Map<string, Guild> | FakeMap;
@@ -71,7 +73,7 @@ export class Client extends EventEmitter {
     constructor(options: ClientOptions) {
         super();
         this.cacheOptions = options.cache;
-        this.token = options.token;
+        Object.defineProperty(this, 'token', { value: options.token });
         if (typeof options.intents === 'number') {
             this.intents = options.intents;
         } else {
@@ -81,11 +83,14 @@ export class Client extends EventEmitter {
         }
         this.raw = options.rawDataStorage;
         this.apiVersion = options.api || 10;
-        this.rest = new REST({
-            baseURL: 'https://discord.com/api',
-            version: this.apiVersion,
-            auth: `Bot ${this.token}`
-        });
+        this.rest = new REST(
+            {
+                baseURL: 'https://discord.com/api',
+                version: this.apiVersion,
+                auth: `Bot ${this.token}`
+            },
+            this
+        );
         this.users = new UserManager(this);
         this.guilds = new GuildManager(this);
         this.channels = new ChannelManager(this);
@@ -121,12 +126,16 @@ export class Client extends EventEmitter {
      * Log debug information
      * @param {string} message - The message to log
      */
-    debug(message: string): void {
+    debug(message: string[] | string, header?: string): void {
+        if (message instanceof Array) message = message.join('');
         const dateObj = new Date();
         const date = `${dateObj.getHours()}:${dateObj.getMinutes()}:${dateObj.getSeconds()}`;
-        message = `[${date} tiscord] ${message}`;
+        const newMessage = `[${date} ${header || 'tiscord'}] ${message}`;
         if (this.debugLogs) {
-            console.log(message);
+            console.log(newMessage);
         }
+    }
+    setPresence(options: GatewayPresenceUpdateData): void {
+        this.ws.send({ op: 3, d: options });
     }
 }

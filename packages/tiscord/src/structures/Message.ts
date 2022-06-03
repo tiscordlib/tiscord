@@ -128,8 +128,8 @@ export class Message {
      * An function that adds Message.guild and Message.channel to the message
      */
     async guilds() {
-        this.channel = await this.guild?.channels.get(this.channelId);
-        this.member = await this.guild?.members.get(this.author.id);
+        this.channel = await this.guild?.channels?.get(this.channelId);
+        if (!this.webhookId) this.member = await this.guild?.members?.get(this.author.id);
     }
 
     /**

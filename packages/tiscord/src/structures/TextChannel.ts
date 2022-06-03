@@ -12,7 +12,7 @@ import { GuildChannel } from './GuildChannel';
 import { threadWrapper } from '../util/threadWrapper';
 
 /**
- * A guild channel class.
+ * A text channel class.
  *
  * @param {Client} client - Client instance
  * @param {any} data - API guild channel data
