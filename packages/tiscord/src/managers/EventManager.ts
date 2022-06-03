@@ -24,6 +24,7 @@ import { threadMemberUpdate } from '../events/threadMemberUpdate';
 import { threadMembersUpdate } from '../events/threadMembersUpdate';
 import { threadUpdate } from '../events/threadUpdate';
 import { typingStart } from '../events/typingStart';
+import { ready } from '../events/ready';
 
 /**
  * An event manager class
@@ -31,9 +32,14 @@ import { typingStart } from '../events/typingStart';
  * @internal
  */
 export class EventManager {
-    events: Map<string, any>;
+    list: Map<string, any>;
     constructor() {
-        this.events = new Map();
+        this.list = new Map();
+        this.register('READY', ready);
+        this.register('GUILD_CREATE', guildCreate);
+
+    }
+    registerAll() {
         this.register('MESSAGE_CREATE', messageCreate);
         this.register('INTERACTION_CREATE', interactionCreate);
         this.register('RECONNECT', reconnect);
@@ -48,7 +54,6 @@ export class EventManager {
         this.register('THREAD_LIST_SYNC', threadListSync);
         this.register('THREAD_MEMBER_UPDATE', threadMemberUpdate);
         this.register('THREAD_MEMBERS_UPDATE', threadMembersUpdate);
-        this.register('GUILD_CREATE', guildCreate);
         this.register('GUILD_UPDATE', guildUpdate);
         this.register('GUILD_DELETE', guildDelete);
         this.register('GUILD_BAN_ADD', guildBanAdd);
@@ -63,6 +68,6 @@ export class EventManager {
         this.register('TYPING_START', typingStart);
     }
     register(name: string, handler: any) {
-        this.events.set(name, handler);
+        this.list.set(name, handler);
     }
 }

@@ -1,5 +1,14 @@
 import { APIInteraction, ApplicationCommandType, ComponentType, InteractionType } from 'discord-api-types/v10';
 import { Client, Guild, Member, User } from '../';
+// we cant import from ../ because of circular dependency
+import { ButtonInteraction } from './ButtonInteraction';
+import { CommandInteraction } from './CommandInteraction';
+import { RepliableInteraction } from './RepliableInteraction';
+import { SelectMenuInteraction } from './SelectMenuInteraction';
+import { ChatInputCommandInteraction } from './ChatInputCommandInteraction';
+import { UserContextMenuInteraction } from './UserContextMenuInteraction';
+import { MessageContextMenuInteraction } from './MessageContextMenuInteraction';
+import { ModalInteraction } from './ModalInteraction';
 
 /**
  * Interaction class
@@ -44,14 +53,12 @@ export class Interaction {
         this.type = data.type;
         this.guildId = data.guild_id;
         this.token = data.token;
-        if (data.user) data.member.user = data.user;
+        if (data.user && data.member) data.member.user = data.user;
         if (data.member) this.member = new Member(client, data.member, this.guild);
         this.member?.setup();
         this.user = new User(client, data.user || this.member.user);
         this.channelId = data.channel_id;
         this.data = data.data;
-        // @ts-ignore
-        this.data.type = data.data.type;
         if (client.raw) this.raw = data;
         this.guildLocale = data.guild_locale;
         // @ts-ignore
@@ -59,13 +66,11 @@ export class Interaction {
         client.cache.users.set(this.user.id, this.user);
     }
 
-    // those type checks were actually taken from d.js, thanks 👍
-
     /**
      * Indicates whether this interaction is a {@link CommandInteraction}.
      * @returns {boolean}
      */
-    isCommand() {
+    isCommand(): this is CommandInteraction {
         return this.type === InteractionType.ApplicationCommand;
     }
 
@@ -73,44 +78,46 @@ export class Interaction {
      * Indicates whether this interaction is a {@link ChatInputCommandInteraction}.
      * @returns {boolean}
      */
-    isChatInputCommand() {
-        return this.isCommand() && this.type === ApplicationCommandType.ChatInput;
+    isChatInputCommand(): this is ChatInputCommandInteraction {
+        return this.isCommand() && this.data.type === ApplicationCommandType.ChatInput;
     }
 
     /**
-     * Indicates whether this interaction is a {@link ContextMenuCommandInteraction}
+     * Indicates whether this interaction is a context menu command.
      * @returns {boolean}
      */
-    isContextMenuCommand() {
-        return this.isCommand() && [ApplicationCommandType.User, ApplicationCommandType.Message].includes(this.type);
+    isContextMenuCommand(): this is UserContextMenuInteraction | MessageContextMenuInteraction {
+        return (
+            this.isCommand() && [ApplicationCommandType.User, ApplicationCommandType.Message].includes(this.data.type)
+        );
     }
 
     /**
      * Indicates whether this interaction is a {@link UserContextMenuCommandInteraction}
      * @returns {boolean}
      */
-    isUserContextMenuCommand() {
-        return this.isContextMenuCommand() && this.type === ApplicationCommandType.User;
+    isUserContextMenuCommand(): this is UserContextMenuInteraction {
+        return this.isContextMenuCommand() && this.data.type === ApplicationCommandType.User;
     }
 
     /**
-     * Indicates whether this interaction is a {@link MessageContextMenuCommandInteraction}
+     * Indicates whether this interaction is a {@link MessageContextMenuInteraction}
      * @returns {boolean}
      */
-    isMessageContextMenuCommand() {
-        return this.isContextMenuCommand() && this.type === ApplicationCommandType.Message;
+    isMessageContextMenuCommand(): this is MessageContextMenuInteraction {
+        return this.isContextMenuCommand() && this.data.type === ApplicationCommandType.Message;
     }
 
     /**
-     * Indicates whether this interaction is a {@link ModalSubmitInteraction}
+     * Indicates whether this interaction is a modal submit interaction
      * @returns {boolean}
      */
-    isModalSubmit() {
+    isModalSubmit(): this is ModalInteraction {
         return this.type === InteractionType.ModalSubmit;
     }
 
     /**
-     * Indicates whether this interaction is an {@link AutocompleteInteraction}
+     * Indicates whether this interaction is an autocomplete interaction
      * @returns {boolean}
      */
     isAutocomplete() {
@@ -118,10 +125,10 @@ export class Interaction {
     }
 
     /**
-     * Indicates whether this interaction is a {@link MessageComponentInteraction}.
+     * Indicates whether this interaction is a {@link ButtonInteraction} or {@link SelectMenuInteraction}.
      * @returns {boolean}
      */
-    isMessageComponent() {
+    isMessageComponent(): this is ButtonInteraction | SelectMenuInteraction {
         return this.type === InteractionType.MessageComponent;
     }
 
@@ -129,23 +136,23 @@ export class Interaction {
      * Indicates whether this interaction is a {@link ButtonInteraction}.
      * @returns {boolean}
      */
-    isButton() {
-        return this.isMessageComponent() && this.data.type === ComponentType.Button;
+    isButton(): this is ButtonInteraction {
+        return this.isMessageComponent() && this.data.component_type === ComponentType.Button;
     }
 
     /**
      * Indicates whether this interaction is a {@link SelectMenuInteraction}.
      * @returns {boolean}
      */
-    isSelectMenu() {
-        return this.isMessageComponent() && this.data.type === ComponentType.SelectMenu;
+    isSelectMenu(): this is SelectMenuInteraction {
+        return this.isMessageComponent() && this.data.component_type === ComponentType.SelectMenu;
     }
 
     /**
-     * Indicates whether this interaction can be replied to.
+     * Indicates whether this interaction's class extends {@link RepliableInteraction}.
      * @returns {boolean}
      */
-    isRepliable() {
+    isRepliable(): this is RepliableInteraction {
         return ![InteractionType.Ping, InteractionType.ApplicationCommandAutocomplete].includes(this.type);
     }
 }

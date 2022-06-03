@@ -9,13 +9,13 @@
  * @property {any} discordData - data for discord
  */
 export class Attachment {
-    fileData: Buffer;
-    fileName: string;
+    data: Buffer;
     id: number;
     discordData: any;
+    filename: string;
     constructor(data: Buffer, filename: string) {
-        this.fileData = data;
-        this.fileName = filename;
+        this.data = data;
+        this.filename = filename;
         this.discordData = {
             filename
         };

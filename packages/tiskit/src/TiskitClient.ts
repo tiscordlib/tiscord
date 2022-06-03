@@ -1,18 +1,24 @@
+<<<<<<< HEAD
+import { Client, ClientOptions, CommandInteraction } from 'tiscord';
+import { Event, EventConstructor } from './Event';
+import { Plugin } from './Plugin';
+=======
 import { Client, ClientOptions } from 'tiscord';
 import { Event } from './ClientEvent';
 import { Extension } from './Extension';
+>>>>>>> origin/stable
 
 interface TiskitClientOptions {
     // eslint-disable-next-line lines-around-comment
     /**
      * A list of Guild IDs to limit your commands to.
-     * @type string[]
+     * @type {string[]}
      */
     testGuilds?: string[];
 
     /**
      * Options for the Tiscord client.
-     * @type ClientOptions
+     * @type {ClientOptions}
      */
     tiscordOptions: ClientOptions;
 }
@@ -22,60 +28,49 @@ interface TiskitClientOptions {
  * @param {TiskitClientOptions} options - Options for the tiskit client.
  */
 export class TiskitClient extends Client {
-    events = new Map<string, Map<string, Event>>();
-    extensions = new Map<string, Extension>();
+    events = new Map<string, Event>();
+    plugins = new Map<string, Plugin>();
 
     constructor(options: TiskitClientOptions) {
         super(options.tiscordOptions);
-    }
 
-    /**
-     * Adds an event to the client.
-     * @param {Extension} extension - The extension that this event method is on.
-     * @param {Event} event - The event to add.
-     */
-    async addEvent(extension: Extension, event: Event) {
-        event.eventCallback = event.eventCallback.bind(extension);
-        const parent = this.events.get(extension.name);
-
-        if (!parent) {
-            this.events.set(extension.name, new Map<string, Event>());
-
-            const parent = this.events.get(extension.name);
-            parent.set(event.eventName, event);
-
-            this.on(event.emittedName, (...args) => {
-                event.eventCallback(...args);
-            });
-
-            return;
-        }
-
-        parent.set(event.eventName, event);
-
-        this.on(event.emittedName, (...args) => {
-            event.eventCallback(...args);
+        this.on('interactionCreate', (interactaction: CommandInteraction) => {
+            if (interactaction.isChatInputCommand()) {
+                interactaction.reply({ content: 'hi' });
+            }
         });
     }
 
     /**
-     * Adds an extension, usually called from the exported setup function of an extension file.
-     * @param {Extension} extension The extension to add.
-     * @returns void
+     * Adds an event to the client.
+     * @param {EventConstructor} event - The event to add.
      */
-    async addExtension(extension: Extension) {
-        const methods = Object.getOwnPropertyNames(Object.getPrototypeOf(extension));
+    addEvent(event: EventConstructor) {
+        const parent = this.events.has(event.emittedName);
 
-        for (const method of methods) {
-            if (method !== 'constructor') {
-                const data = extension[`__DECORATOR_DATA__ONLY_BY_CLIENT__${method}`];
-
-                if (data instanceof Event) {
-                    this.addEvent(extension, data);
-                }
-            }
+        if (parent) {
+            throw new TypeError(`Event ${event.eventName} already exists`);
         }
 
-        this.extensions.set(extension.name, extension);
+        this.events.set(event.eventName, new Event(event));
+
+        this.on(event.emittedName, (...args) => {
+            event.eventCallback(this, ...args);
+        });
+    }
+
+    /**
+     * Adds multiple events to the client.
+     * @param {EventConstructor[]} events - The events to add.
+     */
+    addEvents(...events: EventConstructor[]) {
+        for (const event of events) {
+            this.addEvent(event);
+        }
+    }
+
+    insertPlugin(plugin: Plugin) {
+        this.addEvents(...plugin.eventStore[0]);
+        this.plugins.set(plugin.defaultName, plugin);
     }
 }

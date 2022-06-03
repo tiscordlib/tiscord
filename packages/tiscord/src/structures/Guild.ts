@@ -132,7 +132,7 @@ export class Guild {
     afkChannelId: string;
     permissions: string;
     raw?: APIGuild;
-    me: Member;
+    me: Member | void;
     constructor(client: Client, data: APIGuild) {
         this.client = client;
         data.roles?.forEach(role => {
@@ -141,7 +141,7 @@ export class Guild {
         data.channels?.forEach((channel: any) => {
             channel = channelType(client, channel);
             if (!channel.guildId) channel.guildId = this.id;
-            if (channel.type !== 1) channel.guilds();
+            if (channel.guilds) channel.guilds();
             client.cache.channels.set(data.id, channel);
         });
         this.id = data.id;

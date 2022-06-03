@@ -1,5 +1,4 @@
-import { APIError, Client } from '../';
-import { TextChannel } from './TextChannel';
+import { APIError, Client, TextChannel } from '../';
 import { ThreadMember } from './ThreadMember';
 
 /**

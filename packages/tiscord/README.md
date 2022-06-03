@@ -4,7 +4,6 @@ a fast and object oriented discord lib
 
 some info
 - this lib isnt done yet, shouldnt use in production
-- types are handled by the discord-api-types library
 - we strongly recommend using typescript, its not required though
 
 # TODO
@@ -12,11 +11,11 @@ some info
 - [x] caching system
 - [x] add a way to get users/guilds/channels/members
 - [x] add more structures
-- [ ] add more events
+- [x] add more events
 - [ ] write tests
 - [x] create docs
 - [ ] Autocomplete
-- [ ] Modals
+- [x] Modals
 - [x] add resuming (gateway)
 - [x] make the lib error when theres gateway or api error
 * Low priority
@@ -66,9 +65,9 @@ some info
   * [x] Guild Member Remove
   * [x] Guild Member Update
   * [-] Guild Members Chunk
-  * [ ] Guild Role Create
-  * [ ] Guild Role Update
-  * [ ] Guild Role Delete
+  * [x] Guild Role Create
+  * [x] Guild Role Update
+  * [x] Guild Role Delete
   * [ ] Integration Create
   * [ ] Integration Update
   * [ ] Integration Delete

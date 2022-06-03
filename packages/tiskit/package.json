@@ -29,7 +29,14 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "tiscord": "^1.0.0-dev"
+  },
+  "gitHead": "f705f7215f3c59cdd9046b8337546a5276c8de22"
+}
+=======
     "tiscord": "^0.2.4"
   },
   "gitHead": "f705f7215f3c59cdd9046b8337546a5276c8de22"
 }
+>>>>>>> origin/stable

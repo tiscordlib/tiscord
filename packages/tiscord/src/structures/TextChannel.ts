@@ -8,12 +8,11 @@ import {
     ThreadData,
     ThreadOptions
 } from '../';
-
 import { GuildChannel } from './GuildChannel';
 import { threadWrapper } from '../util/threadWrapper';
 
 /**
- * A guild channel class.
+ * A text channel class.
  *
  * @param {Client} client - Client instance
  * @param {any} data - API guild channel data
@@ -129,7 +128,6 @@ export class TextChannel extends GuildChannel {
             throw new APIError(request?.message);
         }
         return threadWrapper(this.client, request);
-        // return new ThreadChannel(this.client, request);
     }
 
     /**

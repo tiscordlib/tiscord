@@ -6,7 +6,7 @@ import {
     APIPartialGuild,
     APIUser
 } from 'discord-api-types/v10';
-import { Client, Guild, User } from '../';
+import { Client, Guild, User, channelType } from '../';
 
 /**
  * Channel class
@@ -47,9 +47,8 @@ export class Invite {
         this.code = data.code;
         // @ts-ignore
         if (data.guild) this.guild = new Guild(data.guild);
-        // TODO: actually use real channels
         // @ts-ignore
-        this.channel = data.channel;
+        this.channel = channelType(client, data.channel);
         if (data.inviter) this.inviter = new User(client, data.inviter);
         if (data.target_type) this.targetType = data.target_type;
         if (data.target_user) this.targetUser = new User(client, data.target_user);

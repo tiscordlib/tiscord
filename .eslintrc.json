@@ -32,7 +32,6 @@
       ],
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-explicit-any": "off",
-      "sort-imports": "warn",
       "array-bracket-newline": [
         "error",
         "consistent"

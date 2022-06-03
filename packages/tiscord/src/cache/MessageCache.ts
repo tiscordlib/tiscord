@@ -1,11 +1,11 @@
-import { Cache, Client } from '../';
+import { Cache, Client, Message } from '../';
 
 /**
  *  Cache for channels, message, etc.
  *  @class
  */
 
-export class MessageCache extends Cache {
+export class MessageCache extends Cache<Message> {
     caches: Map<string, Map<string, any>>;
     client: Client;
     constructor(client: Client) {

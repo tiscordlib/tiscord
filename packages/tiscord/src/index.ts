@@ -17,13 +17,11 @@ import { ChannelManager } from './managers/ChannelManager';
 import { ChannelOptions } from './util/ChannelOptions';
 import { Client } from './client/Client';
 import { ClientOptions } from './util/ClientOptions';
-import { CommandInteraction } from './structures/CommandInteraction';
 import { DMChannel } from './structures/DMChannel';
 import { Emoji } from './structures/Emoji';
 import { EventManager } from './managers/EventManager';
 import { FakeCache } from './cache/FakeCache';
 import { FakeMap } from './cache/FakeMap';
-import { FollowupMessage } from 'structures/FollowupMessage';
 import { GatewayError } from './errors/GatewayError';
 import { Guild } from './structures/Guild';
 import { GuildBan } from './structures/GuildBan';
@@ -40,7 +38,6 @@ import { Message } from './structures/Message';
 import { MessageCache } from './cache/MessageCache';
 import { MessageManager } from './managers/MessageManager';
 import { Permissions } from './util/Permissions';
-import { RepliableInteraction } from './structures/RepliableInteraction';
 import { Role } from './structures/Role';
 import { RoleOptions } from './util/RoleOptions';
 import { RolesManager } from './managers/RolesManager';
@@ -58,6 +55,15 @@ import { WebSocketManager } from './client/Websocket';
 import { channelType } from './util/channelType';
 // @ts-ignore
 import { version } from '../package.json';
+import { FollowupMessage } from './structures/FollowupMessage';
+import { RepliableInteraction } from './structures/RepliableInteraction';
+import { CommandInteraction } from './structures/CommandInteraction';
+import { MessageContextMenuInteraction } from './structures/MessageContextMenuInteraction';
+import { UserContextMenuInteraction } from './structures/UserContextMenuInteraction';
+import { ChatInputCommandInteraction } from './structures/ChatInputCommandInteraction';
+import { SelectMenuInteraction } from './structures/SelectMenuInteraction';
+import { ButtonInteraction } from './structures/ButtonInteraction';
+import { ModalInteraction } from './structures/ModalInteraction';
 
 export {
     Attachment,
@@ -74,7 +80,10 @@ export {
     Integration,
     Application,
     FollowupMessage,
+    RepliableInteraction,
     CommandInteraction,
+    MessageContextMenuInteraction,
+    UserContextMenuInteraction,
     EventManager,
     DMChannel,
     Guild,
@@ -84,7 +93,6 @@ export {
     SelectMenuOption,
     RawMessageOptions,
     FakeCache,
-    RepliableInteraction,
     channelType,
     Interaction,
     Member,
@@ -97,9 +105,9 @@ export {
     Permissions,
     Role,
     RolesManager,
+    TextChannel,
     ThreadChannel,
     CacheOptions,
-    TextChannel,
     User,
     UserManager,
     WebSocketManager,
@@ -118,11 +126,15 @@ export {
     InviteData,
     ThreadData,
     ThreadMember,
+    ModalInteraction,
     ThreadOptions,
     MessageCache,
     BaseThreadOptions,
     version,
+    ChatInputCommandInteraction,
     CDNOptions,
     FakeMap,
-    Sticker
+    Sticker,
+    ButtonInteraction,
+    SelectMenuInteraction
 };
