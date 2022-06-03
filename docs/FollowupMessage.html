@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Adding favicon -->
+    
+
+    <!-- Adding meta -->
+    
+
+    <!-- Adding external script-->
+    
+
+    <!-- Adding external style-->
+    
+
+    <!-- Adding scripts-->
+    
+
+    <!-- Adding style-->
+    
+
+    <!-- Adding overlay script-->
+    
+
+    <!-- Adding overlay style-->
+    
+
+
+    <title>
+      FollowupMessage
+    </title>
+
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/reset.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
+    
+    <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="display:none">
+    <defs>
+        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
+            <g>
+                <path
+                    d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z" />
+                <path
+                    d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z" />
+            </g>
+        </symbol>
+        <symbol id='search-icon' viewBox="0 0 512 512">
+            <g>
+                <g>
+                    <path
+                        d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z" />
+                </g>
+            </g>
+            <g>
+                <g>
+                    <path
+                        d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z" />
+                </g>
+            </g>
+        </symbol>
+        <symbol id="down-icon" viewBox="0 0 16 16">
+            <path 
+                fill-rule="evenodd" 
+                clip-rule="evenodd" 
+                d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"
+            >
+            </path>
+        </symbol>
+    </defs>
+</svg>
+  </head>
+
+  <body>
+
+    <nav class="navbar" id="navbar">
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="8845678" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="APIError.html">APIError</a></li><li class="accordion-list" id=""><a href="Application.html">Application</a></li><li class="accordion-list" id=""><a href="Attachment.html">Attachment</a></li><li class="accordion-list" id=""><a href="BaseThreadOptions.html">BaseThreadOptions</a></li><li class="accordion collapsed child" id=4045958><div class="accordion-heading child"><a href="BitField.html">BitField</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="BitField.html#add">add</a></li><li data-type='method'><a href="BitField.html#has">has</a></li><li data-type='method'><a href="BitField.html#resolve">resolve</a></li><li data-type='method'><a href="BitField.html#toArray">toArray</a></li></ul></li><li class="accordion collapsed child" id=7897997><div class="accordion-heading child"><a href="ButtonInteraction.html">ButtonInteraction</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="ButtonInteraction.html#isAutocomplete">isAutocomplete</a></li><li data-type='method'><a href="ButtonInteraction.html#isButton">isButton</a></li><li data-type='method'><a href="ButtonInteraction.html#isChatInputCommand">isChatInputCommand</a></li><li data-type='method'><a href="ButtonInteraction.html#isCommand">isCommand</a></li><li data-type='method'><a href="ButtonInteraction.html#isContextMenuCommand">isContextMenuCommand</a></li><li data-type='method'><a href="ButtonInteraction.html#isMessageComponent">isMessageComponent</a></li><li data-type='method'><a href="ButtonInteraction.html#isMessageContextMenuCommand">isMessageContextMenuCommand</a></li><li data-type='method'><a href="ButtonInteraction.html#isModalSubmit">isModalSubmit</a></li><li data-type='method'><a href="ButtonInteraction.html#isRepliable">isRepliable</a></li><li data-type='method'><a href="ButtonInteraction.html#isSelectMenu">isSelectMenu</a></li><li data-type='method'><a href="ButtonInteraction.html#isUserContextMenuCommand">isUserContextMenuCommand</a></li></ul></li><li class="accordion-list" id=""><a href="Channel.html">Channel</a></li><li class="accordion collapsed child" id=8395193><div class="accordion-heading child"><a href="ChannelManager.html">ChannelManager</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="ChannelManager.html#get">get</a></li></ul></li><li class="accordion-list" id=""><a href="ChannelOptions.html">ChannelOptions</a></li><li class="accordion collapsed child" id=1325809><div class="accordion-heading child"><a href="Client.html">Client</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Client.html#debug">debug</a></li><li data-type='method'><a href="Client.html#login">login</a></li></ul></li><li class="accordion collapsed child" id=6554308><div class="accordion-heading child"><a href="CommandInteraction.html">CommandInteraction</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="CommandInteraction.html#defer">defer</a></li><li data-type='method'><a href="CommandInteraction.html#deleteReply">deleteReply</a></li><li data-type='method'><a href="CommandInteraction.html#editReply">editReply</a></li><li data-type='method'><a href="CommandInteraction.html#followUp">followUp</a></li><li data-type='method'><a href="CommandInteraction.html#isAutocomplete">isAutocomplete</a></li><li data-type='method'><a href="CommandInteraction.html#isButton">isButton</a></li><li data-type='method'><a href="CommandInteraction.html#isChatInputCommand">isChatInputCommand</a></li><li data-type='method'><a href="CommandInteraction.html#isCommand">isCommand</a></li><li data-type='method'><a href="CommandInteraction.html#isContextMenuCommand">isContextMenuCommand</a></li><li data-type='method'><a href="CommandInteraction.html#isMessageComponent">isMessageComponent</a></li><li data-type='method'><a href="CommandInteraction.html#isMessageContextMenuCommand">isMessageContextMenuCommand</a></li><li data-type='method'><a href="CommandInteraction.html#isModalSubmit">isModalSubmit</a></li><li data-type='method'><a href="CommandInteraction.html#isRepliable">isRepliable</a></li><li data-type='method'><a href="CommandInteraction.html#isSelectMenu">isSelectMenu</a></li><li data-type='method'><a href="CommandInteraction.html#isUserContextMenuCommand">isUserContextMenuCommand</a></li><li data-type='method'><a href="CommandInteraction.html#reply">reply</a></li></ul></li><li class="accordion-list" id=""><a href="DMChannel.html">DMChannel</a></li><li class="accordion-list" id=""><a href="Emoji.html">Emoji</a></li><li class="accordion-list" id=""><a href="EventManager.html">EventManager</a></li><li class="accordion collapsed child" id=3179019><div class="accordion-heading child"><a href="FakeCache.html">FakeCache</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="FakeCache.html#delete">delete</a></li><li data-type='method'><a href="FakeCache.html#get">get</a></li><li data-type='method'><a href="FakeCache.html#set">set</a></li></ul></li><li class="accordion collapsed child" id=5814741><div class="accordion-heading child"><a href="FakeMap.html">FakeMap</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="FakeMap.html#delete">delete</a></li><li data-type='method'><a href="FakeMap.html#get">get</a></li><li data-type='method'><a href="FakeMap.html#set">set</a></li></ul></li><li class="accordion collapsed child" id=8464588><div class="accordion-heading child"><a href="FollowupMessage.html">FollowupMessage</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="FollowupMessage.html#createThread">createThread</a></li><li data-type='method'><a href="FollowupMessage.html#delete">delete</a></li><li data-type='method'><a href="FollowupMessage.html#edit">edit</a></li><li data-type='method'><a href="FollowupMessage.html#guilds">guilds</a></li><li data-type='method'><a href="FollowupMessage.html#pin">pin</a></li><li data-type='method'><a href="FollowupMessage.html#reply">reply</a></li><li data-type='method'><a href="FollowupMessage.html#unpin">unpin</a></li></ul></li><li class="accordion-list" id=""><a href="GatewayError.html">GatewayError</a></li><li class="accordion collapsed child" id=4629457><div class="accordion-heading child"><a href="Guild.html">Guild</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Guild.html#createChannel">createChannel</a></li><li data-type='method'><a href="Guild.html#createRole">createRole</a></li><li data-type='method'><a href="Guild.html#deleteRole">deleteRole</a></li><li data-type='method'><a href="Guild.html#edit">edit</a></li><li data-type='method'><a href="Guild.html#getActiveThreads">getActiveThreads</a></li><li data-type='method'><a href="Guild.html#getBan">getBan</a></li><li data-type='method'><a href="Guild.html#getBans">getBans</a></li><li data-type='method'><a href="Guild.html#getInvites">getInvites</a></li><li data-type='method'><a href="Guild.html#iconURL">iconURL</a></li><li data-type='method'><a href="Guild.html#modifyRole">modifyRole</a></li><li data-type='method'><a href="Guild.html#modifyRolePosition">modifyRolePosition</a></li><li data-type='method'><a href="Guild.html#unban">unban</a></li></ul></li><li class="accordion-list" id=""><a href="GuildBan.html">GuildBan</a></li><li class="accordion collapsed child" id=2060499><div class="accordion-heading child"><a href="GuildChannel.html">GuildChannel</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="GuildChannel.html#delete">delete</a></li><li data-type='method'><a href="GuildChannel.html#edit">edit</a></li><li data-type='method'><a href="GuildChannel.html#guilds">guilds</a></li><li data-type='method'><a href="GuildChannel.html#modifyPosition">modifyPosition</a></li></ul></li><li class="accordion-list" id=""><a href="GuildEditOptions.html">GuildEditOptions</a></li><li class="accordion collapsed child" id=4983951><div class="accordion-heading child"><a href="GuildManager.html">GuildManager</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="GuildManager.html#get">get</a></li></ul></li><li class="accordion-list" id=""><a href="Integration.html">Integration</a></li><li class="accordion collapsed child" id=5175714><div class="accordion-heading child"><a href="Interaction.html">Interaction</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Interaction.html#isAutocomplete">isAutocomplete</a></li><li data-type='method'><a href="Interaction.html#isButton">isButton</a></li><li data-type='method'><a href="Interaction.html#isChatInputCommand">isChatInputCommand</a></li><li data-type='method'><a href="Interaction.html#isCommand">isCommand</a></li><li data-type='method'><a href="Interaction.html#isContextMenuCommand">isContextMenuCommand</a></li><li data-type='method'><a href="Interaction.html#isMessageComponent">isMessageComponent</a></li><li data-type='method'><a href="Interaction.html#isMessageContextMenuCommand">isMessageContextMenuCommand</a></li><li data-type='method'><a href="Interaction.html#isModalSubmit">isModalSubmit</a></li><li data-type='method'><a href="Interaction.html#isRepliable">isRepliable</a></li><li data-type='method'><a href="Interaction.html#isSelectMenu">isSelectMenu</a></li><li data-type='method'><a href="Interaction.html#isUserContextMenuCommand">isUserContextMenuCommand</a></li></ul></li><li class="accordion collapsed child" id=6769186><div class="accordion-heading child"><a href="InteractionOptions.html">InteractionOptions</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="InteractionOptions.html#getBoolean">getBoolean</a></li><li data-type='method'><a href="InteractionOptions.html#getChannel">getChannel</a></li><li data-type='method'><a href="InteractionOptions.html#getMember">getMember</a></li><li data-type='method'><a href="InteractionOptions.html#getNumber">getNumber</a></li><li data-type='method'><a href="InteractionOptions.html#getRole">getRole</a></li><li data-type='method'><a href="InteractionOptions.html#getString">getString</a></li><li data-type='method'><a href="InteractionOptions.html#getSubcommand">getSubcommand</a></li><li data-type='method'><a href="InteractionOptions.html#getSubcommandGroup">getSubcommandGroup</a></li><li data-type='method'><a href="InteractionOptions.html#getUser">getUser</a></li></ul></li><li class="accordion-list" id=""><a href="Invite.html">Invite</a></li><li class="accordion collapsed child" id=9048959><div class="accordion-heading child"><a href="Member.html">Member</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Member.html#addRole">addRole</a></li><li data-type='method'><a href="Member.html#ban">ban</a></li><li data-type='method'><a href="Member.html#edit">edit</a></li><li data-type='method'><a href="Member.html#kick">kick</a></li><li data-type='method'><a href="Member.html#removeRole">removeRole</a></li><li data-type='method'><a href="Member.html#setup">setup</a></li><li data-type='method'><a href="Member.html#timeout">timeout</a></li></ul></li><li class="accordion-list" id=""><a href="MemberEdit.html">MemberEdit</a></li><li class="accordion collapsed child" id=8830587><div class="accordion-heading child"><a href="MemberManager.html">MemberManager</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="MemberManager.html#get">get</a></li></ul></li><li class="accordion-list" id=""><a href="MemberOptions.html">MemberOptions</a></li><li class="accordion collapsed child" id=2609968><div class="accordion-heading child"><a href="Message.html">Message</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Message.html#createThread">createThread</a></li><li data-type='method'><a href="Message.html#delete">delete</a></li><li data-type='method'><a href="Message.html#edit">edit</a></li><li data-type='method'><a href="Message.html#guilds">guilds</a></li><li data-type='method'><a href="Message.html#pin">pin</a></li><li data-type='method'><a href="Message.html#reply">reply</a></li><li data-type='method'><a href="Message.html#unpin">unpin</a></li></ul></li><li class="accordion collapsed child" id=2664472><div class="accordion-heading child"><a href="MessageCache.html">MessageCache</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="MessageCache.html#set">set</a></li></ul></li><li class="accordion collapsed child" id=8583578><div class="accordion-heading child"><a href="MessageManager.html">MessageManager</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="MessageManager.html#fetch">fetch</a></li><li data-type='method'><a href="MessageManager.html#get">get</a></li></ul></li><li class="accordion-list" id=""><a href="MessageOptions.html">MessageOptions</a></li><li class="accordion collapsed child" id=8818563><div class="accordion-heading child"><a href="Permissions.html">Permissions</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Permissions.html#add">add</a></li><li data-type='method'><a href="Permissions.html#has">has</a></li><li data-type='method'><a href="Permissions.html#resolve">resolve</a></li><li data-type='method'><a href="Permissions.html#toArray">toArray</a></li></ul></li><li class="accordion collapsed child" id=607002><div class="accordion-heading child"><a href="RepliableInteraction.html">RepliableInteraction</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="RepliableInteraction.html#defer">defer</a></li><li data-type='method'><a href="RepliableInteraction.html#deleteReply">deleteReply</a></li><li data-type='method'><a href="RepliableInteraction.html#editReply">editReply</a></li><li data-type='method'><a href="RepliableInteraction.html#followUp">followUp</a></li><li data-type='method'><a href="RepliableInteraction.html#isAutocomplete">isAutocomplete</a></li><li data-type='method'><a href="RepliableInteraction.html#isButton">isButton</a></li><li data-type='method'><a href="RepliableInteraction.html#isChatInputCommand">isChatInputCommand</a></li><li data-type='method'><a href="RepliableInteraction.html#isCommand">isCommand</a></li><li data-type='method'><a href="RepliableInteraction.html#isContextMenuCommand">isContextMenuCommand</a></li><li data-type='method'><a href="RepliableInteraction.html#isMessageComponent">isMessageComponent</a></li><li data-type='method'><a href="RepliableInteraction.html#isMessageContextMenuCommand">isMessageContextMenuCommand</a></li><li data-type='method'><a href="RepliableInteraction.html#isModalSubmit">isModalSubmit</a></li><li data-type='method'><a href="RepliableInteraction.html#isRepliable">isRepliable</a></li><li data-type='method'><a href="RepliableInteraction.html#isSelectMenu">isSelectMenu</a></li><li data-type='method'><a href="RepliableInteraction.html#isUserContextMenuCommand">isUserContextMenuCommand</a></li><li data-type='method'><a href="RepliableInteraction.html#reply">reply</a></li></ul></li><li class="accordion-list" id=""><a href="Role.html">Role</a></li><li class="accordion-list" id=""><a href="RoleOptions.html">RoleOptions</a></li><li class="accordion collapsed child" id=4780462><div class="accordion-heading child"><a href="RolesManager.html">RolesManager</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="RolesManager.html#get">get</a></li></ul></li><li class="accordion collapsed child" id=2459835><div class="accordion-heading child"><a href="SelectMenuInteraction.html">SelectMenuInteraction</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="SelectMenuInteraction.html#isAutocomplete">isAutocomplete</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isButton">isButton</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isChatInputCommand">isChatInputCommand</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isCommand">isCommand</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isContextMenuCommand">isContextMenuCommand</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isMessageComponent">isMessageComponent</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isMessageContextMenuCommand">isMessageContextMenuCommand</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isModalSubmit">isModalSubmit</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isRepliable">isRepliable</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isSelectMenu">isSelectMenu</a></li><li data-type='method'><a href="SelectMenuInteraction.html#isUserContextMenuCommand">isUserContextMenuCommand</a></li></ul></li><li class="accordion-list" id=""><a href="SelectMenuOption.html">SelectMenuOption</a></li><li class="accordion-list" id=""><a href="Sticker.html">Sticker</a></li><li class="accordion-list" id=""><a href="Team.html">Team</a></li><li class="accordion-list" id=""><a href="TeamMember.html">TeamMember</a></li><li class="accordion collapsed child" id=6432363><div class="accordion-heading child"><a href="TextChannel.html">TextChannel</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="TextChannel.html#bulkDelete">bulkDelete</a></li><li data-type='method'><a href="TextChannel.html#createThread">createThread</a></li><li data-type='method'><a href="TextChannel.html#delete">delete</a></li><li data-type='method'><a href="TextChannel.html#edit">edit</a></li><li data-type='method'><a href="TextChannel.html#getJoinedPrivateArchivedThreads">getJoinedPrivateArchivedThreads</a></li><li data-type='method'><a href="TextChannel.html#getPinned">getPinned</a></li><li data-type='method'><a href="TextChannel.html#getPrivateArchivedThreads">getPrivateArchivedThreads</a></li><li data-type='method'><a href="TextChannel.html#getPublicArchivedThreads">getPublicArchivedThreads</a></li><li data-type='method'><a href="TextChannel.html#guilds">guilds</a></li><li data-type='method'><a href="TextChannel.html#modifyPosition">modifyPosition</a></li><li data-type='method'><a href="TextChannel.html#send">send</a></li><li data-type='method'><a href="TextChannel.html#typing">typing</a></li></ul></li><li class="accordion collapsed child" id=8573216><div class="accordion-heading child"><a href="ThreadChannel.html">ThreadChannel</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="ThreadChannel.html#addMember">addMember</a></li><li data-type='method'><a href="ThreadChannel.html#bulkDelete">bulkDelete</a></li><li data-type='method'><a href="ThreadChannel.html#createThread">createThread</a></li><li data-type='method'><a href="ThreadChannel.html#delete">delete</a></li><li data-type='method'><a href="ThreadChannel.html#edit">edit</a></li><li data-type='method'><a href="ThreadChannel.html#getJoinedPrivateArchivedThreads">getJoinedPrivateArchivedThreads</a></li><li data-type='method'><a href="ThreadChannel.html#getMember">getMember</a></li><li data-type='method'><a href="ThreadChannel.html#getPinned">getPinned</a></li><li data-type='method'><a href="ThreadChannel.html#getPrivateArchivedThreads">getPrivateArchivedThreads</a></li><li data-type='method'><a href="ThreadChannel.html#getPublicArchivedThreads">getPublicArchivedThreads</a></li><li data-type='method'><a href="ThreadChannel.html#guilds">guilds</a></li><li data-type='method'><a href="ThreadChannel.html#join">join</a></li><li data-type='method'><a href="ThreadChannel.html#leave">leave</a></li><li data-type='method'><a href="ThreadChannel.html#listMembers">listMembers</a></li><li data-type='method'><a href="ThreadChannel.html#modifyPosition">modifyPosition</a></li><li data-type='method'><a href="ThreadChannel.html#removeMember">removeMember</a></li><li data-type='method'><a href="ThreadChannel.html#send">send</a></li><li data-type='method'><a href="ThreadChannel.html#typing">typing</a></li></ul></li><li class="accordion-list" id=""><a href="ThreadMember.html">ThreadMember</a></li><li class="accordion-list" id=""><a href="ThreadOptions.html">ThreadOptions</a></li><li class="accordion-list" id=""><a href="User.html">User</a></li><li class="accordion collapsed child" id=904505><div class="accordion-heading child"><a href="UserManager.html">UserManager</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="UserManager.html#get">get</a></li></ul></li><li class="accordion collapsed child" id=8262916><div class="accordion-heading child"><a href="VoiceChannel.html">VoiceChannel</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="VoiceChannel.html#delete">delete</a></li><li data-type='method'><a href="VoiceChannel.html#edit">edit</a></li><li data-type='method'><a href="VoiceChannel.html#guilds">guilds</a></li><li data-type='method'><a href="VoiceChannel.html#modifyPosition">modifyPosition</a></li></ul></li><li class="accordion collapsed child" id=4669459><div class="accordion-heading child"><a href="WebSocketManager.html">WebSocketManager</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="WebSocketManager.html#connect">connect</a></li><li data-type='method'><a href="WebSocketManager.html#identify">identify</a></li></ul></li></ul> </div><div class="accordion collapsed" id="3359156" > <h3 class="accordion-heading">Tutorials<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="tutorial-Events.html">Events</a></li></ul> </div><div class="accordion collapsed" id="6163057" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#InviteOptions">InviteOptions</a></li><li class="accordion-list" id=""><a href="global.html#Permission">Permission</a></li><li class="accordion-list" id=""><a href="global.html#SystemMessageTypes">SystemMessageTypes</a></li></ul> </div>
+      
+
+    </nav>
+    <div class="navbar-ham" id="navbar-ham">
+      <div>
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+      </div>
+    </div>
+
+    <div id="main" class="main-content">
+      
+      <h1 id='page-title' class="page-title">
+        FollowupMessage
+      </h1>
+      
+
+      
+
+
+
+
+<section>
+
+
+<header>
+    
+        
+        <h2>
+        
+        FollowupMessage
+        
+        </h2>
+        
+        
+            <div class="class-description"><p>Represents a message that is a followup to an interaction</p></div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+        <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="FollowupMessage">
+        <a href="#FollowupMessage">#</a>
+        <span class="type-signature"></span>new FollowupMessage<span class="signature">(client, data, token)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>client</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Client.html">Client</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Client instance</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>API message data</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Token of the interaction</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties</h5>
+
+    
+<div class="allow-overflow">
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>interactionToken</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The token of the interaction</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="structures_FollowupMessage.js.html">structures/FollowupMessage.js</a>, <a href="structures_FollowupMessage.js.html#line13">line 13</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Message.html">Message</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="createThread">
+        <a href="#createThread">#</a>
+        <span class="type-signature">(async) </span>createThread<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;any>}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Create a thread on this message.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Thread data</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-overrides">Overrides:</dt>
+            <dd class="tag-overrides"><ul class="dummy"><li>
+                <a href="Message.html#createThread">Message#createThread</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="structures_Message.js.html">structures/Message.js</a>, <a href="structures_Message.js.html#line149">line 149</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;any></span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="delete">
+        <a href="#delete">#</a>
+        <span class="type-signature">(async) </span>delete<span class="signature">()</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Delete a message.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-overrides">Overrides:</dt>
+            <dd class="tag-overrides"><ul class="dummy"><li>
+                <a href="Message.html#delete">Message#delete</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="structures_FollowupMessage.js.html">structures/FollowupMessage.js</a>, <a href="structures_FollowupMessage.js.html#line30">line 30</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="edit">
+        <a href="#edit">#</a>
+        <span class="type-signature">(async) </span>edit<span class="signature">(newMessage)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Edit the message</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>newMessage</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The new message data to send</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-overrides">Overrides:</dt>
+            <dd class="tag-overrides"><ul class="dummy"><li>
+                <a href="Message.html#edit">Message#edit</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="structures_FollowupMessage.js.html">structures/FollowupMessage.js</a>, <a href="structures_FollowupMessage.js.html#line22">line 22</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="guilds">
+        <a href="#guilds">#</a>
+        <span class="type-signature">(async) </span>guilds<span class="signature">()</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>An function that adds Message.guild and Message.channel to the message</p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-overrides">Overrides:</dt>
+            <dd class="tag-overrides"><ul class="dummy"><li>
+                <a href="Message.html#guilds">Message#guilds</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="structures_Message.js.html">structures/Message.js</a>, <a href="structures_Message.js.html#line83">line 83</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="pin">
+        <a href="#pin">#</a>
+        <span class="type-signature">(async) </span>pin<span class="signature">(reason<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Pin this message</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>reason</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Reason for pinning the message</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-overrides">Overrides:</dt>
+            <dd class="tag-overrides"><ul class="dummy"><li>
+                <a href="Message.html#pin">Message#pin</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="structures_Message.js.html">structures/Message.js</a>, <a href="structures_Message.js.html#line126">line 126</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="reply">
+        <a href="#reply">#</a>
+        <span class="type-signature">(async) </span>reply<span class="signature">(data)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Reply to the message</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">RawMessageOptions</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Options for the message</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-overrides">Overrides:</dt>
+            <dd class="tag-overrides"><ul class="dummy"><li>
+                <a href="Message.html#reply">Message#reply</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="structures_Message.js.html">structures/Message.js</a>, <a href="structures_Message.js.html#line91">line 91</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="unpin">
+        <a href="#unpin">#</a>
+        <span class="type-signature">(async) </span>unpin<span class="signature">(reason<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Unpin this message</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>reason</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Reason for unpinning the message</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-overrides">Overrides:</dt>
+            <dd class="tag-overrides"><ul class="dummy"><li>
+                <a href="Message.html#unpin">Message#unpin</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="structures_Message.js.html">structures/Message.js</a>, <a href="structures_Message.js.html#line136">line 136</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    </div>
+
+    <footer class="footer" id="footer">
+      
+    </footer>
+
+    <script src="scripts/third-party/prettify.js"></script>
+    <script src="scripts/third-party/lang-css.js"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
+
+    <script>prettyPrint();</script>
+    <script src="scripts/linenumber.js"></script>
+    <script src="scripts/fix-code-block.js"></script>
+    <script src="scripts/fix-navbar.js"></script>
+    
+      <script src="scripts/search.js"></script>
+      <script src="scripts/third-party/fuse.js"></script>
+      <script>
+        var list = [{"title":"APIError","link":"<a href=\"APIError.html\">APIError</a>"},{"title":"Application","link":"<a href=\"Application.html\">Application</a>"},{"title":"Attachment","link":"<a href=\"Attachment.html\">Attachment</a>"},{"title":"BaseThreadOptions","link":"<a href=\"BaseThreadOptions.html\">BaseThreadOptions</a>"},{"title":"BitField","link":"<a href=\"BitField.html\">BitField</a>"},{"title":"BitField#add","link":"<a href=\"BitField.html#add\">BitField &rtrif; add</a>"},{"title":"BitField#has","link":"<a href=\"BitField.html#has\">BitField &rtrif; has</a>"},{"title":"BitField#resolve","link":"<a href=\"BitField.html#resolve\">BitField &rtrif; resolve</a>"},{"title":"BitField#toArray","link":"<a href=\"BitField.html#toArray\">BitField &rtrif; toArray</a>"},{"title":"ButtonInteraction","link":"<a href=\"ButtonInteraction.html\">ButtonInteraction</a>"},{"title":"ButtonInteraction#isAutocomplete","link":"<a href=\"ButtonInteraction.html#isAutocomplete\">ButtonInteraction &rtrif; isAutocomplete</a>"},{"title":"ButtonInteraction#isButton","link":"<a href=\"ButtonInteraction.html#isButton\">ButtonInteraction &rtrif; isButton</a>"},{"title":"ButtonInteraction#isChatInputCommand","link":"<a href=\"ButtonInteraction.html#isChatInputCommand\">ButtonInteraction &rtrif; isChatInputCommand</a>"},{"title":"ButtonInteraction#isCommand","link":"<a href=\"ButtonInteraction.html#isCommand\">ButtonInteraction &rtrif; isCommand</a>"},{"title":"ButtonInteraction#isContextMenuCommand","link":"<a href=\"ButtonInteraction.html#isContextMenuCommand\">ButtonInteraction &rtrif; isContextMenuCommand</a>"},{"title":"ButtonInteraction#isMessageComponent","link":"<a href=\"ButtonInteraction.html#isMessageComponent\">ButtonInteraction &rtrif; isMessageComponent</a>"},{"title":"ButtonInteraction#isMessageContextMenuCommand","link":"<a href=\"ButtonInteraction.html#isMessageContextMenuCommand\">ButtonInteraction &rtrif; isMessageContextMenuCommand</a>"},{"title":"ButtonInteraction#isModalSubmit","link":"<a href=\"ButtonInteraction.html#isModalSubmit\">ButtonInteraction &rtrif; isModalSubmit</a>"},{"title":"ButtonInteraction#isRepliable","link":"<a href=\"ButtonInteraction.html#isRepliable\">ButtonInteraction &rtrif; isRepliable</a>"},{"title":"ButtonInteraction#isSelectMenu","link":"<a href=\"ButtonInteraction.html#isSelectMenu\">ButtonInteraction &rtrif; isSelectMenu</a>"},{"title":"ButtonInteraction#isUserContextMenuCommand","link":"<a href=\"ButtonInteraction.html#isUserContextMenuCommand\">ButtonInteraction &rtrif; isUserContextMenuCommand</a>"},{"title":"Channel","link":"<a href=\"Channel.html\">Channel</a>"},{"title":"ChannelManager","link":"<a href=\"ChannelManager.html\">ChannelManager</a>"},{"title":"ChannelManager#get","link":"<a href=\"ChannelManager.html#get\">ChannelManager &rtrif; get</a>"},{"title":"ChannelOptions","link":"<a href=\"ChannelOptions.html\">ChannelOptions</a>"},{"title":"Client","link":"<a href=\"Client.html\">Client</a>"},{"title":"Client#debug","link":"<a href=\"Client.html#debug\">Client &rtrif; debug</a>"},{"title":"Client#login","link":"<a href=\"Client.html#login\">Client &rtrif; login</a>"},{"title":"CommandInteraction","link":"<a href=\"CommandInteraction.html\">CommandInteraction</a>"},{"title":"CommandInteraction#defer","link":"<a href=\"CommandInteraction.html#defer\">CommandInteraction &rtrif; defer</a>"},{"title":"CommandInteraction#deleteReply","link":"<a href=\"CommandInteraction.html#deleteReply\">CommandInteraction &rtrif; deleteReply</a>"},{"title":"CommandInteraction#editReply","link":"<a href=\"CommandInteraction.html#editReply\">CommandInteraction &rtrif; editReply</a>"},{"title":"CommandInteraction#followUp","link":"<a href=\"CommandInteraction.html#followUp\">CommandInteraction &rtrif; followUp</a>"},{"title":"CommandInteraction#isAutocomplete","link":"<a href=\"CommandInteraction.html#isAutocomplete\">CommandInteraction &rtrif; isAutocomplete</a>"},{"title":"CommandInteraction#isButton","link":"<a href=\"CommandInteraction.html#isButton\">CommandInteraction &rtrif; isButton</a>"},{"title":"CommandInteraction#isChatInputCommand","link":"<a href=\"CommandInteraction.html#isChatInputCommand\">CommandInteraction &rtrif; isChatInputCommand</a>"},{"title":"CommandInteraction#isCommand","link":"<a href=\"CommandInteraction.html#isCommand\">CommandInteraction &rtrif; isCommand</a>"},{"title":"CommandInteraction#isContextMenuCommand","link":"<a href=\"CommandInteraction.html#isContextMenuCommand\">CommandInteraction &rtrif; isContextMenuCommand</a>"},{"title":"CommandInteraction#isMessageComponent","link":"<a href=\"CommandInteraction.html#isMessageComponent\">CommandInteraction &rtrif; isMessageComponent</a>"},{"title":"CommandInteraction#isMessageContextMenuCommand","link":"<a href=\"CommandInteraction.html#isMessageContextMenuCommand\">CommandInteraction &rtrif; isMessageContextMenuCommand</a>"},{"title":"CommandInteraction#isModalSubmit","link":"<a href=\"CommandInteraction.html#isModalSubmit\">CommandInteraction &rtrif; isModalSubmit</a>"},{"title":"CommandInteraction#isRepliable","link":"<a href=\"CommandInteraction.html#isRepliable\">CommandInteraction &rtrif; isRepliable</a>"},{"title":"CommandInteraction#isSelectMenu","link":"<a href=\"CommandInteraction.html#isSelectMenu\">CommandInteraction &rtrif; isSelectMenu</a>"},{"title":"CommandInteraction#isUserContextMenuCommand","link":"<a href=\"CommandInteraction.html#isUserContextMenuCommand\">CommandInteraction &rtrif; isUserContextMenuCommand</a>"},{"title":"CommandInteraction#reply","link":"<a href=\"CommandInteraction.html#reply\">CommandInteraction &rtrif; reply</a>"},{"title":"DMChannel","link":"<a href=\"DMChannel.html\">DMChannel</a>"},{"title":"Emoji","link":"<a href=\"Emoji.html\">Emoji</a>"},{"title":"EventManager","link":"<a href=\"EventManager.html\">EventManager</a>"},{"title":"FakeCache","link":"<a href=\"FakeCache.html\">FakeCache</a>"},{"title":"FakeCache#delete","link":"<a href=\"FakeCache.html#delete\">FakeCache &rtrif; delete</a>"},{"title":"FakeCache#get","link":"<a href=\"FakeCache.html#get\">FakeCache &rtrif; get</a>"},{"title":"FakeCache#set","link":"<a href=\"FakeCache.html#set\">FakeCache &rtrif; set</a>"},{"title":"FakeMap","link":"<a href=\"FakeMap.html\">FakeMap</a>"},{"title":"FakeMap#delete","link":"<a href=\"FakeMap.html#delete\">FakeMap &rtrif; delete</a>"},{"title":"FakeMap#get","link":"<a href=\"FakeMap.html#get\">FakeMap &rtrif; get</a>"},{"title":"FakeMap#set","link":"<a href=\"FakeMap.html#set\">FakeMap &rtrif; set</a>"},{"title":"FollowupMessage","link":"<a href=\"FollowupMessage.html\">FollowupMessage</a>"},{"title":"FollowupMessage#createThread","link":"<a href=\"FollowupMessage.html#createThread\">FollowupMessage &rtrif; createThread</a>"},{"title":"FollowupMessage#delete","link":"<a href=\"FollowupMessage.html#delete\">FollowupMessage &rtrif; delete</a>"},{"title":"FollowupMessage#edit","link":"<a href=\"FollowupMessage.html#edit\">FollowupMessage &rtrif; edit</a>"},{"title":"FollowupMessage#guilds","link":"<a href=\"FollowupMessage.html#guilds\">FollowupMessage &rtrif; guilds</a>"},{"title":"FollowupMessage#pin","link":"<a href=\"FollowupMessage.html#pin\">FollowupMessage &rtrif; pin</a>"},{"title":"FollowupMessage#reply","link":"<a href=\"FollowupMessage.html#reply\">FollowupMessage &rtrif; reply</a>"},{"title":"FollowupMessage#unpin","link":"<a href=\"FollowupMessage.html#unpin\">FollowupMessage &rtrif; unpin</a>"},{"title":"GatewayError","link":"<a href=\"GatewayError.html\">GatewayError</a>"},{"title":"Guild","link":"<a href=\"Guild.html\">Guild</a>"},{"title":"Guild#createChannel","link":"<a href=\"Guild.html#createChannel\">Guild &rtrif; createChannel</a>"},{"title":"Guild#createRole","link":"<a href=\"Guild.html#createRole\">Guild &rtrif; createRole</a>"},{"title":"Guild#deleteRole","link":"<a href=\"Guild.html#deleteRole\">Guild &rtrif; deleteRole</a>"},{"title":"Guild#edit","link":"<a href=\"Guild.html#edit\">Guild &rtrif; edit</a>"},{"title":"Guild#getActiveThreads","link":"<a href=\"Guild.html#getActiveThreads\">Guild &rtrif; getActiveThreads</a>"},{"title":"Guild#getBan","link":"<a href=\"Guild.html#getBan\">Guild &rtrif; getBan</a>"},{"title":"Guild#getBans","link":"<a href=\"Guild.html#getBans\">Guild &rtrif; getBans</a>"},{"title":"Guild#getInvites","link":"<a href=\"Guild.html#getInvites\">Guild &rtrif; getInvites</a>"},{"title":"Guild#iconURL","link":"<a href=\"Guild.html#iconURL\">Guild &rtrif; iconURL</a>"},{"title":"Guild#modifyRole","link":"<a href=\"Guild.html#modifyRole\">Guild &rtrif; modifyRole</a>"},{"title":"Guild#modifyRolePosition","link":"<a href=\"Guild.html#modifyRolePosition\">Guild &rtrif; modifyRolePosition</a>"},{"title":"Guild#unban","link":"<a href=\"Guild.html#unban\">Guild &rtrif; unban</a>"},{"title":"GuildBan","link":"<a href=\"GuildBan.html\">GuildBan</a>"},{"title":"GuildChannel","link":"<a href=\"GuildChannel.html\">GuildChannel</a>"},{"title":"GuildChannel#delete","link":"<a href=\"GuildChannel.html#delete\">GuildChannel &rtrif; delete</a>"},{"title":"GuildChannel#edit","link":"<a href=\"GuildChannel.html#edit\">GuildChannel &rtrif; edit</a>"},{"title":"GuildChannel#guilds","link":"<a href=\"GuildChannel.html#guilds\">GuildChannel &rtrif; guilds</a>"},{"title":"GuildChannel#modifyPosition","link":"<a href=\"GuildChannel.html#modifyPosition\">GuildChannel &rtrif; modifyPosition</a>"},{"title":"GuildEditOptions","link":"<a href=\"GuildEditOptions.html\">GuildEditOptions</a>"},{"title":"GuildManager","link":"<a href=\"GuildManager.html\">GuildManager</a>"},{"title":"GuildManager#get","link":"<a href=\"GuildManager.html#get\">GuildManager &rtrif; get</a>"},{"title":"Integration","link":"<a href=\"Integration.html\">Integration</a>"},{"title":"Interaction","link":"<a href=\"Interaction.html\">Interaction</a>"},{"title":"Interaction#isAutocomplete","link":"<a href=\"Interaction.html#isAutocomplete\">Interaction &rtrif; isAutocomplete</a>"},{"title":"Interaction#isButton","link":"<a href=\"Interaction.html#isButton\">Interaction &rtrif; isButton</a>"},{"title":"Interaction#isChatInputCommand","link":"<a href=\"Interaction.html#isChatInputCommand\">Interaction &rtrif; isChatInputCommand</a>"},{"title":"Interaction#isCommand","link":"<a href=\"Interaction.html#isCommand\">Interaction &rtrif; isCommand</a>"},{"title":"Interaction#isContextMenuCommand","link":"<a href=\"Interaction.html#isContextMenuCommand\">Interaction &rtrif; isContextMenuCommand</a>"},{"title":"Interaction#isMessageComponent","link":"<a href=\"Interaction.html#isMessageComponent\">Interaction &rtrif; isMessageComponent</a>"},{"title":"Interaction#isMessageContextMenuCommand","link":"<a href=\"Interaction.html#isMessageContextMenuCommand\">Interaction &rtrif; isMessageContextMenuCommand</a>"},{"title":"Interaction#isModalSubmit","link":"<a href=\"Interaction.html#isModalSubmit\">Interaction &rtrif; isModalSubmit</a>"},{"title":"Interaction#isRepliable","link":"<a href=\"Interaction.html#isRepliable\">Interaction &rtrif; isRepliable</a>"},{"title":"Interaction#isSelectMenu","link":"<a href=\"Interaction.html#isSelectMenu\">Interaction &rtrif; isSelectMenu</a>"},{"title":"Interaction#isUserContextMenuCommand","link":"<a href=\"Interaction.html#isUserContextMenuCommand\">Interaction &rtrif; isUserContextMenuCommand</a>"},{"title":"InteractionOptions","link":"<a href=\"InteractionOptions.html\">InteractionOptions</a>"},{"title":"InteractionOptions#getBoolean","link":"<a href=\"InteractionOptions.html#getBoolean\">InteractionOptions &rtrif; getBoolean</a>"},{"title":"InteractionOptions#getChannel","link":"<a href=\"InteractionOptions.html#getChannel\">InteractionOptions &rtrif; getChannel</a>"},{"title":"InteractionOptions#getMember","link":"<a href=\"InteractionOptions.html#getMember\">InteractionOptions &rtrif; getMember</a>"},{"title":"InteractionOptions#getNumber","link":"<a href=\"InteractionOptions.html#getNumber\">InteractionOptions &rtrif; getNumber</a>"},{"title":"InteractionOptions#getRole","link":"<a href=\"InteractionOptions.html#getRole\">InteractionOptions &rtrif; getRole</a>"},{"title":"InteractionOptions#getString","link":"<a href=\"InteractionOptions.html#getString\">InteractionOptions &rtrif; getString</a>"},{"title":"InteractionOptions#getSubcommand","link":"<a href=\"InteractionOptions.html#getSubcommand\">InteractionOptions &rtrif; getSubcommand</a>"},{"title":"InteractionOptions#getSubcommandGroup","link":"<a href=\"InteractionOptions.html#getSubcommandGroup\">InteractionOptions &rtrif; getSubcommandGroup</a>"},{"title":"InteractionOptions#getUser","link":"<a href=\"InteractionOptions.html#getUser\">InteractionOptions &rtrif; getUser</a>"},{"title":"Invite","link":"<a href=\"Invite.html\">Invite</a>"},{"title":"Member","link":"<a href=\"Member.html\">Member</a>"},{"title":"Member#addRole","link":"<a href=\"Member.html#addRole\">Member &rtrif; addRole</a>"},{"title":"Member#ban","link":"<a href=\"Member.html#ban\">Member &rtrif; ban</a>"},{"title":"Member#edit","link":"<a href=\"Member.html#edit\">Member &rtrif; edit</a>"},{"title":"Member#kick","link":"<a href=\"Member.html#kick\">Member &rtrif; kick</a>"},{"title":"Member#removeRole","link":"<a href=\"Member.html#removeRole\">Member &rtrif; removeRole</a>"},{"title":"Member#setup","link":"<a href=\"Member.html#setup\">Member &rtrif; setup</a>"},{"title":"Member#timeout","link":"<a href=\"Member.html#timeout\">Member &rtrif; timeout</a>"},{"title":"MemberEdit","link":"<a href=\"MemberEdit.html\">MemberEdit</a>"},{"title":"MemberManager","link":"<a href=\"MemberManager.html\">MemberManager</a>"},{"title":"MemberManager#get","link":"<a href=\"MemberManager.html#get\">MemberManager &rtrif; get</a>"},{"title":"MemberOptions","link":"<a href=\"MemberOptions.html\">MemberOptions</a>"},{"title":"Message","link":"<a href=\"Message.html\">Message</a>"},{"title":"Message#createThread","link":"<a href=\"Message.html#createThread\">Message &rtrif; createThread</a>"},{"title":"Message#delete","link":"<a href=\"Message.html#delete\">Message &rtrif; delete</a>"},{"title":"Message#edit","link":"<a href=\"Message.html#edit\">Message &rtrif; edit</a>"},{"title":"Message#guilds","link":"<a href=\"Message.html#guilds\">Message &rtrif; guilds</a>"},{"title":"Message#pin","link":"<a href=\"Message.html#pin\">Message &rtrif; pin</a>"},{"title":"Message#reply","link":"<a href=\"Message.html#reply\">Message &rtrif; reply</a>"},{"title":"Message#unpin","link":"<a href=\"Message.html#unpin\">Message &rtrif; unpin</a>"},{"title":"MessageCache","link":"<a href=\"MessageCache.html\">MessageCache</a>"},{"title":"MessageCache#set","link":"<a href=\"MessageCache.html#set\">MessageCache &rtrif; set</a>"},{"title":"MessageManager","link":"<a href=\"MessageManager.html\">MessageManager</a>"},{"title":"MessageManager#fetch","link":"<a href=\"MessageManager.html#fetch\">MessageManager &rtrif; fetch</a>"},{"title":"MessageManager#get","link":"<a href=\"MessageManager.html#get\">MessageManager &rtrif; get</a>"},{"title":"MessageOptions","link":"<a href=\"MessageOptions.html\">MessageOptions</a>"},{"title":"Permissions","link":"<a href=\"Permissions.html\">Permissions</a>"},{"title":"Permissions#add","link":"<a href=\"Permissions.html#add\">Permissions &rtrif; add</a>"},{"title":"Permissions#has","link":"<a href=\"Permissions.html#has\">Permissions &rtrif; has</a>"},{"title":"Permissions#resolve","link":"<a href=\"Permissions.html#resolve\">Permissions &rtrif; resolve</a>"},{"title":"Permissions#toArray","link":"<a href=\"Permissions.html#toArray\">Permissions &rtrif; toArray</a>"},{"title":"RepliableInteraction","link":"<a href=\"RepliableInteraction.html\">RepliableInteraction</a>"},{"title":"RepliableInteraction#defer","link":"<a href=\"RepliableInteraction.html#defer\">RepliableInteraction &rtrif; defer</a>"},{"title":"RepliableInteraction#deleteReply","link":"<a href=\"RepliableInteraction.html#deleteReply\">RepliableInteraction &rtrif; deleteReply</a>"},{"title":"RepliableInteraction#editReply","link":"<a href=\"RepliableInteraction.html#editReply\">RepliableInteraction &rtrif; editReply</a>"},{"title":"RepliableInteraction#followUp","link":"<a href=\"RepliableInteraction.html#followUp\">RepliableInteraction &rtrif; followUp</a>"},{"title":"RepliableInteraction#isAutocomplete","link":"<a href=\"RepliableInteraction.html#isAutocomplete\">RepliableInteraction &rtrif; isAutocomplete</a>"},{"title":"RepliableInteraction#isButton","link":"<a href=\"RepliableInteraction.html#isButton\">RepliableInteraction &rtrif; isButton</a>"},{"title":"RepliableInteraction#isChatInputCommand","link":"<a href=\"RepliableInteraction.html#isChatInputCommand\">RepliableInteraction &rtrif; isChatInputCommand</a>"},{"title":"RepliableInteraction#isCommand","link":"<a href=\"RepliableInteraction.html#isCommand\">RepliableInteraction &rtrif; isCommand</a>"},{"title":"RepliableInteraction#isContextMenuCommand","link":"<a href=\"RepliableInteraction.html#isContextMenuCommand\">RepliableInteraction &rtrif; isContextMenuCommand</a>"},{"title":"RepliableInteraction#isMessageComponent","link":"<a href=\"RepliableInteraction.html#isMessageComponent\">RepliableInteraction &rtrif; isMessageComponent</a>"},{"title":"RepliableInteraction#isMessageContextMenuCommand","link":"<a href=\"RepliableInteraction.html#isMessageContextMenuCommand\">RepliableInteraction &rtrif; isMessageContextMenuCommand</a>"},{"title":"RepliableInteraction#isModalSubmit","link":"<a href=\"RepliableInteraction.html#isModalSubmit\">RepliableInteraction &rtrif; isModalSubmit</a>"},{"title":"RepliableInteraction#isRepliable","link":"<a href=\"RepliableInteraction.html#isRepliable\">RepliableInteraction &rtrif; isRepliable</a>"},{"title":"RepliableInteraction#isSelectMenu","link":"<a href=\"RepliableInteraction.html#isSelectMenu\">RepliableInteraction &rtrif; isSelectMenu</a>"},{"title":"RepliableInteraction#isUserContextMenuCommand","link":"<a href=\"RepliableInteraction.html#isUserContextMenuCommand\">RepliableInteraction &rtrif; isUserContextMenuCommand</a>"},{"title":"RepliableInteraction#reply","link":"<a href=\"RepliableInteraction.html#reply\">RepliableInteraction &rtrif; reply</a>"},{"title":"Role","link":"<a href=\"Role.html\">Role</a>"},{"title":"RoleOptions","link":"<a href=\"RoleOptions.html\">RoleOptions</a>"},{"title":"RolesManager","link":"<a href=\"RolesManager.html\">RolesManager</a>"},{"title":"RolesManager#get","link":"<a href=\"RolesManager.html#get\">RolesManager &rtrif; get</a>"},{"title":"SelectMenuInteraction","link":"<a href=\"SelectMenuInteraction.html\">SelectMenuInteraction</a>"},{"title":"SelectMenuInteraction#isAutocomplete","link":"<a href=\"SelectMenuInteraction.html#isAutocomplete\">SelectMenuInteraction &rtrif; isAutocomplete</a>"},{"title":"SelectMenuInteraction#isButton","link":"<a href=\"SelectMenuInteraction.html#isButton\">SelectMenuInteraction &rtrif; isButton</a>"},{"title":"SelectMenuInteraction#isChatInputCommand","link":"<a href=\"SelectMenuInteraction.html#isChatInputCommand\">SelectMenuInteraction &rtrif; isChatInputCommand</a>"},{"title":"SelectMenuInteraction#isCommand","link":"<a href=\"SelectMenuInteraction.html#isCommand\">SelectMenuInteraction &rtrif; isCommand</a>"},{"title":"SelectMenuInteraction#isContextMenuCommand","link":"<a href=\"SelectMenuInteraction.html#isContextMenuCommand\">SelectMenuInteraction &rtrif; isContextMenuCommand</a>"},{"title":"SelectMenuInteraction#isMessageComponent","link":"<a href=\"SelectMenuInteraction.html#isMessageComponent\">SelectMenuInteraction &rtrif; isMessageComponent</a>"},{"title":"SelectMenuInteraction#isMessageContextMenuCommand","link":"<a href=\"SelectMenuInteraction.html#isMessageContextMenuCommand\">SelectMenuInteraction &rtrif; isMessageContextMenuCommand</a>"},{"title":"SelectMenuInteraction#isModalSubmit","link":"<a href=\"SelectMenuInteraction.html#isModalSubmit\">SelectMenuInteraction &rtrif; isModalSubmit</a>"},{"title":"SelectMenuInteraction#isRepliable","link":"<a href=\"SelectMenuInteraction.html#isRepliable\">SelectMenuInteraction &rtrif; isRepliable</a>"},{"title":"SelectMenuInteraction#isSelectMenu","link":"<a href=\"SelectMenuInteraction.html#isSelectMenu\">SelectMenuInteraction &rtrif; isSelectMenu</a>"},{"title":"SelectMenuInteraction#isUserContextMenuCommand","link":"<a href=\"SelectMenuInteraction.html#isUserContextMenuCommand\">SelectMenuInteraction &rtrif; isUserContextMenuCommand</a>"},{"title":"SelectMenuOption","link":"<a href=\"SelectMenuOption.html\">SelectMenuOption</a>"},{"title":"Sticker","link":"<a href=\"Sticker.html\">Sticker</a>"},{"title":"Team","link":"<a href=\"Team.html\">Team</a>"},{"title":"TeamMember","link":"<a href=\"TeamMember.html\">TeamMember</a>"},{"title":"TextChannel","link":"<a href=\"TextChannel.html\">TextChannel</a>"},{"title":"TextChannel#bulkDelete","link":"<a href=\"TextChannel.html#bulkDelete\">TextChannel &rtrif; bulkDelete</a>"},{"title":"TextChannel#createThread","link":"<a href=\"TextChannel.html#createThread\">TextChannel &rtrif; createThread</a>"},{"title":"TextChannel#delete","link":"<a href=\"TextChannel.html#delete\">TextChannel &rtrif; delete</a>"},{"title":"TextChannel#edit","link":"<a href=\"TextChannel.html#edit\">TextChannel &rtrif; edit</a>"},{"title":"TextChannel#getJoinedPrivateArchivedThreads","link":"<a href=\"TextChannel.html#getJoinedPrivateArchivedThreads\">TextChannel &rtrif; getJoinedPrivateArchivedThreads</a>"},{"title":"TextChannel#getPinned","link":"<a href=\"TextChannel.html#getPinned\">TextChannel &rtrif; getPinned</a>"},{"title":"TextChannel#getPrivateArchivedThreads","link":"<a href=\"TextChannel.html#getPrivateArchivedThreads\">TextChannel &rtrif; getPrivateArchivedThreads</a>"},{"title":"TextChannel#getPublicArchivedThreads","link":"<a href=\"TextChannel.html#getPublicArchivedThreads\">TextChannel &rtrif; getPublicArchivedThreads</a>"},{"title":"TextChannel#guilds","link":"<a href=\"TextChannel.html#guilds\">TextChannel &rtrif; guilds</a>"},{"title":"TextChannel#modifyPosition","link":"<a href=\"TextChannel.html#modifyPosition\">TextChannel &rtrif; modifyPosition</a>"},{"title":"TextChannel#send","link":"<a href=\"TextChannel.html#send\">TextChannel &rtrif; send</a>"},{"title":"TextChannel#typing","link":"<a href=\"TextChannel.html#typing\">TextChannel &rtrif; typing</a>"},{"title":"ThreadChannel","link":"<a href=\"ThreadChannel.html\">ThreadChannel</a>"},{"title":"ThreadChannel#addMember","link":"<a href=\"ThreadChannel.html#addMember\">ThreadChannel &rtrif; addMember</a>"},{"title":"ThreadChannel#bulkDelete","link":"<a href=\"ThreadChannel.html#bulkDelete\">ThreadChannel &rtrif; bulkDelete</a>"},{"title":"ThreadChannel#createThread","link":"<a href=\"ThreadChannel.html#createThread\">ThreadChannel &rtrif; createThread</a>"},{"title":"ThreadChannel#delete","link":"<a href=\"ThreadChannel.html#delete\">ThreadChannel &rtrif; delete</a>"},{"title":"ThreadChannel#edit","link":"<a href=\"ThreadChannel.html#edit\">ThreadChannel &rtrif; edit</a>"},{"title":"ThreadChannel#getJoinedPrivateArchivedThreads","link":"<a href=\"ThreadChannel.html#getJoinedPrivateArchivedThreads\">ThreadChannel &rtrif; getJoinedPrivateArchivedThreads</a>"},{"title":"ThreadChannel#getMember","link":"<a href=\"ThreadChannel.html#getMember\">ThreadChannel &rtrif; getMember</a>"},{"title":"ThreadChannel#getPinned","link":"<a href=\"ThreadChannel.html#getPinned\">ThreadChannel &rtrif; getPinned</a>"},{"title":"ThreadChannel#getPrivateArchivedThreads","link":"<a href=\"ThreadChannel.html#getPrivateArchivedThreads\">ThreadChannel &rtrif; getPrivateArchivedThreads</a>"},{"title":"ThreadChannel#getPublicArchivedThreads","link":"<a href=\"ThreadChannel.html#getPublicArchivedThreads\">ThreadChannel &rtrif; getPublicArchivedThreads</a>"},{"title":"ThreadChannel#guilds","link":"<a href=\"ThreadChannel.html#guilds\">ThreadChannel &rtrif; guilds</a>"},{"title":"ThreadChannel#join","link":"<a href=\"ThreadChannel.html#join\">ThreadChannel &rtrif; join</a>"},{"title":"ThreadChannel#leave","link":"<a href=\"ThreadChannel.html#leave\">ThreadChannel &rtrif; leave</a>"},{"title":"ThreadChannel#listMembers","link":"<a href=\"ThreadChannel.html#listMembers\">ThreadChannel &rtrif; listMembers</a>"},{"title":"ThreadChannel#modifyPosition","link":"<a href=\"ThreadChannel.html#modifyPosition\">ThreadChannel &rtrif; modifyPosition</a>"},{"title":"ThreadChannel#removeMember","link":"<a href=\"ThreadChannel.html#removeMember\">ThreadChannel &rtrif; removeMember</a>"},{"title":"ThreadChannel#send","link":"<a href=\"ThreadChannel.html#send\">ThreadChannel &rtrif; send</a>"},{"title":"ThreadChannel#typing","link":"<a href=\"ThreadChannel.html#typing\">ThreadChannel &rtrif; typing</a>"},{"title":"ThreadMember","link":"<a href=\"ThreadMember.html\">ThreadMember</a>"},{"title":"ThreadOptions","link":"<a href=\"ThreadOptions.html\">ThreadOptions</a>"},{"title":"User","link":"<a href=\"User.html\">User</a>"},{"title":"UserManager","link":"<a href=\"UserManager.html\">UserManager</a>"},{"title":"UserManager#get","link":"<a href=\"UserManager.html#get\">UserManager &rtrif; get</a>"},{"title":"VoiceChannel","link":"<a href=\"VoiceChannel.html\">VoiceChannel</a>"},{"title":"VoiceChannel#delete","link":"<a href=\"VoiceChannel.html#delete\">VoiceChannel &rtrif; delete</a>"},{"title":"VoiceChannel#edit","link":"<a href=\"VoiceChannel.html#edit\">VoiceChannel &rtrif; edit</a>"},{"title":"VoiceChannel#guilds","link":"<a href=\"VoiceChannel.html#guilds\">VoiceChannel &rtrif; guilds</a>"},{"title":"VoiceChannel#modifyPosition","link":"<a href=\"VoiceChannel.html#modifyPosition\">VoiceChannel &rtrif; modifyPosition</a>"},{"title":"WebSocketManager","link":"<a href=\"WebSocketManager.html\">WebSocketManager</a>"},{"title":"WebSocketManager#connect","link":"<a href=\"WebSocketManager.html#connect\">WebSocketManager &rtrif; connect</a>"},{"title":"WebSocketManager#identify","link":"<a href=\"WebSocketManager.html#identify\">WebSocketManager &rtrif; identify</a>"},{"title":"Events","link":"Events"},{"title":"InviteOptions","link":"<a href=\"global.html#InviteOptions\">InviteOptions</a>"},{"title":"Permission","link":"<a href=\"global.html#Permission\">Permission</a>"},{"title":"SystemMessageTypes","link":"<a href=\"global.html#SystemMessageTypes\">SystemMessageTypes</a>"}];
+        var options = 
+          setupSearch(list, options)
+      </script>
+    
+
+    
+
+    
+
+    
+
+
+  </body>
+
+</html>
