@@ -56,7 +56,7 @@ export class Client extends EventEmitter {
     guilds: GuildManager;
     channels: ChannelManager;
     user: User;
-    on: <K extends keyof Events>(s: K, listener: (Events[K])) => this;
+    on: <K extends keyof Events>(s: K, listener: Events[K]) => this;
     cache: {
         members: Cache<Member> | FakeCache;
         guilds: Map<string, Guild> | FakeMap;

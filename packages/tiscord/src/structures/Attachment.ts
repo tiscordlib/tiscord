@@ -1,4 +1,4 @@
-import { APIAttachment } from "discord-api-types/v10";
+import { APIAttachment } from 'discord-api-types/v10';
 
 /**
  * Represents an attachment.

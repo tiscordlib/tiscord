@@ -37,7 +37,6 @@ export class EventManager {
         this.list = new Map();
         this.register('READY', ready);
         this.register('GUILD_CREATE', guildCreate);
-
     }
     registerAll() {
         this.register('MESSAGE_CREATE', messageCreate);

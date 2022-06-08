@@ -9,14 +9,14 @@ export class ModalOptions {
         data.forEach(d => {
             if (d.type === 1) {
                 d.components.forEach(option => this.map.set(option.custom_id, option.value));
-            } else
-                this.map.set(d.custom_id, d.value);
-        })
+            } else this.map.set(d.custom_id, d.value);
+        });
     }
+
     /**
      * Get the value of a option.
      * @param customId - The custom id of the option
-     * @returns 
+     * @returns
      */
     get(customId: string) {
         return this.map.get(customId);
