@@ -1,4 +1,3 @@
-import { APIModalActionRowComponent, APIModalSubmission, ModalSubmitComponent } from 'discord-api-types/v10';
 import { FollowupMessage, Interaction, MessageOptions, RawMessageOptions } from '../';
 
 /**
@@ -13,7 +12,7 @@ export class RepliableInteraction extends Interaction {
      * @returns {Promise<any>}
      */
 
-    // TODO: fix the repetitive code lol
+    // TOOD: fix the repetitive code lol
     async reply(options: RawMessageOptions) {
         const parsedData = new MessageOptions(options);
         let i = 0;
@@ -34,7 +33,6 @@ export class RepliableInteraction extends Interaction {
         const data: any = {
             body: { data: parsedData, type: 4 }
         };
-      
         if (files) {
             data.files = files;
         }
@@ -132,7 +130,6 @@ export class RepliableInteraction extends Interaction {
      * Reply with a modal
      * @param {APIModal} modal - The modal to reply with
      */
-
     async replyModal(modal: APIModal) {
         if (this.isModalSubmit()) throw new Error('Cannot reply with a modal to a modal submit');
         await this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
