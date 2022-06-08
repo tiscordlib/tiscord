@@ -64,6 +64,8 @@ export class Interaction {
         // @ts-ignore
         this.locale = data.locale;
         client.cache.users.set(this.user.id, this.user);
+        client.cache.members.set(this.guild?.id, this.member);
+        client.cache.guilds.set(this.guild.id, this.guild);
     }
 
     /**

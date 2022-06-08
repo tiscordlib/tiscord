@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import { Client, ClientOptions, CommandInteraction } from 'tiscord';
 import { Event, EventConstructor } from './Event';
 import { Plugin } from './Plugin';
-=======
-import { Client, ClientOptions } from 'tiscord';
-import { Event } from './ClientEvent';
-import { Extension } from './Extension';
->>>>>>> origin/stable
 
 interface TiskitClientOptions {
     // eslint-disable-next-line lines-around-comment

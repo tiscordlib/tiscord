@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { APIAllowedMentions } from 'discord-api-types/v10';
-import { Attachment } from '../';
+import { MessageAttachment } from '../';
 
 /**
  * Message options, used for parsing messages to an api readable format
@@ -24,8 +24,8 @@ export class MessageOptions {
     sticker_ids?: string[];
     flags?: number;
     message_reference?: any;
-    attachments?: Attachment[];
-    files?: Attachment[];
+    attachments?: MessageAttachment[];
+    files?: MessageAttachment[];
     constructor(data: RawMessageOptions) {
         if (typeof data.content !== 'string' && data.content) throw new TypeError('`content` must be a string.');
         if (!data.content && !data.embeds && !data.attachments && !data.stickers)
@@ -59,8 +59,8 @@ export interface RawMessageOptions {
     content?: string;
     embeds?: any[];
     allowedMentions?: APIAllowedMentions;
-    attachments?: Attachment[];
-    files?: Attachment[];
+    attachments?: MessageAttachment[];
+    files?: MessageAttachment[];
     components?: any[];
     stickers?: string[];
     flags?: number;

@@ -22,7 +22,7 @@ export class RolesManager {
      * @param {string} id Role ID
      * @param {boolean} fetch Whether to fetch the role from the API
      */
-    async get(id: string, fetch?) {
+    async get(id: string, fetch?: boolean) {
         const cache = this.client.cache.roles.get(this.guild, id);
         if (cache && !fetch) return cache;
         const roles = (await this.client.rest.get(`/guilds/${this.guild}/roles`)) as APIRole[];

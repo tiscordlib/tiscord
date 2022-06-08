@@ -7,7 +7,7 @@ import { MessageTypes, SystemMessageTypes } from './util/MessageTypes';
 
 import { APIError } from './errors/APIError';
 import { Application } from './structures/Application';
-import { Attachment } from './structures/Attachment';
+import { MessageAttachment } from './structures/MessageAttachment';
 import { BitField } from './util/BitField';
 import { CDNOptions } from './util/CDNOptions';
 import { Cache } from './cache/Cache';
@@ -44,6 +44,7 @@ import { RolesManager } from './managers/RolesManager';
 import { SelectMenuOption } from './structures/SelectMenuOption';
 import { Sticker } from './structures/Sticker';
 import { Team } from './structures/Team';
+import { Attachment } from './structures/Attachment';
 import { TeamMember } from './structures/TeamMember';
 import { TextChannel } from './structures/TextChannel';
 import { ThreadChannel } from './structures/ThreadChannel';
@@ -66,7 +67,7 @@ import { ButtonInteraction } from './structures/ButtonInteraction';
 import { ModalInteraction } from './structures/ModalInteraction';
 
 export {
-    Attachment,
+    MessageAttachment,
     APIError,
     BitField,
     Cache,
@@ -100,6 +101,7 @@ export {
     MemberManager,
     Message,
     MessageManager,
+    Attachment,
     MessageOptions,
     InteractionOptions,
     Permissions,

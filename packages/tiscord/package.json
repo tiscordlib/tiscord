@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "@fuwa/rest": "^0.2.2",
-    "debug": "^4.3.4",
     "discord-api-types": "^0.31.0",
     "ws": "^8.5.0"
   },

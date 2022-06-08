@@ -22,6 +22,7 @@ import {
     MessageFlags,
     MessageType
 } from 'discord-api-types/v10';
+import { Attachment } from './Attachment';
 
 /**
  * Message class
@@ -101,7 +102,7 @@ export class Message {
         this.mentions = data.mentions || [];
         this.mentionRoles = data.mention_roles || [];
         this.mentionChannels = data.mention_channels || [];
-        this.attachments = data.attachments;
+        this.attachments = data.attachments.map(attachment => new Attachment(attachment));
         this.embeds = data.embeds;
         this.reactions = data.reactions || [];
         this.nonce = data.nonce;
@@ -128,7 +129,7 @@ export class Message {
      * An function that adds Message.guild and Message.channel to the message
      */
     async guilds() {
-        this.channel = await this.guild?.channels?.get(this.channelId);
+        this.channel = await this.client.channels?.get(this.channelId);
         if (!this.webhookId) this.member = await this.guild?.members?.get(this.author.id);
     }
 

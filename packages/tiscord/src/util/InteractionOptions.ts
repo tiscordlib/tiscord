@@ -1,4 +1,4 @@
-import { Client, Guild, Member, Role, User, channelType } from '../';
+import { Client, Guild, Member, Role, User, channelType, Attachment } from '../';
 
 import { ChannelType } from 'discord-api-types/v10';
 
@@ -138,5 +138,17 @@ export class InteractionOptions {
         if (!option) return null;
         if (option.type !== 8 && option.type !== 9) throw new TypeError(`Option '${name}' is not a role`);
         return new Role(this.client, this.resolved.roles[option.value]);
+    }
+
+    /**
+     * Get the value of a attachment option
+     * @param name - Name of the option to get
+     * @returns {Attachment}
+     */
+    getAttachment(name: string): Attachment {
+        const option = this.options.get(name);
+        if (!option) return null;
+        if (option.type !== 11) throw new TypeError(`Option '${name}' is not an attachment`);
+        return new Attachment(this.resolved.attachments[option.value]);
     }
 }

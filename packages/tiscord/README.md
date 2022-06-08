@@ -2,10 +2,6 @@
 a fast and object oriented discord lib  
 [events list](./tutorial-Events.html): # Events
 
-some info
-- this lib isnt done yet, shouldnt use in production
-- we strongly recommend using typescript, its not required though
-
 # TODO
 * High priority
 - [x] caching system
@@ -22,7 +18,6 @@ some info
 - [ ] Voice support
 - [ ] Sharding
 - [ ] Webhooks
-- [ ] Deno support (not confirmed, would need a lot of work)
 
 * [ ] [Guild Scheduled Events](https://discord.com/developers/docs/resources/guild-scheduled-event)
  * [ ] List Scheduled Events for Guild

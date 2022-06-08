@@ -64,7 +64,7 @@ export class Member {
      */
     async setup() {
         this.roles = await Promise.all(this.roles.map(role => this.guild?.roles?.get(role)));
-        this.permissions = new Permissions(this.roles.map(r => BigInt(r?.permissions)));
+        this.permissions = new Permissions(this.roles.map(r => BigInt(r?.permissions || 0)));
     }
 
     /**

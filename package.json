@@ -6,10 +6,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
-    "docs": "turbo run docs",
+    "build": "npx turbo run build",
+    "dev": "npx turbo run dev --parallel",
+    "lint": "npx turbo run lint",
+    "docs": "npx turbo run docs",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
