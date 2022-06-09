@@ -33,6 +33,7 @@ export interface Events {
     interactionCreate: (interaction: Interaction) => void;
     messageCreate: (message: Message) => void;
     messageDelete: (message: Message) => void;
+    messageUpdate: (message: Message) => void;
     ready: () => void;
     reconnect: () => void;
     resumed: () => void;
