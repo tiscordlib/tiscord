@@ -1,8 +1,9 @@
 import { Client, Guild, TextChannel } from '../';
+import { APIMessage } from 'discord-api-types/v10';
 
-export async function messageDelete(client: Client, data: { d: any }) {
+export async function messageDelete(client: Client, data: { d: APIMessage }) {
     const guild: Guild = client.cache.guilds.get(data.d.guild_id);
     const channel = (await guild.channels.get(data.d.channel_id)) as TextChannel;
-    const message = await client.cache.messages.get(channel.id, data.d.id);
+    const message = client.cache.messages.get(channel.id, data.d.id);
     if (message) client.emit('messageDelete', [guild, channel, data.d.id]);
 }

@@ -15,6 +15,7 @@ import { guildUpdate } from '../events/guildUpdate';
 import { interactionCreate } from '../events/interactionCreate';
 import { messageCreate } from '../events/messageCreate';
 import { messageDelete } from '../events/messageDelete';
+import { messageUpdate } from '../events/messageUpdate';
 import { reconnect } from '../events/reconnect';
 import { resumed } from '../events/resumed';
 import { threadCreate } from '../events/threadCreate';
@@ -39,7 +40,6 @@ export class EventManager {
         this.register('GUILD_CREATE', guildCreate);
     }
     registerAll() {
-        this.register('MESSAGE_CREATE', messageCreate);
         this.register('INTERACTION_CREATE', interactionCreate);
         this.register('RECONNECT', reconnect);
         this.register('RESUMED', resumed);
@@ -63,7 +63,9 @@ export class EventManager {
         this.register('GUILD_MEMBER_ADD', guildMemberAdd);
         this.register('GUILD_MEMBER_UPDATE', guildMemberUpdate);
         this.register('GUILD_MEMBER_REMOVE', guildMemberRemove);
+        this.register('MESSAGE_CREATE', messageCreate);
         this.register('MESSAGE_DELETE', messageDelete);
+        this.register('MESSAGE_UPDATE', messageUpdate);
         this.register('TYPING_START', typingStart);
     }
     register(name: string, handler: any) {
