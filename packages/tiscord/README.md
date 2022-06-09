@@ -70,7 +70,7 @@ a fast and object oriented discord lib
   * [ ] Invite Create
   * [ ] Invite Delete
   * [x] Message Create
-  * [ ] Message Update
+  * [X] Message Update
   * [x] Message Delete
   * [ ] Message Delete Bulk
   * [ ] Message Reaction Add
