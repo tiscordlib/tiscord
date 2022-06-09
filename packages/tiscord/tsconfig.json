@@ -8,6 +8,9 @@
     "exclude": [
         "./node_modules",
         "./docs",
-        "./dist"
+        "./dist/*"
+    ],
+    "include": [
+        "./src/**/*"
     ],
 }

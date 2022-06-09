@@ -135,6 +135,11 @@ export class Client extends EventEmitter {
             console.log(newMessage);
         }
     }
+
+    /**
+     * Change the bot's presence
+     * @param options - The presence options
+     */
     setPresence(options: GatewayPresenceUpdateData): void {
         this.ws.send({ op: 3, d: options });
     }
