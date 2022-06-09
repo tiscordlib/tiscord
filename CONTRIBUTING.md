@@ -10,7 +10,7 @@ We recommend setting up ESlint in your favorite code editor.
 
 Before contributing, run `npm i` to install all dependencies.  
 Remember to write tests and documentation comments.  
-Afterwards, run `npx turbo run build lint docs test` to check whether the tests pass and the code builds properly.  
+Afterwards, run `npx turbo run build lint docs` to check whether the tests pass and the code builds properly.  
 If you need any help with the code, visit our [support server](https://discord.gg/wKbtU5cBCk) on Discord.  
 
 ## Code of Conduct
