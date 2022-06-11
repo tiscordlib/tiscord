@@ -165,7 +165,7 @@ export class Message {
      */
     async edit(newMessage: RawMessageOptions) {
         const request = (await this.client.rest.patch(`/channels/${this.channelId}/messages/${this.id}`, {
-            body: new MessageOptions(newMessage)
+            body: new MessageOptions({ ...newMessage, ...this.client.allowedMentions })
         })) as any;
 
         if (request?.code) {

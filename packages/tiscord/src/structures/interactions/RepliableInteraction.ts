@@ -14,7 +14,7 @@ export class RepliableInteraction extends Interaction {
 
     // TOOD: fix the repetitive code lol
     async reply(options: RawMessageOptions) {
-        const parsedData = new MessageOptions(options);
+        const parsedData = new MessageOptions({ allowedMentions: this.client.allowedMentions, ...options });
         let i = 0;
         let discordI = 0;
         const files = parsedData.attachments;
@@ -58,7 +58,7 @@ export class RepliableInteraction extends Interaction {
      * @returns {void}
      */
     async editReply(options: RawMessageOptions) {
-        const parsedData = new MessageOptions(options);
+        const parsedData = new MessageOptions({ allowedMentions: this.client.allowedMentions, ...options });
         let i = 0;
         let discordI = 0;
         const files = parsedData.attachments;
@@ -89,7 +89,7 @@ export class RepliableInteraction extends Interaction {
      * @returns {FollowupMessage}
      */
     async followUp(options: RawMessageOptions) {
-        const parsedData = new MessageOptions(options);
+        const parsedData = new MessageOptions({ allowedMentions: this.client.allowedMentions, ...options });
         let i = 0;
         let discordI = 0;
         const files = parsedData.attachments;

@@ -21,7 +21,7 @@ import {
 
 import { arch, release, type } from 'os';
 import { EventEmitter } from 'events';
-import { GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
+import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
 import { REST } from './REST';
 // @ts-ignore
 import { version } from '../../package.json';
@@ -43,6 +43,7 @@ import { Events } from '../util/Events';
  *  @property {CacheOptions} cacheOptions - Cache options
  *  @property {boolean} debugLogs - Whether to enable debug logs
  * @property {User} user - The current user
+ * @property {GatewayPresenceUpdateData} -
  *  @extends EventEmitter
  *  @class
  */
@@ -59,7 +60,7 @@ export class Client extends EventEmitter {
     on: <K extends keyof Events>(s: K, listener: Events[K]) => this;
     cache: {
         members: Cache<Member> | FakeCache;
-        guilds: Map<string, Guild> | FakeMap;
+        guilds: Map<string, Guild> | FakeMap<Guild>;
         channels: Map<string, Channel>;
         users: Map<string, User>;
         messages: Cache<Message> | FakeCache;
@@ -70,6 +71,8 @@ export class Client extends EventEmitter {
     raw: boolean;
     cacheOptions: CacheOptions;
     debugLogs: boolean;
+    presence: GatewayPresenceUpdateData;
+    allowedMentions: APIAllowedMentions;
     constructor(options: ClientOptions) {
         super();
         this.cacheOptions = options.cache;
@@ -95,6 +98,8 @@ export class Client extends EventEmitter {
         this.guilds = new GuildManager(this);
         this.channels = new ChannelManager(this);
         this.debugLogs = options.debug;
+        this.allowedMentions = options.allowedMentions;
+        this.presence = options.presence;
         this.cache = {
             members: this.cacheOptions?.members === false ? new FakeCache() : new Cache(),
             guilds: this.cacheOptions?.guilds === false ? new FakeMap() : new Map(),

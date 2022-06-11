@@ -1,5 +1,5 @@
 import { CacheOptions } from './CacheOptions';
-import { GatewayIntentBits } from 'discord-api-types/v10';
+import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
 
 /**
  * Client options
@@ -8,10 +8,10 @@ import { GatewayIntentBits } from 'discord-api-types/v10';
  * @property {(number|GatewayIntentBits[])} intents - Gateway intents
  * @property {number} api - API version (defaults to 10)
  * @property {boolean} rawDataStorage - Whether to store raw data, turning it on might make ram usage a lot higher
- * @property {number} messageLifetime - How long to keep messages in cache (in seconds)
- * @property {number} messageSweepInterval - How often to sweep messages cache (in seconds)
  * @property {CacheOptions} cache - Cache options
  * @property {boolean} debug - Whether to enable debug logs
+ * @property {GatewayPresenceUpdateData} presence - Presence data
+ * @property {APIAllowedMentions} allowedMentions - Allowed mentions
  */
 export interface ClientOptions {
     token: string;
@@ -20,4 +20,6 @@ export interface ClientOptions {
     rawDataStorage?: boolean;
     cache?: CacheOptions;
     debug?: boolean;
+    presence?: GatewayPresenceUpdateData;
+    allowedMentions?: APIAllowedMentions;
 }

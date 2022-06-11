@@ -6,23 +6,17 @@ import WebSocket from 'ws';
  *  Main websocket class.
  *  @param {Client} client - Client instance
  *  @property {Client} client - Client instance
- *  @property {string} token - Client token
- *  @property {number} intents - Client intents
  *  @property {string} sessionId - Client session id
  *  @class
  */
 export class WebSocketManager {
-    token: string;
     connection: WebSocket;
     sequence: any;
-    intents: number;
     client: Client;
     sessionId: string;
     erlpack: any;
     constructor(client: Client) {
         this.client = client;
-        this.token = client.token;
-        this.intents = client.intents;
         try {
             this.erlpack = require('erlpack');
             // eslint-disable-next-line
@@ -34,7 +28,7 @@ export class WebSocketManager {
      * @returns {void}
      */
     connect() {
-        if (!this.intents) throw new GatewayError('Invalid intents');
+        if (!this.client.intents) throw new GatewayError('Invalid intents');
         const url = this.getGateway(this.client.apiVersion, this.erlpack);
         this.connection = new WebSocket(url);
         this.connection.on('message', async (data: any) => {
@@ -66,7 +60,7 @@ export class WebSocketManager {
                 this.send({
                     op: 6,
                     d: {
-                        token: this.token,
+                        token: this.client.token,
                         session_id: this.sessionId,
                         seq: this.sequence
                     }
@@ -81,18 +75,20 @@ export class WebSocketManager {
      */
     identify() {
         this.client.debug('Identifying with gateway.', 'gateway');
-        this.client.debug(`Intents: ${this.intents}`, 'gateway');
+        this.client.debug(`Intents: ${this.client.intents}`, 'gateway');
+        const data: any = {
+            token: this.client.token,
+            intents: this.client.intents,
+            properties: {
+                $os: 'linux',
+                $browser: 'tiscord',
+                $device: 'tiscord'
+            }
+        };
+        if (this.client.presence) data.presence = this.client.presence;
         this.send({
             op: 2,
-            d: {
-                token: this.token,
-                intents: this.intents,
-                properties: {
-                    $os: 'linux',
-                    $browser: 'tiscord',
-                    $device: 'tiscord'
-                }
-            }
+            d: data
         });
     }
 

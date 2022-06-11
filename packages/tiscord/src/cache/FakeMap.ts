@@ -2,7 +2,7 @@
 /**
  * A class used to disable caching.
  */
-export class FakeMap extends Map {
+export class FakeMap<T> extends Map<string, T> {
     size: number;
     constructor() {
         super();
@@ -12,7 +12,7 @@ export class FakeMap extends Map {
      * @param {string} object - object id to get
      * @returns {any}
      */
-    get(key: any): any {
+    get(key: any): T {
         return null;
     }
 
@@ -20,7 +20,7 @@ export class FakeMap extends Map {
      * @param {any} object - object to set
      * @returns {void}
      */
-    set(key: any, value: any): any {
+    set(key: any, value: T): any {
         return null;
     }
 
@@ -28,7 +28,7 @@ export class FakeMap extends Map {
      * @param {string} object - Object ID to delete
      * @returns {void}
      */
-    delete(key: any): any {
+    delete(key: string): boolean {
         return null;
     }
 }
