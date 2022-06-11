@@ -45,7 +45,6 @@ export class TextChannel extends GuildChannel {
      */
     async send(options: RawMessageOptions) {
         const parsedData = new MessageOptions({ allowedMentions: this.client.allowedMentions, ...options });
-        console.log(parsedData);
         let i = 0;
         let discordI = 0;
         const files = parsedData.attachments;
