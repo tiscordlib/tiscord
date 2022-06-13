@@ -1,15 +1,7 @@
-import {
-    APIError,
-    Client,
-    Message,
-    MessageManager,
-    MessageOptions,
-    RawMessageOptions,
-    ThreadData,
-    ThreadOptions
-} from '../../';
+import { APIError, Client, Message, MessageManager, RawMessageOptions, ThreadData, ThreadOptions } from '../../';
 import { GuildChannel } from './GuildChannel';
 import { threadWrapper } from '../../util/threadWrapper';
+import { MessageData } from 'util/MessageOptions';
 
 /**
  * A text channel class.
@@ -44,28 +36,8 @@ export class TextChannel extends GuildChannel {
      * @param {RawMessageOptions} options
      */
     async send(options: RawMessageOptions) {
-        const parsedData = new MessageOptions({ allowedMentions: this.client.allowedMentions, ...options });
-        let i = 0;
-        let discordI = 0;
-        const files = parsedData.attachments;
-        if (parsedData.files) files.concat(parsedData.files);
-        files?.map(a => {
-            a.id = i;
-            i++;
-            return a;
-        });
-        parsedData.attachments = parsedData?.attachments?.map(a => {
-            a.discordData.id = discordI;
-            discordI++;
-            return a.discordData;
-        });
-        const data: any = {
-            body: parsedData
-        };
-        if (files) {
-            data.files = files;
-        }
-        const request = this.client.rest.post(`/channels/${this.id}/messages`, data) as any;
+        const parsedData = new MessageData({ allowedMentions: this.client.allowedMentions, ...options });
+        const request = this.client.rest.post(`/channels/${this.id}/messages`, parsedData) as any;
         if (request?.code) {
             throw new APIError(request?.message);
         }

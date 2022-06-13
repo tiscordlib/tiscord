@@ -1,6 +1,6 @@
 import { Client, Guild, Member, Role, User, channelType, Attachment } from '../';
 
-import { ChannelType } from 'discord-api-types/v10';
+import { ApplicationCommandOptionType, ChannelType } from 'discord-api-types/v10';
 
 /**
  * A class for parsing interaction options.
@@ -17,11 +17,23 @@ export class InteractionOptions {
     resolved: Record<string, Record<string, any>>;
     client: Client;
     guild: Guild;
+    private _subcommandGroup: any;
+    private _subcommand: any;
     constructor(client: Client, options: any[], resolved: Record<string, Record<string, any>>, guild?: Guild) {
         this.options = new Map();
         this.client = client;
         this.guild = guild;
         this.resolved = resolved;
+        this._subcommandGroup = null;
+        this._subcommand = null;
+        if (options[0]?.type === ApplicationCommandOptionType.SubcommandGroup) {
+            [{ options }] = options;
+            this._subcommandGroup = options[0].name;
+        }
+        if (options[0]?.type === ApplicationCommandOptionType.Subcommand) {
+            [{ options }] = options;
+            this._subcommand = options[0].name;
+        }
         options?.forEach(option => {
             this.options.set(option.name, option);
         });
@@ -29,26 +41,18 @@ export class InteractionOptions {
 
     /**
      * Get the name of the subcommand
-     * @param {string} name - Name of the option to get
      * @returns {string}
      */
-    getSubcommand(name: string): string {
-        const option = this.options.get(name);
-        if (!option) return null;
-        if (option.type !== 1) throw new TypeError(`Option '${name}' is not a subcommand`);
-        return option.value;
+    getSubcommand(): string {
+        return this._subcommand;
     }
 
     /**
      * Get the name of the subcommand group
-     * @param {string} name - Name of the option to get
      * @returns {string}
      */
-    getSubcommandGroup(name: string): string {
-        const option = this.options.get(name);
-        if (!option) return null;
-        if (option.type !== 2) throw new TypeError(`Option '${name}' is not a subcommand group`);
-        return option.value;
+    getSubcommandGroup(): string {
+        return this._subcommandGroup;
     }
 
     /**

@@ -1,4 +1,5 @@
-import { FollowupMessage, Interaction, MessageOptions, RawMessageOptions } from '../../';
+import { MessageData } from 'util/MessageOptions';
+import { FollowupMessage, Interaction, RawMessageOptions } from '../../';
 
 /**
  * A interaction that can be replied to.
@@ -12,31 +13,9 @@ export class RepliableInteraction extends Interaction {
      * @returns {Promise<any>}
      */
 
-    // TOOD: fix the repetitive code lol
     async reply(options: RawMessageOptions) {
-        const parsedData = new MessageOptions({ allowedMentions: this.client.allowedMentions, ...options });
-        let i = 0;
-        let discordI = 0;
-        const files = parsedData.attachments;
-        if (parsedData.files) files.concat(parsedData.files);
-        files?.map(a => {
-            a.id = i;
-            i++;
-            return a;
-        });
-
-        parsedData.attachments = parsedData?.attachments?.map(a => {
-            a.discordData.id = discordI;
-            discordI++;
-            return a.discordData;
-        });
-        const data: any = {
-            body: { data: parsedData, type: 4 }
-        };
-        if (files) {
-            data.files = files;
-        }
-        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, data);
+        const parsedData = new MessageData({ allowedMentions: this.client.allowedMentions, ...options });
+        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, parsedData);
         return res;
     }
 
@@ -58,29 +37,8 @@ export class RepliableInteraction extends Interaction {
      * @returns {void}
      */
     async editReply(options: RawMessageOptions) {
-        const parsedData = new MessageOptions({ allowedMentions: this.client.allowedMentions, ...options });
-        let i = 0;
-        let discordI = 0;
-        const files = parsedData.attachments;
-        if (parsedData.files) files.concat(parsedData.files);
-        files?.map(a => {
-            a.id = i;
-            i++;
-            return a;
-        });
-
-        parsedData.attachments = parsedData?.attachments?.map(a => {
-            a.discordData.id = discordI;
-            discordI++;
-            return a.discordData;
-        });
-        const data: any = {
-            body: { data: parsedData, type: 4 }
-        };
-        if (files) {
-            data.files = files;
-        }
-        this.client.rest.patch(`/webhooks/${this.client.user.id}/${this.token}/messages/@original`, data);
+        const parsedData = new MessageData({ allowedMentions: this.client.allowedMentions, ...options });
+        this.client.rest.patch(`/webhooks/${this.client.user.id}/${this.token}/messages/@original`, parsedData);
     }
 
     /**
@@ -89,32 +47,10 @@ export class RepliableInteraction extends Interaction {
      * @returns {FollowupMessage}
      */
     async followUp(options: RawMessageOptions) {
-        const parsedData = new MessageOptions({ allowedMentions: this.client.allowedMentions, ...options });
-        let i = 0;
-        let discordI = 0;
-        const files = parsedData.attachments;
-        if (parsedData.files) files.concat(parsedData.files);
-        files?.map(a => {
-            a.id = i;
-            i++;
-            return a;
-        });
-
-        parsedData.attachments = parsedData?.attachments?.map(a => {
-            a.discordData.id = discordI;
-            discordI++;
-            return a.discordData;
-        });
-        const data: any = {
-            body: parsedData
-        };
-        if (files) {
-            data.files = files;
-        }
-        options = new MessageOptions(options);
+        const parsedData = new MessageData({ allowedMentions: this.client.allowedMentions, ...options });
         return new FollowupMessage(
             this.client,
-            this.client.rest.post(`/webhooks/${this.client.user.id}/${this.token}`, { body: options }),
+            this.client.rest.post(`/webhooks/${this.client.user.id}/${this.token}`, parsedData),
             this.token
         );
     }
