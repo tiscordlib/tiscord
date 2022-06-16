@@ -26,11 +26,11 @@ export class InteractionOptions {
         this.resolved = resolved;
         this._subcommandGroup = null;
         this._subcommand = null;
-        if (options[0]?.type === ApplicationCommandOptionType.SubcommandGroup) {
+        if (options && options[0]?.type === ApplicationCommandOptionType.SubcommandGroup) {
             [{ options }] = options;
             this._subcommandGroup = options[0].name;
         }
-        if (options[0]?.type === ApplicationCommandOptionType.Subcommand) {
+        if (options && options[0]?.type === ApplicationCommandOptionType.Subcommand) {
             [{ options }] = options;
             this._subcommand = options[0].name;
         }
