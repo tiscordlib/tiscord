@@ -1,16 +1,16 @@
 import { Extension } from './Extension';
 
 /**
- * Represents an event in an extension. This should not be interfaced with directly but through the {@link ClientEvent} decorator in an extension class.
+ * Represents an event in an extension. This should not be interfaced with directly but through the ClientEvent decorator in an extension class.
  * @class
  * @param {string} eventName - The name of the event method.
- * @param {(...args: any[]) => any} eventCallback - The callback of that event method.
+ * @param {any} eventCallback - The callback of that event method.
  * @param {string} emittedName - The name of the event that'll be emitted by the base library.
  */
 export class Event {
-    eventName: string;
+    eventName: any;
     eventCallback: (...args: any[]) => any;
-    emittedName: string;
+    emittedName: any;
 
     constructor(eventName: string, eventCallback: (...args: any[]) => any, emittedName: string) {
         this.eventName = eventName;
