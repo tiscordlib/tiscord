@@ -83,7 +83,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="4445552" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=1745702><div class="accordion-heading child"><a href="TiskitClient.html">TiskitClient</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="TiskitClient.html#addEvent">addEvent</a></li><li data-type='method'><a href="TiskitClient.html#addExtension">addExtension</a></li></ul></li></ul> </div><div class="accordion collapsed" id="4190725" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#ClientEvent">ClientEvent</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="1215455" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="Event.html">Event</a></li><li class="accordion-list" id=""><a href="Extension.html">Extension</a></li><li class="accordion collapsed child" id=8725047><div class="accordion-heading child"><a href="TiskitClient.html">TiskitClient</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="TiskitClient.html#addEvent">addEvent</a></li><li data-type='method'><a href="TiskitClient.html#addEvents">addEvents</a></li></ul></li></ul> </div><div class="accordion collapsed" id="8376711" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#ClientEvent">ClientEvent</a></li></ul> </div>
       
 
     </nav>
@@ -113,7 +113,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TiskitClient = void 0;
 const tiscord_1 = require("tiscord");
-const ClientEvent_1 = require("./ClientEvent");
+const Event_1 = require("./Event");
 /**
  * The main client for any tiskit bot.
  * @param {TiskitClientOptions} options - Options for the tiskit client.
@@ -122,46 +122,40 @@ class TiskitClient extends tiscord_1.Client {
     constructor(options) {
         super(options.tiscordOptions);
         this.events = new Map();
-        this.extensions = new Map();
-    }
-    /**
-     * Adds an event to the client.
-     * @param {Extension} extension - The extension that this event method is on.
-     * @param {Event} event - The event to add.
-     */
-    async addEvent(extension, event) {
-        event.eventCallback = event.eventCallback.bind(extension);
-        const parent = this.events.get(extension.name);
-        if (!parent) {
-            this.events.set(extension.name, new Map());
-            const parent = this.events.get(extension.name);
-            parent.set(event.eventName, event);
-            this.on(event.emittedName, (...args) => {
-                event.eventCallback(...args);
-            });
-            return;
-        }
-        parent.set(event.eventName, event);
-        this.on(event.emittedName, (...args) => {
-            event.eventCallback(...args);
+        this.plugins = new Map();
+        this.on('interactionCreate', (interactaction) => {
+            if (interactaction.isChatInputCommand()) {
+                interactaction.reply({ content: 'hi' });
+            }
         });
     }
     /**
-     * Adds an extension, usually called from the exported setup function of an extension file.
-     * @param {Extension} extension The extension to add.
-     * @returns void
+     * Adds an event to the client.
+     * @param {EventConstructor} event - The event to add.
      */
-    async addExtension(extension) {
-        const methods = Object.getOwnPropertyNames(Object.getPrototypeOf(extension));
-        for (const method of methods) {
-            if (method !== 'constructor') {
-                const data = extension[`__DECORATOR_DATA__ONLY_BY_CLIENT__${method}`];
-                if (data instanceof ClientEvent_1.Event) {
-                    this.addEvent(extension, data);
-                }
-            }
+    addEvent(event) {
+        const parent = this.events.has(event.emittedName);
+        if (parent) {
+            throw new TypeError(`Event ${event.eventName} already exists`);
         }
-        this.extensions.set(extension.name, extension);
+        this.events.set(event.eventName, new Event_1.Event(event));
+        // @ts-ignore fuck you
+        this.on(event.emittedName, (...args) => {
+            event.eventCallback(this, ...args);
+        });
+    }
+    /**
+     * Adds multiple events to the client.
+     * @param {EventConstructor[]} events - The events to add.
+     */
+    addEvents(...events) {
+        for (const event of events) {
+            this.addEvent(event);
+        }
+    }
+    insertPlugin(plugin) {
+        this.addEvents(...plugin.eventStore[0]);
+        this.plugins.set(plugin.defaultName, plugin);
     }
 }
 exports.TiskitClient = TiskitClient;
@@ -190,7 +184,7 @@ exports.TiskitClient = TiskitClient;
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"TiskitClient","link":"<a href=\"TiskitClient.html\">TiskitClient</a>"},{"title":"TiskitClient#addEvent","link":"<a href=\"TiskitClient.html#addEvent\">TiskitClient &rtrif; addEvent</a>"},{"title":"TiskitClient#addExtension","link":"<a href=\"TiskitClient.html#addExtension\">TiskitClient &rtrif; addExtension</a>"},{"title":"ClientEvent","link":"<a href=\"global.html#ClientEvent\">ClientEvent</a>"}];
+        var list = [{"title":"Event","link":"<a href=\"Event.html\">Event</a>"},{"title":"Extension","link":"<a href=\"Extension.html\">Extension</a>"},{"title":"TiskitClient","link":"<a href=\"TiskitClient.html\">TiskitClient</a>"},{"title":"TiskitClient#addEvent","link":"<a href=\"TiskitClient.html#addEvent\">TiskitClient &rtrif; addEvent</a>"},{"title":"TiskitClient#addEvents","link":"<a href=\"TiskitClient.html#addEvents\">TiskitClient &rtrif; addEvents</a>"},{"title":"ClientEvent","link":"<a href=\"global.html#ClientEvent\">ClientEvent</a>"}];
         var options = 
           setupSearch(list, options)
       </script>

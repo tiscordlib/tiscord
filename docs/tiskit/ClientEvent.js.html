@@ -83,7 +83,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="4445552" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=1745702><div class="accordion-heading child"><a href="TiskitClient.html">TiskitClient</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="TiskitClient.html#addEvent">addEvent</a></li><li data-type='method'><a href="TiskitClient.html#addExtension">addExtension</a></li></ul></li></ul> </div><div class="accordion collapsed" id="4190725" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#ClientEvent">ClientEvent</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="1215455" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="Event.html">Event</a></li><li class="accordion-list" id=""><a href="Extension.html">Extension</a></li><li class="accordion collapsed child" id=8725047><div class="accordion-heading child"><a href="TiskitClient.html">TiskitClient</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="TiskitClient.html#addEvent">addEvent</a></li><li data-type='method'><a href="TiskitClient.html#addEvents">addEvents</a></li></ul></li></ul> </div><div class="accordion collapsed" id="8376711" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#ClientEvent">ClientEvent</a></li></ul> </div>
       
 
     </nav>
@@ -112,6 +112,13 @@
             <pre class="prettyprint source linenums"><code>"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientEvent = exports.Event = void 0;
+/**
+ * Represents an event in an extension. This should not be interfaced with directly but through the ClientEvent decorator in an extension class.
+ * @class
+ * @param {string} eventName - The name of the event method.
+ * @param {any} eventCallback - The callback of that event method.
+ * @param {string} emittedName - The name of the event that'll be emitted by the base library.
+ */
 class Event {
     constructor(eventName, eventCallback, emittedName) {
         this.eventName = eventName;
@@ -122,8 +129,8 @@ class Event {
 exports.Event = Event;
 /**
  * Mark an extension method as an event.
- * @param emittedName The name of the event tha>t'll be emitted by Tiscord, defaults to method name.
- * @returns (target: Extension, propertyKey: string) => void.
+ * @param {string} emittedName The name of the event tha>t'll be emitted by Tiscord, defaults to method name.
+ * @returns {any}
  */
 function ClientEvent(emittedName) {
     return (extension, eventName, eventCallback) => {
@@ -159,7 +166,7 @@ exports.ClientEvent = ClientEvent;
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"TiskitClient","link":"<a href=\"TiskitClient.html\">TiskitClient</a>"},{"title":"TiskitClient#addEvent","link":"<a href=\"TiskitClient.html#addEvent\">TiskitClient &rtrif; addEvent</a>"},{"title":"TiskitClient#addExtension","link":"<a href=\"TiskitClient.html#addExtension\">TiskitClient &rtrif; addExtension</a>"},{"title":"ClientEvent","link":"<a href=\"global.html#ClientEvent\">ClientEvent</a>"}];
+        var list = [{"title":"Event","link":"<a href=\"Event.html\">Event</a>"},{"title":"Extension","link":"<a href=\"Extension.html\">Extension</a>"},{"title":"TiskitClient","link":"<a href=\"TiskitClient.html\">TiskitClient</a>"},{"title":"TiskitClient#addEvent","link":"<a href=\"TiskitClient.html#addEvent\">TiskitClient &rtrif; addEvent</a>"},{"title":"TiskitClient#addEvents","link":"<a href=\"TiskitClient.html#addEvents\">TiskitClient &rtrif; addEvents</a>"},{"title":"ClientEvent","link":"<a href=\"global.html#ClientEvent\">ClientEvent</a>"}];
         var options = 
           setupSearch(list, options)
       </script>
