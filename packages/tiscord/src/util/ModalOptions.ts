@@ -15,8 +15,8 @@ export class ModalOptions {
 
     /**
      * Get the value of a option.
-     * @param customId - The custom id of the option
-     * @returns
+     * @param {string} customId - The custom id of the option
+     * @returns (any)
      */
     get(customId: string) {
         return this.map.get(customId);
