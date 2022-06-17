@@ -47,7 +47,7 @@ export class TiskitClient extends Client {
         }
 
         this.events.set(event.eventName, new Event(event));
-// @ts-ignore fuck you
+        // @ts-ignore fuck you
         this.on(event.emittedName, (...args) => {
             event.eventCallback(this, ...args);
         });
