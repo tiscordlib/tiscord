@@ -1,7 +1,7 @@
 import { APIError, Client, Message, MessageManager, RawMessageOptions, ThreadData, ThreadOptions } from '../../';
 import { GuildChannel } from './GuildChannel';
 import { threadWrapper } from '../../util/threadWrapper';
-import { MessageData } from 'util/MessageOptions';
+import { MessageData } from '../../util/MessageOptions';
 
 /**
  * A text channel class.

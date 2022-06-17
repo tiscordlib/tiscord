@@ -26,13 +26,13 @@ export class InteractionOptions {
         this.resolved = resolved;
         this._subcommandGroup = null;
         this._subcommand = null;
-        if (options[0]?.type === ApplicationCommandOptionType.SubcommandGroup) {
-            [{ options }] = options;
+        if (options && options[0]?.type === ApplicationCommandOptionType.SubcommandGroup) {
             this._subcommandGroup = options[0].name;
-        }
-        if (options[0]?.type === ApplicationCommandOptionType.Subcommand) {
             [{ options }] = options;
+        }
+        if (options && options[0]?.type === ApplicationCommandOptionType.Subcommand) {
             this._subcommand = options[0].name;
+            [{ options }] = options;
         }
         options?.forEach(option => {
             this.options.set(option.name, option);
