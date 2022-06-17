@@ -62,7 +62,8 @@ export class MessageData {
             discordI++;
             return attachment.discordData;
         });
-        this.body = { data: parsedData, type: 4 };
+        // @ts-expect-error
+        this.body = { ...parsedData, type: 4 };
         if (files) {
             this.files = files;
         }
