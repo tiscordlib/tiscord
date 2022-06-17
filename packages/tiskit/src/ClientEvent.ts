@@ -22,7 +22,7 @@ export class Event {
 /**
  * Mark an extension method as an event.
  * @param {string} emittedName The name of the event tha>t'll be emitted by Tiscord, defaults to method name.
- * @returns {(target: Extension, propertyKey: string, eventCallback: PropertyDescriptor) => void}
+ * @returns {any}
  */
 export function ClientEvent(
     emittedName?: string
