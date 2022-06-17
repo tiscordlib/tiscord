@@ -30,6 +30,7 @@ jobs:
 
       - name: Commit docs
         run: |
+          git config --global user.name "actions"
           git add docs
           git commit -am "docs: create documentaton"
           git push
