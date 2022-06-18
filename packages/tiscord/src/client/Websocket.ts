@@ -80,9 +80,9 @@ export class WebSocketManager {
             token: this.client.token,
             intents: this.client.intents,
             properties: {
-                $os: 'linux',
-                $browser: 'tiscord',
-                $device: 'tiscord'
+                os: 'linux',
+                browser: 'tiscord',
+                device: 'tiscord'
             }
         };
         if (this.client.presence) data.presence = this.client.presence;
