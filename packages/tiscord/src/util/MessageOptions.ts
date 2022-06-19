@@ -43,6 +43,32 @@ export class MessageOptions {
     }
 }
 export class MessageData {
+    body: MessageOptions;
+    files?: MessageAttachment[];
+    constructor(messageData: RawMessageOptions) {
+        const parsedData = new MessageOptions(messageData);
+        let i = 0;
+        let discordI = 0;
+        const files = parsedData.attachments;
+        if (parsedData.files) files.concat(parsedData.files);
+        files?.map(a => {
+            a.id = i;
+            i++;
+            return a;
+        });
+
+        parsedData.attachments = parsedData?.attachments?.map(attachment => {
+            attachment.discordData.id = discordI;
+            discordI++;
+            return attachment.discordData;
+        });
+        this.body = parsedData;
+        if (files) {
+            this.files = files;
+        }
+    }
+}
+export class InteractionData {
     body: { data: MessageOptions; type: number };
     files?: MessageAttachment[];
     constructor(messageData: RawMessageOptions) {

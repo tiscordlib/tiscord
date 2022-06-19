@@ -1,4 +1,4 @@
-import { MessageData } from '../../util/MessageOptions';
+import { InteractionData } from '../../util/MessageOptions';
 import { FollowupMessage, Interaction, RawMessageOptions } from '../../';
 
 /**
@@ -14,7 +14,7 @@ export class RepliableInteraction extends Interaction {
      */
 
     async reply(options: RawMessageOptions) {
-        const parsedData = new MessageData({ allowedMentions: this.client.allowedMentions, ...options });
+        const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
         const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, parsedData);
         return res;
     }
@@ -37,7 +37,7 @@ export class RepliableInteraction extends Interaction {
      * @returns {void}
      */
     async editReply(options: RawMessageOptions) {
-        const parsedData = new MessageData({ allowedMentions: this.client.allowedMentions, ...options });
+        const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
         this.client.rest.patch(`/webhooks/${this.client.user.id}/${this.token}/messages/@original`, parsedData);
     }
 
@@ -47,7 +47,7 @@ export class RepliableInteraction extends Interaction {
      * @returns {FollowupMessage}
      */
     async followUp(options: RawMessageOptions) {
-        const parsedData = new MessageData({ allowedMentions: this.client.allowedMentions, ...options });
+        const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
         return new FollowupMessage(
             this.client,
             this.client.rest.post(`/webhooks/${this.client.user.id}/${this.token}`, parsedData),

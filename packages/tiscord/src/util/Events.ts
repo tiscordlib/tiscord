@@ -21,7 +21,7 @@ export interface Events {
     guildCreate: (guild: Guild) => void;
     guildDelete: (guild: Guild) => void;
     guildEmojisUpdate: (guild: Guild, emojis: Emoji[]) => void;
-    guildIntegrationsUpdate: Guild;
+    guildIntegrationsUpdate: (guild: Guild) => void;
     guildMemberAdd: (guild: Guild, member: Member) => void;
     guildMemberUpdate: (guild: Guild, member: Member) => void;
     guildMemberRemove: (guild: Guild, user: User) => void;
