@@ -19,6 +19,7 @@ import {
     WebSocketManager
 } from '../';
 
+import process from 'process';
 import { arch, release, type } from 'os';
 import { EventEmitter } from 'events';
 import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
