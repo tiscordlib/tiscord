@@ -70,7 +70,7 @@ a fast and object oriented discord lib
   * [ ] Invite Create
   * [ ] Invite Delete
   * [x] Message Create
-  * [X] Message Update
+  * [x] Message Update
   * [x] Message Delete
   * [ ] Message Delete Bulk
   * [ ] Message Reaction Add
@@ -117,19 +117,19 @@ a fast and object oriented discord lib
   * [ ] Create Emoji Class
 
 * [ ] [Guild](https://discord.com/developers/docs/resources/guild)
-  * [X] Create Guild Channel
-  * [X] Modify Guild Channel Position
-  * [X] Edit Guild Member
-  * [X] Add Role to Member
-  * [X] Remove Role from Member
-  * [X] Get Guild Bans
-  * [X] Get Guild Ban
-  * [X] Create Guild Role
-  * [X] Modify Guild Role Position
-  * [X] Modify Guild Role
-  * [X] Delete Guild Role
+  * [x] Create Guild Channel
+  * [x] Modify Guild Channel Position
+  * [x] Edit Guild Member
+  * [x] Add Role to Member
+  * [x] Remove Role from Member
+  * [x] Get Guild Bans
+  * [x] Get Guild Ban
+  * [x] Create Guild Role
+  * [x] Modify Guild Role Position
+  * [x] Modify Guild Role
+  * [x] Delete Guild Role
   * [ ] Get Guild Voice Regions
-  * [X] Get Guild Invites
+  * [x] Get Guild Invites
   * [ ] Get Guild Integrations
   * [ ] Delete Guild Integration
   * [ ] Get Guild Vanity URL
