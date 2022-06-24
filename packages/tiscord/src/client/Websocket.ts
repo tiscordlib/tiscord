@@ -1,5 +1,6 @@
 import { Client, GatewayError } from '../';
 
+import process from 'process';
 import WebSocket from 'ws';
 
 /**
@@ -80,7 +81,7 @@ export class WebSocketManager {
             token: this.client.token,
             intents: this.client.intents,
             properties: {
-                os: 'linux',
+                os: process.platform,
                 browser: 'tiscord',
                 device: 'tiscord'
             }
