@@ -25,7 +25,7 @@ jobs:
       - name: Run TypeScript compiler
         run: npm run build
 
-      - name: Set NPM token
+      - name: Set npm token
         run: echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
       
       - name: Publish package
