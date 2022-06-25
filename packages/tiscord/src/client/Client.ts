@@ -19,9 +19,9 @@ import {
     WebSocketManager
 } from '../';
 
-import process from 'process';
-import { arch, release, type } from 'os';
-import { EventEmitter } from 'events';
+import process from 'node:process';
+import { arch, release, type } from 'node:os';
+import { EventEmitter } from 'node:events';
 import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
 import { REST } from './REST';
 // @ts-ignore

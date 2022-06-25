@@ -1,6 +1,6 @@
 import { Client, GatewayError } from '../';
 
-import process from 'process';
+import process from 'node:process';
 import WebSocket from 'ws';
 
 /**
