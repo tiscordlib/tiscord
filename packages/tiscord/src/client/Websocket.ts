@@ -29,7 +29,7 @@ export class WebSocketManager {
      * @returns {void}
      */
     connect() {
-        if (!this.client.intents) throw new GatewayError('Invalid intents');
+        if (this.client.intents === undefined) throw new GatewayError('Invalid intents');
         const url = this.getGateway(this.client.apiVersion, this.erlpack);
         this.connection = new WebSocket(url);
         this.connection.on('message', async (data: any) => {
