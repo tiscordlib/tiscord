@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint ./src",
-    "docs": "npx jsdoc --configure ./jsdoc.json --verbose"
+    "docs": "echo i am stupid"
   },
   "author": "Sadie Katherine",
   "license": "MIT",
