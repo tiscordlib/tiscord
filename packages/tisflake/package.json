@@ -1,0 +1,25 @@
+{
+  "name": "tisflake",
+  "version": "1.0.0",
+  "description": "A library for parsing discord snowflakes.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiscordlib/tiscord.git"
+  },
+  "keywords": [
+    "snowflake",
+    "discord",
+    "tiscord"
+  ],
+  "author": "xiboon",
+  "license": "MIT",
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/tiscordlib/tiscord/issues"
+  },
+  "homepage": "https://github.com/tiscordlib/tiscord#readme"
+}
