@@ -66,8 +66,8 @@ export class Interaction {
         // @ts-expect-error
         this.locale = data.locale;
         client.cache.users.set(this.user.id, this.user);
-        client.cache.members.set(this.guild?.id, this.member);
-        client.cache.guilds.set(this.guild.id, this.guild);
+        if (this.guild) client.cache.members.set(this.guild?.id, this.member);
+        if (this.guild) client.cache.guilds.set(this.guild.id, this.guild);
     }
 
     /**
