@@ -5,7 +5,6 @@ import {
     Guild,
     Interaction,
     Member,
-    MessageOptions,
     MessageTypes,
     RawMessageOptions,
     SystemMessageTypes,
@@ -23,6 +22,7 @@ import {
     MessageType
 } from 'discord-api-types/v10';
 import { Attachment } from './Attachment';
+import { MessageData } from 'util/MessageOptions';
 
 /**
  * Message class
@@ -165,9 +165,10 @@ export class Message {
      * @param {MessageOptions} newMessage - The new message
      */
     async edit(newMessage: RawMessageOptions) {
-        const request = (await this.client.rest.patch(`/channels/${this.channelId}/messages/${this.id}`, {
-            body: new MessageOptions({ ...newMessage, ...this.client.allowedMentions })
-        })) as any;
+        const request = (await this.client.rest.patch(
+            `/channels/${this.channelId}/messages/${this.id}`,
+            new MessageData({ ...newMessage, ...this.client.allowedMentions })
+        )) as any;
 
         if (request?.code) {
             throw new APIError(request?.message);
