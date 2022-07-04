@@ -4,7 +4,7 @@ import { Client, channelType } from '../';
 export async function channelUpdate(client: Client, data: { d: APIGuildChannel<any> }) {
     const oldChannel = client.cache.channels.get(data.d.id);
     const channel = channelType(client, data.d);
-    // @ts-ignore
+    // @ts-expect-error
     if (channel.type !== ChannelType.DM) await channel.guilds();
     client.cache.channels.set(channel.id, channel);
     client.emit('channelUpdate', [oldChannel, channel]);

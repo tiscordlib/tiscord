@@ -1,5 +1,5 @@
 import { APIInteraction, ApplicationCommandType, ComponentType, InteractionType } from 'discord-api-types/v10';
-import { Client, Guild, Member, User } from '../../';
+import { Client, Guild, Member, User, Permissions } from '../../';
 // we cant import from ../../ because of circular dependency
 import { ButtonInteraction } from './ButtonInteraction';
 import { CommandInteraction } from './CommandInteraction';
@@ -45,7 +45,9 @@ export class Interaction {
     client: Client;
     member: Member;
     guild: Guild;
+    appPermissions: Permissions;
     constructor(client: Client, data: APIInteraction) {
+        this.appPermissions = new Permissions(BigInt(data.app_permissions));
         this.guild = client.cache.guilds.get(data.guild_id);
         this.client = client;
         this.id = data.id;
@@ -61,7 +63,7 @@ export class Interaction {
         this.data = data.data;
         if (client.raw) this.raw = data;
         this.guildLocale = data.guild_locale;
-        // @ts-ignore
+        // @ts-expect-error
         this.locale = data.locale;
         client.cache.users.set(this.user.id, this.user);
         client.cache.members.set(this.guild?.id, this.member);

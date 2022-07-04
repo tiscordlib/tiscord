@@ -127,7 +127,7 @@ export class InteractionOptions {
         if (option.type !== 7) throw new TypeError(`Option '${name}' is not a channel`);
         const channelData = this.resolved.channels[option.value];
         const channel = channelType(this.client, channelData);
-        // @ts-ignore
+        // @ts-expect-error
         if (channel.type === ChannelType.DM) channel?.guilds();
         return channel;
     }

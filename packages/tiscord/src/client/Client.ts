@@ -24,7 +24,7 @@ import { arch, release, type } from 'node:os';
 import { EventEmitter } from 'node:events';
 import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
 import { REST } from './REST';
-// @ts-ignore
+// @ts-expect-error
 import { version } from '../../package.json';
 import { Events } from '../util/Events';
 

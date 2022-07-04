@@ -93,8 +93,9 @@ export class Message {
         this.client = client;
         this.id = data.id;
         this.channelId = data.channel_id;
+        // @ts-expect-error
         this.guildId = data.guild_id;
-        this.author = new User(client, data.author);
+        if (data.author.id) this.author = new User(client, data.author);
         this.guild = this.client.cache.guilds.get(this.guildId);
         this.content = data.content;
         this.timestamp = Math.round(new Date(data.timestamp).getTime() / 1000);
@@ -108,13 +109,13 @@ export class Message {
         this.nonce = data.nonce;
         this.pinned = data.pinned;
         this.webhookId = data.webhook_id;
-        // @ts-ignore
+        // @ts-expect-error
         this.type = MessageType[data.type];
         this.applicationId = data.application_id;
         this.messageReference = data.message_reference;
         this.flags = data.flags;
         this.referencedMessage = data.referenced_message ? new Message(client, data.referenced_message) : undefined;
-        // @ts-ignore
+        // @ts-expect-error
         if (data.interaction && this.guildId) data.interaction.guild_id = this.guildId;
         this.interaction = data.interaction
             ? new Interaction(client, data.interaction as unknown as APIInteraction)

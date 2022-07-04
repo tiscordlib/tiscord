@@ -61,7 +61,7 @@ export class Application {
         if (data.primary_sku_id) this.primarySkuId = data.primary_sku_id;
         if (data.slug) this.slug = data.slug;
         if (data.cover_image) this.coverImage = data.cover_image;
-        // @ts-ignore
+        // @ts-expect-error
         if (data.flags) this.flags = ApplicationFlags[data.flags];
         if (client.raw) this.raw = data;
         client.cache.users.set(this.owner.id, this.owner);

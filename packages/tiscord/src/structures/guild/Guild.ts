@@ -3,6 +3,7 @@ import {
     APIGuild,
     APIGuildScheduledEvent,
     APIStageInstance,
+    GatewayGuildCreateDispatchData,
     GatewayVoiceState,
     GuildFeature,
     GuildSystemChannelFlags
@@ -133,7 +134,7 @@ export class Guild {
     permissions: string;
     raw?: APIGuild;
     me: Member | void;
-    constructor(client: Client, data: APIGuild) {
+    constructor(client: Client, data: GatewayGuildCreateDispatchData) {
         this.client = client;
         data.roles?.forEach(role => {
             client.cache.roles.set(data.id, new Role(client, role));
