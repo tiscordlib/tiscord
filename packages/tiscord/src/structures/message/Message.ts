@@ -22,7 +22,7 @@ import {
     MessageType
 } from 'discord-api-types/v10';
 import { Attachment } from './Attachment';
-import { MessageData } from 'util/MessageOptions';
+import { MessageData } from '../../util/MessageOptions';
 
 /**
  * Message class
