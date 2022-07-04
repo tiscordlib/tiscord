@@ -45,9 +45,9 @@ export class Invite {
     client: Client;
     constructor(client: Client, data: APIInvite) {
         this.code = data.code;
-        // @ts-ignore
+        // @ts-expect-error
         if (data.guild) this.guild = new Guild(data.guild);
-        // @ts-ignore
+        // @ts-expect-error
         this.channel = channelType(client, data.channel);
         if (data.inviter) this.inviter = new User(client, data.inviter);
         if (data.target_type) this.targetType = data.target_type;

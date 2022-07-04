@@ -54,7 +54,7 @@ import { UserManager } from './managers/UserManager';
 import { VoiceChannel } from './structures/channels/VoiceChannel';
 import { WebSocketManager } from './client/Websocket';
 import { channelType } from './util/channelType';
-// @ts-ignore
+// @ts-expect-error
 import { version } from '../package.json';
 import { FollowupMessage } from './structures/interactions/FollowupMessage';
 import { RepliableInteraction } from './structures/interactions/RepliableInteraction';

@@ -21,7 +21,6 @@ export class CommandInteraction extends RepliableInteraction {
         super(client, data);
         this.commandId = data.data.id;
         this.name = data.data.name;
-        // @ts-ignore
         this.commandType = data.data.type;
     }
 }

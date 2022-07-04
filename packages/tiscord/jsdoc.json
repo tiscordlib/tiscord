@@ -15,7 +15,7 @@
         "destination": "../../docs/",
         "recurse": true,
         "verbose": true,
-        "template": "../../node_modules/clean-jsdoc-theme",
+        "template": "./node_modules/clean-jsdoc-theme",
         "tutorials": "./md"
     }
 }

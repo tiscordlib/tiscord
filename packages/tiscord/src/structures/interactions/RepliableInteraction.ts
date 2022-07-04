@@ -32,13 +32,25 @@ export class RepliableInteraction extends Interaction {
     }
 
     /**
+     * Defer the update of original response.
+     * @param ephemeral - Whether the defer should be ephemeral
+     * @returns {Promise<any>}
+     */
+    async deferUpdate(ephemeral?: boolean) {
+        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
+            body: { type: 6, data: { flags: ephemeral ? 64 : 0 } }
+        });
+        return res;
+    }
+
+    /**
      * Edit the original reply.
      * @param options - Message options
-     * @returns {void}
+     * @returns {any}
      */
     async editReply(options: RawMessageOptions) {
         const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
-        this.client.rest.patch(`/webhooks/${this.client.user.id}/${this.token}/messages/@original`, parsedData);
+        return this.client.rest.patch(`/webhooks/${this.client.user.id}/${this.token}/messages/@original`, parsedData);
     }
 
     /**

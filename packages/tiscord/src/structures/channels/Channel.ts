@@ -22,7 +22,6 @@ export class Channel {
     client: Client;
     constructor(client: Client, data: APIChannel) {
         this.id = data.id;
-        // @ts-ignore
         this.type = data.type;
         this.name = data.name;
         this.raw = data;

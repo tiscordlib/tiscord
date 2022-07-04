@@ -71,7 +71,7 @@ export class MessageData {
 export class InteractionData {
     body: { data: MessageOptions; type: number };
     files?: MessageAttachment[];
-    constructor(messageData: RawMessageOptions) {
+    constructor(messageData: RawMessageOptions, type = 4) {
         const parsedData = new MessageOptions(messageData);
         let i = 0;
         let discordI = 0;
@@ -88,7 +88,7 @@ export class InteractionData {
             discordI++;
             return attachment.discordData;
         });
-        this.body = { data: parsedData, type: 4 };
+        this.body = { data: parsedData, type };
         if (files) {
             this.files = files;
         }

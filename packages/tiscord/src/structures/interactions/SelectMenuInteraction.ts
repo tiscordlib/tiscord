@@ -1,4 +1,5 @@
-import { Client, RepliableInteraction, SelectMenuOption } from '../../';
+import { Client, Message, RawMessageOptions, RepliableInteraction, SelectMenuOption } from '../../';
+import { InteractionData } from '../../util/MessageOptions';
 
 /**
  * Represents a select menu interaction.
@@ -11,10 +12,22 @@ export class SelectMenuInteraction extends RepliableInteraction {
     customId: string;
     componentType: number;
     values: any;
+    message: Message;
     constructor(client: Client, data: any) {
         super(client, data);
         this.customId = data.data.custom_id;
         this.componentType = data.data.component_type;
         this.values = data.values?.map(value => new SelectMenuOption(value));
+        this.message = new Message(client, data.message);
+    }
+
+    /**
+     * Edit the original reply.
+     * @param content - The content of the new message.
+     */
+    async editOriginalMessage(options: RawMessageOptions) {
+        const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options }, 7);
+        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, parsedData);
+        return res;
     }
 }
