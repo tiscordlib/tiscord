@@ -95,7 +95,7 @@ export class Message {
         this.channelId = data.channel_id;
         // @ts-expect-error
         this.guildId = data.guild_id;
-        if (data.author.id) this.author = new User(client, data.author);
+        if (data.author?.id) this.author = new User(client, data.author);
         this.guild = this.client.cache.guilds.get(this.guildId);
         this.content = data.content;
         this.timestamp = Math.round(new Date(data.timestamp).getTime() / 1000);
