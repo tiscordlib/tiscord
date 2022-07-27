@@ -1,12 +1,10 @@
 import {
-    APIEmoji,
     APIGuild,
     APIGuildScheduledEvent,
     APIStageInstance,
     GatewayGuildCreateDispatchData,
     GatewayVoiceState,
-    GuildFeature,
-    GuildSystemChannelFlags
+    GuildFeature
 } from 'discord-api-types/v10';
 import {
     APIError,
@@ -36,20 +34,18 @@ import {
  * @param {APIGuild} data - Guild data
  * @class
  * @property {Client} client - Client instance
- * @property {string} ownerId - Guild owner ID
+ * @property {bigint} ownerId - Guild owner ID
  * @property {User} owner - Guild owner
- * @property {string} discoverySplash - Discovery splash hash
- * @property {string} iconHash - Icon hash
  * @property {string} icon - Icon
  * @property {string} name - Guild name
- * @property {string} id - Guild ID
+ * @property {bigint} id - Guild ID
  * @property {boolean} premiumProgressBarEnabled - Whether the boost progress bar enabled
  * @property {APIGuildScheduledEvent[]} scheduledEvents - Scheduled events
  * @property {Sticker[]} stickers - Guild stickers
  * @property {APIStageInstance[]} stageInstances - Guild stage instances
  * @property {number} nsfwLevel - NSFW level
  * @property {number} maxVideoChannelUsers - How many users can be on a video channel
- * @property {string} publicUpdatesChannelId - Public update channel ID
+ * @property {bigint} publicUpdatesChannelId - Public update channel ID
  * @property {string} locale - Guild locale
  * @property {number} boosterCount - Amount of boosters
  * @property {number} premiumTier - Server boost tier
@@ -66,10 +62,10 @@ import {
  * @property {boolean} available - Whether the guild is available
  * @property {boolean} large - Whether the guild is large (by default 50+ members)
  * @property {number} joinedAt - When the guild was joined (unix timestamp)
- * @property {string} rulesChannelId - Rules channel ID
+ * @property {bigint} rulesChannelId - Rules channel ID
  * @property {string} systemChannelFlags - System channel flags
- * @property {string} systemChannelId - System channel ID
- * @property {string} applicationId - Application ID, if an application owns the guild.
+ * @property {bigint} systemChannelId - System channel ID
+ * @property {bigint} applicationId - Application ID, if an application owns the guild.
  * @property {number} mfaLevel - 2FA level
  * @property {GuildFeature[]} features - Guild features
  * @property {APIEmoji[]} emojis - Guild emojis
@@ -77,33 +73,33 @@ import {
  * @property {number} explicitContentFilter - Explicit content filter level
  * @property {number} defaultMessageNotifications - Default message notification level
  * @property {number} verificationLevel - Verification level
- * @property {string} widgetChannelId - Widget channel ID
+ * @property {bigint} widgetChannelId - Widget channel ID
  * @property {boolean} widgetEnabled - Whether the guild widget enabled
  * @property {number} afkTimeout - AFK timeout
- * @property {string} afkChannelId - AFK channel ID
+ * @property {bigint} afkChannelId - AFK channel ID
  * @property {Member} me - Bot's guild member
  */
 export class Guild {
     client: Client;
-    ownerId: string;
+    ownerId: bigint;
     owner: boolean;
-    discoverySplash: string;
-    splash: string;
-    iconHash: string;
-    icon: string;
+    #discoverySplash: bigint;
+    #splash: bigint;
+    #iconHash?: bigint;
+    #icon: bigint;
     name: string;
-    id: string;
+    id: bigint;
     premiumProgressBarEnabled: boolean;
     scheduledEvents: APIGuildScheduledEvent[];
     stickers: Sticker[];
     stageInstances: APIStageInstance[];
     nsfwLevel: number;
     maxVideoChannelUsers: number;
-    publicUpdatesChannelId: string;
+    publicUpdatesChannelId: bigint;
     locale: string;
     boosterCount: number;
     premiumTier: number;
-    banner: string;
+    #banner: bigint;
     description: string;
     vanityUrlCode: string;
     maxMembers: number;
@@ -116,47 +112,47 @@ export class Guild {
     available: boolean;
     large: boolean;
     joinedAt: number;
-    rulesChannelId: string;
+    rulesChannelId: bigint;
     systemChannelFlags: any;
-    systemChannelId: string;
-    applicationId: string;
+    systemChannelId: bigint;
+    applicationId: bigint;
     mfaLevel: number;
     features: GuildFeature[];
-    emojis: APIEmoji[];
+    emojis: Emoji[];
     roles: RolesManager;
     explicitContentFilter: number;
     defaultMessageNotifications: number;
     verificationLevel: number;
-    widgetChannelId: string;
+    widgetChannelId: bigint;
     widgetEnabled: boolean;
     afkTimeout: number;
-    afkChannelId: string;
+    afkChannelId: bigint;
     permissions: string;
     raw?: APIGuild;
     me: Member | void;
     constructor(client: Client, data: GatewayGuildCreateDispatchData) {
         this.client = client;
         data.roles?.forEach(role => {
-            client.cache.roles.set(data.id, new Role(client, role));
+            client.cache.roles.set(BigInt(role.id), new Role(client, role));
         });
         data.channels?.forEach((channel: any) => {
             channel = channelType(client, channel);
             if (!channel.guildId) channel.guildId = this.id;
             if (channel.guilds) channel.guilds();
-            client.cache.channels.set(data.id, channel);
+            client.cache.channels.set(BigInt(data.id), channel);
         });
-        this.id = data.id;
+        this.id = BigInt(data.id);
         this.name = data.name;
-        this.icon = data.icon;
-        this.iconHash = data.icon_hash;
-        this.splash = data.splash;
-        this.discoverySplash = data.discovery_splash;
+        this.#icon = BigInt(`0x${data.icon}`);
+        this.#iconHash = BigInt(`0x${data.icon_hash}`);
+        this.#splash = BigInt(`0x${data.splash}`);
+        this.#discoverySplash = BigInt(`0x${data.discovery_splash}`);
         this.owner = data.owner;
-        this.ownerId = data.owner_id;
-        this.afkChannelId = data.afk_channel_id;
+        if (data.owner_id) this.ownerId = BigInt(data.owner_id);
+        if (data.afk_channel_id) this.afkChannelId = BigInt(data.afk_channel_id);
         this.afkTimeout = data.afk_timeout;
         this.widgetEnabled = data.widget_enabled;
-        this.widgetChannelId = data.widget_channel_id;
+        if (data.widget_channel_id) this.widgetChannelId = BigInt(data.widget_channel_id);
         this.verificationLevel = data.verification_level;
         this.defaultMessageNotifications = data.default_message_notifications;
         this.explicitContentFilter = data.explicit_content_filter;
@@ -164,10 +160,10 @@ export class Guild {
         this.emojis = data.emojis?.map(emoji => new Emoji(client, emoji));
         this.features = data.features;
         this.mfaLevel = data.mfa_level;
-        this.applicationId = data.application_id;
-        this.systemChannelId = data.system_channel_id;
-        this.systemChannelFlags = GuildSystemChannelFlags[data.system_channel_flags];
-        this.rulesChannelId = data.rules_channel_id;
+        if (data.application_id) this.applicationId = BigInt(data.application_id);
+        if (data.system_channel_id) this.systemChannelId = BigInt(data.system_channel_id);
+        this.systemChannelFlags = data.system_channel_flags;
+        if (data.rules_channel_id) this.rulesChannelId = BigInt(data.rules_channel_id);
         this.joinedAt = new Date(data.joined_at).getTime() / 1000;
         this.large = data.large;
         this.available = !data.unavailable;
@@ -184,11 +180,11 @@ export class Guild {
         this.maxMembers = data.max_members;
         this.vanityUrlCode = data.vanity_url_code;
         this.description = data.description;
-        this.banner = data.banner;
+        this.#banner = BigInt(data.banner);
         this.premiumTier = data.premium_tier;
         this.boosterCount = data.premium_subscription_count;
         this.locale = data.preferred_locale;
-        this.publicUpdatesChannelId = data.public_updates_channel_id;
+        if (data.public_updates_channel_id) this.publicUpdatesChannelId = BigInt(data.public_updates_channel_id);
         this.maxVideoChannelUsers = data.max_video_channel_users;
         this.nsfwLevel = data.nsfw_level;
         this.stageInstances = data.stage_instances;
@@ -202,6 +198,14 @@ export class Guild {
             client.cache.members.set(data.id, data);
         });
         this.me = client.cache.members.get(this.id, client.user.id);
+    }
+
+    /**
+     * The icon hash of the guild
+     * @type {string}
+     */
+    get icon() {
+        return this.#icon.toString(16);
     }
 
     /**
@@ -220,10 +224,10 @@ export class Guild {
 
     /**
      * Unban a banned user from the server
-     * @param {string} userId - The ID of the user you want to unban
+     * @param {bigint} userId - The ID of the user you want to unban
      * @param {string} reason - Reason of the unban
      */
-    async unban(userId: string, reason?: string) {
+    async unban(userId: bigint, reason?: string) {
         const request = (await this.client.rest.delete(`/guilds/${this.id}/bans/${userId}`, {
             reason
         })) as any;
@@ -268,7 +272,7 @@ export class Guild {
      * @param {string} userId - The ID of the user to get the ban of
      * @returns {Promise<GuildBan>}
      */
-    async getBan(userId: string): Promise<GuildBan> {
+    async getBan(userId: bigint): Promise<GuildBan> {
         const request = (await this.client.rest.get(`/guilds/${this.id}/bans/${userId}`)) as any;
 
         if (request?.code) {

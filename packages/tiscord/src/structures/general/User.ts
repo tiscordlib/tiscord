@@ -11,37 +11,51 @@ import { Client } from '../../';
  * @param {string} username - User username (username)
  * @param {string} discriminator - User discriminator (1234)
  * @param {string} tag - User tag (username#1234)
- * @param {string} avatar - User avatar hash
  * @param {boolean} bot - Is the user a bot
  * @param {boolean} system - Is the user a system user
- * @param {string} banner - User banner hash
  * @param {UserFlags} flags - User flags
  * @param {number} accentColor - User accent color
  * @param {APIUser} [raw] - Raw user data
  */
 export class User {
-    id: string;
+    id: bigint;
     username: string;
     discriminator: string;
     tag: string;
-    avatar: string;
+    #avatar: bigint;
     bot: boolean;
     system: boolean;
-    banner: string;
+    #banner: bigint;
     flags: UserFlags;
     accentColor: number;
     raw?: APIUser;
     constructor(client: Client, data: APIUser) {
-        this.id = data.id;
+        this.id = BigInt(data.id);
         this.username = data.username;
         this.discriminator = data.discriminator;
         this.tag = `${this.username}#${this.discriminator}`;
-        this.avatar = data.avatar;
+        this.#avatar = BigInt(`0x${data.avatar}`);
         this.bot = data.bot || false;
         this.system = data.system || false;
-        this.banner = data.banner;
+        this.#banner = BigInt(`0x${data.banner}`);
         this.flags = data.public_flags;
         this.accentColor = data.accent_color;
         if (client.raw) this.raw = data;
+    }
+
+    /**
+     * Avatar hash
+     * @type {string}
+     */
+    get avatar() {
+        return this.#avatar.toString(16);
+    }
+
+    /**
+     * Banner hash
+     * @type {string}
+     */
+    get banner() {
+        return this.#banner.toString(16);
     }
 }

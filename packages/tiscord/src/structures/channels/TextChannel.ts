@@ -10,14 +10,14 @@ import { MessageData } from '../../util/MessageOptions';
  * @param {any} data - API guild channel data
  * @extends {GuildChannel}
  * @class
- * @property {string} lastMessageId - ID of last message
+ * @property {bigint} lastMessageId - ID of last message
  * @property {number} defaultArchiveDuration - Default thread archive duration
  * @property {string} topic - Channel topic
  * @property {boolean} nsfw - Whether the channel is nsfw
  * @property {MessageManager} messages - Message manager
  */
 export class TextChannel extends GuildChannel {
-    lastMessageId: string;
+    lastMessageId: bigint;
     defaultArchiveDuration: number;
     topic: string;
     nsfw: boolean;

@@ -5,7 +5,7 @@ import { InteractionData } from '../../util/MessageOptions';
 /**
  * Represents a button interaction.
  * @extends {Interaction}
- * @property {string} customId - The custom id of the interaction.
+ * @property {bigint} customId - The custom id of the interaction.
  * @property {number} componentType - The component type of the interaction.
  */
 export class ButtonInteraction extends RepliableInteraction {

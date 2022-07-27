@@ -8,7 +8,7 @@ import { Client } from '../../';
  * @param {APIChannel} data - Channel data
  * @class
  * @property {Client} client - Client instance
- * @property {string} id - Channel ID
+ * @property {bigint} id - Channel ID
  * @property {string} name - Channel name
  * @property {string} type - Channel type
  * @see https://discord.com/developers/docs/resources/channel#channel-object-channel-types
@@ -16,12 +16,12 @@ import { Client } from '../../';
  */
 export class Channel {
     type: number;
-    id: string;
+    id: bigint;
     raw?: APIChannel;
     name: string;
     client: Client;
     constructor(client: Client, data: APIChannel) {
-        this.id = data.id;
+        this.id = BigInt(data.id);
         this.type = data.type;
         this.name = data.name;
         this.raw = data;

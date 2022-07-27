@@ -1,4 +1,4 @@
-import { APIGuildIntegration, IntegrationExpireBehavior } from 'discord-api-types/v10';
+import { APIGuildIntegration } from 'discord-api-types/v10';
 import { Client, User } from '../../';
 
 /**
@@ -6,7 +6,7 @@ import { Client, User } from '../../';
  * @class
  * @param {Client} client - Client instance
  * @param {APIGuildIntegration} data - Integration data
- * @property {string} id - Integration ID
+ * @property {bigint} id - Integration ID
  * @property {string} name - Integration name
  * @property {string} type - Integration type
  * @property {boolean} enabled - Whether the integration is enabled
@@ -23,14 +23,14 @@ import { Client, User } from '../../';
  * @property {APIGuildIntegration} raw - Raw integration data
  */
 export class Integration {
-    id: string;
+    id: bigint;
     name: string;
     type: string;
     enabled: boolean;
     syncing: boolean;
-    roleId?: string;
+    roleId?: bigint;
     enableEmoticons?: boolean;
-    expireBehavior?: string;
+    expireBehavior?: number;
     expireGracePeriod: number;
     user: User;
     subscriberCount: number;
@@ -39,15 +39,15 @@ export class Integration {
     revoked: boolean;
     raw: APIGuildIntegration;
     constructor(client: Client, data: APIGuildIntegration) {
-        this.id = data.id;
+        this.id = BigInt(data.id);
         this.name = data.name;
         this.type = data.type;
         this.enabled = data.enabled;
         this.account = data.account;
         if (data.syncing) this.syncing = data.syncing;
-        if (data.role_id) this.roleId = data.role_id;
+        if (data.role_id) this.roleId = BigInt(data.role_id);
         if (data.enable_emoticons) this.enableEmoticons = data.enable_emoticons;
-        if (data.expire_behavior) this.expireBehavior = IntegrationExpireBehavior[data.expire_behavior];
+        if (data.expire_behavior) this.expireBehavior = data.expire_behavior;
         if (data.expire_grace_period) this.expireGracePeriod = data.expire_grace_period;
         if (data.user) this.user = new User(client, data.user);
         if (data.synced_at) this.syncedAt = new Date(data.synced_at).getTime() / 1000;

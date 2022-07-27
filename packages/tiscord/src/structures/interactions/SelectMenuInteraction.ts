@@ -4,12 +4,12 @@ import { InteractionData } from '../../util/MessageOptions';
 /**
  * Represents a select menu interaction.
  * @extends {Interaction}
- * @property {string} customId - The custom id of the interaction.
+ * @property {bigint} customId - The custom id of the interaction.
  * @property {number} componentType - The component type of the interaction.
  * @property {SelectMenuOption[]} values - The values selected by the creator    of the interaction.
  */
 export class SelectMenuInteraction extends RepliableInteraction {
-    customId: string;
+    customId: bigint;
     componentType: number;
     values: any;
     message: Message;
