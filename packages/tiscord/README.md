@@ -1,5 +1,5 @@
 # tiscord
-a fast and object oriented discord lib  
+A fast, memory-efficient, and object oriented discord lib  
 [events list](./tutorial-Events.html): # Events
 
 # TODO
@@ -88,26 +88,6 @@ a fast and object oriented discord lib
   * [ ] Stage Instance Update
   * [ ] Stage Instance Delete
 
-* [x] [Channel](https://discord.com/developers/docs/resources/channel)
-  * [x] Bulk Delete Messages
-  * [x] Get Channel Invites
-  * [x] Create Channel Invite
-  * [x] Trigger Typing
-  * [x] Get Pinned Messages
-  * [x] Pin Message
-  * [x] Unpin Message
-  * [x] Join Thread
-  * [x] Start Thread
-  * [x] Leave Thread
-  * [x] Add Thread Member
-  * [x] Remove Thread Member
-  * [x] Get Thread Member
-  * [x] List Thread Members
-  * [x] List Active Threads
-  * [x] List Public Archived Threads
-  * [x] List Private Archived Threads
-  * [x] List Joined Private Archived Threads
-
 * [ ] [Emoji](https://discord.com/developers/docs/resources/emoji)
   * [ ] List Guild Emojis
   * [ ] Get Guild Emoji
@@ -144,3 +124,7 @@ a fast and object oriented discord lib
 # Links 
 - [Documentation](https://tiscord.me/)
 - [Support](https://discord.gg/exUr7bjRjb)
+
+## See also
+[Tisbench](https://npmjs.com/package/tisbench)
+[Tisflake](httpa://npmjs.com/package/tisflake)
