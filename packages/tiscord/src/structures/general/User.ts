@@ -25,19 +25,26 @@ export class User {
     #avatar: bigint;
     bot: boolean;
     system: boolean;
-    #banner: bigint;
+    #banner?: bigint;
     flags: UserFlags;
     accentColor: number;
     raw?: APIUser;
+    #animated?: boolean;
     constructor(client: Client, data: APIUser) {
         this.id = BigInt(data.id);
         this.username = data.username;
         this.discriminator = data.discriminator;
         this.tag = `${this.username}#${this.discriminator}`;
-        this.#avatar = BigInt(`0x${data.avatar}`);
+        if (data.avatar) {
+            if (data.avatar.startsWith('a_')) {
+                data.avatar = data.avatar.slice(2);
+                this.#animated = true;
+            }
+            this.#avatar = BigInt(`0x${data.avatar}`);
+        }
         this.bot = data.bot || false;
         this.system = data.system || false;
-        this.#banner = BigInt(`0x${data.banner}`);
+        if (data.banner) this.#banner = BigInt(`0x${data.banner}`);
         this.flags = data.public_flags;
         this.accentColor = data.accent_color;
         if (client.raw) this.raw = data;
@@ -48,7 +55,7 @@ export class User {
      * @type {string}
      */
     get avatar() {
-        return this.#avatar.toString(16);
+        return (this.#animated ? 'a_' : '') + this.#avatar.toString(16);
     }
 
     /**

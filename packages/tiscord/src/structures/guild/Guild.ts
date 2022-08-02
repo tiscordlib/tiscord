@@ -49,7 +49,6 @@ import {
  * @property {string} locale - Guild locale
  * @property {number} boosterCount - Amount of boosters
  * @property {number} premiumTier - Server boost tier
- * @property {string} banner - Banner hash
  * @property {string} description - Guild description
  * @property {string} vanityUrlCode - Guild vanity invite
  * @property {number} maxMembers - How many members can this guild handle
@@ -83,10 +82,10 @@ export class Guild {
     client: Client;
     ownerId: bigint;
     owner: boolean;
-    #discoverySplash: bigint;
-    #splash: bigint;
+    #discoverySplash?: bigint;
+    #splash?: bigint;
     #iconHash?: bigint;
-    #icon: bigint;
+    #icon?: bigint;
     name: string;
     id: bigint;
     premiumProgressBarEnabled: boolean;
@@ -143,10 +142,11 @@ export class Guild {
         });
         this.id = BigInt(data.id);
         this.name = data.name;
-        this.#icon = BigInt(`0x${data.icon}`);
-        this.#iconHash = BigInt(`0x${data.icon_hash}`);
-        this.#splash = BigInt(`0x${data.splash}`);
-        this.#discoverySplash = BigInt(`0x${data.discovery_splash}`);
+        if (data.icon) this.#icon = BigInt(`0x${data.icon}`);
+        if (data.icon_hash) this.#iconHash = BigInt(`0x${data.icon_hash}`);
+        if (data.splash) this.#splash = BigInt(`0x${data.splash}`);
+        if (data.discovery_splash) this.#discoverySplash = BigInt(`0x${data.discovery_splash}`);
+        if (data.banner) this.#banner = BigInt(data.banner);
         this.owner = data.owner;
         if (data.owner_id) this.ownerId = BigInt(data.owner_id);
         if (data.afk_channel_id) this.afkChannelId = BigInt(data.afk_channel_id);
@@ -180,7 +180,6 @@ export class Guild {
         this.maxMembers = data.max_members;
         this.vanityUrlCode = data.vanity_url_code;
         this.description = data.description;
-        this.#banner = BigInt(data.banner);
         this.premiumTier = data.premium_tier;
         this.boosterCount = data.premium_subscription_count;
         this.locale = data.preferred_locale;
@@ -206,6 +205,38 @@ export class Guild {
      */
     get icon() {
         return this.#icon.toString(16);
+    }
+
+    /**
+     * The icon hash of the guild, returned when in template object
+     * @type {string}
+     */
+    get iconHash() {
+        return this.#iconHash?.toString(16);
+    }
+
+    /**
+     * The guild splash
+     * @type {string}
+     */
+    get splash() {
+        return this.#splash?.toString(16);
+    }
+
+    /**
+     * The guild banner
+     * @type {string}
+     */
+    get banner() {
+        return this.#banner?.toString(16);
+    }
+
+    /**
+     * The guild splash, returned when guild has DISCOVERABLE feature
+     * @type {string}
+     */
+    get discoverySplash() {
+        return this.#discoverySplash.toString(16);
     }
 
     /**

@@ -41,6 +41,7 @@ export class WebSocketManager {
             switch (data.op) {
                 case 0:
                     this.sequence = data.s;
+                    this.client.debug(`Received ${data.t} event`, 'gateway');
                     const event = this.client._wsEvents?.list.get(data.t);
                     if (event) {
                         await event(this.client, data);

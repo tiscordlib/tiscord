@@ -25,7 +25,6 @@ export class Cache<T> {
      */
     set(parent: bigint, object: any): void {
         if (!this.caches.has(parent)) this.caches.set(parent, new Map());
-        console.log({ id: object.id, parent });
         this.caches.get(parent).set(object.id || object.userId, object);
     }
 
