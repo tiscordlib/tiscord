@@ -1,5 +1,5 @@
 import { InteractionData } from '../../util/MessageOptions';
-import { FollowupMessage, Interaction, RawMessageOptions } from '../../';
+import { FollowupMessage, Interaction, Message, RawMessageOptions } from '../../';
 
 /**
  * A interaction that can be replied to.
@@ -13,7 +13,7 @@ export class RepliableInteraction extends Interaction {
      * @returns {Promise<any>}
      */
 
-    async reply(options: RawMessageOptions) {
+    async reply(options: RawMessageOptions): Promise<void> {
         const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
         const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, parsedData);
         return res;
@@ -24,7 +24,7 @@ export class RepliableInteraction extends Interaction {
      * @param ephemeral - Whether the defer should be ephemeral
      * @returns {Promise<any>}
      */
-    async defer(ephemeral?: boolean) {
+    async defer(ephemeral?: boolean): Promise<void> {
         const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
             body: { type: 5, data: { flags: ephemeral ? 64 : 0 } }
         });
@@ -36,7 +36,7 @@ export class RepliableInteraction extends Interaction {
      * @param ephemeral - Whether the defer should be ephemeral
      * @returns {Promise<any>}
      */
-    async deferUpdate(ephemeral?: boolean) {
+    async deferUpdate(ephemeral?: boolean): Promise<void> {
         const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
             body: { type: 6, data: { flags: ephemeral ? 64 : 0 } }
         });
@@ -50,7 +50,15 @@ export class RepliableInteraction extends Interaction {
      */
     async editReply(options: RawMessageOptions) {
         const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
-        return this.client.rest.patch(`/webhooks/${this.client.user.id}/${this.token}/messages/@original`, parsedData);
+        const message = new Message(
+            this.client,
+            await this.client.rest.patch(
+                `/webhooks/${this.client.user.id}/${this.token}/messages/@original`,
+                parsedData
+            )
+        );
+        message.guilds();
+        return message;
     }
 
     /**
@@ -72,6 +80,19 @@ export class RepliableInteraction extends Interaction {
     */
     async deleteReply() {
         await this.client.rest.delete(`/webhook/${this.client.user.id}/${this.token}/`);
+    }
+
+    /**
+     * Get the original reply.
+     * @returns {Promise<Message>}
+     */
+    async getReply(): Promise<Message> {
+        const message = new Message(
+            this.client,
+            await this.client.rest.get(`/webhooks/${this.client.user.id}/${this.token}/messages/@original`)
+        );
+        message.guilds();
+        return message;
     }
 
     /**
