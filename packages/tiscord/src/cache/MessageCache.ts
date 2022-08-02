@@ -6,7 +6,7 @@ import { Cache, Client, Message } from '../';
  */
 
 export class MessageCache extends Cache<Message> {
-    caches: Map<string, Map<string, any>>;
+    caches: Map<bigint, Map<bigint, any>>;
     client: Client;
     constructor(client: Client) {
         super();
@@ -19,7 +19,7 @@ export class MessageCache extends Cache<Message> {
      * @param {any} object - object to set
      * @returns {void}
      */
-    set(parent: string, object: any): void {
+    set(parent: bigint, object: any): void {
         if (!this.caches.has(parent)) this.caches.set(parent, new Map());
         const cache = this.caches.get(parent);
         if (cache.size >= (this.client.cacheOptions?.messageLimit || 50)) {

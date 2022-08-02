@@ -1,12 +1,5 @@
-import {
-    APIApplication,
-    APIChannel,
-    APIGuildScheduledEvent,
-    APIInvite,
-    APIPartialGuild,
-    APIUser
-} from 'discord-api-types/v10';
-import { Client, Guild, User, channelType } from '../../';
+import { APIApplication, APIGuildScheduledEvent, APIInvite } from 'discord-api-types/v10';
+import { Client, Guild, User, channelType, Channel } from '../../';
 
 /**
  * Channel class
@@ -32,9 +25,9 @@ import { Client, Guild, User, channelType } from '../../';
 export class Invite {
     code: string;
     raw?: APIInvite;
-    guild?: APIPartialGuild;
-    channel: APIChannel;
-    inviter?: APIUser;
+    guild?: Guild;
+    channel: Channel;
+    inviter?: User;
     targetType?: number;
     targetUser?: User;
     targetApplication?: Partial<APIApplication>;

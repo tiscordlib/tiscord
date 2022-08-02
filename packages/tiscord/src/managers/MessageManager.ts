@@ -20,12 +20,13 @@ export class MessageManager {
 
     /**
      * Get a message
-     * @param {string} message Message ID
+     * @param {bigint} message Message ID
+     * @param {boolean} fetch Whether to fetch the message from the API
      * @returns {Promise<Message>}
      */
-    async get(message: string) {
+    async get(message: bigint, fetch = false) {
         const cache = this.client.cache.messages.get(this.channel.id, message);
-        if (cache) return cache;
+        if (cache && fetch) return cache;
         let data: any = (await this.client.rest.get(`/channels/${this.channel.id}/messages/${message}`)) as APIMessage;
         data = new Message(this.client, data);
         this.client.cache.messages.set(this.channel.id, data);

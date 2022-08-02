@@ -51,7 +51,7 @@ export class ThreadChannel extends TextChannel {
      * Add a member to thread
      * @param {string} [member] - Member to add
      */
-    addMember(member: string) {
+    addMember(member: bigint) {
         const request = this.client.rest.put(`/channels/${this.id}/thread-members/${member}`) as any;
         if (request?.code) {
             throw new APIError(request?.message);
@@ -61,9 +61,9 @@ export class ThreadChannel extends TextChannel {
 
     /**
      * Remove a member from a thread
-     * @param {string} [member] - Member to remove
+     * @param {bigint} [member] - Member to remove
      */
-    removeMember(member: string) {
+    removeMember(member: bigint) {
         const request = this.client.rest.delete(`/channels/${this.id}/thread-members/${member}`) as any;
         if (request?.code) {
             throw new APIError(request?.message);
@@ -75,7 +75,7 @@ export class ThreadChannel extends TextChannel {
      * Get a member
      * @param member - ID of the member
      */
-    async getMember(member: string) {
+    async getMember(member: bigint) {
         const cache = this.client.cache.threadMembers.get(this.id, member);
         if (cache) return cache;
         const request = (await this.client.rest.get(`/channels/${this.id}/thread-members/${member}`)) as any;

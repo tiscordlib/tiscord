@@ -2,7 +2,7 @@
 /**
  * A class used to disable caching.
  */
-export class FakeMap<T> extends Map<string, T> {
+export class FakeMap<T> extends Map<bigint, T> {
     size: number;
     constructor() {
         super();
@@ -28,7 +28,7 @@ export class FakeMap<T> extends Map<string, T> {
      * @param {string} object - Object ID to delete
      * @returns {void}
      */
-    delete(key: string): boolean {
+    delete(key: bigint): boolean {
         return null;
     }
 }

@@ -11,13 +11,13 @@ import { Invite } from '../guild/Invite';
  * @param {any} data - API guild channel data
  * @extends {Channel}
  * @property {Guild} guild - Guild the channel is in
- * @property {string} guildId - Guild id
+ * @property {bigint} guildId - Guild id
  * @property {number} position - Channel position
  * @property {any[]} permissionOverwrites - Channel permission overwrites
  * @property {string} permissions - Channel permissions for the bot
  */
 export class GuildChannel extends Channel {
-    guildId: string;
+    guildId: bigint;
     position: number;
     permissionOverwrites: any[];
     permissions: string;

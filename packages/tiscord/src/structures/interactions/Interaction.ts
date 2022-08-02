@@ -17,11 +17,11 @@ import { ModalInteraction } from './ModalInteraction';
  * @param {APIInteraction} data - Interaction data
  * @class
  * @property {Client} client - Client instance
- * @property {string} id - Interaction ID
+ * @property {bigint} id - Interaction ID
  * @property {string} type - Interaction type
- * @property {string} channelId - Channel ID
- * @property {string} applicationId - Application ID
- * @property {string} guildId - Guild ID
+ * @property {bigint} channelId - Channel ID
+ * @property {bigint} applicationId - Application ID
+ * @property {bigint} guildId - Guild ID
  * @property {string} token - Interaction token for replying
  * @property {Member} member - Member instance
  * @property {User} user - User who started the interaction
@@ -31,15 +31,15 @@ import { ModalInteraction } from './ModalInteraction';
  * @property {string} guildLocale - Guild locale
  */
 export class Interaction {
-    applicationId: string;
+    applicationId: bigint;
     type: number;
-    guildId: string;
-    id: string;
+    guildId: bigint;
+    id: bigint;
     token: string;
     user?: User;
     raw?: APIInteraction;
     data: any;
-    channelId: string;
+    channelId: bigint;
     guildLocale: string;
     locale: string;
     client: Client;
@@ -48,25 +48,25 @@ export class Interaction {
     appPermissions: Permissions;
     constructor(client: Client, data: APIInteraction) {
         this.appPermissions = new Permissions(BigInt(data.app_permissions || 0));
-        this.guild = client.cache.guilds.get(data.guild_id);
+        this.guild = client.cache.guilds.get(BigInt(data.guild_id));
         this.client = client;
-        this.id = data.id;
-        this.applicationId = data.application_id;
+        this.id = BigInt(data.id);
+        this.applicationId = BigInt(data.application_id);
         this.type = data.type;
-        this.guildId = data.guild_id;
+        this.guildId = BigInt(data.guild_id);
         this.token = data.token;
         if (data.user && data.member) data.member.user = data.user;
         if (data.member) this.member = new Member(client, data.member, this.guild);
         this.member?.setup();
-        this.user = new User(client, data.user || this.member.user);
-        this.channelId = data.channel_id;
+        this.user = new User(client, data.user || data.member.user);
+        this.channelId = BigInt(data.channel_id);
         this.data = data.data;
         if (client.raw) this.raw = data;
         this.guildLocale = data.guild_locale;
         // @ts-expect-error
         this.locale = data.locale;
         client.cache.users.set(this.user.id, this.user);
-        if (this.guild) client.cache.members.set(this.guild?.id, this.member);
+        if (this.guild) client.cache.members.set(this.guild.id, this.member);
         if (this.guild) client.cache.guilds.set(this.guild.id, this.guild);
     }
 

@@ -7,7 +7,7 @@ import { Client } from '../../';
  * @param {Client} client - Client instance
  * @param {APIRole} data - Role data
  * @class
- * @property {string} id - Role ID
+ * @property {bigint} id - Role ID
  * @property {string} name - Role name
  * @property {string} color - Role color
  * @property {string} hoist - Is the role hoisted
@@ -20,7 +20,7 @@ import { Client } from '../../';
  * @property {string} [botId] - Bot ID
  */
 export class Role {
-    id: string;
+    id: bigint;
     name: string;
     color: number;
     hoist: boolean;
@@ -28,11 +28,11 @@ export class Role {
     permissions: bigint;
     managed: boolean;
     mentionable: boolean;
-    botId?: string;
-    integrationId?: string;
+    botId?: bigint;
+    integrationId?: bigint;
     raw?: APIRole;
     constructor(client: Client, data: APIRole) {
-        this.id = data.id;
+        this.id = BigInt(data.id);
         this.name = data.name;
         this.color = data.color;
         this.hoist = data.hoist;
@@ -40,8 +40,8 @@ export class Role {
         this.permissions = BigInt(data.permissions);
         this.managed = data.managed;
         this.mentionable = data.mentionable;
-        if (data.tags?.bot_id) this.botId = data.tags.bot_id;
-        if (data.tags?.integration_id) this.integrationId = data.tags.integration_id;
+        if (data.tags?.bot_id) this.botId = BigInt(data.tags.bot_id);
+        if (data.tags?.integration_id) this.integrationId = BigInt(data.tags.integration_id);
         if (client.raw) this.raw = data;
     }
 }

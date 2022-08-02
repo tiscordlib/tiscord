@@ -11,7 +11,8 @@ export async function threadListSync(
         return channel;
     });
     data.d.members.map((member: APIThreadMember) => new ThreadMember(member));
-    data.d.threads.forEach((thread: ThreadChannel) => client.cache.channels.set(thread.guildId, thread));
+    // @ts-expect-error
+    data.d.threads.forEach((thread: ThreadChannel) => client.cache.channels.set(BigInt(thread.id), thread));
     data.d.members.forEach((member: ThreadMember) => client.cache.threadMembers.set(member.threadId, member));
     client.emit('threadListSync', [data.d.threads, data.d.members]);
 }

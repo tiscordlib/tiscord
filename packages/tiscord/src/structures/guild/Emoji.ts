@@ -7,7 +7,7 @@ import { APIEmoji } from 'discord-api-types/v10';
  * @class
  * @param {Client} client - Client instance
  * @param {APIEmoji} data - Emoji data
- * @property {string} id - Emoji ID
+ * @property {bigint} id - Emoji ID
  * @property {string} name - Emoji name
  * @property {string[]} roles - Roles that can use this emoji
  * @property {boolean} requireColons - Whether this emoji requires colons
@@ -18,7 +18,7 @@ import { APIEmoji } from 'discord-api-types/v10';
  * @property {APIEmoji} [raw] - raw data
  */
 export class Emoji {
-    id: string;
+    id: bigint;
     name: string;
     roles: string[];
     author: User;
@@ -28,7 +28,7 @@ export class Emoji {
     available: boolean;
     raw: APIEmoji;
     constructor(client: Client, emoji: APIEmoji) {
-        this.id = emoji.id;
+        this.id = BigInt(emoji.id);
         this.name = emoji.name;
         this.roles = emoji.roles;
         if (emoji.user) this.author = new User(client, emoji.user);

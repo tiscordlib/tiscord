@@ -6,7 +6,7 @@ import { Client, RepliableInteraction } from '../../';
  * A modal interaction
  * @param {Client} client - The client
  * @param {APIModalSubmitInteraction} data - The data
- * @property {string} customId - The custom id
+ * @property {bigint} customId - The custom id
  * @property {ModalOptions} options - The options
  */
 export class ModalInteraction extends RepliableInteraction {

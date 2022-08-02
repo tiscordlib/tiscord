@@ -18,7 +18,7 @@ import { APIGuildMember } from 'discord-api-types/v10';
  * @property {string} premiumSince - Since when is the member boosting the guild
  * @property {string} deaf - Is the member deafened
  * @property {string} mute - Is the member muted
- * @property {string} id - Member ID
+ * @property {bigint} id - Member ID
  * @property {number} communicationDisabledUntil - When the member's timeout will expire
  * @property {boolean} pending - Is the member pending verification
  * @property {APIGuildMember} [raw] - Raw member data
@@ -34,8 +34,8 @@ export class Member {
     nick: string;
     user: User;
     raw?: APIGuildMember;
-    id: string;
-    guildId: string;
+    id: bigint;
+    guildId: bigint;
     guild?: Guild;
     permissions?: Permissions;
     communicationDisabledUntil: number;
@@ -63,7 +63,7 @@ export class Member {
      * Internal function, sets permissions and other stuff
      */
     async setup() {
-        this.roles = await Promise.all(this.roles.map(role => this.guild?.roles?.get(role)));
+        this.roles = await Promise.all(this.roles.map(role => this.guild?.roles?.get(BigInt(role))));
         this.permissions = new Permissions(this.roles.map(r => BigInt(r?.permissions || 0)));
     }
 
@@ -119,7 +119,7 @@ export class Member {
      * @param {MemberOptions} roleId - ID of the role
      * @param {string} reason - The reason of the role add. This will be shown in the audit logs
      */
-    async addRole(roleId: string, reason?: string) {
+    async addRole(roleId: bigint, reason?: string) {
         const request = (await this.client.rest.put(`/guilds/{guild.id}/members/${this.id}/roles/${roleId}`, {
             reason
         })) as any;
@@ -134,7 +134,7 @@ export class Member {
      * @param {MemberOptions} roleId - ID of the role
      * @param {string} reason - The reason of the role removal. This will be shown in the audit logs
      */
-    async removeRole(roleId: string, reason?: string) {
+    async removeRole(roleId: bigint, reason?: string) {
         const request = (await this.client.rest.delete(`/guilds/{guild.id}/members/${this.id}/roles/${roleId}`, {
             reason
         })) as any;

@@ -16,11 +16,11 @@ export class UserManager {
 
     /**
      * Get an user
-     * @param id User ID
-     * @param fetch Whether to fetch the user from the API
+     * @param {bigint} id User ID
+     * @param {boolean} fetch Whether to fetch the user from the API
      * @returns {Promise<User>}
      */
-    async get(id: string, fetch?) {
+    async get(id: bigint, fetch?) {
         if (this.client.cache.users.has(id) && !fetch) return this.client.cache.users.get(id);
         const data = new User(this.client, (await this.client.rest.get(`/users/${id}`)) as APIUser);
         this.client.cache.users.set(id, data);

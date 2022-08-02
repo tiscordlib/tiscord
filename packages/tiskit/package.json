@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "version": "0.3.0",
   "scripts": {
-    "build": "tsc",
+    "build": "echo i am also stupid",
     "lint": "eslint ./src",
     "docs": "echo i am stupid"
   },
