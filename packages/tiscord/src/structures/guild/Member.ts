@@ -12,7 +12,6 @@ import { APIGuildMember } from 'discord-api-types/v10';
  * @property {Role[]} roles - Array of roles the member has
  * @property {User} user - User instance
  * @property {string} nick - Guild nickname
- * @property {string} avatar - User avatar hash
  * @property {string} joinedAt - when did the member join the guild
  * @property {string[]} roles - array of role IDs
  * @property {string} premiumSince - Since when is the member boosting the guild
@@ -30,7 +29,7 @@ export class Member {
     deaf: boolean;
     premiumSince: string;
     joinedAt: string;
-    avatar: string;
+    #avatar: bigint;
     nick: string;
     user: User;
     raw?: APIGuildMember;
@@ -40,13 +39,15 @@ export class Member {
     permissions?: Permissions;
     communicationDisabledUntil: number;
     pending: boolean;
+    #animated: boolean;
     constructor(client: Client, data: APIGuildMember, guild: Guild) {
         this.guild = guild;
         this.roles = data.roles;
         if (data.user) this.user = new User(client, data.user);
         this.client = client;
+        this.#animated = data.avatar?.startsWith('a_');
         this.nick = data.nick;
-        this.avatar = data.avatar;
+        if (data.avatar) this.#avatar = BigInt(`0x${data.avatar}`);
         this.joinedAt = data.joined_at;
         this.premiumSince = data.premium_since;
         this.deaf = data.deaf;
@@ -57,6 +58,14 @@ export class Member {
         this.id = this.user.id;
         this.guildId = guild?.id;
         client.cache.users.set(this.user.id, this.user);
+    }
+
+    /**
+     * Avatar hash
+     * @type {string}
+     */
+    get avatar() {
+        return (this.#animated ? 'a_' : '') + this.#avatar.toString(16);
     }
 
     /**
@@ -148,11 +157,11 @@ export class Member {
      * Timeout this member
      * @param {number} time - How long to timeout the member for (In seconds)
      */
-    async timeout(time: number) {
+    async timeout(time: number, reason: string) {
         if (time > 2592000) {
             throw new APIError('You cannot timeout a member for more than 30 days.');
         }
         const date = new Date(Date.now() / 1000 + time);
-        this.edit({ communicationDisabledUntil: date.toISOString() }, 'Timeout');
+        this.edit({ communicationDisabledUntil: date.toISOString() }, reason);
     }
 }

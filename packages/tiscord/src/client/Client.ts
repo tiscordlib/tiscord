@@ -26,6 +26,7 @@ import { REST } from '../rest/REST';
 // @ts-expect-error
 import { version } from '../../package.json';
 import { Events } from '../util/Events';
+import { AllowedMentions, RawMentions } from 'util/AllowedMentions';
 
 /**
  *  The main client class
@@ -57,7 +58,8 @@ export class Client extends EventEmitter {
     guilds: GuildManager;
     channels: ChannelManager;
     user: User;
-    on: <K extends keyof Events>(s: K, listener: Events[K]) => this;
+    on: (<K extends keyof Events>(s: K, listener: Events[K]) => this) &
+        ((s: string, listener: (...args: any[]) => void) => this);
     cache: {
         members: Cache<Member> | FakeCache;
         guilds: Map<bigint, Guild> | FakeMap<Guild>;
@@ -70,9 +72,9 @@ export class Client extends EventEmitter {
     _wsEvents: EventManager = new EventManager();
     raw: boolean;
     cacheOptions: CacheOptions;
-    debugLogs: boolean;
+    debugLogs: typeof console.log;
     presence: GatewayPresenceUpdateData;
-    allowedMentions: APIAllowedMentions;
+    allowedMentions: RawMentions;
     constructor(options: ClientOptions) {
         super();
         this.cacheOptions = options.cache;
@@ -92,7 +94,7 @@ export class Client extends EventEmitter {
         this.guilds = new GuildManager(this);
         this.channels = new ChannelManager(this);
         this.debugLogs = options.debug;
-        this.allowedMentions = options.allowedMentions;
+        this.allowedMentions = new AllowedMentions(options.allowedMentions);
         this.presence = options.presence;
         this.cache = {
             members: this.cacheOptions?.members === false ? new FakeCache() : new Cache<Member>(),
@@ -130,9 +132,7 @@ export class Client extends EventEmitter {
         const dateObj = new Date();
         const date = `${dateObj.getHours()}:${dateObj.getMinutes()}:${dateObj.getSeconds()}`;
         const newMessage = `[${date} ${header || 'tiscord'}] ${message}`;
-        if (this.debugLogs) {
-            console.log(newMessage);
-        }
+        if (this.debugLogs) this.debugLogs(newMessage);
     }
 
     /**

@@ -1,4 +1,4 @@
-import { APIChannel } from 'discord-api-types/v10';
+import { APIChannel, ChannelType } from 'discord-api-types/v10';
 import { Client } from '../../';
 
 /**
@@ -26,5 +26,39 @@ export class Channel {
         this.name = data.name;
         this.raw = data;
         this.client = client;
+    }
+
+    /**
+     * Indicates whether this channel is a {@link ThreadChannel}.
+     * @returns {boolean}
+     */
+    isThread() {
+        return [ChannelType.GuildNewsThread, ChannelType.GuildPrivateThread, ChannelType.GuildPublicThread].includes(
+            this.type
+        );
+    }
+
+    /**
+     * Indicates whether this channel is {@link TextBasedChannels text-based}.
+     * @returns {boolean}
+     */
+    isTextBased() {
+        return 'messages' in this;
+    }
+
+    /**
+     * Indicates whether this channel is DM-based (either a {@link DMChannel} or a {@link PartialGroupDMChannel}).
+     * @returns {boolean}
+     */
+    isDMBased() {
+        return [ChannelType.DM, ChannelType.GroupDM].includes(this.type);
+    }
+
+    /**
+     * Indicates whether this channel is {@link BaseGuildVoiceChannel voice-based}.
+     * @returns {boolean}
+     */
+    isVoiceBased() {
+        return 'bitrate' in this;
     }
 }

@@ -40,7 +40,7 @@ export { MessageManager } from './managers/MessageManager';
 export { Permissions } from './util/Permissions';
 export { Role } from './structures/guild/Role';
 export { RoleOptions } from './util/RoleOptions';
-export { RolesManager } from './managers/RolesManager';
+export { RoleManager } from './managers/RoleManager';
 export { SelectMenuOption } from './structures/interactions/SelectMenuOption';
 export { Sticker } from './structures/guild/Sticker';
 export { Team } from './structures/application/Team';
@@ -65,3 +65,4 @@ export { ChatInputCommandInteraction } from './structures/interactions/ChatInput
 export { SelectMenuInteraction } from './structures/interactions/SelectMenuInteraction';
 export { ButtonInteraction } from './structures/interactions/ButtonInteraction';
 export { ModalInteraction } from './structures/interactions/ModalInteraction';
+export * from './util/AllowedMentions';

@@ -21,7 +21,7 @@ import {
     MemberManager,
     Role,
     RoleOptions,
-    RolesManager,
+    RoleManager,
     Sticker,
     ThreadChannel,
     channelType
@@ -68,7 +68,7 @@ import {
  * @property {number} mfaLevel - 2FA level
  * @property {GuildFeature[]} features - Guild features
  * @property {APIEmoji[]} emojis - Guild emojis
- * @property {RolesManager} roles - Guild roles
+ * @property {RoleManager} roles - Guild roles
  * @property {number} explicitContentFilter - Explicit content filter level
  * @property {number} defaultMessageNotifications - Default message notification level
  * @property {number} verificationLevel - Verification level
@@ -118,7 +118,7 @@ export class Guild {
     mfaLevel: number;
     features: GuildFeature[];
     emojis: Emoji[];
-    roles: RolesManager;
+    roles: RoleManager;
     explicitContentFilter: number;
     defaultMessageNotifications: number;
     verificationLevel: number;
@@ -156,7 +156,7 @@ export class Guild {
         this.verificationLevel = data.verification_level;
         this.defaultMessageNotifications = data.default_message_notifications;
         this.explicitContentFilter = data.explicit_content_filter;
-        this.roles = new RolesManager(client, this.id);
+        this.roles = new RoleManager(client, this.id);
         this.emojis = data.emojis?.map(emoji => new Emoji(client, emoji));
         this.features = data.features;
         this.mfaLevel = data.mfa_level;

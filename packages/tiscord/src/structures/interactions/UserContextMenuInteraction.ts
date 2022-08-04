@@ -1,5 +1,5 @@
 import { APIUserApplicationCommandInteraction } from 'discord-api-types/v10';
-import { Client, CommandInteraction, User } from '../../';
+import { Client, CommandInteraction, Member, User } from '../../';
 
 /**
  * Represents a user context menu command interaction.
@@ -10,8 +10,11 @@ import { Client, CommandInteraction, User } from '../../';
  */
 export class UserContextMenuInteraction extends CommandInteraction {
     target: User;
+    targetMember: Member;
     constructor(client: Client, data: APIUserApplicationCommandInteraction) {
         super(client, data);
         this.target = new User(client, data.data.resolved.users[data.data.target_id]);
+        // @ts-expect-error
+        this.targetMember = new Member(client, data.data.resolved.members[data.data.target_id], this.guild);
     }
 }

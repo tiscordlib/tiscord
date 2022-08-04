@@ -23,7 +23,7 @@ export class ButtonInteraction extends RepliableInteraction {
      * Edit the original reply.
      * @param content - The content of the new message.
      */
-    async editOriginalMessage(options: RawMessageOptions) {
+    async updateReply(options: RawMessageOptions) {
         const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options }, 7);
         const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, parsedData);
         return res;
