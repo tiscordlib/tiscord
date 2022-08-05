@@ -21,12 +21,12 @@ import {
 import process from 'node:process';
 import { arch, release, type } from 'node:os';
 import { EventEmitter } from 'node:events';
-import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
+import { GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
 import { REST } from '../rest/REST';
 // @ts-expect-error
 import { version } from '../../package.json';
 import { Events } from '../util/Events';
-import { AllowedMentions, RawMentions } from 'util/AllowedMentions';
+import { AllowedMentions, RawMentions } from '../util/AllowedMentions';
 
 /**
  *  The main client class
@@ -94,7 +94,7 @@ export class Client extends EventEmitter {
         this.guilds = new GuildManager(this);
         this.channels = new ChannelManager(this);
         this.debugLogs = options.debug;
-        this.allowedMentions = new AllowedMentions(options.allowedMentions);
+        if (options.allowedMentions) this.allowedMentions = new AllowedMentions(options.allowedMentions);
         this.presence = options.presence;
         this.cache = {
             members: this.cacheOptions?.members === false ? new FakeCache() : new Cache<Member>(),

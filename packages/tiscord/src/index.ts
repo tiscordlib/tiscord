@@ -65,4 +65,4 @@ export { ChatInputCommandInteraction } from './structures/interactions/ChatInput
 export { SelectMenuInteraction } from './structures/interactions/SelectMenuInteraction';
 export { ButtonInteraction } from './structures/interactions/ButtonInteraction';
 export { ModalInteraction } from './structures/interactions/ModalInteraction';
-export * from './util/AllowedMentions';
+export { AllowedMentions, RawMentions } from './util/AllowedMentions';
