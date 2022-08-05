@@ -19,7 +19,7 @@ export interface ClientOptions {
     api?: number;
     rawDataStorage?: boolean;
     cache?: CacheOptions;
-    debug?: boolean;
+    debug?: typeof console.log;
     presence?: GatewayPresenceUpdateData;
     allowedMentions?: APIAllowedMentions;
 }

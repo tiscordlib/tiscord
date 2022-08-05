@@ -22,7 +22,7 @@ import {
     MessageType
 } from 'discord-api-types/v10';
 import { Attachment } from './Attachment';
-import { MessageData } from '../../util/MessageOptions';
+import { MessageData } from '../../options/MessageOptions';
 
 /**
  * Message class
@@ -30,8 +30,8 @@ import { MessageData } from '../../util/MessageOptions';
  * @param {Client} client - Client instance
  * @param {APIMessage} data - Message data
  * @class
- * @property {string} id - Message ID
- * @property {string} channelId - Channel ID
+ * @property {bigint} id - Message ID
+ * @property {bigint} channelId - Channel ID
  * @property {User} author - Author user object
  * @property {number} timestamp - When was the message created
  * @property {string} content - Message content
@@ -46,9 +46,9 @@ import { MessageData } from '../../util/MessageOptions';
  * @property {Message} referencedMessage - Message that was replied to
  * @property {MessageFlags} flags - Message flags
  * @property {APIMessageReference} messageReference - Message reference object
- * @property {string} applicationId - Application ID, if a application sent the message.
+ * @property {bigint} applicationId - Application ID, if a application sent the message.
  * @property {string} type - Message type
- * @property {string} webhookId - Webhook id, if a webhook sent the message.
+ * @property {bigint} webhookId - Webhook id, if a webhook sent the message.
  * @property {boolean} pinned - Whether the message is pinned
  * @property {string | number} nonce - Message nonce
  * @property {any[]} reactions - Message reactions
@@ -59,9 +59,9 @@ import { MessageData } from '../../util/MessageOptions';
  * @property {Member} member - Member the message was sent by
  */
 export class Message {
-    id: string;
-    channelId: string;
-    guildId: string;
+    id: bigint;
+    channelId: bigint;
+    guildId: bigint;
     author: User;
     timestamp: number;
     content: string;
@@ -77,9 +77,9 @@ export class Message {
     referencedMessage: Message | null;
     flags: MessageFlags;
     messageReference: APIMessageReference;
-    applicationId: string;
+    applicationId: bigint;
     type: keyof typeof MessageType;
-    webhookId: string;
+    webhookId: bigint;
     pinned: boolean;
     nonce: string | number;
     reactions: any[];
@@ -91,11 +91,11 @@ export class Message {
     member: Member;
     constructor(client: Client, data: APIMessage) {
         this.client = client;
-        this.id = data.id;
-        this.channelId = data.channel_id;
+        this.id = BigInt(data.id);
+        this.channelId = BigInt(data.channel_id);
         // @ts-expect-error
-        this.guildId = data.guild_id;
-        if (data.author?.id) this.author = new User(client, data.author);
+        if (data.guild_id) this.guildId = BigInt(data.guild_id);
+        if (data.author.id) this.author = new User(client, data.author);
         this.guild = this.client.cache.guilds.get(this.guildId);
         this.content = data.content;
         this.timestamp = Math.round(new Date(data.timestamp).getTime() / 1000);
@@ -108,10 +108,10 @@ export class Message {
         this.reactions = data.reactions || [];
         this.nonce = data.nonce;
         this.pinned = data.pinned;
-        this.webhookId = data.webhook_id;
+        if (data.webhook_id) this.webhookId = BigInt(data.webhook_id);
         // @ts-expect-error
         this.type = MessageType[data.type];
-        this.applicationId = data.application_id;
+        if (data.application_id) this.applicationId = BigInt(data.application_id);
         this.messageReference = data.message_reference;
         this.flags = data.flags;
         this.referencedMessage = data.referenced_message ? new Message(client, data.referenced_message) : undefined;
@@ -130,7 +130,7 @@ export class Message {
      * An function that adds Message.guild and Message.channel to the message
      */
     async guilds() {
-        this.channel = await this.client.channels?.get(this.channelId);
+        this.channel = (await this.client.channels?.get(this.channelId)) as TextChannel;
         if (!this.webhookId) this.member = await this.guild?.members?.get(this.author.id);
     }
 

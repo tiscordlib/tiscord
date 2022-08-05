@@ -12,19 +12,19 @@ import { APIGuildMember } from 'discord-api-types/v10';
  */
 export class MemberManager {
     client: Client;
-    guild: string;
-    constructor(client: Client, guild: string) {
+    guild: bigint;
+    constructor(client: Client, guild: bigint) {
         this.client = client;
         this.guild = guild;
     }
 
     /**
      * Get a member
-     * @param {string} id Member ID
+     * @param {bigint} id Member ID
      * @param {boolean} fetch whether to fetch the member from api
      * @returns {Promise<Member>}
      */
-    async get(id: string, fetch?) {
+    async get(id: bigint, fetch?) {
         const cache = this.client.cache.members.get(this.guild, id);
         const guild = this.client.cache.guilds.get(this.guild);
         if (cache && !fetch) return cache;

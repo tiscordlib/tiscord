@@ -4,7 +4,7 @@ export async function ready(client: Client, data: { d: any }) {
     client.ws.sessionId = data.d.session_id;
     client.user = new User(client, data.d.user);
     data.d.guilds.map(g => new Guild(client, g));
-    data.d.guilds.forEach(g => {
+    data.d.guilds.forEach((g: Guild) => {
         client.cache.guilds.set(g.id, g);
     });
     client.debug('Received ready event from gateway', 'gateway');

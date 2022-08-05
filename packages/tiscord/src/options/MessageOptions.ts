@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { APIAllowedMentions } from 'discord-api-types/v10';
-import { MessageAttachment } from '../';
+import { AllowedMentions, MessageAttachment, RawMentions } from '../';
 
 /**
  * Message options, used for parsing messages to an api readable format
@@ -32,7 +32,7 @@ export class MessageOptions {
             throw new TypeError('`content`, `embeds`, `attachments` and `stickers` are all empty.');
         this.content = data.content;
         if (data.embeds) this.embeds = data.embeds;
-        if (data.allowedMentions) this.allowed_mentions = data.allowedMentions;
+        if (data.allowedMentions) this.allowed_mentions = new AllowedMentions(data.allowedMentions);
         if (data.replyTo) this.message_reference = { message_id: data.replyTo };
         if (data.components) this.components = data.components;
         if (data.stickers) this.sticker_ids = data.stickers;
@@ -110,7 +110,7 @@ export class InteractionData {
 export interface RawMessageOptions {
     content?: string;
     embeds?: any[];
-    allowedMentions?: APIAllowedMentions;
+    allowedMentions?: RawMentions;
     attachments?: MessageAttachment[];
     files?: MessageAttachment[];
     components?: any[];

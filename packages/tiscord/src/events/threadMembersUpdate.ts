@@ -16,10 +16,10 @@ export async function threadMembersUpdate(
 ) {
     data.d.added_members.map(member => new ThreadMember(member));
     data.d.added_members.forEach(m => {
-        client.cache.threadMembers.set(m.id, m);
+        client.cache.threadMembers.set(BigInt(m.id), m);
     });
     data.d.removedMemberIds.forEach(m => {
-        client.cache.threadMembers.delete(data.d.id, m);
+        client.cache.threadMembers.delete(BigInt(data.d.id), BigInt(m));
     });
     client.emit('threadMembersUpdate', [data.d.added_members, data.d.removedMemberIds]);
 }

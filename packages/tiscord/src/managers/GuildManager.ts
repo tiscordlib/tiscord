@@ -14,11 +14,11 @@ export class GuildManager {
 
     /**
      * Gets a guild
-     * @param {string} guild - Guild ID
+     * @param {bigint} guild - Guild ID
      * @param {boolean} fetch - Whether to fetch the guild
      * @returns {Promise<Guild>}
      */
-    async get(guild: string, fetch?) {
+    async get(guild: bigint, fetch?) {
         const cache = this.client.cache.guilds.get(guild);
         if (cache && !fetch) return cache;
         const data = new Guild(this.client, await this.client.rest.get(`/guilds/${guild}`));

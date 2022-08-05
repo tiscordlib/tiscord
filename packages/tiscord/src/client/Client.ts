@@ -10,7 +10,6 @@ import {
     Guild,
     GuildManager,
     Member,
-    Message,
     MessageCache,
     Role,
     ThreadMember,
@@ -23,10 +22,11 @@ import process from 'node:process';
 import { arch, release, type } from 'node:os';
 import { EventEmitter } from 'node:events';
 import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
-import { REST } from './REST';
+import { REST } from '../rest/REST';
 // @ts-expect-error
 import { version } from '../../package.json';
 import { Events } from '../util/Events';
+import { AllowedMentions, RawMentions } from 'util/AllowedMentions';
 
 /**
  *  The main client class
@@ -43,8 +43,8 @@ import { Events } from '../util/Events';
  *  @property {string} api - The API version
  *  @property {CacheOptions} cacheOptions - Cache options
  *  @property {boolean} debugLogs - Whether to enable debug logs
- * @property {User} user - The current user
- * @property {GatewayPresenceUpdateData} -
+ *  @property {User} user - The current user
+ *  @property {GatewayPresenceUpdateData} presence - The current client presence
  *  @extends EventEmitter
  *  @class
  */
@@ -58,22 +58,23 @@ export class Client extends EventEmitter {
     guilds: GuildManager;
     channels: ChannelManager;
     user: User;
-    on: <K extends keyof Events>(s: K, listener: Events[K]) => this;
+    on: (<K extends keyof Events>(s: K, listener: Events[K]) => this) &
+        ((s: string, listener: (...args: any[]) => void) => this);
     cache: {
         members: Cache<Member> | FakeCache;
-        guilds: Map<string, Guild> | FakeMap<Guild>;
-        channels: Map<string, Channel>;
-        users: Map<string, User>;
-        messages: Cache<Message> | FakeCache;
+        guilds: Map<bigint, Guild> | FakeMap<Guild>;
+        channels: Map<bigint, Channel>;
+        users: Map<bigint, User>;
+        messages: MessageCache | FakeCache;
         roles: Cache<Role> | FakeCache;
         threadMembers: Cache<ThreadMember> | FakeCache;
     };
     _wsEvents: EventManager = new EventManager();
     raw: boolean;
     cacheOptions: CacheOptions;
-    debugLogs: boolean;
+    debugLogs: typeof console.log;
     presence: GatewayPresenceUpdateData;
-    allowedMentions: APIAllowedMentions;
+    allowedMentions: RawMentions;
     constructor(options: ClientOptions) {
         super();
         this.cacheOptions = options.cache;
@@ -87,28 +88,22 @@ export class Client extends EventEmitter {
         }
         this.raw = options.rawDataStorage;
         this.apiVersion = options.api || 10;
-        this.rest = new REST(
-            {
-                baseURL: 'https://discord.com/api',
-                version: this.apiVersion,
-                auth: `Bot ${this.token}`
-            },
-            this
-        );
+        this.rest = new REST();
+        this.rest.token(this.token);
         this.users = new UserManager(this);
         this.guilds = new GuildManager(this);
         this.channels = new ChannelManager(this);
         this.debugLogs = options.debug;
-        this.allowedMentions = options.allowedMentions;
+        this.allowedMentions = new AllowedMentions(options.allowedMentions);
         this.presence = options.presence;
         this.cache = {
-            members: this.cacheOptions?.members === false ? new FakeCache() : new Cache(),
-            guilds: this.cacheOptions?.guilds === false ? new FakeMap() : new Map(),
-            channels: this.cacheOptions?.channels === false ? new FakeMap() : new Map(),
-            users: this.cacheOptions?.users === false ? new FakeMap() : new Map(),
+            members: this.cacheOptions?.members === false ? new FakeCache() : new Cache<Member>(),
+            guilds: this.cacheOptions?.guilds === false ? new FakeMap() : new Map<bigint, Guild>(),
+            channels: this.cacheOptions?.channels === false ? new FakeMap() : new Map<bigint, Channel>(),
+            users: this.cacheOptions?.users === false ? new FakeMap() : new Map<bigint, User>(),
             messages: this.cacheOptions?.users === false ? new FakeCache() : new MessageCache(this),
-            roles: this.cacheOptions?.messages === false ? new FakeCache() : new Cache(),
-            threadMembers: this.cacheOptions?.messages === false ? new FakeCache() : new Cache()
+            roles: this.cacheOptions?.messages === false ? new FakeCache() : new Cache<Role>(),
+            threadMembers: this.cacheOptions?.messages === false ? new FakeCache() : new Cache<ThreadMember>()
         };
         this.debug(`OS Version: ${type()} ${release()} ${arch()}`);
         this.debug(`Node.js version: ${process.version}`);
@@ -137,9 +132,7 @@ export class Client extends EventEmitter {
         const dateObj = new Date();
         const date = `${dateObj.getHours()}:${dateObj.getMinutes()}:${dateObj.getSeconds()}`;
         const newMessage = `[${date} ${header || 'tiscord'}] ${message}`;
-        if (this.debugLogs) {
-            console.log(newMessage);
-        }
+        if (this.debugLogs) this.debugLogs(newMessage);
     }
 
     /**

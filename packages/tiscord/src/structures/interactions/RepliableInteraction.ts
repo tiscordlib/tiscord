@@ -1,4 +1,4 @@
-import { InteractionData } from '../../util/MessageOptions';
+import { InteractionData } from '../../options/MessageOptions';
 import { FollowupMessage, Interaction, Message, RawMessageOptions } from '../../';
 
 /**
@@ -15,8 +15,7 @@ export class RepliableInteraction extends Interaction {
 
     async reply(options: RawMessageOptions): Promise<void> {
         const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
-        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, parsedData);
-        return res;
+        this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, parsedData);
     }
 
     /**
@@ -25,10 +24,9 @@ export class RepliableInteraction extends Interaction {
      * @returns {Promise<any>}
      */
     async defer(ephemeral?: boolean): Promise<void> {
-        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
+        this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
             body: { type: 5, data: { flags: ephemeral ? 64 : 0 } }
         });
-        return res;
     }
 
     /**
@@ -37,10 +35,9 @@ export class RepliableInteraction extends Interaction {
      * @returns {Promise<any>}
      */
     async deferUpdate(ephemeral?: boolean): Promise<void> {
-        const res = this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
+        this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, {
             body: { type: 6, data: { flags: ephemeral ? 64 : 0 } }
         });
-        return res;
     }
 
     /**

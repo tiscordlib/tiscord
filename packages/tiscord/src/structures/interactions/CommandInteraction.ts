@@ -16,7 +16,7 @@ import { RepliableInteraction } from './RepliableInteraction';
 export class CommandInteraction extends RepliableInteraction {
     commandType: number;
     name: string;
-    commandId: string;
+    commandId: bigint;
     constructor(client: Client, data: any) {
         super(client, data);
         this.commandId = data.data.id;

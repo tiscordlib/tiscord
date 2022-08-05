@@ -3,7 +3,7 @@ import { APIAttachment } from 'discord-api-types/v10';
 /**
  * Represents an attachment.
  * @param {APIAttachment} attachment - Attachment data
- * @property {string} id - Attachment ID
+ * @property {bigint} id - Attachment ID
  * @property {string} filename - Attachment filename
  * @property {string} description - Attachment description
  * @property {number} size - Attachment size
@@ -15,7 +15,7 @@ import { APIAttachment } from 'discord-api-types/v10';
  */
 export class Attachment {
     ephemeral: boolean;
-    id: string;
+    id: bigint;
     filename: string;
     description: string;
     contentType: string;
@@ -25,7 +25,7 @@ export class Attachment {
     height?: number;
     width?: number;
     constructor(data: APIAttachment) {
-        this.id = data.id;
+        this.id = BigInt(data.id);
         this.filename = data.filename;
         this.description = data.description;
         this.contentType = data.content_type;

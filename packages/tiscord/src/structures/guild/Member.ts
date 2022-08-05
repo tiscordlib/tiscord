@@ -12,13 +12,12 @@ import { APIGuildMember } from 'discord-api-types/v10';
  * @property {Role[]} roles - Array of roles the member has
  * @property {User} user - User instance
  * @property {string} nick - Guild nickname
- * @property {string} avatar - User avatar hash
  * @property {string} joinedAt - when did the member join the guild
  * @property {string[]} roles - array of role IDs
  * @property {string} premiumSince - Since when is the member boosting the guild
  * @property {string} deaf - Is the member deafened
  * @property {string} mute - Is the member muted
- * @property {string} id - Member ID
+ * @property {bigint} id - Member ID
  * @property {number} communicationDisabledUntil - When the member's timeout will expire
  * @property {boolean} pending - Is the member pending verification
  * @property {APIGuildMember} [raw] - Raw member data
@@ -30,23 +29,25 @@ export class Member {
     deaf: boolean;
     premiumSince: string;
     joinedAt: string;
-    avatar: string;
+    #avatar: bigint;
     nick: string;
     user: User;
     raw?: APIGuildMember;
-    id: string;
-    guildId: string;
+    id: bigint;
+    guildId: bigint;
     guild?: Guild;
     permissions?: Permissions;
     communicationDisabledUntil: number;
     pending: boolean;
+    #animated: boolean;
     constructor(client: Client, data: APIGuildMember, guild: Guild) {
         this.guild = guild;
         this.roles = data.roles;
         if (data.user) this.user = new User(client, data.user);
         this.client = client;
+        this.#animated = data.avatar?.startsWith('a_');
         this.nick = data.nick;
-        this.avatar = data.avatar;
+        if (data.avatar) this.#avatar = BigInt(`0x${data.avatar}`);
         this.joinedAt = data.joined_at;
         this.premiumSince = data.premium_since;
         this.deaf = data.deaf;
@@ -60,10 +61,18 @@ export class Member {
     }
 
     /**
+     * Avatar hash
+     * @type {string}
+     */
+    get avatar() {
+        return (this.#animated ? 'a_' : '') + this.#avatar.toString(16);
+    }
+
+    /**
      * Internal function, sets permissions and other stuff
      */
     async setup() {
-        this.roles = await Promise.all(this.roles.map(role => this.guild?.roles?.get(role)));
+        this.roles = await Promise.all(this.roles.map(role => this.guild?.roles?.get(BigInt(role))));
         this.permissions = new Permissions(this.roles.map(r => BigInt(r?.permissions || 0)));
     }
 
@@ -119,7 +128,7 @@ export class Member {
      * @param {MemberOptions} roleId - ID of the role
      * @param {string} reason - The reason of the role add. This will be shown in the audit logs
      */
-    async addRole(roleId: string, reason?: string) {
+    async addRole(roleId: bigint, reason?: string) {
         const request = (await this.client.rest.put(`/guilds/{guild.id}/members/${this.id}/roles/${roleId}`, {
             reason
         })) as any;
@@ -134,7 +143,7 @@ export class Member {
      * @param {MemberOptions} roleId - ID of the role
      * @param {string} reason - The reason of the role removal. This will be shown in the audit logs
      */
-    async removeRole(roleId: string, reason?: string) {
+    async removeRole(roleId: bigint, reason?: string) {
         const request = (await this.client.rest.delete(`/guilds/{guild.id}/members/${this.id}/roles/${roleId}`, {
             reason
         })) as any;
@@ -148,11 +157,11 @@ export class Member {
      * Timeout this member
      * @param {number} time - How long to timeout the member for (In seconds)
      */
-    async timeout(time: number) {
+    async timeout(time: number, reason: string) {
         if (time > 2592000) {
             throw new APIError('You cannot timeout a member for more than 30 days.');
         }
         const date = new Date(Date.now() / 1000 + time);
-        this.edit({ communicationDisabledUntil: date.toISOString() }, 'Timeout');
+        this.edit({ communicationDisabledUntil: date.toISOString() }, reason);
     }
 }

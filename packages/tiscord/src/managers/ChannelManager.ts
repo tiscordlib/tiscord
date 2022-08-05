@@ -1,5 +1,5 @@
 import { APIChannel } from 'discord-api-types/v10';
-import { Client, channelType } from '../';
+import { Client, channelType, Channel } from '../';
 
 /**
  * Class managing channels
@@ -15,11 +15,11 @@ export class ChannelManager {
 
     /**
      * Gets a channel
-     * @param {string} channel - Channel ID
+     * @param {bigint} channel - Channel ID
      * @param {boolean} fetch - Whether to fetch the channel
      * @returns {Promise<Channel>}
      */
-    async get(channel: string, fetch?) {
+    async get(channel: bigint, fetch?): Promise<Channel> {
         const cached = this.client.cache.channels.get(channel);
         if (cached && !fetch) return cached;
         const data: any = channelType(this.client, (await this.client.rest.get(`/channels/${channel}`)) as APIChannel);

@@ -5,18 +5,18 @@ import { APIThreadMember } from 'discord-api-types/v10';
  *
  * @param {APIThreadMember} data - Data
  * @class
- * @property {string} userId - The user ID
- * @property {string} threadId - The thread ID
+ * @property {bigint} userId - The user ID
+ * @property {bigint} threadId - The thread ID
  * @property {string}
  */
 export class ThreadMember {
-    threadId: string;
-    userId: string;
+    threadId: bigint;
+    userId: bigint;
     joinTimestamp: number;
     flags: any;
     constructor(data: APIThreadMember) {
-        this.threadId = data.id;
-        this.userId = data.user_id;
+        this.threadId = BigInt(data.id);
+        this.userId = BigInt(data.user_id);
         this.joinTimestamp = Math.round(new Date(data.join_timestamp).getTime() / 1000);
         this.flags = data.flags;
     }

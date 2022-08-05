@@ -6,7 +6,7 @@ import { Client, Team, User } from '../../';
  * @class
  * @param {Client} client - Client instance
  * @param {APIApplication} data - Application data
- * @property {string} id - Application ID
+ * @property {bigint} id - Application ID
  * @property {string} name - Application name
  * @property {string} icon - Application icon
  * @property {string} description - Application description
@@ -26,7 +26,7 @@ import { Client, Team, User } from '../../';
  * @property {APIApplication} [raw] - raw data
  */
 export class Application {
-    id: string;
+    id: bigint;
     name: string;
     icon: string;
     description: string;
@@ -38,14 +38,14 @@ export class Application {
     privacyPolicy?: string;
     owner?: User;
     team?: Team;
-    guildId?: string;
-    primarySkuId?: string;
+    guildId?: bigint;
+    primarySkuId?: bigint;
     slug?: string;
     coverImage?: string;
     flags?: keyof typeof ApplicationFlags;
     raw?: APIApplication;
     constructor(client: Client, data: APIApplication) {
-        this.id = data.id;
+        this.id = BigInt(data.id);
         this.name = data.name;
         this.icon = data.icon;
         this.description = data.description;
@@ -57,8 +57,8 @@ export class Application {
         if (data.privacy_policy_url) this.privacyPolicy = data.privacy_policy_url;
         if (data.owner) this.owner = new User(client, data.owner);
         if (data.team) this.team = new Team(client, data.team);
-        if (data.guild_id) this.guildId = data.guild_id;
-        if (data.primary_sku_id) this.primarySkuId = data.primary_sku_id;
+        if (data.guild_id) this.guildId = BigInt(data.guild_id);
+        if (data.primary_sku_id) this.primarySkuId = BigInt(data.primary_sku_id);
         if (data.slug) this.slug = data.slug;
         if (data.cover_image) this.coverImage = data.cover_image;
         // @ts-expect-error
