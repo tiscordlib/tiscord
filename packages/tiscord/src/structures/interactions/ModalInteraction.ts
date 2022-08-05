@@ -1,5 +1,5 @@
 import { APIModalSubmitInteraction } from 'discord-api-types/v10';
-import { ModalOptions } from '../../util/ModalOptions';
+import { ModalOptions } from '../../options/ModalOptions';
 import { Client, RepliableInteraction } from '../../';
 
 /**

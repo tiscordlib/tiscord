@@ -1,5 +1,5 @@
 import { Client, Message, RawMessageOptions, RepliableInteraction, SelectMenuOption } from '../../';
-import { InteractionData } from '../../util/MessageOptions';
+import { InteractionData } from '../../options/MessageOptions';
 
 /**
  * Represents a select menu interaction.

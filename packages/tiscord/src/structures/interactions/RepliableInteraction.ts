@@ -1,4 +1,4 @@
-import { InteractionData } from '../../util/MessageOptions';
+import { InteractionData } from '../../options/MessageOptions';
 import { FollowupMessage, Interaction, Message, RawMessageOptions } from '../../';
 
 /**

@@ -22,7 +22,7 @@ import {
     MessageType
 } from 'discord-api-types/v10';
 import { Attachment } from './Attachment';
-import { MessageData } from '../../util/MessageOptions';
+import { MessageData } from '../../options/MessageOptions';
 
 /**
  * Message class
@@ -130,7 +130,7 @@ export class Message {
      * An function that adds Message.guild and Message.channel to the message
      */
     async guilds() {
-        this.channel = await this.client.channels?.get(this.channelId);
+        this.channel = (await this.client.channels?.get(this.channelId)) as TextChannel;
         if (!this.webhookId) this.member = await this.guild?.members?.get(this.author.id);
     }
 
