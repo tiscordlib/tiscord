@@ -29,7 +29,7 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
-    "tiscord": "^1.0.0-dev"
+    "tiscord": "^2.0.0-dev.2"
   },
   "gitHead": "f705f7215f3c59cdd9046b8337546a5276c8de22"
 }
