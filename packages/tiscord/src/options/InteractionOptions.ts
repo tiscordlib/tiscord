@@ -63,7 +63,8 @@ export class InteractionOptions {
     getString(name: string): string {
         const option = this.options.get(name);
         if (!option) return null;
-        if (option.type !== 3) throw new TypeError(`Option '${name}' is not a string`);
+        if (option.type !== ApplicationCommandOptionType.String)
+            throw new TypeError(`Option '${name}' is not a string`);
         return option.value;
     }
 
@@ -75,7 +76,8 @@ export class InteractionOptions {
     getNumber(name: string): number {
         const option = this.options.get(name);
         if (!option) return null;
-        if (option.type !== 4) throw new TypeError(`Option '${name}' is not a number`);
+        if (option.type !== ApplicationCommandOptionType.Number)
+            throw new TypeError(`Option '${name}' is not a number`);
         return option.value;
     }
 
@@ -87,7 +89,8 @@ export class InteractionOptions {
     getBoolean(name: string): boolean {
         const option = this.options.get(name);
         if (!option) return null;
-        if (option.type !== 5) throw new TypeError(`Option '${name}' is not a boolean`);
+        if (option.type !== ApplicationCommandOptionType.Boolean)
+            throw new TypeError(`Option '${name}' is not a boolean`);
         return option.value;
     }
 
@@ -99,7 +102,11 @@ export class InteractionOptions {
     getUser(name: string): User {
         const option = this.options.get(name);
         if (!option) return null;
-        if (option.type !== 6 && option.type !== 9) throw new TypeError(`Option '${name}' is not a user`);
+        if (
+            option.type === ApplicationCommandOptionType.User &&
+            option.type !== ApplicationCommandOptionType.Mentionable
+        )
+            throw new TypeError(`Option '${name}' is not a user`);
         return new User(this.client, this.resolved.users[option.value]);
     }
 
@@ -111,7 +118,11 @@ export class InteractionOptions {
     getMember(name: string): Member {
         const option = this.options.get(name);
         if (!option) return null;
-        if (option.type !== 6 && option.type !== 9) throw new TypeError(`Option '${name}' is not a user`);
+        if (
+            option.type === ApplicationCommandOptionType.User &&
+            option.type !== ApplicationCommandOptionType.Mentionable
+        )
+            throw new TypeError(`Option '${name}' is not a user`);
         if (!this.guild) return null;
         return new Member(this.client, this.resolved.members[option.value], this.guild);
     }
@@ -124,7 +135,8 @@ export class InteractionOptions {
     getChannel(name: string) {
         const option = this.options.get(name);
         if (!option) return null;
-        if (option.type !== 7) throw new TypeError(`Option '${name}' is not a channel`);
+        if (option.type !== ApplicationCommandOptionType.Channel)
+            throw new TypeError(`Option '${name}' is not a channel`);
         const channelData = this.resolved.channels[option.value];
         const channel = channelType(this.client, channelData);
         // @ts-expect-error
@@ -140,7 +152,11 @@ export class InteractionOptions {
     getRole(name: string): Role {
         const option = this.options.get(name);
         if (!option) return null;
-        if (option.type !== 8 && option.type !== 9) throw new TypeError(`Option '${name}' is not a role`);
+        if (
+            option.type !== ApplicationCommandOptionType.Role &&
+            option.type !== ApplicationCommandOptionType.Mentionable
+        )
+            throw new TypeError(`Option '${name}' is not a role`);
         return new Role(this.client, this.resolved.roles[option.value]);
     }
 
@@ -152,7 +168,21 @@ export class InteractionOptions {
     getAttachment(name: string): Attachment {
         const option = this.options.get(name);
         if (!option) return null;
-        if (option.type !== 11) throw new TypeError(`Option '${name}' is not an attachment`);
+        if (option.type !== ApplicationCommandOptionType.Attachment)
+            throw new TypeError(`Option '${name}' is not an attachment`);
         return new Attachment(this.resolved.attachments[option.value]);
+    }
+
+    /**
+     * Get the value of a integer option
+     * @param name - Name of the option to get
+     * @returns {number}
+     */
+    getInteger(name: string): number {
+        const option = this.options.get(name);
+        if (!option) return null;
+        if (option.type !== ApplicationCommandOptionType.Integer)
+            throw new TypeError(`Option '${name}' is not an integer`);
+        return option.value;
     }
 }
