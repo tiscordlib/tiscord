@@ -91,19 +91,19 @@ export class Message {
     member: Member;
     constructor(client: Client, data: APIMessage) {
         this.client = client;
-        this.id = BigInt(data.id);
-        this.channelId = BigInt(data.channel_id);
+        if (data.id) this.id = BigInt(data.id);
+        if (data.channel_id) this.channelId = BigInt(data.channel_id);
         // @ts-expect-error
         if (data.guild_id) this.guildId = BigInt(data.guild_id);
-        if (data.author.id) this.author = new User(client, data.author);
+        if (data.author?.id) this.author = new User(client, data.author);
         this.guild = this.client.cache.guilds.get(this.guildId);
         this.content = data.content;
-        this.timestamp = Math.round(new Date(data.timestamp).getTime() / 1000);
+        this.timestamp = Number(data.timestamp);
         this.tts = data.tts;
         this.mentions = data.mentions || [];
         this.mentionRoles = data.mention_roles || [];
         this.mentionChannels = data.mention_channels || [];
-        this.attachments = data.attachments.map(attachment => new Attachment(attachment));
+        this.attachments = data.attachments?.map(attachment => new Attachment(attachment));
         this.embeds = data.embeds;
         this.reactions = data.reactions || [];
         this.nonce = data.nonce;
@@ -131,7 +131,7 @@ export class Message {
      */
     async guilds() {
         this.channel = (await this.client.channels?.get(this.channelId)) as TextChannel;
-        if (!this.webhookId) this.member = await this.guild?.members?.get(this.author.id);
+        if (!this.webhookId && this.author?.id) this.member = await this.guild?.members?.get(this.author.id);
     }
 
     /**

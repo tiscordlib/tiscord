@@ -1,4 +1,4 @@
-import { InteractionData } from '../../options/MessageOptions';
+import { InteractionData, MessageData } from '../../options/MessageOptions';
 import { FollowupMessage, Interaction, Message, RawMessageOptions } from '../../';
 
 /**
@@ -46,7 +46,7 @@ export class RepliableInteraction extends Interaction {
      * @returns {any}
      */
     async editReply(options: RawMessageOptions) {
-        const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
+        const parsedData = new MessageData({ allowedMentions: this.client.allowedMentions, ...options });
         const message = new Message(
             this.client,
             await this.client.rest.patch(
@@ -64,7 +64,7 @@ export class RepliableInteraction extends Interaction {
      * @returns {FollowupMessage}
      */
     async followUp(options: RawMessageOptions) {
-        const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
+        const parsedData = new MessageData({ allowedMentions: this.client.allowedMentions, ...options });
         return new FollowupMessage(
             this.client,
             this.client.rest.post(`/webhooks/${this.client.user.id}/${this.token}`, parsedData),

@@ -47,19 +47,20 @@ export class Interaction {
     guild: Guild;
     appPermissions: Permissions;
     constructor(client: Client, data: APIInteraction) {
+        console.log(data);
         this.appPermissions = new Permissions(BigInt(data.app_permissions || 0));
-        this.guild = client.cache.guilds.get(BigInt(data.guild_id));
+        if (data.guild_id) this.guild = client.cache.guilds.get(BigInt(data.guild_id));
         this.client = client;
-        this.id = BigInt(data.id);
-        this.applicationId = BigInt(data.application_id);
+        if (data.id) this.id = BigInt(data.id);
+        if (data.application_id) this.applicationId = BigInt(data.application_id);
         this.type = data.type;
-        this.guildId = BigInt(data.guild_id);
+        if (data.guild_id) this.guildId = BigInt(data.guild_id);
         this.token = data.token;
         if (data.user && data.member) data.member.user = data.user;
         if (data.member) this.member = new Member(client, data.member, this.guild);
         this.member?.setup();
         this.user = new User(client, data.user || data.member.user);
-        this.channelId = BigInt(data.channel_id);
+        if (data.channel_id) this.channelId = BigInt(data.channel_id);
         this.data = data.data;
         if (client.raw) this.raw = data;
         this.guildLocale = data.guild_locale;
