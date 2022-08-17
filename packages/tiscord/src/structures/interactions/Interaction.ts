@@ -47,7 +47,6 @@ export class Interaction {
     guild: Guild;
     appPermissions: Permissions;
     constructor(client: Client, data: APIInteraction) {
-        console.log(data);
         this.appPermissions = new Permissions(BigInt(data.app_permissions || 0));
         if (data.guild_id) this.guild = client.cache.guilds.get(BigInt(data.guild_id));
         this.client = client;
