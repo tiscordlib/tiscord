@@ -20,6 +20,8 @@ export class WebSocketManager {
     lastHeartbeatAck = 0;
     ping = 0;
     interval: NodeJS.Timer;
+    connected: boolean;
+    resumeGatewayUrl: string;
     constructor(client: Client) {
         this.client = client;
         try {
@@ -36,6 +38,7 @@ export class WebSocketManager {
         if (this.client.intents === undefined) throw new GatewayError('Invalid intents');
         const url = this.getGateway(this.client.apiVersion, this.erlpack);
         this.connection = new WebSocket(url);
+        this.connected = true;
         this.connection.on('message', async (data: any) => {
             data = this.parse(data);
             switch (data.op) {
@@ -50,18 +53,9 @@ export class WebSocketManager {
 
                 case GatewayOpcodes.Hello:
                     if (this.interval) clearInterval(this.interval);
-                    this.interval = setInterval(() => {
-                        if (this.lastHeartbeatAck < this.lastHeartbeat) {
-                            this.client.debug('Heartbeat timed out.', 'gateway');
-                            this.connect();
-                            this.connection.on('open', () => {
-                                this.resume();
-                            });
-                        } else {
-                            this.send({ op: 1, d: this.sequence || null });
-                            this.ping = this.lastHeartbeatAck - this.lastHeartbeat;
-                            this.lastHeartbeat = Date.now();
-                        }
+                    setTimeout(() => {
+                        this.heartbeat();
+                        this.interval = setInterval(this.heartbeat, data.d.heartbeat_interval);
                     }, data.d.heartbeat_interval * Math.random());
                     break;
                 case GatewayOpcodes.HeartbeatAck:
@@ -135,6 +129,21 @@ export class WebSocketManager {
      * @returns {string}
      */
     getGateway(api: number, etf: boolean) {
-        return `wss://gateway.discord.gg/?v=${api}&encoding=${etf ? 'etf' : 'json'}`;
+        return `${this.connected ? this.resumeGatewayUrl : 'wss://gateway.discord.gg/'}?v=${api}&encoding=${
+            etf ? 'etf' : 'json'
+        }`;
+    }
+    heartbeat() {
+        if (this.lastHeartbeat && this.lastHeartbeatAck && this.lastHeartbeatAck < this.lastHeartbeat) {
+            this.client.debug('Heartbeat timed out.', 'gateway');
+            this.connect();
+            this.connection.on('open', () => {
+                this.resume();
+            });
+        } else {
+            this.send({ op: 1, d: this.sequence || null });
+            this.ping = this.lastHeartbeatAck - this.lastHeartbeat;
+            this.lastHeartbeat = Date.now();
+        }
     }
 }

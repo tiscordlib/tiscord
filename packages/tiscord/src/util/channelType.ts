@@ -28,6 +28,7 @@ export function channelType(client: Client, data: APIChannel): Channel {
             channel = new ThreadChannel(client, data);
             break;
         case ChannelType.GuildStageVoice:
+            // @ts-ignore
             channel = new VoiceChannel(client, data);
             break;
         default:

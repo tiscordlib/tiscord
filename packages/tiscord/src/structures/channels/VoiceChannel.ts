@@ -1,4 +1,4 @@
-import { APIVoiceChannel } from 'discord-api-types/v10';
+import { APIGuildVoiceChannel } from 'discord-api-types/v10';
 import { TextChannel } from '../../';
 
 /**
@@ -16,7 +16,7 @@ export class VoiceChannel extends TextChannel {
     bitrate: number;
     userLimit: number;
     rtcRegion: string;
-    constructor(client: any, data: APIVoiceChannel) {
+    constructor(client: any, data: APIGuildVoiceChannel) {
         super(client, data);
         this.bitrate = data.bitrate;
         this.userLimit = data.user_limit;
