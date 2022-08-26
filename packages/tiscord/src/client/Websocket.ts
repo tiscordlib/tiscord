@@ -54,8 +54,26 @@ export class WebSocketManager {
                 case GatewayOpcodes.Hello:
                     if (this.interval) clearInterval(this.interval);
                     setTimeout(() => {
-                        this.heartbeat();
-                        this.interval = setInterval(this.heartbeat, data.d.heartbeat_interval);
+                        this.send({ op: 1, d: this.sequence || null });
+                        this.lastHeartbeat = Date.now();
+
+                        this.interval = setInterval(() => {
+                            if (
+                                this.lastHeartbeat &&
+                                this.lastHeartbeatAck &&
+                                this.lastHeartbeatAck < this.lastHeartbeat
+                            ) {
+                                this.client.debug('Heartbeat timed out.', 'gateway');
+                                this.connect();
+                                this.connection.on('open', () => {
+                                    this.resume();
+                                });
+                            } else {
+                                this.send({ op: 1, d: this.sequence || null });
+                                this.ping = this.lastHeartbeatAck - this.lastHeartbeat;
+                                this.lastHeartbeat = Date.now();
+                            }
+                        }, data.d.heartbeat_interval);
                     }, data.d.heartbeat_interval * Math.random());
                     break;
                 case GatewayOpcodes.HeartbeatAck:
@@ -132,18 +150,5 @@ export class WebSocketManager {
         return `${this.connected ? this.resumeGatewayUrl : 'wss://gateway.discord.gg/'}?v=${api}&encoding=${
             etf ? 'etf' : 'json'
         }`;
-    }
-    heartbeat() {
-        if (this.lastHeartbeat && this.lastHeartbeatAck && this.lastHeartbeatAck < this.lastHeartbeat) {
-            this.client.debug('Heartbeat timed out.', 'gateway');
-            this.connect();
-            this.connection.on('open', () => {
-                this.resume();
-            });
-        } else {
-            this.send({ op: 1, d: this.sequence || null });
-            this.ping = this.lastHeartbeatAck - this.lastHeartbeat;
-            this.lastHeartbeat = Date.now();
-        }
     }
 }

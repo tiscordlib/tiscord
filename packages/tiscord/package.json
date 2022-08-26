@@ -19,7 +19,7 @@
     "prettier": "^2.5.1"
   },
   "name": "tiscord",
-  "version": "2.0.0-dev.5",
+  "version": "2.0.0-dev.7",
   "description": "a discord lib",
   "main": "dist/index.js",
   "scripts": {
