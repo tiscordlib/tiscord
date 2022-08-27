@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@sapphire/async-queue": "^1.3.2",
-    "discord-api-types": "^0.37.4",
+    "discord-api-types": "^0.37.5",
     "form-data": "^4.0.0",
     "undici": "^5.8.0",
     "ws": "^8.5.0"
@@ -19,7 +19,7 @@
     "prettier": "^2.5.1"
   },
   "name": "tiscord",
-  "version": "2.0.0-dev.7",
+  "version": "2.0.0-dev.8",
   "description": "a discord lib",
   "main": "dist/index.js",
   "scripts": {

@@ -106,23 +106,30 @@ export class RESTClient {
             }
 
             if (req.body) {
-                if (req.payloadJson)
-                    data.append('payload_json', JSON.stringify(req.body), {
+                data.append(
+                    'payload_json',
+                    JSON.stringify(req.body, (k, v) => (typeof v === 'bigint' ? v.toString() : v)),
+                    {
                         contentType: 'application/json'
-                    });
-                else
-                    for (const key in req.body) {
-                        if ([null, undefined].includes(req.body[key])) continue;
-
-                        if (Array.isArray(req.body[key]))
-                            for (let i = 0; i < req.body[key].length; i++)
-                                data.append(`${key}[${i}]`, JSON.stringify(req.body[key][i]));
-                        else data.append(key, JSON.stringify(req.body[key]));
                     }
+                );
+                // else
+                //     for (const key in req.body) {
+                //         if ([null, undefined].includes(req.body[key])) continue;
+
+                //         if (Array.isArray(req.body[key]))
+                //             for (let i = 0; i < req.body[key].length; i++)
+                //                 data.append(`${key}[${i}]`, JSON.stringify(req.body[key][i]));
+                //         else
+                //             data.append(
+                //                 key,
+                //                 JSON.stringify(req.body[key], (k, v) => (typeof v === 'bigint' ? v.toString() : v))
+                //             );
+                //     }
             }
 
             req.headers = data.getHeaders(req.headers);
-
+            console.log(data.getBuffer().toString());
             req.body = data.getBuffer();
         } else if (typeof req.body === 'string') {
             req.body = Buffer.from(req.body);

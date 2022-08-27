@@ -15,7 +15,7 @@ export class RepliableInteraction extends Interaction {
 
     async reply(options: RawMessageOptions): Promise<void> {
         const parsedData = new InteractionData({ allowedMentions: this.client.allowedMentions, ...options });
-        this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, parsedData);
+        await this.client.rest.post(`/interactions/${this.id}/${this.token}/callback`, parsedData);
     }
 
     /**

@@ -50,7 +50,7 @@ export function resolveRequest(req: APIRequest): Required<APIRequest> {
         useRateLimits: true,
         useGlobalRateLimit: req.auth !== false,
         useBaseURL: true,
-        payloadJson: false,
+        payloadJson: true,
         startTime: -1,
         httpStartTime: -1,
         ...req
