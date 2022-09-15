@@ -1,5 +1,5 @@
 import { APIUser, UserFlags } from 'discord-api-types/v10';
-import { ImageURLOptions } from 'options/ImageURLOptions';
+import { ImageURLOptions } from '../../options/ImageURLOptions';
 import { Client } from '../../';
 
 /**
