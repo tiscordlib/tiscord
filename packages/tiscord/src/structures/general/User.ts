@@ -1,4 +1,5 @@
 import { APIUser, UserFlags } from 'discord-api-types/v10';
+import { ImageURLOptions } from 'options/ImageURLOptions';
 import { Client } from '../../';
 
 /**
@@ -15,7 +16,10 @@ import { Client } from '../../';
  * @param {boolean} system - Is the user a system user
  * @param {UserFlags} flags - User flags
  * @param {number} accentColor - User accent color
+ * @param {number} createdTimestamp - User creation timestamp
+ * @param {Date} createdAt - User creation date
  * @param {APIUser} [raw] - Raw user data
+ * 
  */
 export class User {
     id: bigint;
@@ -50,6 +54,8 @@ export class User {
         if (client.raw) this.raw = data;
     }
 
+    
+
     /**
      * Avatar hash
      * @type {string}
@@ -59,10 +65,37 @@ export class User {
     }
 
     /**
+     * @param {ImageURLOptions} options - Image URL options 
+     */
+    avatarURL(options: ImageURLOptions) {
+        if (!this.#avatar) return `https://cdn.discordapp.com/embed/avatars/${parseInt(this.discriminator) % 5}.png`;
+        const { size, format, dynamic } = options;
+        return `https://cdn.discordapp.com/avatars/${this.id}/${this.avatar}.${format || (dynamic && this.#animated ? 'gif' : 'png')}${size ? `?size=${size}` : ''}`;
+    }
+
+    /**
      * Banner hash
      * @type {string}
      */
     get banner() {
         return this.#banner.toString(16);
+    }
+
+
+    /**
+     * The timestamp the user was created at
+     * @type {number}
+     */
+
+    get createdTimestamp() {
+        return Number((this.id >> 22n) + 1420070400000n);
+    }
+
+    /**
+     * The time the user was created at
+     * @type {Date}
+     */
+    get createdAt() {
+        return new Date(this.createdTimestamp);
     }
 }
