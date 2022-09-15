@@ -65,6 +65,7 @@ export class User {
     }
 
     /**
+     * Get the user's avatar URL
      * @param {ImageURLOptions} options - Image URL options 
      */
     avatarURL(options: ImageURLOptions) {
