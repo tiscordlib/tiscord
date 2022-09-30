@@ -24,7 +24,6 @@ import { APIGuildMember } from 'discord-api-types/v10';
  */
 export class Member {
     client: Client;
-    roles?: Role[] | string[];
     mute: boolean;
     deaf: boolean;
     premiumSince: string;
@@ -42,7 +41,6 @@ export class Member {
     #animated: boolean;
     constructor(client: Client, data: APIGuildMember, guild: Guild) {
         this.guild = guild;
-        this.roles = data.roles;
         if (data.user) this.user = new User(client, data.user);
         this.client = client;
         this.#animated = data.avatar?.startsWith('a_');
@@ -59,6 +57,11 @@ export class Member {
         this.guildId = guild?.id;
         client.cache.users.set(this.user.id, this.user);
     }
+    get roles() {
+        return Promise.all(
+            this.roles.map(role => (role instanceof Role ? role : this.guild?.roles?.get(BigInt(role))))
+        ) as unknown as Role[];
+    }
 
     /**
      * Avatar hash
@@ -72,7 +75,6 @@ export class Member {
      * Internal function, sets permissions and other stuff
      */
     async setup() {
-        this.roles = await Promise.all(this.roles.map(role => this.guild?.roles?.get(BigInt(role))));
         this.permissions = new Permissions(this.roles.map(r => BigInt(r?.permissions || 0)));
     }
 

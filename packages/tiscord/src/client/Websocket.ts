@@ -12,7 +12,7 @@ import WebSocket from 'ws';
  */
 export class WebSocketManager {
     connection: WebSocket;
-    sequence: any;
+    sequence: number;
     client: Client;
     sessionId: string;
     erlpack: any;

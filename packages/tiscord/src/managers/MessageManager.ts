@@ -26,10 +26,13 @@ export class MessageManager {
      */
     async get(message: bigint, fetch = false) {
         const cache = this.client.cache.messages.get(this.channel.id, message);
-        if (cache && fetch) return cache;
-        let data: any = (await this.client.rest.get(`/channels/${this.channel.id}/messages/${message}`)) as APIMessage;
-        data = new Message(this.client, data);
-        this.client.cache.messages.set(this.channel.id, data);
+        let data: Message;
+        if (cache && !fetch) return cache;
+        const discordData = (await this.client.rest
+            .get(`/channels/${this.channel}/messages/${message}`)
+            .catch(() => null)) as APIMessage;
+        if (discordData) data = new Message(this.client, discordData);
+        if (data) this.client.cache.messages.set(message, data);
         return data;
     }
 

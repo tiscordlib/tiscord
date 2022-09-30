@@ -27,14 +27,14 @@ export class MemberManager {
     async get(id: bigint, fetch?) {
         const cache = this.client.cache.members.get(this.guild, id);
         const guild = this.client.cache.guilds.get(this.guild);
+        let data: Member;
         if (cache && !fetch) return cache;
-        const data = new Member(
-            this.client,
-            (await this.client.rest.get(`/guilds/${this.guild}/members/${id}`)) as APIGuildMember,
-            guild
-        );
-        await data.setup();
-        this.client.cache.members.set(this.guild, data);
+        const discordData = (await this.client.rest
+            .get(`/guild/${this.guild}/members/${id}`)
+            .catch(() => null)) as APIGuildMember;
+        if (discordData) data = new Member(this.client, discordData, guild);
+        await data?.setup();
+        if (data) this.client.cache.members.set(this.guild, data);
         return data;
     }
 }

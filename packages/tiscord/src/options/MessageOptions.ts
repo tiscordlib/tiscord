@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { APIAllowedMentions } from 'discord-api-types/v10';
+import { APIAllowedMentions, APIEmbed, APIMessageComponent, APIMessageReference } from 'discord-api-types/v10';
 import { AllowedMentions, MessageAttachment, RawMentions } from '../';
 
 /**
@@ -18,12 +18,12 @@ import { AllowedMentions, MessageAttachment, RawMentions } from '../';
  */
 export class MessageOptions {
     content?: string;
-    embeds?: any[];
+    embeds?: APIEmbed[];
     allowed_mentions?: APIAllowedMentions;
-    components?: any[];
+    components?: APIMessageComponent[];
     sticker_ids?: string[];
     flags?: number;
-    message_reference?: any;
+    message_reference?: APIMessageReference;
     attachments?: MessageAttachment[];
     files?: MessageAttachment[];
     constructor(data: RawMessageOptions) {
@@ -33,6 +33,7 @@ export class MessageOptions {
         this.content = data.content;
         if (data.embeds) this.embeds = data.embeds;
         if (data.allowedMentions) this.allowed_mentions = new AllowedMentions(data.allowedMentions);
+        // @ts-expect-error
         if (data.replyTo) this.message_reference = { message_id: data.replyTo };
         if (data.components) this.components = data.components;
         if (data.stickers) this.sticker_ids = data.stickers;

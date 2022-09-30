@@ -12,7 +12,7 @@ export class FakeMap<T> extends Map<bigint, T> {
      * @param {string} object - object id to get
      * @returns {any}
      */
-    get(key: any): T {
+    get(key: bigint): T {
         return null;
     }
 
@@ -20,7 +20,7 @@ export class FakeMap<T> extends Map<bigint, T> {
      * @param {any} object - object to set
      * @returns {void}
      */
-    set(key: any, value: T): any {
+    set(key: bigint, value: T): any {
         return null;
     }
 

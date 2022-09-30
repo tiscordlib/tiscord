@@ -22,8 +22,10 @@ export class UserManager {
      */
     async get(id: bigint, fetch?) {
         if (this.client.cache.users.has(id) && !fetch) return this.client.cache.users.get(id);
-        const data = new User(this.client, (await this.client.rest.get(`/users/${id}`)) as APIUser);
-        this.client.cache.users.set(id, data);
+        let data: User;
+        const discordData = (await this.client.rest.get(`/user/${id}`).catch(() => null)) as APIUser;
+        if (discordData) data = new User(this.client, discordData);
+        if (data) this.client.cache.users.set(id, data);
         return data;
     }
 }

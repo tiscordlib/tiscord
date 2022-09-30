@@ -57,14 +57,14 @@ export class ChannelOptions {
  * @property {number} position - Channels position
  * @property {string} topic - Channels topic
  * @property {boolean} nsfw - If channel is NSFW or not
- * @property {number} rate_limit_per_user - Channels rate limit per user
+ * @property {number} rateLimitPerUser - Channels rate limit per user
  * @property {number} bitrate - Channels bitrate
  * @property {number} user_limit - Channels user limit
- * @property {Array<OverwriteType>} permission_overwrites - Channels permission overwrites
- * @property {number} parent_id - Channels parent ID
- * @property {APIVoiceRegion} rtc_region - Channels voice region
- * @property {VideoQualityMode} video_quality_mode - Channels video quality mode
- * @property {number} default_auto_archive_duration - Channels default auto archive duration (threads)
+ * @property {Array<OverwriteType>} permissionOverwrites - Channels permission overwrites
+ * @property {number} parentId - Channels parent ID
+ * @property {APIVoiceRegion} rtcRegion - Channels voice region
+ * @property {VideoQualityMode} videoQualityMode - Channels video quality mode
+ * @property {number} defaultAutoArchiveDuration - Channels default auto archive duration (threads)
  */
 export interface ChannelOptions {
     name: string;
@@ -72,12 +72,12 @@ export interface ChannelOptions {
     position?: number;
     topic?: string;
     nsfw?: boolean;
-    rate_limit_per_user?: number;
+    rateLimitPerUser?: number;
     bitrate?: number;
-    user_limit?: number;
-    permission_overwrites?: Array<OverwriteType>;
-    parent_id?: number;
-    rtc_region?: APIVoiceRegion;
-    video_quality_mode?: VideoQualityMode;
-    default_auto_archive_duration?: number;
+    userLimit?: number;
+    permissionOverwrites?: Array<OverwriteType>;
+    parentId?: number;
+    rtcRegion?: APIVoiceRegion;
+    videoQualityMode?: VideoQualityMode;
+    defaultAutoArchiveDuration?: number;
 }

@@ -17,42 +17,24 @@ export class InteractionOptions {
     resolved: Record<string, Record<string, any>>;
     client: Client;
     guild: Guild;
-    private _subcommandGroup: any;
-    private _subcommand: any;
+    subcommandGroup?: string;
+    subcommand?: string;
     constructor(client: Client, options: any[], resolved: Record<string, Record<string, any>>, guild?: Guild) {
         this.options = new Map();
         this.client = client;
         this.guild = guild;
         this.resolved = resolved;
-        this._subcommandGroup = null;
-        this._subcommand = null;
         if (options && options[0]?.type === ApplicationCommandOptionType.SubcommandGroup) {
-            this._subcommandGroup = options[0].name;
+            this.subcommandGroup = options[0].name;
             [{ options }] = options;
         }
         if (options && options[0]?.type === ApplicationCommandOptionType.Subcommand) {
-            this._subcommand = options[0].name;
+            this.subcommand = options[0].name;
             [{ options }] = options;
         }
         options?.forEach(option => {
             this.options.set(option.name, option);
         });
-    }
-
-    /**
-     * Get the name of the subcommand
-     * @returns {string}
-     */
-    getSubcommand(): string {
-        return this._subcommand;
-    }
-
-    /**
-     * Get the name of the subcommand group
-     * @returns {string}
-     */
-    getSubcommandGroup(): string {
-        return this._subcommandGroup;
     }
 
     /**
@@ -103,8 +85,8 @@ export class InteractionOptions {
         const option = this.options.get(name);
         if (!option) return null;
         if (
-            option.type === ApplicationCommandOptionType.User &&
-            option.type !== ApplicationCommandOptionType.Mentionable
+            option.type === ApplicationCommandOptionType.User ||
+            option.type === ApplicationCommandOptionType.Mentionable
         )
             throw new TypeError(`Option '${name}' is not a user`);
         return new User(this.client, this.resolved.users[option.value]);

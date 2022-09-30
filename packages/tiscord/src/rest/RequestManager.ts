@@ -10,7 +10,6 @@ export interface RequestManagerOptions {
     logger?: {
         debug?: (...args: any[]) => void;
         trace?: (...args: any[]) => void;
-        kleur?: any;
         header?: (() => string) | string;
     };
 }
@@ -182,15 +181,7 @@ export class RequestManager {
 
     /** @ignore */
     __log_header() {
-        if (this.init.logger?.header) {
-            const { header } = this.init.logger;
-
-            if (typeof header === 'function') {
-                return header();
-            }
-            return header;
-        }
-        return `[${this.init.logger?.kleur?.().green('REST') ?? 'REST'}]`;
+        return '';
     }
 
     debug(...args: any[]) {

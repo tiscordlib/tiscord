@@ -129,11 +129,14 @@ export class Guild {
     permissions: string;
     raw?: APIGuild;
     me: Member | void;
-    constructor(client: Client, data: GatewayGuildCreateDispatchData) {
+    #animated: boolean;
+    constructor(client: Client, data: APIGuild | GatewayGuildCreateDispatchData) {
+        if (data.icon?.startsWith('a_')) this.#animated = true;
         this.client = client;
         data.roles?.forEach(role => {
             client.cache.roles.set(BigInt(role.id), new Role(client, role));
         });
+        // @ts-expect-error
         data.channels?.forEach((channel: any) => {
             channel = channelType(client, channel);
             if (!channel.guildId) channel.guildId = this.id;
@@ -142,7 +145,7 @@ export class Guild {
         });
         this.id = BigInt(data.id);
         this.name = data.name;
-        if (data.icon) this.#icon = BigInt(`0x${data.icon}`);
+        if (data.icon) this.#icon = BigInt(`0x${this.#animated ? data.icon.replace('a_', '') : data.icon}`);
         if (data.icon_hash) this.#iconHash = BigInt(`0x${data.icon_hash}`);
         if (data.splash) this.#splash = BigInt(`0x${data.splash}`);
         if (data.discovery_splash) this.#discoverySplash = BigInt(`0x${data.discovery_splash}`);
@@ -164,18 +167,25 @@ export class Guild {
         if (data.system_channel_id) this.systemChannelId = BigInt(data.system_channel_id);
         this.systemChannelFlags = data.system_channel_flags;
         if (data.rules_channel_id) this.rulesChannelId = BigInt(data.rules_channel_id);
-        this.joinedAt = new Date(data.joined_at).getTime() / 1000;
+        // @ts-expect-error
+        if (data.joined_at) this.joinedAt = new Date(data.joined_at).getTime() / 1000;
+        // @ts-expect-error
         this.large = data.large;
+        // @ts-expect-error
         this.available = !data.unavailable;
+        // @ts-expect-error
         this.memberCount = data.member_count;
+        // @ts-expect-error
         this.voiceStates = data.voice_states;
         this.members = new MemberManager(this.client, this.id);
         this.channels = this.client.channels;
+        // @ts-expect-error
         this.threads = data.threads?.map(t => {
             const thread = new ThreadChannel(this.client, t);
             thread.guilds();
             return thread;
         });
+        // @ts-expect-error
         this.presences = data.presences;
         this.maxMembers = data.max_members;
         this.vanityUrlCode = data.vanity_url_code;
@@ -186,16 +196,13 @@ export class Guild {
         if (data.public_updates_channel_id) this.publicUpdatesChannelId = BigInt(data.public_updates_channel_id);
         this.maxVideoChannelUsers = data.max_video_channel_users;
         this.nsfwLevel = data.nsfw_level;
+        // @ts-expect-error
         this.stageInstances = data.stage_instances;
         this.stickers = data.stickers?.map(sticker => new Sticker(client, sticker));
+        // @ts-expect-error
         this.scheduledEvents = data.guild_scheduled_events;
         this.premiumProgressBarEnabled = data.premium_progress_bar_enabled;
         if (client.raw) this.raw = data;
-        data.members?.forEach(member => {
-            const data = new Member(client, member, this);
-            data.setup();
-            client.cache.members.set(data.id, data);
-        });
         this.me = client.cache.members.get(this.id, client.user.id);
     }
 
@@ -204,7 +211,7 @@ export class Guild {
      * @type {string}
      */
     get icon() {
-        return this.#icon.toString(16);
+        return (this.#animated ? 'a_' : '') + this.#icon.toString(16);
     }
 
     /**
@@ -300,7 +307,7 @@ export class Guild {
 
     /**
      * Returns a list of bans in the guild
-     * @param {string} userId - The ID of the user to get the ban of
+     * @param {bigint} userId - The ID of the user to get the ban of
      * @returns {Promise<GuildBan>}
      */
     async getBan(userId: bigint): Promise<GuildBan> {
@@ -341,11 +348,11 @@ export class Guild {
 
     /**
      * Modify a roles position
-     * @param {number} roleId - ID of the role
+     * @param {bigint} roleId - ID of the role
      * @param {number} position - Data of the new role
      * @param {string} reason - Reason of the edit
      */
-    async modifyRolePosition(roleId: number, position: number, reason?: string) {
+    async modifyRolePosition(roleId: bigint, position: number, reason?: string) {
         const request = (await this.client.rest.patch(`/guilds/${this.id}/roles`, {
             reason,
             body: { id: roleId, position }
@@ -374,10 +381,10 @@ export class Guild {
 
     /**
      * Deletes a role in the guild
-     * @param {number} roleId - ID of the role
+     * @param {bigint} roleId - ID of the role
      * @param {string} reason - Reason of the creation
      */
-    async deleteRole(roleId: number, reason?: string) {
+    async deleteRole(roleId: bigint, reason?: string) {
         const request = (await this.client.rest.delete(`/guilds/${this.id}/roles/${roleId}`, {
             reason
         })) as any;

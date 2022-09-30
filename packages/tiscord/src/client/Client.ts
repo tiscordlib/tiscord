@@ -88,8 +88,7 @@ export class Client extends EventEmitter {
         }
         this.raw = options.rawDataStorage;
         this.apiVersion = options.api || 10;
-        this.rest = new REST();
-        this.rest.token(this.token);
+        this.rest = new REST(this.token, { version: this.apiVersion }, { logger: { debug: this.debug.bind(this) } });
         this.users = new UserManager(this);
         this.guilds = new GuildManager(this);
         this.channels = new ChannelManager(this);
@@ -101,7 +100,8 @@ export class Client extends EventEmitter {
             guilds: this.cacheOptions?.guilds === false ? new FakeMap() : new Map<bigint, Guild>(),
             channels: this.cacheOptions?.channels === false ? new FakeMap() : new Map<bigint, Channel>(),
             users: this.cacheOptions?.users === false ? new FakeMap() : new Map<bigint, User>(),
-            messages: this.cacheOptions?.users === false ? new FakeCache() : new MessageCache(this),
+            messages:
+                this.cacheOptions?.users === false ? new FakeCache() : new MessageCache(options.cache.messageLimit),
             roles: this.cacheOptions?.messages === false ? new FakeCache() : new Cache<Role>(),
             threadMembers: this.cacheOptions?.messages === false ? new FakeCache() : new Cache<ThreadMember>()
         };

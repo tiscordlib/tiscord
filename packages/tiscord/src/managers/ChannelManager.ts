@@ -22,9 +22,11 @@ export class ChannelManager {
     async get(channel: bigint, fetch?): Promise<Channel> {
         const cached = this.client.cache.channels.get(channel);
         if (cached && !fetch) return cached;
-        const data: any = channelType(this.client, (await this.client.rest.get(`/channels/${channel}`)) as APIChannel);
+        let data: any;
+        const discordData = (await this.client.rest.get(`/channels/${channel}`).catch(() => null)) as APIChannel;
+        if (discordData) data = channelType(this.client, discordData);
         if (data.guilds) await data.guilds();
-        this.client.cache.channels.set(data.id, data);
+        if (data) this.client.cache.channels.set(data.id, data);
         return data;
     }
 }

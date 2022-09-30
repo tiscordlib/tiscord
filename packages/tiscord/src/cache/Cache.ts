@@ -23,8 +23,9 @@ export class Cache<T> {
      * @param {any} object - object to set
      * @returns {void}
      */
-    set(parent: bigint, object: any): void {
+    set(parent: bigint, object: T): void {
         if (!this.caches.has(parent)) this.caches.set(parent, new Map());
+        // @ts-expect-error
         this.caches.get(parent).set(object.id || object.userId, object);
     }
 

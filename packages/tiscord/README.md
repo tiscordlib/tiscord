@@ -1,23 +1,7 @@
-# tiscord
+# Tiscord
 A fast, memory-efficient, and object oriented discord lib  
-[events list](./tutorial-Events.html): # Events
+[Documentation](https://docs.tiscord.me/)
 
-# TODO
-* High priority
-- [x] caching system
-- [x] add a way to get users/guilds/channels/members
-- [x] add more structures
-- [x] add more events
-- [ ] write tests
-- [x] create docs
-- [ ] Autocomplete
-- [x] Modals
-- [x] add resuming (gateway)
-- [x] make the lib error when theres gateway or api error
-* Low priority
-- [ ] Voice support
-- [ ] Sharding
-- [ ] Webhooks
 
 * [ ] [Guild Scheduled Events](https://discord.com/developers/docs/resources/guild-scheduled-event)
  * [ ] List Scheduled Events for Guild

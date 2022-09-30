@@ -1,4 +1,4 @@
-import { Cache, Client, Message } from '../';
+import { Cache, Message } from '../';
 
 /**
  *  Cache for channels, message, etc.
@@ -7,10 +7,10 @@ import { Cache, Client, Message } from '../';
 
 export class MessageCache extends Cache<Message> {
     caches: Map<bigint, Map<bigint, any>>;
-    client: Client;
-    constructor(client: Client) {
+    limit: number;
+    constructor(messageLimit = 50) {
         super();
-        this.client = client;
+        this.limit = messageLimit;
         this.caches = new Map();
     }
 
@@ -19,12 +19,12 @@ export class MessageCache extends Cache<Message> {
      * @param {any} object - object to set
      * @returns {void}
      */
-    set(parent: bigint, object: any): void {
+    set(parent: bigint, object: Message): void {
         if (!this.caches.has(parent)) this.caches.set(parent, new Map());
         const cache = this.caches.get(parent);
-        if (cache.size >= (this.client.cacheOptions?.messageLimit || 50)) {
+        if (cache.size >= this.limit) {
             cache.delete(cache.keys().next().value);
         }
-        cache.set(object.id || object.userId, object);
+        cache.set(object.id, object);
     }
 }

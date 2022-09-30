@@ -33,7 +33,7 @@ import { MessageData } from '../../options/MessageOptions';
  * @property {bigint} id - Message ID
  * @property {bigint} channelId - Channel ID
  * @property {User} author - Author user object
- * @property {number} timestamp - When was the message created
+ * @property {number} timestamp - When was the message created (unix timestamp)
  * @property {string} content - Message content
  * @property {boolean} tts - Whether the message was text to speech
  * @property {any} mentions - Message mentions
@@ -98,7 +98,7 @@ export class Message {
         if (data.author?.id) this.author = new User(client, data.author);
         this.guild = this.client.cache.guilds.get(this.guildId);
         this.content = data.content;
-        this.timestamp = Number(data.timestamp);
+        this.timestamp = new Date(data.timestamp).getTime() / 1000;
         this.tts = data.tts;
         this.mentions = data.mentions || [];
         this.mentionRoles = data.mention_roles || [];
@@ -131,7 +131,7 @@ export class Message {
      */
     async guilds() {
         this.channel = (await this.client.channels?.get(this.channelId)) as TextChannel;
-        if (!this.webhookId && this.author?.id) this.member = await this.guild?.members?.get(this.author.id);
+        if (this.author?.id) this.member = await this.guild?.members?.get(this.author.id);
     }
 
     /**
