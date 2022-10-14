@@ -1,16 +1,18 @@
 import { Member } from '../structures/guild/Member';
 import { RoleManager } from './RoleManager';
 
-export class MemberRoleManager {
+export class MemberRoleManager extends RoleManager {
     member: Member;
-    roles: bigint[];
-    get: RoleManager['get'];
+    _roles: bigint[];
     constructor(member: Member, roles: bigint[]) {
+        super(member.client, member.guildId);
         this.member = member;
-        this.roles = roles;
-        this.get = this.member.guild.roles.get;
+        this._roles = roles;
     }
-    getAll() {
-        return this.roles.map(id => this.get(id));
+    get cache() {
+        return this._roles.map(id => this.client.cache.roles.get(this.guild, id));
     }
+    // get color() {
+    //     return this.cache.reduce((a, b) => {})
+    // }
 }

@@ -1,5 +1,5 @@
 import { APIRole } from 'discord-api-types/v10';
-import { Client } from '../../';
+import { Client, Permissions } from '../../';
 
 /**
  * Role class
@@ -25,7 +25,7 @@ export class Role {
     color: number;
     hoist: boolean;
     position: number;
-    permissions: bigint;
+    permissions: Permissions;
     managed: boolean;
     mentionable: boolean;
     botId?: bigint;
@@ -37,7 +37,7 @@ export class Role {
         this.color = data.color;
         this.hoist = data.hoist;
         this.position = data.position;
-        this.permissions = BigInt(data.permissions);
+        this.permissions = new Permissions(BigInt(data.permissions));
         this.managed = data.managed;
         this.mentionable = data.mentionable;
         if (data.tags?.bot_id) this.botId = BigInt(data.tags.bot_id);

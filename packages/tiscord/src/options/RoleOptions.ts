@@ -23,7 +23,7 @@ export class RoleOptions {
         this.permissions = data.permissions;
         this.color = data.color;
         this.hoist = data.hoist;
-        this.unicode_emoji = data.unicode_emoji;
+        this.unicode_emoji = data.unicodeEmoji;
         this.mentionable = data.mentionable;
     }
 }
@@ -35,7 +35,7 @@ export class RoleOptions {
  * @property {string} permissions - Roles permissions
  * @property {number} color - Roles color in RGB color value
  * @property {boolean} hoist -    Whether the role should be displayed separately in the sidebar
- * @property {string} unicode_emoji - The role's unicode emoji as a standard emoji
+ * @property {string} unicodeEmoji - The role's unicode emoji as a standard emoji
  * @property {boolean} mentionable - Whether the role should be mentionable
  */
 export interface RoleOptions {
@@ -43,6 +43,6 @@ export interface RoleOptions {
     permissions: string;
     color: number;
     hoist: boolean;
-    unicode_emoji: string;
+    unicodeEmoji: string;
     mentionable: boolean;
 }

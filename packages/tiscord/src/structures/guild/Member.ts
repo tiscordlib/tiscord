@@ -1,4 +1,4 @@
-import { APIError, Client, Guild, MemberOptions, Permissions, RawMemberOptions, Role, User } from '../../';
+import { APIError, Client, Guild, MemberOptions, Permissions, RawMemberOptions, User } from '../../';
 
 import { APIGuildMember } from 'discord-api-types/v10';
 
@@ -57,11 +57,6 @@ export class Member {
         this.guildId = guild?.id;
         client.cache.users.set(this.user.id, this.user);
     }
-    get roles() {
-        return Promise.all(
-            this.roles.map(role => (role instanceof Role ? role : this.guild?.roles?.get(BigInt(role))))
-        ) as unknown as Role[];
-    }
 
     /**
      * Avatar hash
@@ -84,7 +79,7 @@ export class Member {
      */
     async kick(reason?: string) {
         const request = (await this.client.rest.delete(`/guilds/${this.guildId}/members/${this.id}`, {
-            headers: { 'X-Audit-Log-Reason': reason }
+            reason
         })) as any;
 
         if (request?.code) {
@@ -126,40 +121,10 @@ export class Member {
     }
 
     /**
-     * Add a role to a member
-     * @param {MemberOptions} roleId - ID of the role
-     * @param {string} reason - The reason of the role add. This will be shown in the audit logs
-     */
-    async addRole(roleId: bigint, reason?: string) {
-        const request = (await this.client.rest.put(`/guilds/{guild.id}/members/${this.id}/roles/${roleId}`, {
-            reason
-        })) as any;
-
-        if (request?.code) {
-            throw new APIError(request?.message);
-        }
-    }
-
-    /**
-     * Remove a role from a member
-     * @param {MemberOptions} roleId - ID of the role
-     * @param {string} reason - The reason of the role removal. This will be shown in the audit logs
-     */
-    async removeRole(roleId: bigint, reason?: string) {
-        const request = (await this.client.rest.delete(`/guilds/{guild.id}/members/${this.id}/roles/${roleId}`, {
-            reason
-        })) as any;
-
-        if (request?.code) {
-            throw new APIError(request?.message);
-        }
-    }
-
-    /**
      * Timeout this member
      * @param {number} time - How long to timeout the member for (In seconds)
      */
-    async timeout(time: number, reason: string) {
+    async timeout(time: number | null, reason: string) {
         if (time > 2592000) {
             throw new APIError('You cannot timeout a member for more than 30 days.');
         }
