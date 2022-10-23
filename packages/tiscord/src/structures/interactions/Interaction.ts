@@ -57,7 +57,6 @@ export class Interaction {
         this.token = data.token;
         if (data.user && data.member) data.member.user = data.user;
         if (data.member) this.member = new Member(client, data.member, this.guild);
-        this.member?.setup();
         this.user = new User(client, data.user || data.member.user);
         if (data.channel_id) this.channelId = BigInt(data.channel_id);
         this.data = data.data;

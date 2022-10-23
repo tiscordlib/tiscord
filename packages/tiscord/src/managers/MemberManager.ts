@@ -30,10 +30,9 @@ export class MemberManager {
         let data: Member;
         if (cache && !fetch) return cache;
         const discordData = (await this.client.rest
-            .get(`/guild/${this.guild}/members/${id}`)
+            .get(`/guilds/${this.guild}/members/${id}`)
             .catch(() => null)) as APIGuildMember;
         if (discordData) data = new Member(this.client, discordData, guild);
-        await data?.setup();
         if (data) this.client.cache.members.set(this.guild, data);
         return data;
     }

@@ -101,7 +101,7 @@ export class Client extends EventEmitter {
             channels: this.cacheOptions?.channels === false ? new FakeMap() : new Map<bigint, Channel>(),
             users: this.cacheOptions?.users === false ? new FakeMap() : new Map<bigint, User>(),
             messages:
-                this.cacheOptions?.users === false ? new FakeCache() : new MessageCache(options.cache.messageLimit),
+                this.cacheOptions?.users === false ? new FakeCache() : new MessageCache(options?.cache?.messageLimit),
             roles: this.cacheOptions?.messages === false ? new FakeCache() : new Cache<Role>(),
             threadMembers: this.cacheOptions?.messages === false ? new FakeCache() : new Cache<ThreadMember>()
         };

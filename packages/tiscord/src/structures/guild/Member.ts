@@ -1,6 +1,7 @@
 import { APIError, Client, Guild, MemberOptions, Permissions, RawMemberOptions, User } from '../../';
 
 import { APIGuildMember } from 'discord-api-types/v10';
+import { MemberRoleManager } from '../../managers/MemberRoleManager';
 
 /**
  * Member class
@@ -35,10 +36,10 @@ export class Member {
     id: bigint;
     guildId: bigint;
     guild?: Guild;
-    permissions?: Permissions;
     communicationDisabledUntil: number;
     pending: boolean;
     #animated: boolean;
+    roles: MemberRoleManager;
     constructor(client: Client, data: APIGuildMember, guild: Guild) {
         this.guild = guild;
         if (data.user) this.user = new User(client, data.user);
@@ -55,7 +56,13 @@ export class Member {
         if (client.raw) this.raw = data;
         this.id = this.user.id;
         this.guildId = guild?.id;
+        this.roles = new MemberRoleManager(this, data.roles.map(BigInt));
         client.cache.users.set(this.user.id, this.user);
+    }
+    get permissions() {
+        const { cache } = this.roles;
+        // @ts-expect-error
+        return new Permissions(cache.map(e => e?.permissions) || 0n);
     }
 
     /**
@@ -64,13 +71,6 @@ export class Member {
      */
     get avatar() {
         return (this.#animated ? 'a_' : '') + this.#avatar.toString(16);
-    }
-
-    /**
-     * Internal function, sets permissions and other stuff
-     */
-    async setup() {
-        this.permissions = new Permissions(this.roles.map(r => BigInt(r?.permissions || 0)));
     }
 
     /**

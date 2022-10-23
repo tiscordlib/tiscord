@@ -76,7 +76,7 @@ export class RepliableInteraction extends Interaction {
         Delete the message.
     */
     async deleteReply() {
-        await this.client.rest.delete(`/webhook/${this.client.user.id}/${this.token}/`);
+        await this.client.rest.delete(`/webhooks/${this.client.user.id}/${this.token}/messages/@original`);
     }
 
     /**

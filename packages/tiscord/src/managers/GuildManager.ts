@@ -23,7 +23,7 @@ export class GuildManager {
         const cache = this.client.cache.guilds.get(guild);
         let data: Guild;
         if (cache && !fetch) return cache;
-        const discordData = (await this.client.rest.get(`/guild/${guild}`).catch(() => null)) as APIGuild;
+        const discordData = (await this.client.rest.get(`/guilds/${guild}`).catch(() => null)) as APIGuild;
         if (discordData) data = new Guild(this.client, discordData);
         if (guild) this.client.cache.guilds.set(guild, data);
         return data;
