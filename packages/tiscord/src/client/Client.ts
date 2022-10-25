@@ -27,6 +27,7 @@ import { REST } from '../rest/REST';
 import { version } from '../../package.json';
 import { Events } from '../util/Events';
 import { AllowedMentions, RawMentions } from '../util/AllowedMentions';
+import { ApplicationCommandManager } from '../managers/ApplicationCommandManager';
 
 /**
  *  The main client class
@@ -45,6 +46,7 @@ import { AllowedMentions, RawMentions } from '../util/AllowedMentions';
  *  @property {boolean} debugLogs - Whether to enable debug logs
  *  @property {User} user - The current user
  *  @property {GatewayPresenceUpdateData} presence - The current client presence
+ *  @property {ApplicationCommandManager} applicationCommands - Application command manager
  *  @extends EventEmitter
  *  @class
  */
@@ -75,6 +77,8 @@ export class Client extends EventEmitter {
     debugLogs: typeof console.log;
     presence: GatewayPresenceUpdateData;
     allowedMentions: RawMentions;
+    applicationId: bigint;
+    applicationCommands: ApplicationCommandManager;
     constructor(options: ClientOptions) {
         super();
         this.cacheOptions = options.cache;
@@ -92,6 +96,7 @@ export class Client extends EventEmitter {
         this.users = new UserManager(this);
         this.guilds = new GuildManager(this);
         this.channels = new ChannelManager(this);
+        this.applicationCommands = new ApplicationCommandManager(this);
         this.debugLogs = options.debug;
         if (options.allowedMentions) this.allowedMentions = new AllowedMentions(options.allowedMentions);
         this.presence = options.presence;

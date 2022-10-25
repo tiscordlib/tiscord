@@ -2,7 +2,7 @@ import { APIGuild } from 'discord-api-types/v10';
 import { Client, Guild } from '../';
 
 /**
- * Class managing channels
+ * Class managing guilds
  * @param {Client} client - Client instance
  * @class
  * @property {Client} client - Client instance
