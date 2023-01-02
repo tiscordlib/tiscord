@@ -1,4 +1,5 @@
-import { Client, Guild, Member } from '../';
+import type { Client, Guild } from '../';
+import { Member } from '../';
 
 export async function guildMemberUpdate(client: Client, data: { d: any }) {
     const guild: Guild = client.cache.guilds.get(BigInt(data.d.guild_id));

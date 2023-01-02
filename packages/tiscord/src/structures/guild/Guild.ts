@@ -1,4 +1,4 @@
-import {
+import type {
     APIGuild,
     APIGuildScheduledEvent,
     APIStageInstance,
@@ -6,18 +6,14 @@ import {
     GatewayVoiceState,
     GuildFeature
 } from 'discord-api-types/v10';
+import type { CDNOptions, ChannelManager, Client, GuildEditOptionsType } from '../../';
 import {
     APIError,
-    CDNOptions,
-    ChannelManager,
     ChannelOptions,
-    Client,
     Emoji,
     GuildBan,
     GuildEditOptions,
-    GuildEditOptionsType,
     Invite,
-    Member,
     MemberManager,
     Role,
     RoleOptions,
@@ -28,7 +24,7 @@ import {
 } from '../../';
 
 /**
- * Guild class
+ * Class representing Guilds, otherwise known as servers.
  *
  * @param {Client} client - Client instance
  * @param {APIGuild} data - Guild data
@@ -46,7 +42,6 @@ import {
  * @property {number} nsfwLevel - NSFW level
  * @property {number} maxVideoChannelUsers - How many users can be on a video channel
  * @property {bigint} publicUpdatesChannelId - Public update channel ID
- * @property {string} locale - Guild locale
  * @property {number} boosterCount - Amount of boosters
  * @property {number} premiumTier - Server boost tier
  * @property {string} description - Guild description
@@ -76,7 +71,7 @@ import {
  * @property {boolean} widgetEnabled - Whether the guild widget enabled
  * @property {number} afkTimeout - AFK timeout
  * @property {bigint} afkChannelId - AFK channel ID
- * @property {Member} me - Bot's guild member
+ * @property {string} preferredLocale - Guild's preferred locale
  */
 export class Guild {
     client: Client;
@@ -128,82 +123,85 @@ export class Guild {
     afkChannelId: bigint;
     permissions: string;
     raw?: APIGuild;
-    me: Member | void;
     #animated: boolean;
+    preferredLocale: string;
     constructor(client: Client, data: APIGuild | GatewayGuildCreateDispatchData) {
-        if (data.icon?.startsWith('a_')) this.#animated = true;
         this.client = client;
-        data.roles?.forEach(role => {
-            client.cache.roles.set(BigInt(role.id), new Role(client, role));
-        });
-        // @ts-expect-error
-        data.channels?.forEach((channel: any) => {
-            channel = channelType(client, channel);
-            if (!channel.guildId) channel.guildId = this.id;
-            if (channel.guilds) channel.guilds();
-            client.cache.channels.set(BigInt(data.id), channel);
-        });
-        this.id = BigInt(data.id);
-        this.name = data.name;
-        if (data.icon) this.#icon = BigInt(`0x${this.#animated ? data.icon.replace('a_', '') : data.icon}`);
-        if (data.icon_hash) this.#iconHash = BigInt(`0x${data.icon_hash}`);
-        if (data.splash) this.#splash = BigInt(`0x${data.splash}`);
-        if (data.discovery_splash) this.#discoverySplash = BigInt(`0x${data.discovery_splash}`);
-        if (data.banner) this.#banner = BigInt(data.banner);
-        this.owner = data.owner;
-        if (data.owner_id) this.ownerId = BigInt(data.owner_id);
-        if (data.afk_channel_id) this.afkChannelId = BigInt(data.afk_channel_id);
-        this.afkTimeout = data.afk_timeout;
-        this.widgetEnabled = data.widget_enabled;
-        if (data.widget_channel_id) this.widgetChannelId = BigInt(data.widget_channel_id);
-        this.verificationLevel = data.verification_level;
-        this.defaultMessageNotifications = data.default_message_notifications;
-        this.explicitContentFilter = data.explicit_content_filter;
-        this.roles = new RoleManager(client, this.id);
-        this.emojis = data.emojis?.map(emoji => new Emoji(client, emoji));
-        this.features = data.features;
-        this.mfaLevel = data.mfa_level;
-        if (data.application_id) this.applicationId = BigInt(data.application_id);
-        if (data.system_channel_id) this.systemChannelId = BigInt(data.system_channel_id);
-        this.systemChannelFlags = data.system_channel_flags;
-        if (data.rules_channel_id) this.rulesChannelId = BigInt(data.rules_channel_id);
-        // @ts-expect-error
-        if (data.joined_at) this.joinedAt = new Date(data.joined_at).getTime() / 1000;
-        // @ts-expect-error
-        this.large = data.large;
-        // @ts-expect-error
-        this.available = !data.unavailable;
-        // @ts-expect-error
-        this.memberCount = data.member_count;
-        // @ts-expect-error
-        this.voiceStates = data.voice_states;
+        this.roles = new RoleManager(this.client, this.id);
         this.members = new MemberManager(this.client, this.id);
         this.channels = this.client.channels;
-        // @ts-expect-error
-        this.threads = data.threads?.map(t => {
-            const thread = new ThreadChannel(this.client, t);
-            thread.guilds();
-            return thread;
+        this._patch(data as any);
+    }
+
+    _patch(data: APIGuild & GatewayGuildCreateDispatchData) {
+        if (data.icon?.startsWith('a_')) this.#animated = true;
+        data.roles?.forEach(role => {
+            this.client.cache.roles.set(BigInt(role.id), new Role(this.client, role));
         });
-        // @ts-expect-error
-        this.presences = data.presences;
-        this.maxMembers = data.max_members;
-        this.vanityUrlCode = data.vanity_url_code;
-        this.description = data.description;
-        this.premiumTier = data.premium_tier;
-        this.boosterCount = data.premium_subscription_count;
-        this.locale = data.preferred_locale;
-        if (data.public_updates_channel_id) this.publicUpdatesChannelId = BigInt(data.public_updates_channel_id);
-        this.maxVideoChannelUsers = data.max_video_channel_users;
-        this.nsfwLevel = data.nsfw_level;
-        // @ts-expect-error
-        this.stageInstances = data.stage_instances;
-        this.stickers = data.stickers?.map(sticker => new Sticker(client, sticker));
-        // @ts-expect-error
-        this.scheduledEvents = data.guild_scheduled_events;
-        this.premiumProgressBarEnabled = data.premium_progress_bar_enabled;
-        if (client.raw) this.raw = data;
-        this.me = client.cache.members.get(this.id, client.user.id);
+        data.channels?.forEach((channel: any) => {
+            channel = channelType(this.client, channel);
+            if (!channel.guildId) channel.guildId = this.id;
+            if (channel.guilds) channel.guilds();
+            this.client.cache.channels.set(BigInt(data.id), channel);
+        });
+        this.id ??= BigInt(data.id);
+        if ('name' in data) this.name = data.name;
+        if ('icon' in data) this.#icon = BigInt(`0x${this.#animated ? data.icon.replace('a_', '') : data.icon}`);
+        if ('icon_hash' in data) this.#iconHash = BigInt(`0x${data.icon_hash}`);
+        if ('splash' in data) this.#splash = BigInt(`0x${data.splash}`);
+        if ('discovery_splash' in data) this.#discoverySplash = BigInt(`0x${data.discovery_splash}`);
+        if ('banner' in data) this.#banner = BigInt(data.banner);
+        if ('owner' in data) this.owner = data.owner;
+        if ('owner_id' in data) this.ownerId = BigInt(data.owner_id);
+        if ('afk_channel_id' in data) this.afkChannelId = BigInt(data.afk_channel_id);
+        if ('afk_timeout' in data) this.afkTimeout = data.afk_timeout;
+        if ('widget_enabled' in data) this.widgetEnabled = data.widget_enabled;
+        if ('widget_channel_id' in data) this.widgetChannelId = BigInt(data.widget_channel_id);
+        if ('verification_level' in data) this.verificationLevel = data.verification_level;
+        if ('default_message_notifications' in data)
+            this.defaultMessageNotifications = data.default_message_notifications;
+        if ('explicit_content_filter' in data) this.explicitContentFilter = data.explicit_content_filter;
+        if ('emojis' in data) this.emojis = data.emojis?.map(emoji => new Emoji(this.client, emoji));
+        if ('features' in data) this.features = data.features;
+        if ('mfa_level' in data) this.mfaLevel = data.mfa_level;
+        if ('application_id' in data) this.applicationId = BigInt(data.application_id);
+        if ('system_channel_id' in data) this.systemChannelId = BigInt(data.system_channel_id);
+        if ('system_channel_flags' in data) this.systemChannelFlags = data.system_channel_flags;
+        if ('rules_channel_id' in data) this.rulesChannelId = BigInt(data.rules_channel_id);
+        if ('joined_at' in data) this.joinedAt = new Date(data.joined_at).getTime() / 1000;
+        if ('large' in data) this.large = data.large;
+        if ('unavailable' in data) this.available = !data.unavailable;
+        if ('member_count' in data) this.memberCount = data.member_count;
+        if ('voice_states' in data) this.voiceStates = data.voice_states;
+        if ('threads' in data)
+            this.threads = data.threads?.map(t => {
+                const thread = new ThreadChannel(this.client, t);
+                thread.guilds();
+                return thread;
+            });
+        if ('presences' in data) this.presences = data.presences;
+        if ('max_members' in data) this.maxMembers = data.max_members;
+        if ('vanity_url_code' in data) this.vanityUrlCode = data.vanity_url_code;
+        if ('description' in data) this.description = data.description;
+        if ('premium_tier' in data) this.premiumTier = data.premium_tier;
+        if ('premium_subscription_count' in data) this.boosterCount = data.premium_subscription_count;
+        if ('preferred_locale' in data) this.preferredLocale = data.preferred_locale;
+        if ('public_updates_channel_id' in data) this.publicUpdatesChannelId = BigInt(data.public_updates_channel_id);
+        if ('max_video_channel_users' in data) this.maxVideoChannelUsers = data.max_video_channel_users;
+        if ('nsfw_level' in data) this.nsfwLevel = data.nsfw_level;
+        if ('stage_instances' in data) this.stageInstances = data.stage_instances;
+        if ('stickers' in data) this.stickers = data.stickers?.map(sticker => new Sticker(this.client, sticker));
+        if ('guild_scheduled_events' in data) this.scheduledEvents = data.guild_scheduled_events;
+        if ('premium_progress_bar_enabled' in data) this.premiumProgressBarEnabled = data.premium_progress_bar_enabled;
+        if (this.client.raw) this.raw = data;
+    }
+
+    /**
+     * The app's guild member.
+     * @type {Member}
+     */
+    get me() {
+        return this.client.cache.members.get(this.id, this.client.user.id);
     }
 
     /**

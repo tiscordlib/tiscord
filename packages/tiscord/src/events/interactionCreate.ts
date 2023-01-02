@@ -1,8 +1,8 @@
 import { ApplicationCommandType, ComponentType, InteractionType } from 'discord-api-types/v10';
+import type { Client } from '../';
 import {
     ButtonInteraction,
     ChatInputCommandInteraction,
-    Client,
     CommandInteraction,
     Interaction,
     MessageContextMenuInteraction,

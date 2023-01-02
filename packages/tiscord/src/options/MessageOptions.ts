@@ -1,6 +1,8 @@
 /* eslint-disable camelcase */
-import { APIAllowedMentions, APIEmbed, APIMessageComponent, APIMessageReference } from 'discord-api-types/v10';
-import { AllowedMentions, MessageAttachment, RawMentions } from '../';
+import type { APIAllowedMentions, APIEmbed, APIMessageComponent, APIMessageReference } from 'discord-api-types/v10';
+import type { RawMentions } from '../';
+import { AllowedMentions } from '../';
+import { AttachmentBuilder } from '../structures/message/AttachmentBuilder';
 
 /**
  * Message options, used for parsing messages to an api readable format
@@ -24,8 +26,8 @@ export class MessageOptions {
     sticker_ids?: string[];
     flags?: number;
     message_reference?: APIMessageReference;
-    attachments?: MessageAttachment[];
-    files?: MessageAttachment[];
+    attachments?: AttachmentBuilder[];
+    files?: AttachmentBuilder[];
     constructor(data: RawMessageOptions) {
         if (typeof data.content !== 'string' && data.content) throw new TypeError('`content` must be a string.');
         if (!data.content && !data.embeds && !data.attachments && !data.stickers)
@@ -45,7 +47,7 @@ export class MessageOptions {
 }
 export class MessageData {
     body: MessageOptions;
-    files?: MessageAttachment[];
+    files?: AttachmentBuilder[];
     constructor(messageData: RawMessageOptions) {
         const parsedData = new MessageOptions(messageData);
         let i = 0;
@@ -71,7 +73,7 @@ export class MessageData {
 }
 export class InteractionData {
     body: { data: MessageOptions; type: number };
-    files?: MessageAttachment[];
+    files?: AttachmentBuilder[];
     constructor(messageData: RawMessageOptions, type = 4) {
         const parsedData = new MessageOptions(messageData);
         let i = 0;
@@ -112,8 +114,8 @@ export interface RawMessageOptions {
     content?: string;
     embeds?: any[];
     allowedMentions?: RawMentions;
-    attachments?: MessageAttachment[];
-    files?: MessageAttachment[];
+    attachments?: AttachmentBuilder[];
+    files?: AttachmentBuilder[];
     components?: any[];
     stickers?: string[];
     flags?: number;

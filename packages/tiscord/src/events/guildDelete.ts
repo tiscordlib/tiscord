@@ -1,6 +1,7 @@
-import { Client, Guild } from '../';
+import type { Client } from '../';
+import { Guild } from '../';
 
-import { GatewayGuildDeleteDispatchData } from 'discord-api-types/v10';
+import type { GatewayGuildDeleteDispatchData } from 'discord-api-types/v10';
 
 export async function guildDelete(client: Client, data: { d: GatewayGuildDeleteDispatchData }) {
     // @ts-expect-error

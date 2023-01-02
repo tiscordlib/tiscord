@@ -1,5 +1,6 @@
-import { Client, Emoji } from '../';
-import { APIEmoji } from 'discord-api-types/v10';
+import type { Client } from '../';
+import { Emoji } from '../';
+import type { APIEmoji } from 'discord-api-types/v10';
 
 export async function guildEmojisUpdate(client: Client, data: { d: { guild_id: string; emojis: APIEmoji[] } }) {
     const guild = client.cache.guilds.get(BigInt(data.d.guild_id));

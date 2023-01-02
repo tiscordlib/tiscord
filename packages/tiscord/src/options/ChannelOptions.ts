@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { APIVoiceRegion, ChannelType, OverwriteType, VideoQualityMode } from 'discord-api-types/v10';
+import type { APIVoiceRegion, ChannelType, OverwriteType, VideoQualityMode } from 'discord-api-types/v10';
 
 /**
  * Message options, used for parsing messages to an api readable format

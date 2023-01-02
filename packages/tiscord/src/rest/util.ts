@@ -1,4 +1,4 @@
-import { File } from './APIRequest.js';
+import type { File } from './APIRequest.js';
 import fs from 'node:fs';
 import { join } from 'node:path';
 

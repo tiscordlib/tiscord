@@ -1,6 +1,6 @@
 import { STATUS_CODES } from 'http';
-import { ResponseData } from 'undici/types/dispatcher';
-import { APIRequest, File } from './APIRequest';
+import type { ResponseData } from 'undici/types/dispatcher';
+import type { APIRequest, File } from './APIRequest';
 
 export class RESTError extends Error {
     public body: any;

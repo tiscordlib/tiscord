@@ -1,5 +1,5 @@
-import { APIUser, UserFlags } from 'discord-api-types/v10';
-import { Client } from '../../';
+import type { APIUser, UserFlags } from 'discord-api-types/v10';
+import type { Client } from '../../';
 
 /**
  * User class
@@ -30,7 +30,12 @@ export class User {
     accentColor: number;
     raw?: APIUser;
     #animated?: boolean;
+    client: Client;
     constructor(client: Client, data: APIUser) {
+        this.client = client;
+        this._patch(data);
+    }
+    _patch(data: APIUser) {
         this.id = BigInt(data.id);
         this.username = data.username;
         this.discriminator = data.discriminator;
@@ -47,7 +52,7 @@ export class User {
         if (data.banner) this.#banner = BigInt(`0x${data.banner}`);
         this.flags = data.public_flags;
         this.accentColor = data.accent_color;
-        if (client.raw) this.raw = data;
+        if (this.client.raw) this.raw = data;
     }
 
     /**

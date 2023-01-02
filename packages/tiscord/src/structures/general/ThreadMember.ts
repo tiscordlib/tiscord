@@ -1,4 +1,5 @@
-import { APIThreadMember } from 'discord-api-types/v10';
+import type { APIThreadMember, ThreadMemberFlags } from 'discord-api-types/v10';
+import type { Client } from '../../client/Client';
 
 /**
  * Represents a thread member.
@@ -13,11 +14,14 @@ export class ThreadMember {
     threadId: bigint;
     userId: bigint;
     joinTimestamp: number;
-    flags: any;
-    constructor(data: APIThreadMember) {
+    flags: ThreadMemberFlags;
+    constructor(_client: any, data: APIThreadMember) {
         this.threadId = BigInt(data.id);
-        this.userId = BigInt(data.user_id);
-        this.joinTimestamp = Math.round(new Date(data.join_timestamp).getTime() / 1000);
-        this.flags = data.flags;
+        this._patch(data)
+    }
+    _patch(data: APIThreadMember) {
+        if (data.user_id) this.userId = BigInt(data.user_id);
+        if (data.join_timestamp) this.joinTimestamp = Math.round(new Date(data.join_timestamp).getTime() / 1000);
+        if (data.flags) this.flags = data.flags;
     }
 }

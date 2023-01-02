@@ -1,4 +1,5 @@
-import { Client, Guild, Role } from '../';
+import type { Client, Guild } from '../';
+import { Role } from '../';
 
 export async function guildRoleCreate(client: Client, data: { d: any }) {
     const guild: Guild = client.cache.guilds.get(BigInt(data.d.guild_id));

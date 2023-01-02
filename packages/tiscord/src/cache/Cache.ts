@@ -1,3 +1,21 @@
+import { type Channel } from '../structures/channels/Channel';
+import { type ThreadMember } from '../structures/general/ThreadMember';
+import { type User } from '../structures/general/User';
+import { type Guild } from '../structures/guild/Guild';
+import { type Member } from '../structures/guild/Member';
+import { type Role } from '../structures/guild/Role';
+import { type Message } from '../structures/message/Message';
+
+export type TypesCachedStructures =
+    | typeof Guild
+    | typeof Member
+    | typeof Message
+    | typeof Role
+    | typeof Channel
+    | typeof User
+    | typeof ThreadMember;
+export type CachedStructures = Guild | Member | Message | Role | Channel | User | ThreadMember;
+
 /**
  *  Cache for channels, message, etc.
  *  @class

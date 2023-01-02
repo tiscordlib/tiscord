@@ -1,9 +1,11 @@
-import { ResponseData } from 'undici/types/dispatcher';
+import type { ResponseData } from 'undici/types/dispatcher';
 
-import { APIRequest } from './APIRequest.js';
+import type { APIRequest } from './APIRequest.js';
 import { DefaultDiscordOptions } from './index.js';
-import { RequestManager, RequestManagerOptions, RouteLike } from './RequestManager.js';
-import { RESTClient, RESTClientOptions } from './RESTClient.js';
+import type { RequestManagerOptions, RouteLike } from './RequestManager.js';
+import { RequestManager } from './RequestManager.js';
+import type { RESTClientOptions } from './RESTClient.js';
+import { RESTClient } from './RESTClient.js';
 
 type RequestOptions = Partial<APIRequest & { buf: boolean }>;
 type Awaitable<T> = Promise<T> | T;

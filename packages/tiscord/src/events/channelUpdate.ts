@@ -1,5 +1,7 @@
-import { APIGuildChannel, ChannelType } from 'discord-api-types/v10';
-import { Client, channelType } from '../';
+import type { APIGuildChannel } from 'discord-api-types/v10';
+import { ChannelType } from 'discord-api-types/v10';
+import type { Client } from '../';
+import { channelType } from '../';
 
 export async function channelUpdate(client: Client, data: { d: APIGuildChannel<any> }) {
     const oldChannel = client.cache.channels.get(BigInt(data.d.id));

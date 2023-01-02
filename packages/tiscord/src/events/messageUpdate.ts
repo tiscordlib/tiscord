@@ -1,5 +1,6 @@
-import { Client, Guild, Message, TextChannel } from '../';
-import { GatewayMessageUpdateDispatchData } from 'discord-api-types/v10';
+import type { Client, Guild, TextChannel } from '../';
+import { Message } from '../';
+import type { GatewayMessageUpdateDispatchData } from 'discord-api-types/v10';
 
 export async function messageUpdate(client: Client, data: { d: GatewayMessageUpdateDispatchData }) {
     const guild: Guild = client.cache.guilds.get(BigInt(data.d.guild_id));

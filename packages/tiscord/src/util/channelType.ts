@@ -1,5 +1,7 @@
-import { APIChannel, ChannelType } from 'discord-api-types/v10';
-import { Channel, Client, DMChannel, TextChannel, ThreadChannel, VoiceChannel } from '../';
+import type { APIChannel } from 'discord-api-types/v10';
+import { ChannelType } from 'discord-api-types/v10';
+import type { Client } from '../';
+import { Channel, DMChannel, TextChannel, ThreadChannel, VoiceChannel } from '../';
 
 /**
  * Get the correct channel type. This is used to determine which channel class to call.

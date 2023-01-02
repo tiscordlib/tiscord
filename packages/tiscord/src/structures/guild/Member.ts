@@ -1,6 +1,7 @@
-import { APIError, Client, Guild, MemberOptions, Permissions, RawMemberOptions, User } from '../../';
+import type { Client, Guild, RawMemberOptions } from '../../';
+import { APIError, MemberOptions, Permissions, User } from '../../';
 
-import { APIGuildMember } from 'discord-api-types/v10';
+import type { APIGuildMember } from 'discord-api-types/v10';
 import { MemberRoleManager } from '../../managers/MemberRoleManager';
 
 /**
@@ -31,7 +32,7 @@ export class Member {
     joinedAt: string;
     #avatar: bigint;
     nick: string;
-    user: User;
+    user?: User;
     raw?: APIGuildMember;
     id: bigint;
     guildId: bigint;
@@ -42,23 +43,30 @@ export class Member {
     roles: MemberRoleManager;
     constructor(client: Client, data: APIGuildMember, guild: Guild) {
         this.guild = guild;
-        if (data.user) this.user = new User(client, data.user);
         this.client = client;
-        this.#animated = data.avatar?.startsWith('a_');
-        this.nick = data.nick;
-        if (data.avatar) this.#avatar = BigInt(`0x${data.avatar}`);
-        this.joinedAt = data.joined_at;
-        this.premiumSince = data.premium_since;
-        this.deaf = data.deaf;
-        this.mute = data.mute;
-        this.communicationDisabledUntil = new Date(data.communication_disabled_until).getTime() / 1000;
-        this.pending = data.pending || false;
-        if (client.raw) this.raw = data;
-        this.id = this.user.id;
-        this.guildId = guild?.id;
         this.roles = new MemberRoleManager(this, data.roles.map(BigInt));
-        client.cache.users.set(this.user.id, this.user);
+        this._patch(data);
     }
+    _patch(data: APIGuildMember) {
+        if (data.user) this.user = new User(this.client, data.user);
+        if ('avatar' in data) {
+            this.#avatar = BigInt(`0x${data.avatar.replace('a_', '')}`);
+            this.#animated = data.avatar?.startsWith('a_');
+        }
+        if ('nick' in data) this.nick = data.nick;
+        if ('joined_at' in data) this.joinedAt = data.joined_at;
+        if ('premium_since' in data) this.premiumSince = data.premium_since;
+        if ('deaf' in data) this.deaf = data.deaf;
+        if ('mute' in data) this.mute = data.mute;
+        if ('communication_disabled_until' in data)
+            this.communicationDisabledUntil = new Date(data.communication_disabled_until).getTime() / 1000;
+        this.pending = data.pending || false;
+        if (this.client.raw) this.raw = data;
+        if ('id' in this.user) this.id ??= this.user?.id;
+        if (this.guild && 'id' in this.guild) this.guildId ??= this.guild?.id;
+        this.client.cache.users.set(this.user.id, this.user);
+    }
+
     get permissions() {
         const { cache } = this.roles;
         // @ts-expect-error

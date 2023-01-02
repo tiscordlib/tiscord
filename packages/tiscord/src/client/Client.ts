@@ -1,19 +1,12 @@
+import type { CacheOptions, Channel, ClientOptions, Guild, Member, Role, ThreadMember, User } from '../';
 import {
     Cache,
-    CacheOptions,
-    Channel,
     ChannelManager,
-    ClientOptions,
     EventManager,
     FakeCache,
     FakeMap,
-    Guild,
     GuildManager,
-    Member,
     MessageCache,
-    Role,
-    ThreadMember,
-    User,
     UserManager,
     WebSocketManager
 } from '../';
@@ -21,12 +14,13 @@ import {
 import process from 'node:process';
 import { arch, release, type } from 'node:os';
 import { EventEmitter } from 'node:events';
-import { GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
+import type { GatewayPresenceUpdateData } from 'discord-api-types/v10';
+import { GatewayIntentBits } from 'discord-api-types/v10';
 import { REST } from '../rest/REST';
-// @ts-expect-error
-import { version } from '../../package.json';
-import { Events } from '../util/Events';
-import { AllowedMentions, RawMentions } from '../util/AllowedMentions';
+import { version } from '../index';
+import type { Events } from '../util/Events';
+import type { RawMentions } from '../util/AllowedMentions';
+import { AllowedMentions } from '../util/AllowedMentions';
 
 /**
  *  The main client class

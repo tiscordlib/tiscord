@@ -1,8 +1,10 @@
-import { APIError, ChannelOptions, Client, InviteData, InviteOptions } from '../../';
+import type { Client, InviteData } from '../../';
+import { APIError, ChannelOptions, InviteOptions } from '../../';
 
 import { Channel } from './Channel';
-import { Guild } from '../guild/Guild';
+import type { Guild } from '../guild/Guild';
 import { Invite } from '../guild/Invite';
+import type { APIGuildChannel } from 'discord-api-types/v10';
 
 /**
  * A guild channel class.
@@ -20,14 +22,15 @@ export class GuildChannel extends Channel {
     guildId: bigint;
     position: number;
     permissionOverwrites: any[];
-    permissions: string;
     guild: Guild;
-    constructor(client: Client, data: any) {
+    constructor(client: Client, data: APIGuildChannel<any>) {
         super(client, data);
-        this.guildId = data.guild_id;
-        this.position = data.position;
-        this.permissionOverwrites = data.permission_overwrites;
-        this.permissions = data.permissions;
+    }
+    _patch(data: APIGuildChannel<any>) {
+        super._patch(data);
+        if ('guild_id' in data) this.guildId = BigInt(data.guild_id);
+        if ('position' in data) this.position = data.position;
+        if ('permission_overwrites' in data) this.permissionOverwrites = data.permission_overwrites;
     }
 
     /**

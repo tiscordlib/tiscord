@@ -1,6 +1,7 @@
-import { Client, ThreadChannel } from '../';
+import type { Client } from '../';
+import { ThreadChannel } from '../';
 
-import { APIGuildChannel } from 'discord-api-types/v10';
+import type { APIGuildChannel } from 'discord-api-types/v10';
 
 export async function threadUpdate(client: Client, data: { d: APIGuildChannel<any> }) {
     const oldChannel = client.cache.channels.get(BigInt(data.d.id));

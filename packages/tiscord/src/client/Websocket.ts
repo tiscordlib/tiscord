@@ -1,4 +1,5 @@
-import { Client, GatewayError } from '../';
+import type { Client } from '../';
+import { GatewayError } from '../';
 import { GatewayOpcodes } from 'discord-api-types/v10';
 import process from 'node:process';
 import WebSocket from 'ws';

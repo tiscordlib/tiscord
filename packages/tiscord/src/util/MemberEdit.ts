@@ -1,4 +1,5 @@
-import { Client, User } from '../';
+import type { Client } from '../';
+import { User } from '../';
 
 /**
  * Parses options for guildMemberUpdate event

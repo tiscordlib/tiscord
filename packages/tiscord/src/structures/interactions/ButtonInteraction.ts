@@ -1,5 +1,6 @@
-import { Client, Message, RawMessageOptions, RepliableInteraction } from '../../';
-import { APIMessageComponentButtonInteraction } from 'discord-api-types/v10';
+import type { Client, RawMessageOptions } from '../../';
+import { Message, RepliableInteraction } from '../../';
+import type { APIMessageComponentButtonInteraction } from 'discord-api-types/v10';
 import { InteractionData } from '../../options/MessageOptions';
 
 /**

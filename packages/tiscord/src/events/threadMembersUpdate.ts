@@ -1,6 +1,7 @@
-import { Client, ThreadMember } from '../';
+import type { Client } from '../';
+import { ThreadMember } from '../';
 
-import { APIThreadMember } from 'discord-api-types/v10';
+import type { APIThreadMember } from 'discord-api-types/v10';
 
 export async function threadMembersUpdate(
     client: Client,
@@ -15,7 +16,7 @@ export async function threadMembersUpdate(
     }
 ) {
     data.d.added_members.forEach(m => {
-        client.cache.threadMembers.set(BigInt(m.id), new ThreadMember(m));
+        client.cache.threadMembers.set(BigInt(m.id), new ThreadMember(null, m));
     });
     data.d.removedMemberIds.forEach(m => {
         client.cache.threadMembers.delete(BigInt(data.d.id), BigInt(m));

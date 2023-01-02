@@ -1,4 +1,5 @@
-import { Client, Guild, Member, Role, User, channelType, Attachment } from '../';
+import type { Client, Guild } from '../';
+import { Member, Role, User, channelType, Attachment } from '../';
 
 import { ApplicationCommandOptionType, ChannelType } from 'discord-api-types/v10';
 

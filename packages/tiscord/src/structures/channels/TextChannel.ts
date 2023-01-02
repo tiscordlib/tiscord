@@ -1,34 +1,40 @@
-import { APIError, Client, Message, MessageManager, RawMessageOptions, ThreadData, ThreadOptions } from '../../';
+import type { Client, RawMessageOptions, ThreadData } from '../../';
+import { APIError, Message, MessageManager, ThreadOptions } from '../../';
 import { GuildChannel } from './GuildChannel';
 import { threadWrapper } from '../../util/threadWrapper';
 import { MessageData } from '../../options/MessageOptions';
+import type { APITextChannel } from 'discord-api-types/v10';
 
 /**
  * A text channel class.
  *
  * @param {Client} client - Client instance
- * @param {any} data - API guild channel data
+ * @param {import('discord-api-types/v10').APITextChannel} data - API guild channel data
  * @extends {GuildChannel}
  * @class
  * @property {bigint} lastMessageId - ID of last message
- * @property {number} defaultArchiveDuration - Default thread archive duration
+ * @property {number} defaultAutoArchiveDuration - Default thread archive duration
  * @property {string} topic - Channel topic
  * @property {boolean} nsfw - Whether the channel is nsfw
  * @property {MessageManager} messages - Message manager
  */
 export class TextChannel extends GuildChannel {
     lastMessageId: bigint;
-    defaultArchiveDuration: number;
+    defaultAutoArchiveDuration: number;
     topic: string;
     nsfw: boolean;
     messages: MessageManager;
-    constructor(client: Client, data: any) {
+    constructor(client: Client, data: APITextChannel) {
         super(client, data);
-        this.nsfw = data.nsfw;
-        this.lastMessageId = data.last_message_id;
-        this.defaultArchiveDuration = data.default_archive_duration;
-        this.topic = data.topic;
         this.messages = new MessageManager(this.client, this);
+    }
+    _patch(data: APITextChannel) {
+        super._patch(data);
+        if ('nsfw' in data) this.nsfw = data.nsfw;
+        if ('last_message_id' in data) this.lastMessageId = BigInt(data.last_message_id);
+        if ('default_auto_archive_duration' in data)
+            this.defaultAutoArchiveDuration = data.default_auto_archive_duration;
+        if ('topic' in data) this.topic = data.topic;
     }
 
     /**
@@ -79,7 +85,7 @@ export class TextChannel extends GuildChannel {
      * Get all pinned messages from a channel
      * @returns {Message[]}
      */
-    async getPinned() {
+    async getPinnedMessages() {
         const request = (await this.client.rest.get(`/channels/${this.id}/pins`)) as any;
         if (request?.code) {
             throw new APIError(request?.message);

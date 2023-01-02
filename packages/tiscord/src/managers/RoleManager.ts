@@ -1,6 +1,7 @@
-import { Client, Role } from '..';
+import type { Client } from '..';
+import { Role } from '..';
 
-import { APIRole } from 'discord-api-types/v10';
+import type { APIRole } from 'discord-api-types/v10';
 
 /**
  * Class managing roles

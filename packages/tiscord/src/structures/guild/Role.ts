@@ -1,5 +1,6 @@
-import { APIRole } from 'discord-api-types/v10';
-import { Client, Permissions } from '../../';
+import type { APIRole } from 'discord-api-types/v10';
+import type { Client } from '../../';
+import { Permissions } from '../../';
 
 /**
  * Role class
@@ -16,7 +17,7 @@ import { Client, Permissions } from '../../';
  * @property {string} mentionable - Is the role mentionable
  * @property {string} [raw] - Raw role data
  * @property {string} [integrationId] - Integration ID
- * @property {BigInt} permissions - Permissions
+ * @property {bigint} permissions - Permissions
  * @property {string} [botId] - Bot ID
  */
 export class Role {
@@ -32,6 +33,10 @@ export class Role {
     integrationId?: bigint;
     raw?: APIRole;
     constructor(client: Client, data: APIRole) {
+        if (client.raw) this.raw = data;
+        this._patch(data);
+    }
+    _patch(data: APIRole) {
         this.id = BigInt(data.id);
         this.name = data.name;
         this.color = data.color;
@@ -42,6 +47,5 @@ export class Role {
         this.mentionable = data.mentionable;
         if (data.tags?.bot_id) this.botId = BigInt(data.tags.bot_id);
         if (data.tags?.integration_id) this.integrationId = BigInt(data.tags.integration_id);
-        if (client.raw) this.raw = data;
     }
 }

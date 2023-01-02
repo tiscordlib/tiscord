@@ -1,5 +1,6 @@
-import { APIThreadChannel, APIThreadMember } from 'discord-api-types/v10';
-import { Client, ThreadChannel, ThreadMember } from '../';
+import type { APIThreadChannel, APIThreadMember } from 'discord-api-types/v10';
+import type { Client } from '../';
+import { ThreadChannel, ThreadMember } from '../';
 
 export async function threadListSync(
     client: Client,
@@ -10,7 +11,7 @@ export async function threadListSync(
         channel.guilds();
         return channel;
     });
-    data.d.members.map((member: APIThreadMember) => new ThreadMember(member));
+    data.d.members.map((member: APIThreadMember) => new ThreadMember(null, member));
     // @ts-expect-error
     data.d.threads.forEach((thread: ThreadChannel) => client.cache.channels.set(BigInt(thread.id), thread));
     data.d.members.forEach((member: ThreadMember) => client.cache.threadMembers.set(member.threadId, member));

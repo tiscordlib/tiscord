@@ -26,6 +26,7 @@ import { threadMembersUpdate } from '../events/threadMembersUpdate';
 import { threadUpdate } from '../events/threadUpdate';
 import { typingStart } from '../events/typingStart';
 import { ready } from '../events/ready';
+import type { Client } from '../rest';
 
 /**
  * An event manager class
@@ -33,7 +34,7 @@ import { ready } from '../events/ready';
  * @internal
  */
 export class EventManager {
-    list: Map<string, any>;
+    list: Map<string, (client: Client, data: any) => void>;
     constructor() {
         this.list = new Map();
         this.register('READY', ready);

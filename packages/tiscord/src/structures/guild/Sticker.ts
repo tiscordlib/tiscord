@@ -1,5 +1,6 @@
-import { APISticker, StickerFormatType, StickerType } from 'discord-api-types/v10';
-import { Client, User } from '../../';
+import type { APISticker, StickerFormatType, StickerType, APIStickerItem } from 'discord-api-types/v10';
+import type { Client } from '../../';
+import { User } from '../../';
 
 /**
  * Represents a sticker.
@@ -25,7 +26,12 @@ export class Sticker {
     available?: boolean;
     creator?: User;
     sortValue?: number;
-    constructor(client: Client, data: APISticker) {
+    client: Client;
+    constructor(client: Client, data: APISticker | APIStickerItem) {
+        this.client = client;
+        this._patch(data as any);
+    }
+    _patch(data: APISticker & APIStickerItem) {
         this.id = BigInt(data.id);
         if (data.pack_id) this.packId = BigInt(data.pack_id);
         this.name = data.name;
@@ -34,8 +40,8 @@ export class Sticker {
         this.type = data.type;
         this.formatType = data.format_type;
         if (data.available) this.available = data.available;
-        if (data.user) this.creator = new User(client, data.user);
+        if (data.user) this.creator = new User(this.client, data.user);
         this.sortValue = data.sort_value;
-        if (this.creator) client.cache.users.set(this.creator.id, this.creator);
+        if (this.creator) this.client.cache.users.set(this.creator.id, this.creator);
     }
 }

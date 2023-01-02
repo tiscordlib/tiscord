@@ -1,27 +1,17 @@
+import type { Client, Guild, Member, RawMessageOptions, TextChannel, ThreadData } from '../../';
 import {
     APIError,
     BaseThreadOptions,
-    Client,
-    Guild,
     Interaction,
-    Member,
     MessageTypes,
-    RawMessageOptions,
     SystemMessageTypes,
-    TextChannel,
     ThreadChannel,
-    ThreadData,
-    User
+    User,
+    Sticker
 } from '../../';
-import {
-    APIInteraction,
-    APIMessage,
-    APIMessageReference,
-    ChannelType,
-    MessageFlags,
-    MessageType
-} from 'discord-api-types/v10';
-import { Attachment } from './Attachment';
+import type { APIInteraction, APIMessage, APIMessageReference, MessageFlags } from 'discord-api-types/v10';
+import { ChannelType } from 'discord-api-types/v10';
+import { Attachment } from './MessageAttachment';
 import { MessageData } from '../../options/MessageOptions';
 
 /**
@@ -39,8 +29,8 @@ import { MessageData } from '../../options/MessageOptions';
  * @property {any} mentions - Message mentions
  * @property {string[]} mentionRoles - Roles mentioned in message
  * @property {string[]} mentionChannels - Channels mentioned in message
- * @property {any} attachments - Attachments in message
- * @property {any} sticker - Stickers in message
+ * @property {Attachment[]} attachments - Attachments in message
+ * @property {Sticker[]} sticker - Stickers in message
  * @property {any} components - Message components
  * @property {ThreadChannel} thread - Thread the message was in, if its in a thread
  * @property {Message} referencedMessage - Message that was replied to
@@ -69,8 +59,8 @@ export class Message {
     mentions: any;
     mentionRoles: string[];
     mentionChannels: any;
-    attachments: any;
-    stickers: any;
+    attachments: Attachment[];
+    stickers: Sticker[];
     components: any;
     thread: ThreadChannel | null;
     interaction: Interaction | null;
@@ -78,7 +68,7 @@ export class Message {
     flags: MessageFlags;
     messageReference: APIMessageReference;
     applicationId: bigint;
-    type: keyof typeof MessageType;
+    type: number;
     webhookId: bigint;
     pinned: boolean;
     nonce: string | number;
@@ -91,11 +81,14 @@ export class Message {
     member: Member;
     constructor(client: Client, data: APIMessage) {
         this.client = client;
+        this._patch(data);
+    }
+    _patch(data: APIMessage) {
         if (data.id) this.id = BigInt(data.id);
         if (data.channel_id) this.channelId = BigInt(data.channel_id);
         // @ts-expect-error
         if (data.guild_id) this.guildId = BigInt(data.guild_id);
-        if (data.author?.id) this.author = new User(client, data.author);
+        if (data.author?.id) this.author = new User(this.client, data.author);
         this.guild = this.client.cache.guilds.get(this.guildId);
         this.content = data.content;
         this.timestamp = new Date(data.timestamp).getTime() / 1000;
@@ -109,21 +102,22 @@ export class Message {
         this.nonce = data.nonce;
         this.pinned = data.pinned;
         if (data.webhook_id) this.webhookId = BigInt(data.webhook_id);
-        // @ts-expect-error
-        this.type = MessageType[data.type];
+        this.type = data.type;
         if (data.application_id) this.applicationId = BigInt(data.application_id);
         this.messageReference = data.message_reference;
         this.flags = data.flags;
-        this.referencedMessage = data.referenced_message ? new Message(client, data.referenced_message) : undefined;
+        this.referencedMessage = data.referenced_message
+            ? new Message(this.client, data.referenced_message)
+            : undefined;
         // @ts-expect-error
         if (data.interaction && this.guildId) data.interaction.guild_id = this.guildId;
         this.interaction = data.interaction
-            ? new Interaction(client, data.interaction as unknown as APIInteraction)
+            ? new Interaction(this.client, data.interaction as unknown as APIInteraction)
             : undefined;
-        this.thread = data.thread ? new ThreadChannel(client, data.thread) : undefined;
+        this.thread = data.thread ? new ThreadChannel(this.client, data.thread) : undefined;
         this.components = data.components;
-        this.stickers = data.sticker_items;
-        if (client.raw) this.raw = data;
+        this.stickers = data.sticker_items.map(e => new Sticker(this.client, e));
+        if (this.client.raw) this.raw = data;
     }
 
     /**

@@ -1,5 +1,6 @@
-import { APIGuild } from 'discord-api-types/v10';
-import { Client, Guild } from '../';
+import type { APIGuild } from 'discord-api-types/v10';
+import type { Client } from '../';
+import { Guild } from '../';
 
 /**
  * Class managing channels

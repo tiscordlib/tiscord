@@ -1,5 +1,6 @@
-import { Client, Sticker } from '../';
-import { APISticker } from 'discord-api-types/v10';
+import type { Client } from '../';
+import { Sticker } from '../';
+import type { APISticker } from 'discord-api-types/v10';
 
 export async function guildStickersUpdate(client: Client, data: { d: { guild_id: string; stickers: APISticker[] } }) {
     const guild = client.cache.guilds.get(BigInt(data.d.guild_id));

@@ -1,4 +1,5 @@
-import { Client, Message, RawMessageOptions, RepliableInteraction, SelectMenuOption } from '../../';
+import type { Client, RawMessageOptions } from '../../';
+import { Message, RepliableInteraction, SelectMenuOption } from '../../';
 import { InteractionData } from '../../options/MessageOptions';
 
 /**

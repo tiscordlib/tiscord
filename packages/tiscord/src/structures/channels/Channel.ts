@@ -1,5 +1,6 @@
-import { APIChannel, ChannelType } from 'discord-api-types/v10';
-import { Client } from '../../';
+import type { APIChannel } from 'discord-api-types/v10';
+import { ChannelType } from 'discord-api-types/v10';
+import type { Client } from '../../';
 
 /**
  * Channel class
@@ -10,7 +11,7 @@ import { Client } from '../../';
  * @property {Client} client - Client instance
  * @property {bigint} id - Channel ID
  * @property {string} name - Channel name
- * @property {string} type - Channel type
+ * @property {number} type - Channel type
  * @see https://discord.com/developers/docs/resources/channel#channel-object-channel-types
  * @property {APIChannel} raw - Raw channel data
  */
@@ -21,11 +22,14 @@ export class Channel {
     name: string;
     client: Client;
     constructor(client: Client, data: APIChannel) {
-        this.id = BigInt(data.id);
-        this.type = data.type;
-        this.name = data.name;
-        this.raw = data;
         this.client = client;
+        this._patch(data);
+    }
+    _patch(data: APIChannel) {
+        this.id ??= BigInt(data.id);
+        if (this.client.raw) this.raw = data;
+        if ('name' in data) this.name = data.name;
+        if ('type' in data) this.type = data.type;
     }
 
     /**
@@ -39,7 +43,7 @@ export class Channel {
     }
 
     /**
-     * Indicates whether this channel is {@link TextBasedChannels text-based}.
+     * Indicates whether this channel is text-based.
      * @returns {boolean}
      */
     isTextBased() {
@@ -47,7 +51,7 @@ export class Channel {
     }
 
     /**
-     * Indicates whether this channel is DM-based (either a {@link DMChannel} or a {@link PartialGroupDMChannel}).
+     * Indicates whether this channel is DM-based (either a {@link DMChannel}).
      * @returns {boolean}
      */
     isDMBased() {
@@ -55,7 +59,7 @@ export class Channel {
     }
 
     /**
-     * Indicates whether this channel is {@link BaseGuildVoiceChannel voice-based}.
+     * Indicates whether this channel is voice-based.
      * @returns {boolean}
      */
     isVoiceBased() {

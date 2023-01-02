@@ -1,6 +1,7 @@
-import { Client, User } from '../';
+import type { Client } from '../';
+import { User } from '../';
 
-import { APIUser } from 'discord-api-types/v10';
+import type { APIUser } from 'discord-api-types/v10';
 
 /**
  * Class managing users

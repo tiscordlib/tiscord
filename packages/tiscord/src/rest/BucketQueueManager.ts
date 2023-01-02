@@ -1,8 +1,8 @@
 import { AsyncQueue } from '@sapphire/async-queue';
 import { setTimeout as sleep } from 'node:timers/promises';
-import { ResponseData } from 'undici/types/dispatcher';
-import { APIRequest } from './APIRequest';
-import { RequestManager } from './RequestManager';
+import type { ResponseData } from 'undici/types/dispatcher';
+import type { APIRequest } from './APIRequest';
+import type { RequestManager } from './RequestManager';
 import { RateLimitedError } from './RESTError.js';
 
 export class BucketQueueManager {

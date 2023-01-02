@@ -1,5 +1,6 @@
-import { APITeamMember } from 'discord-api-types/v10';
-import { Client, User } from '../../';
+import type { APITeamMember } from 'discord-api-types/v10';
+import type { Client } from '../../';
+import { User } from '../../';
 
 /**
  * Represents a team member.

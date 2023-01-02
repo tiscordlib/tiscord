@@ -1,6 +1,7 @@
-import { Client, Member } from '../';
+import type { Client } from '../';
+import { Member } from '../';
 
-import { APIGuildMember } from 'discord-api-types/v10';
+import type { APIGuildMember } from 'discord-api-types/v10';
 
 /**
  * Class managing members

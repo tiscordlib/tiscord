@@ -1,4 +1,4 @@
-import { Client } from '../../';
+import type { Client } from '../../';
 import { RepliableInteraction } from './RepliableInteraction';
 
 /**

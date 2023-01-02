@@ -1,14 +1,16 @@
-import { APIInteraction, ApplicationCommandType, ComponentType, InteractionType } from 'discord-api-types/v10';
-import { Client, Guild, Member, User, Permissions } from '../../';
+import type { APIInteraction } from 'discord-api-types/v10';
+import { ApplicationCommandType, ComponentType, InteractionType } from 'discord-api-types/v10';
+import type { Client, Guild } from '../../';
+import { Member, User, Permissions } from '../../';
 // we cant import from ../../ because of circular dependency
-import { ButtonInteraction } from './ButtonInteraction';
-import { CommandInteraction } from './CommandInteraction';
-import { RepliableInteraction } from './RepliableInteraction';
-import { SelectMenuInteraction } from './SelectMenuInteraction';
-import { ChatInputCommandInteraction } from './ChatInputCommandInteraction';
-import { UserContextMenuInteraction } from './UserContextMenuInteraction';
-import { MessageContextMenuInteraction } from './MessageContextMenuInteraction';
-import { ModalInteraction } from './ModalInteraction';
+import type { ButtonInteraction } from './ButtonInteraction';
+import type { CommandInteraction } from './CommandInteraction';
+import type { RepliableInteraction } from './RepliableInteraction';
+import type { SelectMenuInteraction } from './SelectMenuInteraction';
+import type { ChatInputCommandInteraction } from './ChatInputCommandInteraction';
+import type { UserContextMenuInteraction } from './UserContextMenuInteraction';
+import type { MessageContextMenuInteraction } from './MessageContextMenuInteraction';
+import type { ModalInteraction } from './ModalInteraction';
 
 /**
  * Interaction class
@@ -65,8 +67,10 @@ export class Interaction {
         // @ts-expect-error
         this.locale = data.locale;
         client.cache.users.set(this.user.id, this.user);
-        if (this.guild) client.cache.members.set(this.guild.id, this.member);
-        if (this.guild) client.cache.guilds.set(this.guild.id, this.guild);
+        if (this.guild) {
+            client.cache.members.set(this.guild.id, this.member);
+            client.cache.guilds.set(this.guild.id, this.guild);
+        }
     }
 
     /**

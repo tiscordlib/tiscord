@@ -1,5 +1,7 @@
-import { ChannelType, GatewayChannelDeleteDispatch } from 'discord-api-types/v10';
-import { Client, channelType } from '../';
+import type { GatewayChannelDeleteDispatch } from 'discord-api-types/v10';
+import { ChannelType } from 'discord-api-types/v10';
+import type { Client } from '../';
+import { channelType } from '../';
 
 export async function channelDelete(client: Client, data: GatewayChannelDeleteDispatch) {
     const channel = channelType(client, data.d);

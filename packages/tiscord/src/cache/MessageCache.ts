@@ -1,4 +1,5 @@
-import { Cache, Message } from '../';
+import type { Message } from '../';
+import { Cache } from '../';
 
 /**
  *  Cache for channels, message, etc.

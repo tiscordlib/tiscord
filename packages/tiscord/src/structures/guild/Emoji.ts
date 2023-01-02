@@ -1,6 +1,7 @@
-import { Client, User } from '../../';
+import type { Client } from '../../';
+import { User } from '../../';
 
-import { APIEmoji } from 'discord-api-types/v10';
+import type { APIEmoji } from 'discord-api-types/v10';
 
 /**
  * Represents an emoji.

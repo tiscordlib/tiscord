@@ -1,4 +1,4 @@
-import { Member } from '../structures/guild/Member';
+import type { Member } from '../structures/guild/Member';
 import { RoleManager } from './RoleManager';
 
 export class MemberRoleManager extends RoleManager {

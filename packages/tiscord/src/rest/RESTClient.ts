@@ -2,9 +2,9 @@ import FormData from 'form-data';
 import undici from 'undici';
 import { URLSearchParams } from 'node:url';
 import { inspect } from 'node:util';
-import { RequestOptions, ResponseData } from 'undici/types/dispatcher';
-import { APIRequest } from './APIRequest';
-import { RouteLike } from './RequestManager.js';
+import type { RequestOptions, ResponseData } from 'undici/types/dispatcher';
+import type { APIRequest } from './APIRequest';
+import type { RouteLike } from './RequestManager.js';
 
 /**
  * Utility class for easy HTTP requests to the Discord API. Can be used for other APIs if needed.

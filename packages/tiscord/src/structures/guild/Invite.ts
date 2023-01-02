@@ -1,5 +1,6 @@
-import { APIApplication, APIGuildScheduledEvent, APIInvite } from 'discord-api-types/v10';
-import { Client, Guild, User, channelType, Channel } from '../../';
+import type { APIApplication, APIGuildScheduledEvent, APIInvite } from 'discord-api-types/v10';
+import type { Client, Channel } from '../../';
+import { Guild, User, channelType } from '../../';
 
 /**
  * Channel class
