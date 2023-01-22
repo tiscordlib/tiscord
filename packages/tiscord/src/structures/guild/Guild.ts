@@ -26,6 +26,7 @@ import {
     ThreadChannel,
     channelType
 } from '../../';
+import { GuildApplicationCommandManager } from '../../managers/GuildApplicationCommandManager';
 
 /**
  * Guild class
@@ -75,6 +76,7 @@ import {
  * @property {bigint} widgetChannelId - Widget channel ID
  * @property {boolean} widgetEnabled - Whether the guild widget enabled
  * @property {number} afkTimeout - AFK timeout
+ * @property {GuildApplicationCommandManager} applicationCommands - Application command manager
  * @property {bigint} afkChannelId - AFK channel ID
  * @property {Member} me - Bot's guild member
  */
@@ -130,6 +132,7 @@ export class Guild {
     raw?: APIGuild;
     me: Member | void;
     #animated: boolean;
+    applicationCommands: GuildApplicationCommandManager;
     constructor(client: Client, data: APIGuild | GatewayGuildCreateDispatchData) {
         if (data.icon?.startsWith('a_')) this.#animated = true;
         this.client = client;
@@ -163,6 +166,7 @@ export class Guild {
         this.emojis = data.emojis?.map(emoji => new Emoji(client, emoji));
         this.features = data.features;
         this.mfaLevel = data.mfa_level;
+        this.applicationCommands = new GuildApplicationCommandManager(client, this.id);
         if (data.application_id) this.applicationId = BigInt(data.application_id);
         if (data.system_channel_id) this.systemChannelId = BigInt(data.system_channel_id);
         this.systemChannelFlags = data.system_channel_flags;
