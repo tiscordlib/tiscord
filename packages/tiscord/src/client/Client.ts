@@ -21,7 +21,7 @@ import {
 import process from 'node:process';
 import { arch, release, type } from 'node:os';
 import { EventEmitter } from 'node:events';
-import { GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
+import { GatewayIntentBits, GatewayPresenceUpdateData, PresenceUpdateStatus } from 'discord-api-types/v10';
 import { REST } from '../rest/REST';
 // @ts-expect-error
 import { version } from '../../package.json';
@@ -75,7 +75,7 @@ export class Client extends EventEmitter {
     raw: boolean;
     cacheOptions: CacheOptions;
     debugLogs: typeof console.log;
-    presence: GatewayPresenceUpdateData;
+    presence: Partial<GatewayPresenceUpdateData>;
     allowedMentions: RawMentions;
     applicationId: bigint;
     applicationCommands: ApplicationCommandManager;
@@ -99,7 +99,14 @@ export class Client extends EventEmitter {
         this.applicationCommands = new ApplicationCommandManager(this);
         this.debugLogs = options.debug;
         if (options.allowedMentions) this.allowedMentions = new AllowedMentions(options.allowedMentions);
-        this.presence = options.presence;
+        this.presence = {
+            activities: [
+                ...options.presence?.activities
+            ],
+            status: options.presence?.status ?? PresenceUpdateStatus.Online,
+            since: options.presence?.since ?? null,
+            afk: options.presence?.afk ?? false
+        };
         this.cache = {
             members: this.cacheOptions?.members === false ? new FakeCache() : new Cache<Member>(),
             guilds: this.cacheOptions?.guilds === false ? new FakeMap() : new Map<bigint, Guild>(),
@@ -144,7 +151,15 @@ export class Client extends EventEmitter {
      * Change the bot's presence
      * @param options - The presence options
      */
-    setPresence(options: GatewayPresenceUpdateData): void {
-        this.ws.send({ op: 3, d: options });
+    setPresence(options: Partial<GatewayPresenceUpdateData>): void {
+        this.ws.send({ 
+            op: 3, 
+            d: {
+                activities: [...options.activities], 
+                status: options.status ?? PresenceUpdateStatus.Online, 
+                afk: options.afk ?? false, 
+                since: options.since ?? null
+            } 
+        });
     }
 }

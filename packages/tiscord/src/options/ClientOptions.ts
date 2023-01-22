@@ -10,7 +10,7 @@ import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from
  * @property {boolean} rawDataStorage - Whether to store raw data, turning it on might make ram usage a lot higher
  * @property {CacheOptions} cache - Cache options
  * @property {boolean} debug - Whether to enable debug logs
- * @property {GatewayPresenceUpdateData} presence - Presence data
+ * @property {Partial<GatewayPresenceUpdateData>} presence - Presence data
  * @property {APIAllowedMentions} allowedMentions - Allowed mentions
  */
 export interface ClientOptions {
@@ -20,6 +20,6 @@ export interface ClientOptions {
     rawDataStorage?: boolean;
     cache?: CacheOptions;
     debug?: typeof console.log;
-    presence?: GatewayPresenceUpdateData;
+    presence?: Partial<GatewayPresenceUpdateData>;
     allowedMentions?: APIAllowedMentions;
 }
