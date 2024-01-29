@@ -20,7 +20,7 @@
   "homepage": "https://github.com/tiscordlib/tiskit#readme",
   "devDependencies": {
     "@types/node": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^5.18.0",
     "bumped": "^0.14.2",
     "eslint": "^8.12.0",
