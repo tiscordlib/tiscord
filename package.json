@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "discord-api-types": "^0.37.66",
+    "undici": "^6.7.0",
     "ws": "^8.5.0"
   },
   "devDependencies": {
