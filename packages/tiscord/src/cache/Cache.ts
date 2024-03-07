@@ -19,6 +19,13 @@ export class Cache<T> {
     }
 
     /**
+     * @param {bigint} parent - parent map to get from
+     */
+    all(parent: bigint) {
+        return this.caches.get(parent);
+    }
+
+    /**
      * @param {bigint} parent - parent map to set in
      * @param {any} object - object to set
      * @returns {void}

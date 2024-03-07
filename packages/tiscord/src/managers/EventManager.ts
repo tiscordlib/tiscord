@@ -10,6 +10,7 @@ import { guildIntegrationsUpdate } from '../events/guildIntegrationsUpdate';
 import { guildMemberAdd } from '../events/guildMemberAdd';
 import { guildMemberRemove } from '../events/guildMemberRemove';
 import { guildMemberUpdate } from '../events/guildMemberUpdate';
+import { guildMembersChunk} from "../events/guildMembersChunk";
 import { guildStickersUpdate } from '../events/guildStickersUpdate';
 import { guildUpdate } from '../events/guildUpdate';
 import { interactionCreate } from '../events/interactionCreate';
@@ -46,6 +47,7 @@ export class EventManager {
         this.register('CHANNEL_CREATE', channelCreate);
         this.register('CHANNEL_UPDATE', channelUpdate);
         this.register('CHANNEL_DELETE', channelDelete);
+        this.register('GUILD_MEMBERS_CHUNK', guildMembersChunk);
         this.register('CHANNEL_PINS_UPDATE', channelPinsUpdate);
         this.register('THREAD_CREATE', threadCreate);
         this.register('THREAD_UPDATE', threadUpdate);

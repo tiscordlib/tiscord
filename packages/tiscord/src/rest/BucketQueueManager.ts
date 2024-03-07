@@ -1,6 +1,6 @@
 import { AsyncQueue } from '@sapphire/async-queue';
 import { setTimeout as sleep } from 'node:timers/promises';
-import { ResponseData } from 'undici/types/dispatcher';
+import { Dispatcher } from 'undici';
 import { APIRequest } from './APIRequest';
 import { RequestManager } from './RequestManager';
 import { RateLimitedError } from './RESTError.js';
@@ -23,7 +23,7 @@ export class BucketQueueManager {
         public readonly majorId: string // eslint-disable-next-line no-empty-function
     ) {}
 
-    private applyRateLimitInfo(res: ResponseData) {
+    private applyRateLimitInfo(res: Dispatcher.ResponseData) {
         if (!res.headers['x-ratelimit-bucket']) return;
 
         this.limit = Number(res.headers['x-ratelimit-limit']);
@@ -33,7 +33,7 @@ export class BucketQueueManager {
     public get durUntilReset() {
         return this.reset + this.manager.offset - Date.now();
     }
-    public handleRateLimit(req: APIRequest, res: ResponseData) {
+    public handleRateLimit(req: APIRequest, res: Dispatcher.ResponseData) {
         this.applyRateLimitInfo(res);
 
         if (req.retries < req.allowedRetries) {
@@ -60,7 +60,7 @@ export class BucketQueueManager {
         return false;
     }
 
-    public async queue(req: APIRequest): Promise<ResponseData> {
+    public async queue(req: APIRequest): Promise<Dispatcher.ResponseData> {
         // let running requests finish
         await this.#queue.wait();
 

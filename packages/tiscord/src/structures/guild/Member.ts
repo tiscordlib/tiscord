@@ -1,4 +1,14 @@
-import { APIError, Client, Guild, MemberOptions, Permissions, RawMemberOptions, User } from '../../';
+import {
+    APIError,
+    Client,
+    ErrorCode,
+    Guild,
+    MemberOptions,
+    Permissions,
+    RawMemberOptions,
+    TiscordError,
+    User
+} from '../../';
 
 import { APIGuildMember } from 'discord-api-types/v10';
 import { MemberRoleManager } from '../../managers/MemberRoleManager';
@@ -62,7 +72,15 @@ export class Member {
     get permissions() {
         const { cache } = this.roles;
         // @ts-expect-error
-        return new Permissions(cache.map(e => e?.permissions) || 0n);
+        let bits = cache.map(role => role.permissions);
+        bits = bits.reduce((acc, permissions) => {
+            const permissionValues = Object.values(permissions.map);
+            // @ts-expect-error
+            const permissionBits = permissionValues.reduce((acc, val) => acc | BigInt(val), 0n);
+            // @ts-expect-error
+            return acc | permissionBits;
+        }, 0n);
+        return new Permissions(bits);
     }
 
     /**
@@ -123,6 +141,7 @@ export class Member {
     /**
      * Timeout this member
      * @param {number} time - How long to timeout the member for (In seconds)
+     * @param reason - The reason of the timeout. This will be shown in the audit logs
      */
     async timeout(time: number | null, reason: string) {
         if (time > 2592000) {

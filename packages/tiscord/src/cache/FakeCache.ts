@@ -17,6 +17,13 @@ export class FakeCache {
     }
 
     /**
+     * @param {string} parent - parent map to get from
+     */
+    all(parent: bigint): void {
+        return null;
+    }
+
+    /**
      * @param {string} parent - parent map to set in
      * @param {any} object - object to set
      * @returns {void}

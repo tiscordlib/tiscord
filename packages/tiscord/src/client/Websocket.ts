@@ -1,4 +1,4 @@
-import { Client, GatewayError } from '../';
+import { Client, ErrorCode, TiscordError } from '../';
 import { GatewayOpcodes } from 'discord-api-types/v10';
 import process from 'node:process';
 import WebSocket from 'ws';
@@ -35,7 +35,15 @@ export class WebSocketManager {
      * @returns {void}
      */
     connect() {
-        if (this.client.intents === undefined) throw new GatewayError('Invalid intents');
+        if (this.client.intents === undefined) throw new TiscordError(ErrorCode.Invalid_Intents);
+        this.client.rest
+            .get('/users/@me')
+            .then(() => {
+                this.client.debug('Checking if token is valid.', 'gateway');
+            })
+            .catch(() => {
+                throw new TiscordError(ErrorCode.Invalid_Token);
+            });
         const url = this.getGateway(this.client.apiVersion, this.erlpack);
         this.connection = new WebSocket(url);
         this.connected = true;
@@ -84,10 +92,30 @@ export class WebSocketManager {
     }
 
     /**
+     * Request guild members
+     * @param {Object} data - Request data
+     * @param {bigint} data.guildId - Guild id
+     * @param {string} [data.query] - Query to search for
+     * @param {number} [data.limit] - Limit to search for
+     * @returns {void}
+     */
+
+    requestGuildMembers(data: { guildId: bigint; query?: string; limit?: number }): void {
+        this.client.ws.send({
+            op: 8,
+            d: {
+                guild_id: data.guildId.toString(),
+                query: data.query ?? '',
+                limit: data.limit ?? 0
+            }
+        });
+    }
+
+    /**
      * Logs into the gateway
      * @returns {void}
      */
-    identify() {
+    identify(): void {
         this.client.debug('Identifying with gateway.', 'gateway');
         this.client.debug(`Intents: ${this.client.intents}`, 'gateway');
         const data: any = {
@@ -146,7 +174,7 @@ export class WebSocketManager {
      * @param {boolean} etf - whether to use erlpack
      * @returns {string}
      */
-    getGateway(api: number, etf: boolean) {
+    getGateway(api: number, etf: boolean): string {
         return `${this.connected ? this.resumeGatewayUrl : 'wss://gateway.discord.gg/'}?v=${api}&encoding=${
             etf ? 'etf' : 'json'
         }`;

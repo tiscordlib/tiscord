@@ -1,5 +1,5 @@
 import { STATUS_CODES } from 'node:http';
-import { ResponseData } from 'undici/types/dispatcher';
+import { Dispatcher } from 'undici';
 import { APIRequest, resolveRequest } from './APIRequest.js';
 import { BucketQueueManager } from './BucketQueueManager.js';
 import { RESTClient } from './RESTClient';
@@ -54,7 +54,7 @@ export class RequestManager {
         return this.remaining === 0 && Date.now() < this.reset;
     }
 
-    public async makeRequest(bucket: BucketQueueManager, req: Required<APIRequest>): Promise<ResponseData> {
+    public async makeRequest(bucket: BucketQueueManager, req: Required<APIRequest>): Promise<Dispatcher.ResponseData> {
         if (this.init.timings) req.httpStartTime = Date.now();
 
         this.trace(`Sending ${req.method} to ${req.route}...`);
@@ -137,15 +137,20 @@ export class RequestManager {
         req: APIRequest | RouteLike,
 
         options?: APIRequest
-    ): Promise<ResponseData & { body: { json(): Promise<T> } }> {
+    ): Promise<Dispatcher.ResponseData & { body: { json(): Promise<T> } }> {
         if (typeof req === 'string') {
             req = resolveRequest({ route: req, ...options });
         } else req = resolveRequest(req);
 
         if (this.init.timings) req.startTime = Date.now();
 
-        if (!req.useRateLimits)
-            return this.makeRequest(null as unknown as BucketQueueManager, req as Required<APIRequest>);
+        if (!req.useRateLimits) {
+            // eslint-disable-next-line no-lone-blocks
+            {
+                // @ts-ignore
+                return this.makeRequest(null as unknown as BucketQueueManager, req as Required<APIRequest>);
+            }
+        }
 
         const [endpoint, majorId] = this.getBucket(req.route as RouteLike);
 
@@ -153,10 +158,12 @@ export class RequestManager {
             this.buckets.set(endpoint, new BucketQueueManager(this, endpoint, majorId));
         }
 
+        // @ts-ignore
         return this.buckets.get(endpoint).queue(req);
     }
 
-    private updateOffset(res: ResponseData) {
+    private updateOffset(res: Dispatcher.ResponseData) {
+        // @ts-ignore
         const discordDate = new Date(res.headers.date).getTime();
         const local = Date.now();
 
@@ -164,7 +171,7 @@ export class RequestManager {
     }
 
     // this doesn't need to run in the same tick as the request
-    private updateHeaders(res: ResponseData) {
+    private updateHeaders(res: Dispatcher.ResponseData) {
         this.remaining--;
 
         while (Date.now() > this.reset) {
@@ -194,9 +201,10 @@ export class RequestManager {
 }
 
 export type RouteLike = `/${string}`;
-export type Response<T> = ResponseData & { body: { json(): Promise<T> } };
-export function consumeJSON<D = any>(res: ResponseData & { body: { json(): Promise<D> } }): Promise<D> {
+export type Response<T> = Dispatcher.ResponseData & { body: { json(): Promise<T> } };
+export function consumeJSON<D = any>(res: Dispatcher.ResponseData & { body: { json(): Promise<D> } }): Promise<D> {
     if (res.headers['content-type'].includes('application/json')) {
+        // @ts-ignore
         return res.body.json();
     }
     throw new Error('API response was not JSON');

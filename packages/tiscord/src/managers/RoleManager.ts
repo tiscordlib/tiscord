@@ -1,4 +1,4 @@
-import { Client, Role } from '..';
+import { Client, ErrorCode, Role, TiscordError } from '..';
 
 import { APIRole } from 'discord-api-types/v10';
 

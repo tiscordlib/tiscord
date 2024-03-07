@@ -2,7 +2,7 @@ import FormData from 'form-data';
 import undici from 'undici';
 import { URLSearchParams } from 'node:url';
 import { inspect } from 'node:util';
-import { RequestOptions, ResponseData } from 'undici/types/dispatcher';
+import { Dispatcher } from 'undici';
 import { APIRequest } from './APIRequest';
 import { RouteLike } from './RequestManager.js';
 
@@ -172,13 +172,13 @@ export class RESTClient {
         return `${this.formatRoute(request.route as RouteLike, request.versioned, request.useBaseURL)}${query}`;
     }
 
-    public execute(request: APIRequest, tracefunc?: any): Promise<ResponseData> {
+    public execute(request: APIRequest, tracefunc?: any): Promise<Dispatcher.ResponseData> {
         request = this.resolveBody(request);
 
-        const options: RequestOptions = {
+        const options: Dispatcher.RequestOptions = {
             method: request.method ?? 'GET',
             headers: this.createHeaders(request)
-        } as RequestOptions;
+        } as Dispatcher.RequestOptions;
         const url = this.createURL(request);
 
         if (request.body) options.body = request.body;
@@ -189,7 +189,7 @@ export class RESTClient {
                 url,
                 options.body
                     ? prettifyBody(
-                          options.headers['content-type' as keyof typeof options['headers']],
+                          options.headers['content-type' as keyof typeof options['headers']] as string,
                           options.body as Buffer
                       )
                     : ''

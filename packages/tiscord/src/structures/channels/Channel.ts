@@ -29,7 +29,6 @@ export class Channel {
     }
 
     /**
-     * Indicates whether this channel is a {@link ThreadChannel}.
      * @returns {boolean}
      */
     isThread() {

@@ -12,6 +12,7 @@ export class InviteOptions {
     max_uses: number;
     temporary: boolean;
     unique: boolean;
+    reason: string;
     constructor(data: InviteData) {
         if (data?.maxAge) this.max_age = data.maxAge;
         if (data?.maxUses) this.max_uses = data.maxUses;

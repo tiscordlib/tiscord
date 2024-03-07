@@ -64,6 +64,10 @@ export class GuildChannel extends Channel {
             throw new APIError(request?.message);
         }
     }
+
+    /**
+     * Get the invites of the channel
+     */
     async getInvites() {
         const request = (await this.client.rest.get(`/channels/${this.id}/invites`)) as any;
         if (request?.code) {

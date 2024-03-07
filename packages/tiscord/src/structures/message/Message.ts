@@ -1,7 +1,7 @@
 import {
     APIError,
     BaseThreadOptions,
-    Client,
+    Client, Emoji,
     Guild,
     Interaction,
     Member,
@@ -12,7 +12,7 @@ import {
     ThreadChannel,
     ThreadData,
     User
-} from '../../';
+} from "../../";
 import {
     APIInteraction,
     APIMessage,

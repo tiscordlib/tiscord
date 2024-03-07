@@ -1,11 +1,11 @@
 import { STATUS_CODES } from 'http';
-import { ResponseData } from 'undici/types/dispatcher';
+import { Dispatcher } from 'undici';
 import { APIRequest, File } from './APIRequest';
 
 export class RESTError extends Error {
     public body: any;
 
-    constructor(req: APIRequest, res: ResponseData, public error?: any) {
+    constructor(req: APIRequest, res: Dispatcher.ResponseData, public error?: any) {
         super();
         this.message = `${res.statusCode} ${STATUS_CODES[res.statusCode]} [${req.method} ${req.route}]`;
         this.name = 'RESTError';
@@ -16,7 +16,7 @@ export class RESTError extends Error {
 export class RateLimitedError extends RESTError {
     public _message = 'You are being rate limited.';
 
-    constructor(req: APIRequest, res: ResponseData, bucket?: string) {
+    constructor(req: APIRequest, res: Dispatcher.ResponseData, bucket?: string) {
         super(req, res);
 
         this.message = `429 Too Many Requests [${req.method} ${req.route}; bucket ${
@@ -27,7 +27,7 @@ export class RateLimitedError extends RESTError {
 }
 
 /** Pretty-prints a Discord API error. */
-export function parseErr(req: APIRequest, res: ResponseData, error?: any, stack?: string) {
+export function parseErr(req: APIRequest, res: Dispatcher.ResponseData, error?: any, stack?: string) {
     if (res.statusCode === 429) {
         const bucket = res.headers['x-ratelimit-bucket'] as string;
         return new RateLimitedError(req, res, `${bucket} [${req.method} ${req.route}]`);
@@ -67,7 +67,7 @@ export class APIError extends Error {
     public files?: File[];
     public method: string;
 
-    constructor(req: APIRequest, _res: ResponseData, error?: any, stack?: string) {
+    constructor(req: APIRequest, _res: Dispatcher.ResponseData, error?: any, stack?: string) {
         super();
 
         const err = flattenErrors(error);

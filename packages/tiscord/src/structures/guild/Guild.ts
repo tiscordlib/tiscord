@@ -24,7 +24,8 @@ import {
     RoleManager,
     Sticker,
     ThreadChannel,
-    channelType
+    channelType,
+    InviteData
 } from '../../';
 import { GuildApplicationCommandManager } from '../../managers/GuildApplicationCommandManager';
 
@@ -253,6 +254,7 @@ export class Guild {
     /**
      * Ban the member from the server
      * @param {GuildEditOptionsType} data - The stuff you want to edit
+     * @param reason
      */
     async edit(data: GuildEditOptionsType, reason?: string) {
         const request = (await this.client.rest.patch(`/guilds/${this.id}`, {

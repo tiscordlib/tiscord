@@ -1,4 +1,4 @@
-import { ResponseData } from 'undici/types/dispatcher';
+import { Dispatcher } from 'undici';
 
 import { APIRequest } from './APIRequest.js';
 import { DefaultDiscordOptions } from './index.js';
@@ -15,7 +15,12 @@ type Awaitable<T> = Promise<T> | T;
 export class REST extends RequestManager {
     beforeRequest: ((options: RequestOptions) => Awaitable<void | RequestOptions>) | undefined = undefined;
     afterRequest:
-        | ((options: RequestOptions, response: ResponseData, text: string, json: any | null) => Awaitable<void>)
+        | ((
+              options: RequestOptions,
+              response: Dispatcher.ResponseData,
+              text: string,
+              json: any | null
+          ) => Awaitable<void>)
         | undefined = undefined;
 
     constructor(

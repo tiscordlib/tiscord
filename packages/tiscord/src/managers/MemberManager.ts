@@ -1,4 +1,4 @@
-import { Client, Member } from '../';
+import { Client, ErrorCode, Member, TiscordError } from '../';
 
 import { APIGuildMember } from 'discord-api-types/v10';
 
@@ -24,7 +24,7 @@ export class MemberManager {
      * @param {boolean} fetch whether to fetch the member from api
      * @returns {Promise<Member>}
      */
-    async get(id: bigint, fetch?) {
+    async get(id: bigint, fetch?: boolean): Promise<Member> {
         const cache = this.client.cache.members.get(this.guild, id);
         const guild = this.client.cache.guilds.get(this.guild);
         let data: Member;
@@ -35,5 +35,15 @@ export class MemberManager {
         if (discordData) data = new Member(this.client, discordData, guild);
         if (data) this.client.cache.members.set(this.guild, data);
         return data;
+    }
+
+    get me(): Member {
+        const member = this.client.cache.members.get(this.guild, this.client.user.id);
+        if (!member || typeof member === 'undefined') throw new TiscordError(ErrorCode.Client_Member_Not_Cached);
+        return member;
+    }
+
+    get list() {
+        return this.client.cache.members.all(this.guild);
     }
 }

@@ -24,7 +24,7 @@ export class BitField {
      * @param {string} value - Value to resolve
      * @returns {(number|bigint)}
      */
-    resolve(value: string) {
+    resolve(value: string): number | bigint {
         if (!this.map[value]) throw new Error(`${value} is not a valid bitfield value`);
         return BigInt(this.map[value]);
     }
@@ -34,8 +34,9 @@ export class BitField {
      * @param {string} value - Value to check
      * @returns {boolean}
      */
-    has(value: string) {
+    has(value: string): boolean {
         const bits = this.resolve(value);
+        // @ts-expect-error
         return (this.bits & bits) !== 0n;
     }
 
@@ -43,7 +44,7 @@ export class BitField {
      * Checks what bits are set, and turns them into an array
      * @returns {string[]}
      */
-    toArray() {
+    toArray(): string[] {
         return Object.keys(this.map).filter(key => this.has(key));
     }
 

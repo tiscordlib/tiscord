@@ -4,6 +4,7 @@ import {
     Channel,
     ChannelManager,
     ClientOptions,
+    ErrorCode,
     EventManager,
     FakeCache,
     FakeMap,
@@ -13,6 +14,7 @@ import {
     MessageCache,
     Role,
     ThreadMember,
+    TiscordError,
     User,
     UserManager,
     WebSocketManager
@@ -21,13 +23,20 @@ import {
 import process from 'node:process';
 import { arch, release, type } from 'node:os';
 import { EventEmitter } from 'node:events';
-import { GatewayIntentBits, GatewayPresenceUpdateData, PresenceUpdateStatus } from 'discord-api-types/v10';
-import { REST } from '../rest/REST';
+import {
+    GatewayIntentBits,
+    GatewayPresenceUpdateData,
+    OAuth2Scopes,
+    PresenceUpdateStatus,
+    PermissionFlagsBits
+} from 'discord-api-types/v10';
+import { REST } from '../rest';
 // @ts-expect-error
 import { version } from '../../package.json';
 import { Events } from '../util/Events';
 import { AllowedMentions, RawMentions } from '../util/AllowedMentions';
 import { ApplicationCommandManager } from '../managers/ApplicationCommandManager';
+import { PermissionType } from "../util/Permissions";
 
 /**
  *  The main client class
@@ -39,6 +48,8 @@ import { ApplicationCommandManager } from '../managers/ApplicationCommandManager
  *  @property {Sweeper} sweeper - Cache sweeper
  *  @property {GuildManager} guilds - Guild manager
  *  @property {UserManager} users - User manager
+ *  @property {readyAt} readyAt - When the client was ready
+ *  @property {uptime} uptime - Client uptime
  *  @property {ChannelManager} channels - Channel manager
  *  @property {WebSocketManager} ws - Websocket manager
  *  @property {string} api - The API version
@@ -59,6 +70,7 @@ export class Client extends EventEmitter {
     users: UserManager;
     guilds: GuildManager;
     channels: ChannelManager;
+    readyAt: Date;
     user: User;
     on: (<K extends keyof Events>(s: K, listener: Events[K]) => this) &
         ((s: string, listener: (...args: any[]) => void) => this);
@@ -100,9 +112,7 @@ export class Client extends EventEmitter {
         this.debugLogs = options.debug;
         if (options.allowedMentions) this.allowedMentions = new AllowedMentions(options.allowedMentions);
         this.presence = {
-            activities: [
-                ...options.presence?.activities
-            ],
+            activities: [...(options.presence?.activities ?? [])],
             status: options.presence?.status ?? PresenceUpdateStatus.Online,
             since: options.presence?.since ?? null,
             afk: options.presence?.afk ?? false
@@ -132,7 +142,42 @@ export class Client extends EventEmitter {
         this.ws.connect();
         this.ws.connection.on('open', () => {
             this.ws.identify();
+            this.readyAt = new Date();
         });
+    }
+
+
+
+  /**
+     * Client uptime
+     */
+    get uptime(): number {
+        if (!this.readyAt) throw new TiscordError(ErrorCode.Client_Not_Ready);
+        return Date.now() - this.readyAt.getTime();
+    }
+
+    /**
+     * Whether the client is ready
+     */
+    get isReady(): boolean {
+        return this.readyAt !== undefined;
+    }
+
+    /**
+     * Ready timestamp
+     */
+    get readyTimestamp(): number {
+        if (!this.readyAt) throw new TiscordError(ErrorCode.Client_Not_Ready);
+        return this.readyAt.getTime();
+    }
+
+    /**
+     * Generate invite url
+     */
+    generateInvite(options: { permissions: PermissionType[]; scopes: [keyof typeof OAuth2Scopes] }): string {
+        const permissions = options.permissions.reduce((a, b) => a | PermissionFlagsBits[b], 0n);
+        const scopes = options.scopes.join(' ').toLowerCase();
+        return `https://discord.com/api/oauth2/authorize?client_id=${this.user.id}&permissions=${permissions}&scope=${scopes}`;
     }
 
     /**
@@ -152,14 +197,14 @@ export class Client extends EventEmitter {
      * @param options - The presence options
      */
     setPresence(options: Partial<GatewayPresenceUpdateData>): void {
-        this.ws.send({ 
-            op: 3, 
+        this.ws.send({
+            op: 3,
             d: {
-                activities: [...options.activities], 
-                status: options.status ?? PresenceUpdateStatus.Online, 
-                afk: options.afk ?? false, 
+                activities: [...options.activities],
+                status: options.status ?? PresenceUpdateStatus.Online,
+                afk: options.afk ?? false,
                 since: options.since ?? null
-            } 
+            }
         });
     }
 }

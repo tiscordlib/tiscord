@@ -1,7 +1,6 @@
 import { Locale } from 'discord-api-types/rest/v10';
 import { URLSearchParams } from 'node:url';
-import { HttpMethod } from 'undici/types/dispatcher';
-
+import { Dispatcher } from 'undici';
 export interface APIRequest<T = any> {
     route: string;
     auth?: boolean;
@@ -9,7 +8,7 @@ export interface APIRequest<T = any> {
     query?: URLSearchParams | string | Record<string, any> | null;
     body?: T | null;
     files?: File[] | null;
-    method?: HttpMethod;
+    method?: Dispatcher.HttpMethod;
     headers?: Record<string, string>;
     reason?: string | null;
     locale?: Locale | null;

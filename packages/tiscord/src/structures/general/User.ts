@@ -1,5 +1,5 @@
 import { APIUser, UserFlags } from 'discord-api-types/v10';
-import { Client } from '../../';
+import { Client, DMChannel } from "../../";
 
 /**
  * User class
@@ -14,6 +14,7 @@ import { Client } from '../../';
  * @param {boolean} bot - Is the user a bot
  * @param {boolean} system - Is the user a system user
  * @param {UserFlags} flags - User flags
+ * @param {string} globalName - User's global name
  * @param {number} accentColor - User accent color
  * @param {APIUser} [raw] - Raw user data
  */
@@ -26,6 +27,7 @@ export class User {
     bot: boolean;
     system: boolean;
     #banner?: bigint;
+    globalName: string;
     flags: UserFlags;
     accentColor: number;
     raw?: APIUser;
@@ -34,6 +36,7 @@ export class User {
         this.id = BigInt(data.id);
         this.username = data.username;
         this.discriminator = data.discriminator;
+        this.globalName = data.global_name ?? this.username;
         this.tag = `${this.username}#${this.discriminator}`;
         if (data.avatar) {
             if (data.avatar.startsWith('a_')) {
@@ -56,6 +59,32 @@ export class User {
      */
     get avatar() {
         return (this.#animated ? 'a_' : '') + this.#avatar.toString(16);
+    }
+
+    get defaultAvatarURL() {
+        return `https://cdn.discordapp.com/embed/avatars/${Number(this.discriminator) % 5}.png`;
+    }
+
+    /**
+     * User's display name
+     */
+    get displayName() {
+        return this.globalName ?? this.username;
+    }
+
+    /**
+     * Returns user mention string
+     */
+    get toString() {
+        return `<@${this.id}>`;
+    }
+
+    /**
+     * Avatar URL
+     * @type {string}
+     */
+    get avatarURL() {
+        return `https://cdn.discordapp.com/avatars/${this.id}/${this.avatar}.png`;
     }
 
     /**
