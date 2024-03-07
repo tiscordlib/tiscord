@@ -1,20 +1,11 @@
 # Tiscord
-This is a monorepo for all tiscord related packages.
+A fast, memory-efficient, and object oriented discord lib  
+[Documentation](https://docs.tiscord.me/)
 
-# Packages
-## tiscord
-[![npm](https://nodei.co/npm/tiscord.png)](https://npmjs.org/package/tiscord)
-### Requirements:
-Node.js v16.x.x or higher
+# Links 
+- [Documentation](https://tiscord.me/)
+- [Support](https://discord.gg/exUr7bjRjb)
 
-Installation: `npm i tiscord`
-
-## tiskit
-[![npm](https://nodei.co/npm/tiskit.png)](https://npmjs.org/package/tiskit)
-### Requirements:
-Node.js v16.x.x or higher
-
-TypeScript
-
-## Contributing
-See [Contributing](CONTRIBUTING.md)
+## See also
+[Tisbench](https://npmjs.com/package/tisbench)
+[Tisflake](httpa://npmjs.com/package/tisflake)
