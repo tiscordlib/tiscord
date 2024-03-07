@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@sapphire/async-queue": "^1.5.2",
     "discord-api-types": "^0.37.66",
+    "form-data": "^4.0.0",
     "undici": "^6.7.0",
     "ws": "^8.5.0"
   },
