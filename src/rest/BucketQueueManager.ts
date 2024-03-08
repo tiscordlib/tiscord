@@ -1,99 +1,103 @@
-import { AsyncQueue } from '@sapphire/async-queue';
-import { setTimeout as sleep } from 'node:timers/promises';
-import { Dispatcher } from 'undici';
-import { APIRequest } from './APIRequest';
-import { RequestManager } from './RequestManager';
-import { RateLimitedError } from './RESTError.js';
+import { AsyncQueue } from "@sapphire/async-queue";
+import { setTimeout as sleep } from "node:timers/promises";
+import { Dispatcher } from "undici";
+import { APIRequest } from "./APIRequest";
+import { RequestManager } from "./RequestManager";
+import { RateLimitedError } from "./RESTError.js";
 
 export class BucketQueueManager {
-    #queue = new AsyncQueue();
+	#queue = new AsyncQueue();
 
-    /** The total amount of requests that can be made on this bucket before getting rate limited. */
-    public limit = Infinity;
+	/** The total amount of requests that can be made on this bucket before getting rate limited. */
+	public limit = Infinity;
 
-    /** The remaining requests we can make until we are rate limited. */
-    public remaining = 1;
+	/** The remaining requests we can make until we are rate limited. */
+	public remaining = 1;
 
-    /** The UNIX timestamp at which this bucket's rate limit will expire. */
-    public reset = -1;
+	/** The UNIX timestamp at which this bucket's rate limit will expire. */
+	public reset = -1;
 
-    constructor(
-        private readonly manager: RequestManager,
-        public readonly id: string,
-        public readonly majorId: string // eslint-disable-next-line no-empty-function
-    ) {}
+	constructor(
+		private readonly manager: RequestManager,
+		public readonly id: string,
+		public readonly majorId: string, // eslint-disable-next-line no-empty-function
+	) {}
 
-    private applyRateLimitInfo(res: Dispatcher.ResponseData) {
-        if (!res.headers['x-ratelimit-bucket']) return;
+	private applyRateLimitInfo(res: Dispatcher.ResponseData) {
+		if (!res.headers["x-ratelimit-bucket"]) return;
 
-        this.limit = Number(res.headers['x-ratelimit-limit']);
-        this.remaining = Number(res.headers['x-ratelimit-remaining']);
-        this.reset = Number(res.headers['x-ratelimit-reset']) * 1000;
-    }
-    public get durUntilReset() {
-        return this.reset + this.manager.offset - Date.now();
-    }
-    public handleRateLimit(req: APIRequest, res: Dispatcher.ResponseData) {
-        this.applyRateLimitInfo(res);
+		this.limit = Number(res.headers["x-ratelimit-limit"]);
+		this.remaining = Number(res.headers["x-ratelimit-remaining"]);
+		this.reset = Number(res.headers["x-ratelimit-reset"]) * 1000;
+	}
+	public get durUntilReset() {
+		return this.reset + this.manager.offset - Date.now();
+	}
+	public handleRateLimit(req: APIRequest, res: Dispatcher.ResponseData) {
+		this.applyRateLimitInfo(res);
 
-        if (req.retries < req.allowedRetries) {
-            req.retries++;
+		if (req.retries < req.allowedRetries) {
+			req.retries++;
 
-            return this.queue(req);
-        }
-        throw new RateLimitedError(req, res, this.id);
-    }
-    public get limited() {
-        return this.manager.limited || this.localLimited;
-    }
-    public get localLimited() {
-        return this.remaining === 0 && Date.now() < this.reset;
-    }
+			return this.queue(req);
+		}
+		throw new RateLimitedError(req, res, this.id);
+	}
+	public get limited() {
+		return this.manager.limited || this.localLimited;
+	}
+	public get localLimited() {
+		return this.remaining === 0 && Date.now() < this.reset;
+	}
 
-    public isLimited(global = true) {
-        if (this.localLimited) {
-            return { global: false };
-        }
-        if (global && this.manager.limited) {
-            return { global: true };
-        }
-        return false;
-    }
+	public isLimited(global = true) {
+		if (this.localLimited) {
+			return { global: false };
+		}
+		if (global && this.manager.limited) {
+			return { global: true };
+		}
+		return false;
+	}
 
-    public async queue(req: APIRequest): Promise<Dispatcher.ResponseData> {
-        // let running requests finish
-        await this.#queue.wait();
+	public async queue(req: APIRequest): Promise<Dispatcher.ResponseData> {
+		// let running requests finish
+		await this.#queue.wait();
 
-        let limited: { global: boolean } | false = false;
+		let limited: { global: boolean } | false = false;
 
-        while ((limited = this.isLimited(req.useGlobalRateLimit))) {
-            if (limited.global) {
-                const dur = this.manager.durUntilReset;
-                this.debug(`Globally rate limited, sleeping for ${dur}ms`);
-                await sleep(dur);
-            } else {
-                const dur = this.durUntilReset;
-                this.debug(`Rate limited, sleeping for ${dur}ms`);
-                await sleep(dur);
-            }
-        }
+		// biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
+		while ((limited = this.isLimited(req.useGlobalRateLimit))) {
+			if (limited.global) {
+				const dur = this.manager.durUntilReset;
+				this.debug(`Globally rate limited, sleeping for ${dur}ms`);
+				await sleep(dur);
+			} else {
+				const dur = this.durUntilReset;
+				this.debug(`Rate limited, sleeping for ${dur}ms`);
+				await sleep(dur);
+			}
+		}
 
-        try {
-            const res = await this.manager.makeRequest(this, req as Required<APIRequest>);
+		try {
+			const res = await this.manager.makeRequest(
+				this,
+				req as Required<APIRequest>,
+			);
 
-            this.applyRateLimitInfo(res);
+			this.applyRateLimitInfo(res);
 
-            return res;
-        } finally {
-            this.#queue.shift();
-        }
-    }
+			return res;
+		} finally {
+			this.#queue.shift();
+		}
+	}
 
-    #__log_header() {
-        return `[${this.id}]`;
-    }
+	#__log_header() {
+		return `[${this.id}]`;
+	}
 
-    private debug(...data: any[]) {
-        this.manager.debug(this.#__log_header(), ...data);
-    }
+	private debug(...data: any[]) {
+		this.manager.debug(this.#__log_header(), ...data);
+	}
 }

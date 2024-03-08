@@ -1,5 +1,9 @@
-import { APIApplication, APIGuildScheduledEvent, APIInvite } from 'discord-api-types/v10';
-import { Client, Guild, User, channelType, Channel } from '../../';
+import {
+	APIApplication,
+	APIGuildScheduledEvent,
+	APIInvite,
+} from "discord-api-types/v10";
+import { Client, Guild, User, channelType, Channel } from "../../";
 
 /**
  * Channel class
@@ -23,35 +27,40 @@ import { Client, Guild, User, channelType, Channel } from '../../';
  * @property {APIInvite} [raw] - Raw invite data
  */
 export class Invite {
-    code: string;
-    raw?: APIInvite;
-    guild?: Guild;
-    channel: Channel;
-    inviter?: User;
-    targetType?: number;
-    targetUser?: User;
-    targetApplication?: Partial<APIApplication>;
-    approximatePresenceCount?: number;
-    approximateMemberCount?: number;
-    expiresAt?: string;
-    guildScheduledEvent?: APIGuildScheduledEvent;
-    client: Client;
-    constructor(client: Client, data: APIInvite) {
-        this.code = data.code;
-        // @ts-expect-error
-        if (data.guild) this.guild = new Guild(data.guild);
-        // @ts-expect-error
-        this.channel = channelType(client, data.channel);
-        if (data.inviter) this.inviter = new User(client, data.inviter);
-        if (data.target_type) this.targetType = data.target_type;
-        if (data.target_user) this.targetUser = new User(client, data.target_user);
-        if (data.target_application) this.targetApplication = data.target_application;
-        if (data.approximate_presence_count) this.approximatePresenceCount = data.approximate_presence_count;
-        if (data.approximate_member_count) this.approximateMemberCount = data.approximate_member_count;
-        if (data.expires_at) this.expiresAt = data.expires_at;
-        if (data.guild_scheduled_event) this.guildScheduledEvent = data.guild_scheduled_event;
-        if (client.raw) this.raw = data;
-        this.client = client;
-        if (data.target_user) client.cache.users.set(this.targetUser.id, this.targetUser);
-    }
+	code: string;
+	raw?: APIInvite;
+	guild?: Guild;
+	channel: Channel;
+	inviter?: User;
+	targetType?: number;
+	targetUser?: User;
+	targetApplication?: Partial<APIApplication>;
+	approximatePresenceCount?: number;
+	approximateMemberCount?: number;
+	expiresAt?: string;
+	guildScheduledEvent?: APIGuildScheduledEvent;
+	client: Client;
+	constructor(client: Client, data: APIInvite) {
+		this.code = data.code;
+		// @ts-expect-error
+		if (data.guild) this.guild = new Guild(data.guild);
+		// @ts-expect-error
+		this.channel = channelType(client, data.channel);
+		if (data.inviter) this.inviter = new User(client, data.inviter);
+		if (data.target_type) this.targetType = data.target_type;
+		if (data.target_user) this.targetUser = new User(client, data.target_user);
+		if (data.target_application)
+			this.targetApplication = data.target_application;
+		if (data.approximate_presence_count)
+			this.approximatePresenceCount = data.approximate_presence_count;
+		if (data.approximate_member_count)
+			this.approximateMemberCount = data.approximate_member_count;
+		if (data.expires_at) this.expiresAt = data.expires_at;
+		if (data.guild_scheduled_event)
+			this.guildScheduledEvent = data.guild_scheduled_event;
+		if (client.raw) this.raw = data;
+		this.client = client;
+		if (data.target_user)
+			client.cache.users.set(this.targetUser.id, this.targetUser);
+	}
 }

@@ -1,5 +1,5 @@
-import { APIGuildVoiceChannel } from 'discord-api-types/v10';
-import { TextChannel } from '../../';
+import { APIGuildVoiceChannel } from "discord-api-types/v10";
+import { TextChannel } from "../../";
 
 /**
  * Voice channel class
@@ -13,13 +13,13 @@ import { TextChannel } from '../../';
  * @property {string} rtcRegion - Region of the voice channel
  */
 export class VoiceChannel extends TextChannel {
-    bitrate: number;
-    userLimit: number;
-    rtcRegion: string;
-    constructor(client: any, data: APIGuildVoiceChannel) {
-        super(client, data);
-        this.bitrate = data.bitrate;
-        this.userLimit = data.user_limit;
-        this.rtcRegion = data.rtc_region;
-    }
+	bitrate: number;
+	userLimit: number;
+	rtcRegion: string;
+	constructor(client: any, data: APIGuildVoiceChannel) {
+		super(client, data);
+		this.bitrate = data.bitrate;
+		this.userLimit = data.user_limit;
+		this.rtcRegion = data.rtc_region;
+	}
 }

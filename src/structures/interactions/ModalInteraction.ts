@@ -1,6 +1,6 @@
-import { APIModalSubmitInteraction } from 'discord-api-types/v10';
-import { ModalOptions } from '../../options/ModalOptions';
-import { Client, RepliableInteraction } from '../../';
+import { APIModalSubmitInteraction } from "discord-api-types/v10";
+import { ModalOptions } from "../../options/ModalOptions";
+import { Client, RepliableInteraction } from "../../";
 
 /**
  * A modal interaction
@@ -10,11 +10,11 @@ import { Client, RepliableInteraction } from '../../';
  * @property {ModalOptions} options - The options
  */
 export class ModalInteraction extends RepliableInteraction {
-    customId: string;
-    options: ModalOptions;
-    constructor(client: Client, data: APIModalSubmitInteraction) {
-        super(client, data);
-        this.customId = data.data.custom_id;
-        this.options = new ModalOptions(data.data.components);
-    }
+	customId: string;
+	options: ModalOptions;
+	constructor(client: Client, data: APIModalSubmitInteraction) {
+		super(client, data);
+		this.customId = data.data.custom_id;
+		this.options = new ModalOptions(data.data.components);
+	}
 }

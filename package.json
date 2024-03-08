@@ -1,33 +1,13 @@
 {
-  "dependencies": {
-    "@sapphire/async-queue": "^1.5.2",
-    "discord-api-types": "^0.37.66",
-    "form-data": "^4.0.0",
-    "undici": "^6.7.0",
-    "ws": "^8.5.0"
-  },
-  "devDependencies": {
-    "@types/node": "^18.0.0",
-    "@types/ws": "^8.5.0",
-    "@typescript-eslint/parser": "^5.11.0",
-    "@vitest/coverage-c8": "^0.23.4",
-    "clean-jsdoc-theme": "^4.2.17",
-    "eslint": "^8.21.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "jsdoc": "^4.0.2",
-    "prettier": "^2.5.1",
-    "typedoc": "^0.25.4",
-    "vite": "^3.1.3",
-    "vitest": "^0.23.4"
-  },
   "name": "tiscord",
   "version": "2.0.0",
   "description": "A fast, lightweight, and easy to use Discord API wrapper",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "lint": "eslint ./src",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "format": "biome format ./src",
+    "lint": "biome lint ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build",
     "docs": "npx jsdoc --configure ./jsdoc.json --verbose"
@@ -43,6 +23,25 @@
   },
   "homepage": "https://github.com/tiscordlib/tiscord#readme",
   "gitHead": "f705f7215f3c59cdd9046b8337546a5276c8de22",
+  "dependencies": {
+    "@sapphire/async-queue": "^1.5.2",
+    "discord-api-types": "^0.37.66",
+    "form-data": "^4.0.0",
+    "undici": "^6.7.0",
+    "ws": "^8.5.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
+    "@types/node": "^18.0.0",
+    "@types/ws": "^8.5.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "@vitest/coverage-c8": "^0.23.4",
+    "clean-jsdoc-theme": "^4.2.17",
+    "jsdoc": "^4.0.2",
+    "tsup": "^8.0.2",
+    "typedoc": "^0.25.4",
+    "vitest": "^0.23.4"
+  },
   "optionalDependencies": {
     "erlpack": "github:discord/erlpack"
   }

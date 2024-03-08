@@ -1,5 +1,5 @@
-import { APIUser, UserFlags } from 'discord-api-types/v10';
-import { Client, DMChannel } from "../../";
+import { APIUser, UserFlags } from "discord-api-types/v10";
+import { Client } from "../../";
 
 /**
  * User class
@@ -19,79 +19,81 @@ import { Client, DMChannel } from "../../";
  * @param {APIUser} [raw] - Raw user data
  */
 export class User {
-    id: bigint;
-    username: string;
-    discriminator: string;
-    tag: string;
-    #avatar: bigint;
-    bot: boolean;
-    system: boolean;
-    #banner?: bigint;
-    globalName: string;
-    flags: UserFlags;
-    accentColor: number;
-    raw?: APIUser;
-    #animated?: boolean;
-    constructor(client: Client, data: APIUser) {
-        this.id = BigInt(data.id);
-        this.username = data.username;
-        this.discriminator = data.discriminator;
-        this.globalName = data.global_name ?? this.username;
-        this.tag = `${this.username}#${this.discriminator}`;
-        if (data.avatar) {
-            if (data.avatar.startsWith('a_')) {
-                data.avatar = data.avatar.slice(2);
-                this.#animated = true;
-            }
-            this.#avatar = BigInt(`0x${data.avatar}`);
-        }
-        this.bot = data.bot || false;
-        this.system = data.system || false;
-        if (data.banner) this.#banner = BigInt(`0x${data.banner}`);
-        this.flags = data.public_flags;
-        this.accentColor = data.accent_color;
-        if (client.raw) this.raw = data;
-    }
+	id: bigint;
+	username: string;
+	discriminator: string;
+	tag: string;
+	#avatar: bigint;
+	bot: boolean;
+	system: boolean;
+	#banner?: bigint;
+	globalName: string;
+	flags: UserFlags;
+	accentColor: number;
+	raw?: APIUser;
+	#animated?: boolean;
+	constructor(client: Client, data: APIUser) {
+		this.id = BigInt(data.id);
+		this.username = data.username;
+		this.discriminator = data.discriminator;
+		this.globalName = data.global_name ?? this.username;
+		this.tag = `${this.username}#${this.discriminator}`;
+		if (data.avatar) {
+			if (data.avatar.startsWith("a_")) {
+				data.avatar = data.avatar.slice(2);
+				this.#animated = true;
+			}
+			this.#avatar = BigInt(`0x${data.avatar}`);
+		}
+		this.bot = data.bot || false;
+		this.system = data.system || false;
+		if (data.banner) this.#banner = BigInt(`0x${data.banner}`);
+		this.flags = data.public_flags;
+		this.accentColor = data.accent_color;
+		if (client.raw) this.raw = data;
+	}
 
-    /**
-     * Avatar hash
-     * @type {string}
-     */
-    get avatar() {
-        return (this.#animated ? 'a_' : '') + this.#avatar.toString(16);
-    }
+	/**
+	 * Avatar hash
+	 * @type {string}
+	 */
+	get avatar() {
+		return (this.#animated ? "a_" : "") + this.#avatar.toString(16);
+	}
 
-    get defaultAvatarURL() {
-        return `https://cdn.discordapp.com/embed/avatars/${Number(this.discriminator) % 5}.png`;
-    }
+	get defaultAvatarURL() {
+		return `https://cdn.discordapp.com/embed/avatars/${
+			Number(this.discriminator) % 5
+		}.png`;
+	}
 
-    /**
-     * User's display name
-     */
-    get displayName() {
-        return this.globalName ?? this.username;
-    }
+	/**
+	 * User's display name
+	 */
+	get displayName() {
+		return this.globalName ?? this.username;
+	}
 
-    /**
-     * Returns user mention string
-     */
-    get toString() {
-        return `<@${this.id}>`;
-    }
+	/**
+	 * Returns user mention string
+	 */
+	get toString() {
+		return `<@${this.id}>`;
+	}
 
-    /**
-     * Avatar URL
-     * @type {string}
-     */
-    get avatarURL() {
-        return `https://cdn.discordapp.com/avatars/${this.id}/${this.avatar}.png`;
-    }
+	/**
+	 * Avatar URL
+	 * @type {string}
+	 */
+	get avatarURL() {
+		return `https://cdn.discordapp.com/avatars/${this.id}/${this.avatar}.png`;
+	}
 
-    /**
-     * Banner hash
-     * @type {string}
-     */
-    get banner() {
-        return this.#banner.toString(16);
-    }
+	/**
+	 * Banner hash
+	 * @type {string}
+	 */
+	get banner() {
+		return this.#banner.toString(16);
+	}
 }

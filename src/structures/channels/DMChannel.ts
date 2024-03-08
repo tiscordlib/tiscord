@@ -1,6 +1,6 @@
-import { Client, User } from '../../';
+import { Client, User } from "../../";
 
-import { Channel } from './Channel';
+import { Channel } from "./Channel";
 
 /**
  * DM Channel class
@@ -15,25 +15,25 @@ import { Channel } from './Channel';
  * @extends {Channel}
  */
 export class DMChannel extends Channel {
-    lastMessageId: bigint;
-    recipients: User[];
-    #icon: bigint;
-    ownerId: bigint;
-    applicationId: bigint;
-    constructor(client: Client, data: any) {
-        super(client, data);
-        this.lastMessageId = data.last_message_id;
-        this.applicationId = data.application_id;
-        this.ownerId = data.owner_id;
-        this.#icon = BigInt(`0x${data.icon}`);
-        this.recipients = data.recipients.map(user => new User(client, user));
-    }
+	lastMessageId: bigint;
+	recipients: User[];
+	#icon: bigint;
+	ownerId: bigint;
+	applicationId: bigint;
+	constructor(client: Client, data: any) {
+		super(client, data);
+		this.lastMessageId = data.last_message_id;
+		this.applicationId = data.application_id;
+		this.ownerId = data.owner_id;
+		this.#icon = BigInt(`0x${data.icon}`);
+		this.recipients = data.recipients.map((user) => new User(client, user));
+	}
 
-    /**
-     * Icon hash
-     * @type {string}
-     */
-    get icon() {
-        return this.#icon.toString(16);
-    }
+	/**
+	 * Icon hash
+	 * @type {string}
+	 */
+	get icon() {
+		return this.#icon.toString(16);
+	}
 }

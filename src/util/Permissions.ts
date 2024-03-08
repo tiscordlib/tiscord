@@ -1,5 +1,5 @@
-import { BitField } from '../';
-import { PermissionFlagsBits } from 'discord-api-types/v10';
+import { BitField } from "../";
+import { PermissionFlagsBits } from "discord-api-types/v10";
 
 /**
  * Valid values for permissions
@@ -14,17 +14,17 @@ export type PermissionType = keyof typeof PermissionFlagsBits;
  * @param {(number|bigint|number[]|bigint[])} bits - Bitfield bits
  */
 export class Permissions extends BitField {
-    constructor(bits: number | bigint | number[] | bigint[]) {
-        super(PermissionFlagsBits, bits);
-    }
+	constructor(bits: number | bigint | number[] | bigint[]) {
+		super(PermissionFlagsBits, bits);
+	}
 
-    /**
-     * Checks whether the bitfield has a specific permission.
-     * @param {PermissionsBitField} value - Value to check
-     * @returns {boolean}
-     */
-    has(value: keyof typeof PermissionFlagsBits): boolean {
-        if (super.has('Administrator')) return true;
-        return super.has(value);
-    }
+	/**
+	 * Checks whether the bitfield has a specific permission.
+	 * @param {PermissionsBitField} value - Value to check
+	 * @returns {boolean}
+	 */
+	has(value: keyof typeof PermissionFlagsBits): boolean {
+		if (super.has("Administrator")) return true;
+		return super.has(value);
+	}
 }

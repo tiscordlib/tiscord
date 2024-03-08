@@ -1,5 +1,5 @@
-import { APIApplicationCommand } from 'discord-api-types/v10';
-import { ApplicationCommandOption } from './ApplicationCommandOption';
+import { APIApplicationCommand } from "discord-api-types/v10";
+import { ApplicationCommandOption } from "./ApplicationCommandOption";
 
 /**
  * An application command.
@@ -17,30 +17,30 @@ import { ApplicationCommandOption } from './ApplicationCommandOption';
  * @property {boolean} dmPermission - Whether the command is enabled for DMs
  */
 export class ApplicationCommand {
-    version: string;
-    id: bigint;
-    type: any;
-    applicationId: bigint;
-    guildId: bigint;
-    name: string;
-    nameLocalizations: APIApplicationCommand['name_localizations'];
-    description: string;
-    descriptionLocalizations: APIApplicationCommand['description_localizations'];
-    options: ApplicationCommandOption[];
-    defaultMemberPermissions: string;
-    dmPermission: boolean;
-    constructor(data: APIApplicationCommand) {
-        this.id = BigInt(data.id);
-        this.type = data.type;
-        this.applicationId = BigInt(data.application_id);
-        if (data.guild_id) this.guildId = BigInt(data.guild_id);
-        this.name = data.name;
-        this.nameLocalizations = data.name_localizations;
-        this.description = data.description;
-        this.descriptionLocalizations = data.description_localizations;
-        this.options = data.options.map(e => new ApplicationCommandOption(e));
-        this.defaultMemberPermissions = data.default_member_permissions;
-        this.dmPermission = data.dm_permission;
-        this.version = data.version;
-    }
+	version: string;
+	id: bigint;
+	type: any;
+	applicationId: bigint;
+	guildId: bigint;
+	name: string;
+	nameLocalizations: APIApplicationCommand["name_localizations"];
+	description: string;
+	descriptionLocalizations: APIApplicationCommand["description_localizations"];
+	options: ApplicationCommandOption[];
+	defaultMemberPermissions: string;
+	dmPermission: boolean;
+	constructor(data: APIApplicationCommand) {
+		this.id = BigInt(data.id);
+		this.type = data.type;
+		this.applicationId = BigInt(data.application_id);
+		if (data.guild_id) this.guildId = BigInt(data.guild_id);
+		this.name = data.name;
+		this.nameLocalizations = data.name_localizations;
+		this.description = data.description;
+		this.descriptionLocalizations = data.description_localizations;
+		this.options = data.options.map((e) => new ApplicationCommandOption(e));
+		this.defaultMemberPermissions = data.default_member_permissions;
+		this.dmPermission = data.dm_permission;
+		this.version = data.version;
+	}
 }

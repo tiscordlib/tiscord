@@ -11,12 +11,12 @@
  * @property {boolean} threadMembers - Whether thread members should be cached
  */
 export interface CacheOptions {
-    messageLimit?: number;
-    members?: boolean;
-    guilds?: boolean;
-    channels?: boolean;
-    users?: boolean;
-    messages?: boolean;
-    roles?: boolean;
-    threadMembers?: boolean;
+	messageLimit?: number;
+	members?: boolean;
+	guilds?: boolean;
+	channels?: boolean;
+	users?: boolean;
+	messages?: boolean;
+	roles?: boolean;
+	threadMembers?: boolean;
 }

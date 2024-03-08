@@ -1,4 +1,4 @@
-import { Client, User } from '../';
+import { Client, User } from "../";
 
 /**
  * Parses options for guildMemberUpdate event
@@ -18,28 +18,28 @@ import { Client, User } from '../';
  * @property {string} mute - Is the member muted
  */
 export class MemberEdit {
-    client: Client;
-    pending: boolean;
-    guildId: string;
-    roles: string[];
-    user: User;
-    nick: string;
-    avatar: string;
-    joinedAt: number;
-    premiumSince: number;
-    deaf: boolean;
-    mute: boolean;
-    constructor(client: Client, data: any) {
-        this.client = client;
-        this.guildId = data.guild_id;
-        this.roles = data.roles;
-        this.user = new User(this.client, data.user);
-        this.nick = data.nick;
-        this.avatar = data.avatar;
-        this.joinedAt = new Date(data.joined_at).getTime() / 1000;
-        this.premiumSince = new Date(data.premium_since).getTime() / 1000;
-        this.deaf = data.deaf || false;
-        this.mute = data.mute || false;
-        this.pending = data.pending || false;
-    }
+	client: Client;
+	pending: boolean;
+	guildId: string;
+	roles: string[];
+	user: User;
+	nick: string;
+	avatar: string;
+	joinedAt: number;
+	premiumSince: number;
+	deaf: boolean;
+	mute: boolean;
+	constructor(client: Client, data: any) {
+		this.client = client;
+		this.guildId = data.guild_id;
+		this.roles = data.roles;
+		this.user = new User(this.client, data.user);
+		this.nick = data.nick;
+		this.avatar = data.avatar;
+		this.joinedAt = new Date(data.joined_at).getTime() / 1000;
+		this.premiumSince = new Date(data.premium_since).getTime() / 1000;
+		this.deaf = data.deaf || false;
+		this.mute = data.mute || false;
+		this.pending = data.pending || false;
+	}
 }

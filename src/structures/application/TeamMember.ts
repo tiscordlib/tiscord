@@ -1,5 +1,5 @@
-import { APITeamMember } from 'discord-api-types/v10';
-import { Client, User } from '../../';
+import { APITeamMember } from "discord-api-types/v10";
+import { Client, User } from "../../";
 
 /**
  * Represents a team member.
@@ -11,17 +11,17 @@ import { Client, User } from '../../';
  * @property {User} user - User instance
  */
 export class TeamMember {
-    membershipState: number;
-    permissions: ['*'];
-    user: User;
-    teamId: bigint;
-    raw: APITeamMember;
-    constructor(client: Client, data: APITeamMember) {
-        this.membershipState = data.membership_state;
-        this.permissions = data.permissions;
-        this.user = new User(client, data.user);
-        this.teamId = BigInt(data.team_id);
-        if (client.raw) this.raw = data;
-        client.cache.users.set(this.user.id, this.user);
-    }
+	membershipState: number;
+	permissions: ["*"];
+	user: User;
+	teamId: bigint;
+	raw: APITeamMember;
+	constructor(client: Client, data: APITeamMember) {
+		this.membershipState = data.membership_state;
+		this.permissions = data.permissions;
+		this.user = new User(client, data.user);
+		this.teamId = BigInt(data.team_id);
+		if (client.raw) this.raw = data;
+		client.cache.users.set(this.user.id, this.user);
+	}
 }

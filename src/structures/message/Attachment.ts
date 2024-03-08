@@ -1,4 +1,4 @@
-import { APIAttachment } from 'discord-api-types/v10';
+import { APIAttachment } from "discord-api-types/v10";
 
 /**
  * Represents an attachment.
@@ -14,26 +14,26 @@ import { APIAttachment } from 'discord-api-types/v10';
  * @property {boolean} ephemeral - Whether the attachment is ephemeral
  */
 export class Attachment {
-    ephemeral: boolean;
-    id: bigint;
-    filename: string;
-    description: string;
-    contentType: string;
-    size: number;
-    url: string;
-    proxyUrl: string;
-    height?: number;
-    width?: number;
-    constructor(data: APIAttachment) {
-        this.id = BigInt(data.id);
-        this.filename = data.filename;
-        this.description = data.description;
-        this.contentType = data.content_type;
-        this.size = data.size;
-        this.url = data.url;
-        this.proxyUrl = data.proxy_url;
-        if (data.height) this.height = data.height;
-        if (data.width) this.width = data.width;
-        this.ephemeral = data.ephemeral;
-    }
+	ephemeral: boolean;
+	id: bigint;
+	filename: string;
+	description: string;
+	contentType: string;
+	size: number;
+	url: string;
+	proxyUrl: string;
+	height?: number;
+	width?: number;
+	constructor(data: APIAttachment) {
+		this.id = BigInt(data.id);
+		this.filename = data.filename;
+		this.description = data.description;
+		this.contentType = data.content_type;
+		this.size = data.size;
+		this.url = data.url;
+		this.proxyUrl = data.proxy_url;
+		if (data.height) this.height = data.height;
+		if (data.width) this.width = data.width;
+		this.ephemeral = data.ephemeral;
+	}
 }
