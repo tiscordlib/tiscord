@@ -6,12 +6,11 @@ import { Cache, Message } from "../";
  */
 
 export class MessageCache extends Cache<Message> {
-	caches: Map<bigint, Map<bigint, any>>;
+	caches: Map<bigint, Map<bigint, any>> = new Map();
 	limit: number;
 	constructor(messageLimit = 50) {
 		super();
 		this.limit = messageLimit;
-		this.caches = new Map();
 	}
 
 	/**
