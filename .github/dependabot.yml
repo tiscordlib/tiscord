@@ -6,10 +6,6 @@
 version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/packages/tiscord" # Location of package manifests
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/packages/tiskit" # Location of package manifests
+    directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
