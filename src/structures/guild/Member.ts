@@ -1,17 +1,15 @@
 import {
-    APIError,
-    Client,
-    ErrorCode,
-    Guild,
-    MemberOptions,
-    Permissions,
-    RawMemberOptions,
-    TiscordError,
-    User
-} from '../../';
+	APIError,
+	Client,
+	Guild,
+	MemberOptions,
+	Permissions,
+	RawMemberOptions,
+	User,
+} from "../../";
 
-import { APIGuildMember } from 'discord-api-types/v10';
-import { MemberRoleManager } from '../../managers/MemberRoleManager';
+import { APIGuildMember } from "discord-api-types/v10";
+import { MemberRoleManager } from "../../managers/MemberRoleManager";
 
 /**
  * Member class
@@ -34,120 +32,133 @@ import { MemberRoleManager } from '../../managers/MemberRoleManager';
  * @property {APIGuildMember} [raw] - Raw member data
  */
 export class Member {
-    client: Client;
-    mute: boolean;
-    deaf: boolean;
-    premiumSince: string;
-    joinedAt: string;
-    #avatar: bigint;
-    nick: string;
-    user: User;
-    raw?: APIGuildMember;
-    id: bigint;
-    guildId: bigint;
-    guild?: Guild;
-    communicationDisabledUntil: number;
-    pending: boolean;
-    #animated: boolean;
-    roles: MemberRoleManager;
-    constructor(client: Client, data: APIGuildMember, guild: Guild) {
-        this.guild = guild;
-        if (data.user) this.user = new User(client, data.user);
-        this.client = client;
-        this.#animated = data.avatar?.startsWith('a_');
-        this.nick = data.nick;
-        if (data.avatar) this.#avatar = BigInt(`0x${data.avatar}`);
-        this.joinedAt = data.joined_at;
-        this.premiumSince = data.premium_since;
-        this.deaf = data.deaf;
-        this.mute = data.mute;
-        this.communicationDisabledUntil = new Date(data.communication_disabled_until).getTime() / 1000;
-        this.pending = data.pending || false;
-        if (client.raw) this.raw = data;
-        this.id = this.user.id;
-        this.guildId = guild?.id;
-        this.roles = new MemberRoleManager(this, data.roles.map(BigInt));
-        client.cache.users.set(this.user.id, this.user);
-    }
-    get permissions() {
-        const { cache } = this.roles;
-        // @ts-expect-error
-        let bits = cache.map(role => role.permissions);
-        bits = bits.reduce((acc, permissions) => {
-            const permissionValues = Object.values(permissions.map);
-            // @ts-expect-error
-            const permissionBits = permissionValues.reduce((acc, val) => acc | BigInt(val), 0n);
-            // @ts-expect-error
-            return acc | permissionBits;
-        }, 0n);
-        return new Permissions(bits);
-    }
+	client: Client;
+	mute: boolean;
+	deaf: boolean;
+	premiumSince: string;
+	joinedAt: string;
+	#avatar: bigint;
+	nick: string;
+	user: User;
+	raw?: APIGuildMember;
+	id: bigint;
+	guildId: bigint;
+	guild?: Guild;
+	communicationDisabledUntil: number;
+	pending: boolean;
+	#animated: boolean;
+	roles: MemberRoleManager;
+	constructor(client: Client, data: APIGuildMember, guild: Guild) {
+		this.guild = guild;
+		if (data.user) this.user = new User(client, data.user);
+		this.client = client;
+		this.#animated = data.avatar?.startsWith("a_");
+		this.nick = data.nick;
+		if (data.avatar) this.#avatar = BigInt(`0x${data.avatar}`);
+		this.joinedAt = data.joined_at;
+		this.premiumSince = data.premium_since;
+		this.deaf = data.deaf;
+		this.mute = data.mute;
+		this.communicationDisabledUntil =
+			new Date(data.communication_disabled_until).getTime() / 1000;
+		this.pending = data.pending || false;
+		if (client.raw) this.raw = data;
+		this.id = this.user.id;
+		this.guildId = guild?.id;
+		this.roles = new MemberRoleManager(this, data.roles.map(BigInt));
+		client.cache.users.set(this.user.id, this.user);
+	}
+	get permissions() {
+		const { cache } = this.roles;
+		// @ts-expect-error
+		let bits = cache.map((role) => role.permissions);
+		bits = bits.reduce((acc, permissions) => {
+			const permissionValues = Object.values(permissions.map);
+			const permissionBits = permissionValues.reduce(
+				// @ts-expect-error
+				(acc, val) => acc | BigInt(val),
+				0n,
+			);
+			// @ts-expect-error
+			return acc | permissionBits;
+		}, 0n);
+		return new Permissions(bits);
+	}
 
-    /**
-     * Avatar hash
-     * @type {string}
-     */
-    get avatar() {
-        return (this.#animated ? 'a_' : '') + this.#avatar.toString(16);
-    }
+	/**
+	 * Avatar hash
+	 * @type {string}
+	 */
+	get avatar() {
+		return (this.#animated ? "a_" : "") + this.#avatar.toString(16);
+	}
 
-    /**
-     * Kick the member from the server
-     * @param {string} reason - The reason of the kick. This will be shown in the audit logs
-     */
-    async kick(reason?: string) {
-        const request = (await this.client.rest.delete(`/guilds/${this.guildId}/members/${this.id}`, {
-            reason
-        })) as any;
+	/**
+	 * Kick the member from the server
+	 * @param {string} reason - The reason of the kick. This will be shown in the audit logs
+	 */
+	async kick(reason?: string) {
+		const request = (await this.client.rest.delete(
+			`/guilds/${this.guildId}/members/${this.id}`,
+			{
+				reason,
+			},
+		)) as any;
 
-        if (request?.code) {
-            throw new APIError(request?.message);
-        }
-    }
+		if (request?.code) {
+			throw new APIError(request?.message);
+		}
+	}
 
-    /**
-     * Ban the member from the server
-     * @param {string} reason - The reason of the ban. This will be shown in the audit logs
-     * @param {number} deleteMessageAfter - Number of days to delete messages for
-     */
-    async ban(reason?: string, deleteMessageAfter?: number) {
-        const request = (await this.client.rest.put(`/guilds/${this.guildId}/bans/${this.id}`, {
-            reason,
-            // eslint-disable-next-line camelcase
-            body: { delete_message_days: deleteMessageAfter }
-        })) as any;
+	/**
+	 * Ban the member from the server
+	 * @param {string} reason - The reason of the ban. This will be shown in the audit logs
+	 * @param {number} deleteMessageAfter - Number of days to delete messages for
+	 */
+	async ban(reason?: string, deleteMessageAfter?: number) {
+		const request = (await this.client.rest.put(
+			`/guilds/${this.guildId}/bans/${this.id}`,
+			{
+				reason,
+				// eslint-disable-next-line camelcase
+				body: { delete_message_days: deleteMessageAfter },
+			},
+		)) as any;
 
-        if (request?.code) {
-            throw new APIError(request?.message);
-        }
-    }
+		if (request?.code) {
+			throw new APIError(request?.message);
+		}
+	}
 
-    /**
-     * Edit the member
-     * @param {string} reason - The reason of the edit. This will be shown in the audit logs
-     * @param {MemberOptions} data - Data of the new members values
-     */
-    async edit(data: RawMemberOptions, reason?: string) {
-        const request = (await this.client.rest.patch(`/guilds/${this.guildId}/members/${this.id}`, {
-            reason,
-            body: new MemberOptions(data)
-        })) as any;
+	/**
+	 * Edit the member
+	 * @param {string} reason - The reason of the edit. This will be shown in the audit logs
+	 * @param {MemberOptions} data - Data of the new members values
+	 */
+	async edit(data: RawMemberOptions, reason?: string) {
+		const request = (await this.client.rest.patch(
+			`/guilds/${this.guildId}/members/${this.id}`,
+			{
+				reason,
+				body: new MemberOptions(data),
+			},
+		)) as any;
 
-        if (request?.code) {
-            throw new APIError(request?.message);
-        }
-    }
+		if (request?.code) {
+			throw new APIError(request?.message);
+		}
+	}
 
-    /**
-     * Timeout this member
-     * @param {number} time - How long to timeout the member for (In seconds)
-     * @param reason - The reason of the timeout. This will be shown in the audit logs
-     */
-    async timeout(time: number | null, reason: string) {
-        if (time > 2592000) {
-            throw new APIError('You cannot timeout a member for more than 30 days.');
-        }
-        const date = new Date(Date.now() / 1000 + time);
-        this.edit({ communicationDisabledUntil: date.toISOString() }, reason);
-    }
+	/**
+	 * Timeout this member
+	 * @param {number} time - How long to timeout the member for (In seconds)
+	 * @param reason - The reason of the timeout. This will be shown in the audit logs
+	 */
+	async timeout(time: number | null, reason: string) {
+		if (time > 2592000) {
+			throw new APIError("You cannot timeout a member for more than 30 days.");
+		}
+		const date = new Date(Date.now() / 1000 + time);
+		this.edit({ communicationDisabledUntil: date.toISOString() }, reason);
+	}
 }

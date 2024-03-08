@@ -1,5 +1,9 @@
-import { CacheOptions } from './CacheOptions';
-import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from 'discord-api-types/v10';
+import { CacheOptions } from "./CacheOptions";
+import {
+	APIAllowedMentions,
+	GatewayIntentBits,
+	GatewayPresenceUpdateData,
+} from "discord-api-types/v10";
 
 /**
  * Client options
@@ -14,12 +18,12 @@ import { APIAllowedMentions, GatewayIntentBits, GatewayPresenceUpdateData } from
  * @property {APIAllowedMentions} allowedMentions - Allowed mentions
  */
 export interface ClientOptions {
-    token: string;
-    intents: number | Array<keyof typeof GatewayIntentBits>;
-    api?: number;
-    rawDataStorage?: boolean;
-    cache?: CacheOptions;
-    debug?: typeof console.log;
-    presence?: Partial<GatewayPresenceUpdateData>;
-    allowedMentions?: APIAllowedMentions;
+	token: string;
+	intents: number | Array<keyof typeof GatewayIntentBits>;
+	api?: number;
+	rawDataStorage?: boolean;
+	cache?: CacheOptions;
+	debug?: typeof console.log;
+	presence?: Partial<GatewayPresenceUpdateData>;
+	allowedMentions?: APIAllowedMentions;
 }

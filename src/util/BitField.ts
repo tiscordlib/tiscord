@@ -7,53 +7,57 @@
  * @property {bigint} bits - Bitfield bits
  */
 export class BitField {
-    map: Record<string, number | bigint>;
-    bits: bigint;
-    constructor(map: Record<string, number | bigint>, bits: number | bigint | number[] | bigint[]) {
-        this.map = map;
-        if (Array.isArray(bits)) {
-            // @ts-expect-error
-            bits = bits.reduce((acc, val) => acc | BigInt(val), 0n);
-        }
-        // @ts-expect-error
-        if (bits) this.bits = BigInt(bits);
-    }
+	map: Record<string, number | bigint>;
+	bits: bigint;
+	constructor(
+		map: Record<string, number | bigint>,
+		bits: number | bigint | number[] | bigint[],
+	) {
+		this.map = map;
+		if (Array.isArray(bits)) {
+			// @ts-expect-error
+			bits = bits.reduce((acc, val) => acc | BigInt(val), 0n);
+		}
+		// @ts-expect-error
+		if (bits) this.bits = BigInt(bits);
+	}
 
-    /**
-     * Resolves a string to it's bit value
-     * @param {string} value - Value to resolve
-     * @returns {(number|bigint)}
-     */
-    resolve(value: string): number | bigint {
-        if (!this.map[value]) throw new Error(`${value} is not a valid bitfield value`);
-        return BigInt(this.map[value]);
-    }
+	/**
+	 * Resolves a string to it's bit value
+	 * @param {string} value - Value to resolve
+	 * @returns {(number|bigint)}
+	 */
+	resolve(value: string): number | bigint {
+		if (!this.map[value])
+			throw new Error(`${value} is not a valid bitfield value`);
+		return BigInt(this.map[value]);
+	}
 
-    /**
-     * Checks if there's a bit set
-     * @param {string} value - Value to check
-     * @returns {boolean}
-     */
-    has(value: string): boolean {
-        const bits = this.resolve(value);
-        // @ts-expect-error
-        return (this.bits & bits) !== 0n;
-    }
+	/**
+	 * Checks if there's a bit set
+	 * @param {string} value - Value to check
+	 * @returns {boolean}
+	 */
+	has(value: string): boolean {
+		const bits = this.resolve(value);
+		// @ts-expect-error
+		return (this.bits & bits) !== 0n;
+	}
 
-    /**
-     * Checks what bits are set, and turns them into an array
-     * @returns {string[]}
-     */
-    toArray(): string[] {
-        return Object.keys(this.map).filter(key => this.has(key));
-    }
+	/**
+	 * Checks what bits are set, and turns them into an array
+	 * @returns {string[]}
+	 */
+	toArray(): string[] {
+		return Object.keys(this.map).filter((key) => this.has(key));
+	}
 
-    /**
-     * Adds a bit to the bitfield
-     * @param {(string|number|bigint)}value - Bits to add
-     */
-    add(value: string | number | bigint) {
-        if (typeof value === 'string') value = this.resolve(value);
-        this.bits |= BigInt(value);
-    }
+	/**
+	 * Adds a bit to the bitfield
+	 * @param {(string|number|bigint)}value - Bits to add
+	 */
+	add(value: string | number | bigint) {
+		if (typeof value === "string") value = this.resolve(value);
+		this.bits |= BigInt(value);
+	}
 }

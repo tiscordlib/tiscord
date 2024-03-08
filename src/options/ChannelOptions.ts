@@ -1,5 +1,10 @@
 /* eslint-disable camelcase */
-import { APIVoiceRegion, ChannelType, OverwriteType, VideoQualityMode } from 'discord-api-types/v10';
+import {
+	APIVoiceRegion,
+	ChannelType,
+	OverwriteType,
+	VideoQualityMode,
+} from "discord-api-types/v10";
 
 /**
  * Message options, used for parsing messages to an api readable format
@@ -20,33 +25,36 @@ import { APIVoiceRegion, ChannelType, OverwriteType, VideoQualityMode } from 'di
  * @property {number} default_auto_archive_duration - Channels default auto archive duration (threads)
  */
 export class ChannelOptions {
-    name: string;
-    type: ChannelType;
-    position?: number;
-    topic?: string;
-    nsfw?: boolean;
-    rate_limit_per_user?: number;
-    bitrate?: number;
-    user_limit?: number;
-    permission_overwrites?: Array<OverwriteType>;
-    parent_id?: number;
-    rtc_region?: APIVoiceRegion;
-    video_quality_mode?: VideoQualityMode;
-    default_auto_archive_duration?: number;
-    constructor(data: ChannelOptions) {
-        this.name = data.name;
-        this.type = data.type;
-        if (data.position) this.position = data.position;
-        if (data.topic) this.topic = data.topic;
-        if (data.nsfw) this.nsfw = data.nsfw;
-        if (data.rate_limit_per_user) this.rate_limit_per_user = data.rate_limit_per_user;
-        if (data.bitrate) this.bitrate = data.bitrate;
-        if (data.user_limit) this.user_limit = data.user_limit;
-        if (data.parent_id) this.parent_id = data.parent_id;
-        if (data.rtc_region) this.rtc_region = data.rtc_region;
-        if (data.video_quality_mode) this.video_quality_mode = data.video_quality_mode;
-        if (data.default_auto_archive_duration) this.default_auto_archive_duration = data.default_auto_archive_duration;
-    }
+	name: string;
+	type: ChannelType;
+	position?: number;
+	topic?: string;
+	nsfw?: boolean;
+	rate_limit_per_user?: number;
+	bitrate?: number;
+	user_limit?: number;
+	permission_overwrites?: Array<OverwriteType>;
+	parent_id?: number;
+	rtc_region?: APIVoiceRegion;
+	video_quality_mode?: VideoQualityMode;
+	default_auto_archive_duration?: number;
+	constructor(data: ChannelOptions) {
+		this.name = data.name;
+		this.type = data.type;
+		if (data.position) this.position = data.position;
+		if (data.topic) this.topic = data.topic;
+		if (data.nsfw) this.nsfw = data.nsfw;
+		if (data.rate_limit_per_user)
+			this.rate_limit_per_user = data.rate_limit_per_user;
+		if (data.bitrate) this.bitrate = data.bitrate;
+		if (data.user_limit) this.user_limit = data.user_limit;
+		if (data.parent_id) this.parent_id = data.parent_id;
+		if (data.rtc_region) this.rtc_region = data.rtc_region;
+		if (data.video_quality_mode)
+			this.video_quality_mode = data.video_quality_mode;
+		if (data.default_auto_archive_duration)
+			this.default_auto_archive_duration = data.default_auto_archive_duration;
+	}
 }
 
 /**
@@ -66,18 +74,18 @@ export class ChannelOptions {
  * @property {VideoQualityMode} videoQualityMode - Channels video quality mode
  * @property {number} defaultAutoArchiveDuration - Channels default auto archive duration (threads)
  */
-export interface ChannelOptions {
-    name: string;
-    type: ChannelType;
-    position?: number;
-    topic?: string;
-    nsfw?: boolean;
-    rateLimitPerUser?: number;
-    bitrate?: number;
-    userLimit?: number;
-    permissionOverwrites?: Array<OverwriteType>;
-    parentId?: number;
-    rtcRegion?: APIVoiceRegion;
-    videoQualityMode?: VideoQualityMode;
-    defaultAutoArchiveDuration?: number;
+export interface ChannelOptionsType {
+	name: string;
+	type: ChannelType;
+	position?: number;
+	topic?: string;
+	nsfw?: boolean;
+	rateLimitPerUser?: number;
+	bitrate?: number;
+	userLimit?: number;
+	permissionOverwrites?: Array<OverwriteType>;
+	parentId?: number;
+	rtcRegion?: APIVoiceRegion;
+	videoQualityMode?: VideoQualityMode;
+	defaultAutoArchiveDuration?: number;
 }

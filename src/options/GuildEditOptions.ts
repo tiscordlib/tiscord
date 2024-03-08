@@ -15,30 +15,32 @@
  * @property {any} banner - Guild banner
  */
 export class GuildEditOptions {
-    verification_level: number;
-    name: string;
-    default_message_notifications: number;
-    explicit_content_filter: number;
-    afk_channel_id: string;
-    afk_timeout: number;
-    icon: any;
-    owner_id: string;
-    splash: any;
-    discovery_splash: any;
-    banner: any;
-    constructor(data: GuildEditOptionsType) {
-        if (data.name) this.name = data.name;
-        if (data.verificationLevel) this.verification_level = data.verificationLevel;
-        if (data.defaultMessageNotifications) this.default_message_notifications = data.defaultMessageNotifications;
-        if (data.nsfwFilter) this.explicit_content_filter = data.nsfwFilter;
-        if (data.afkChannelId) this.afk_channel_id = data.afkChannelId;
-        if (data.afkTimeout) this.afk_timeout = data.afkTimeout;
-        if (data.icon) this.icon = data.icon;
-        if (data.owner) this.owner_id = data.owner;
-        if (data.splash) this.splash = data.splash;
-        if (data.discoverySplash) this.discovery_splash = data.discoverySplash;
-        if (data.banner) this.banner = data.banner;
-    }
+	verification_level: number;
+	name: string;
+	default_message_notifications: number;
+	explicit_content_filter: number;
+	afk_channel_id: string;
+	afk_timeout: number;
+	icon: any;
+	owner_id: string;
+	splash: any;
+	discovery_splash: any;
+	banner: any;
+	constructor(data: GuildEditOptionsType) {
+		if (data.name) this.name = data.name;
+		if (data.verificationLevel)
+			this.verification_level = data.verificationLevel;
+		if (data.defaultMessageNotifications)
+			this.default_message_notifications = data.defaultMessageNotifications;
+		if (data.nsfwFilter) this.explicit_content_filter = data.nsfwFilter;
+		if (data.afkChannelId) this.afk_channel_id = data.afkChannelId;
+		if (data.afkTimeout) this.afk_timeout = data.afkTimeout;
+		if (data.icon) this.icon = data.icon;
+		if (data.owner) this.owner_id = data.owner;
+		if (data.splash) this.splash = data.splash;
+		if (data.discoverySplash) this.discovery_splash = data.discoverySplash;
+		if (data.banner) this.banner = data.banner;
+	}
 }
 
 /**
@@ -65,23 +67,23 @@ export class GuildEditOptions {
  * @property {boolean} premiumProgressBarEnabled
  */
 export interface GuildEditOptionsType {
-    name?: string;
-    verificationLevel?: number;
-    defaultMessageNotifications?: number;
-    nsfwFilter?: number;
-    afkChannelId?: string;
-    afkTimeout?: number;
-    icon?: any;
-    owner?: string;
-    splash?: any;
-    discoverySplash?: any;
-    banner?: any;
-    systemChannelId?: string;
-    systemChannelFlags?: number;
-    rulesChannelId?: string;
-    publicUpdatesChannelId?: string;
-    preferredLocale?: string;
-    features?: string;
-    description?: string;
-    premiumProgressBarEnabled?: boolean;
+	name?: string;
+	verificationLevel?: number;
+	defaultMessageNotifications?: number;
+	nsfwFilter?: number;
+	afkChannelId?: string;
+	afkTimeout?: number;
+	icon?: any;
+	owner?: string;
+	splash?: any;
+	discoverySplash?: any;
+	banner?: any;
+	systemChannelId?: string;
+	systemChannelFlags?: number;
+	rulesChannelId?: string;
+	publicUpdatesChannelId?: string;
+	preferredLocale?: string;
+	features?: string;
+	description?: string;
+	premiumProgressBarEnabled?: boolean;
 }

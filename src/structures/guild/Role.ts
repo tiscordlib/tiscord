@@ -1,5 +1,5 @@
-import { APIRole } from 'discord-api-types/v10';
-import { Client, Permissions } from '../../';
+import { APIRole } from "discord-api-types/v10";
+import { Client, Permissions } from "../../";
 
 /**
  * Role class
@@ -20,28 +20,29 @@ import { Client, Permissions } from '../../';
  * @property {string} [botId] - Bot ID
  */
 export class Role {
-    id: bigint;
-    name: string;
-    color: number;
-    hoist: boolean;
-    position: number;
-    permissions: Permissions;
-    managed: boolean;
-    mentionable: boolean;
-    botId?: bigint;
-    integrationId?: bigint;
-    raw?: APIRole;
-    constructor(client: Client, data: APIRole) {
-        this.id = BigInt(data.id);
-        this.name = data.name;
-        this.color = data.color;
-        this.hoist = data.hoist;
-        this.position = data.position;
-        this.permissions = new Permissions(BigInt(data.permissions));
-        this.managed = data.managed;
-        this.mentionable = data.mentionable;
-        if (data.tags?.bot_id) this.botId = BigInt(data.tags.bot_id);
-        if (data.tags?.integration_id) this.integrationId = BigInt(data.tags.integration_id);
-        if (client.raw) this.raw = data;
-    }
+	id: bigint;
+	name: string;
+	color: number;
+	hoist: boolean;
+	position: number;
+	permissions: Permissions;
+	managed: boolean;
+	mentionable: boolean;
+	botId?: bigint;
+	integrationId?: bigint;
+	raw?: APIRole;
+	constructor(client: Client, data: APIRole) {
+		this.id = BigInt(data.id);
+		this.name = data.name;
+		this.color = data.color;
+		this.hoist = data.hoist;
+		this.position = data.position;
+		this.permissions = new Permissions(BigInt(data.permissions));
+		this.managed = data.managed;
+		this.mentionable = data.mentionable;
+		if (data.tags?.bot_id) this.botId = BigInt(data.tags.bot_id);
+		if (data.tags?.integration_id)
+			this.integrationId = BigInt(data.tags.integration_id);
+		if (client.raw) this.raw = data;
+	}
 }

@@ -1,6 +1,6 @@
-import { Client, User } from '../../';
+import { Client, User } from "../../";
 
-import { APIEmoji } from 'discord-api-types/v10';
+import { APIEmoji } from "discord-api-types/v10";
 
 /**
  * Represents an emoji.
@@ -18,25 +18,25 @@ import { APIEmoji } from 'discord-api-types/v10';
  * @property {APIEmoji} [raw] - raw data
  */
 export class Emoji {
-    id: bigint;
-    name: string;
-    roles: string[];
-    author: User;
-    requireColons: boolean;
-    managed: boolean;
-    animated: boolean;
-    available: boolean;
-    raw: APIEmoji;
-    constructor(client: Client, emoji: APIEmoji) {
-        this.id = BigInt(emoji.id);
-        this.name = emoji.name;
-        this.roles = emoji.roles;
-        if (emoji.user) this.author = new User(client, emoji.user);
-        this.requireColons = emoji.require_colons;
-        this.managed = emoji.managed;
-        this.animated = emoji.animated;
-        this.available = emoji.available;
-        if (client.raw) this.raw = emoji;
-        if (emoji.user) client.cache.users.set(this.author.id, this.author);
-    }
+	id: bigint;
+	name: string;
+	roles: string[];
+	author: User;
+	requireColons: boolean;
+	managed: boolean;
+	animated: boolean;
+	available: boolean;
+	raw: APIEmoji;
+	constructor(client: Client, emoji: APIEmoji) {
+		this.id = BigInt(emoji.id);
+		this.name = emoji.name;
+		this.roles = emoji.roles;
+		if (emoji.user) this.author = new User(client, emoji.user);
+		this.requireColons = emoji.require_colons;
+		this.managed = emoji.managed;
+		this.animated = emoji.animated;
+		this.available = emoji.available;
+		if (client.raw) this.raw = emoji;
+		if (emoji.user) client.cache.users.set(this.author.id, this.author);
+	}
 }

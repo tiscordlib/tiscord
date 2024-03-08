@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, InteractionOptions } from '../../';
+import { Client, CommandInteraction, InteractionOptions } from "../../";
 
 /**
  * Text input command interaction class
@@ -9,9 +9,14 @@ import { Client, CommandInteraction, InteractionOptions } from '../../';
  * @extends {CommandInteraction}
  */
 export class ChatInputCommandInteraction extends CommandInteraction {
-    options: InteractionOptions;
-    constructor(client: Client, data: any) {
-        super(client, data);
-        this.options = new InteractionOptions(client, data.data.options, data.data.resolved, this.guild);
-    }
+	options: InteractionOptions;
+	constructor(client: Client, data: any) {
+		super(client, data);
+		this.options = new InteractionOptions(
+			client,
+			data.data.options,
+			data.data.resolved,
+			this.guild,
+		);
+	}
 }

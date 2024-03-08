@@ -1,5 +1,5 @@
-import { APIChannel } from 'discord-api-types/v10';
-import { Client, channelType, Channel } from '../';
+import { APIChannel } from "discord-api-types/v10";
+import { Client, channelType, Channel } from "../";
 
 /**
  * Class managing channels
@@ -8,25 +8,27 @@ import { Client, channelType, Channel } from '../';
  * @property {Client} client - Client instance
  */
 export class ChannelManager {
-    client: Client;
-    constructor(client: Client) {
-        this.client = client;
-    }
+	client: Client;
+	constructor(client: Client) {
+		this.client = client;
+	}
 
-    /**
-     * Gets a channel
-     * @param {bigint} channel - Channel ID
-     * @param {boolean} fetch - Whether to fetch the channel
-     * @returns {Promise<Channel>}
-     */
-    async get(channel: bigint, fetch?): Promise<Channel> {
-        const cached = this.client.cache.channels.get(channel);
-        if (cached && !fetch) return cached;
-        let data: any;
-        const discordData = (await this.client.rest.get(`/channels/${channel}`).catch(() => null)) as APIChannel;
-        if (discordData) data = channelType(this.client, discordData);
-        if (data.guilds) await data.guilds();
-        if (data) this.client.cache.channels.set(data.id, data);
-        return data;
-    }
+	/**
+	 * Gets a channel
+	 * @param {bigint} channel - Channel ID
+	 * @param {boolean} fetch - Whether to fetch the channel
+	 * @returns {Promise<Channel>}
+	 */
+	async get(channel: bigint, fetch?): Promise<Channel> {
+		const cached = this.client.cache.channels.get(channel);
+		if (cached && !fetch) return cached;
+		let data: any;
+		const discordData = (await this.client.rest
+			.get(`/channels/${channel}`)
+			.catch(() => null)) as APIChannel;
+		if (discordData) data = channelType(this.client, discordData);
+		if (data.guilds) await data.guilds();
+		if (data) this.client.cache.channels.set(data.id, data);
+		return data;
+	}
 }

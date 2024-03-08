@@ -1,5 +1,5 @@
-import { Client } from '../';
+import { Client } from "../";
 
 export async function resumed(client: Client) {
-    client.emit('resumed');
+	client.emit("resumed");
 }

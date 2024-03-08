@@ -12,20 +12,21 @@
  * @property {string} communication_disabled_until - When the member's timeout will expire
  */
 export class MemberOptions {
-    nick: string;
-    roles: string[];
-    mute: boolean;
-    deaf: boolean;
-    channel_id: string;
-    communication_disabled_until?: string;
-    constructor(data: RawMemberOptions) {
-        if (data.nick) this.nick = data.nick;
-        if (data.roles) this.roles = data.roles;
-        if (data.mute) this.mute = data.mute;
-        if (data.deaf) this.deaf = data.deaf;
-        if (data.channelId) this.channel_id = data.channelId;
-        if (data.communicationDisabledUntil) this.communication_disabled_until = data.communicationDisabledUntil;
-    }
+	nick: string;
+	roles: string[];
+	mute: boolean;
+	deaf: boolean;
+	channel_id: string;
+	communication_disabled_until?: string;
+	constructor(data: RawMemberOptions) {
+		if (data.nick) this.nick = data.nick;
+		if (data.roles) this.roles = data.roles;
+		if (data.mute) this.mute = data.mute;
+		if (data.deaf) this.deaf = data.deaf;
+		if (data.channelId) this.channel_id = data.channelId;
+		if (data.communicationDisabledUntil)
+			this.communication_disabled_until = data.communicationDisabledUntil;
+	}
 }
 
 /**
@@ -39,10 +40,10 @@ export class MemberOptions {
  * @property {string} communicationDisabledUntil - When the member's timeout will expire
  */
 export interface RawMemberOptions {
-    nick?: string;
-    roles?: string[];
-    mute?: boolean;
-    deaf?: boolean;
-    channelId?: string;
-    communicationDisabledUntil?: string;
+	nick?: string;
+	roles?: string[];
+	mute?: boolean;
+	deaf?: boolean;
+	channelId?: string;
+	communicationDisabledUntil?: string;
 }

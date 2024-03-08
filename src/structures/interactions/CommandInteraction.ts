@@ -1,5 +1,5 @@
-import { Client } from '../../';
-import { RepliableInteraction } from './RepliableInteraction';
+import { Client } from "../../";
+import { RepliableInteraction } from "./RepliableInteraction";
 
 /**
  * Command interaction class
@@ -14,13 +14,13 @@ import { RepliableInteraction } from './RepliableInteraction';
  *  @extends {RepliableInteraction}
  */
 export class CommandInteraction extends RepliableInteraction {
-    commandType: number;
-    name: string;
-    commandId: bigint;
-    constructor(client: Client, data: any) {
-        super(client, data);
-        this.commandId = data.data.id;
-        this.name = data.data.name;
-        this.commandType = data.data.type;
-    }
+	commandType: number;
+	name: string;
+	commandId: bigint;
+	constructor(client: Client, data: any) {
+		super(client, data);
+		this.commandId = data.data.id;
+		this.name = data.data.name;
+		this.commandType = data.data.type;
+	}
 }
