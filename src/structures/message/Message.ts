@@ -119,8 +119,8 @@ export class Message {
 		this.referencedMessage = data.referenced_message
 			? new Message(client, data.referenced_message)
 			: undefined;
-		// @ts-expect-error
 		if (data.interaction && this.guildId)
+			// @ts-expect-error
 			data.interaction.guild_id = this.guildId;
 		this.interaction = data.interaction
 			? new Interaction(client, data.interaction as unknown as APIInteraction)

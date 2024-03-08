@@ -74,8 +74,8 @@ export class Member {
 		let bits = cache.map((role) => role.permissions);
 		bits = bits.reduce((acc, permissions) => {
 			const permissionValues = Object.values(permissions.map);
-			// @ts-expect-error
 			const permissionBits = permissionValues.reduce(
+				// @ts-expect-error
 				(acc, val) => acc | BigInt(val),
 				0n,
 			);

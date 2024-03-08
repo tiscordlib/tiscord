@@ -15,7 +15,6 @@ export class WebSocketManager {
 	sequence: number;
 	client: Client;
 	sessionId: string;
-	erlpack: any;
 	lastHeartbeat = 0;
 	lastHeartbeatAck = 0;
 	ping = 0;
@@ -24,10 +23,6 @@ export class WebSocketManager {
 	resumeGatewayUrl: string;
 	constructor(client: Client) {
 		this.client = client;
-		try {
-			this.erlpack = require("erlpack");
-			// eslint-disable-next-line no-empty
-		} catch {}
 	}
 
 	/**
@@ -45,11 +40,11 @@ export class WebSocketManager {
 			.catch(() => {
 				throw new TiscordError(ErrorCode.Invalid_Token);
 			});
-		const url = this.getGateway(this.client.apiVersion, this.erlpack);
+		const url = this.getGateway(this.client.apiVersion);
 		this.connection = new WebSocket(url);
 		this.connected = true;
 		this.connection.on("message", async (data: any) => {
-			data = this.parse(data);
+			data = JSON.parse(data);
 			switch (data.op) {
 				case GatewayOpcodes.Hello:
 					// @ts-expect-error
@@ -160,30 +155,17 @@ export class WebSocketManager {
 	 * @param data - data to send
 	 */
 	send(data: any) {
-		if (this.erlpack) data = this.erlpack.pack(data);
-		else data = JSON.stringify(data);
-		this.connection.send(data);
-	}
-
-	/**
-	 * Parse data from the websocket
-	 * @param {Object} data - Data to parse
-	 */
-	parse(data: any): Record<string, any> {
-		if (this.erlpack) data = this.erlpack.unpack(data);
-		else data = JSON.parse(data);
-		return data;
+		this.connection.send(JSON.stringify(data));
 	}
 
 	/**
 	 * Get gateway URL
-	 * @param {string} api - Api version
-	 * @param {boolean} etf - whether to use erlpack
+	 * @param {string} api - API version
 	 * @returns {string}
 	 */
-	getGateway(api: number, etf: boolean): string {
+	getGateway(api: number): string {
 		return `${
 			this.connected ? this.resumeGatewayUrl : "wss://gateway.discord.gg/"
-		}?v=${api}&encoding=${etf ? "etf" : "json"}`;
+		}?v=${api}&encoding=json`;
 	}
 }

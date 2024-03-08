@@ -17,9 +17,9 @@ export class UserContextMenuInteraction extends CommandInteraction {
 			client,
 			data.data.resolved.users[data.data.target_id],
 		);
-		// @ts-expect-error
 		this.targetMember = new Member(
 			client,
+			// @ts-expect-error
 			data.data.resolved.members[data.data.target_id],
 			this.guild,
 		);

@@ -97,14 +97,14 @@ export class RequestManager {
 
 		if (res.statusCode < 200) {
 			throw new RESTError(req, res);
-		} 
+		}
 		if (res.statusCode < 300) {
 			if (req.useRateLimits) {
 				this.updateHeaders(res);
 			}
 
 			return res;
-		} 
+		}
 		if (res.statusCode < 500) {
 			switch (res.statusCode) {
 				case 429: {

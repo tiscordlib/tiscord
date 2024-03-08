@@ -44,6 +44,7 @@ export class ApplicationCommandOption {
 		this.required = data.required;
 		// @ts-expect-error
 		if (data.choices)
+			// @ts-expect-error
 			this.choices = data.choices.map(
 				(e) => new ApplicationCommandOptionChoice(e),
 			);
