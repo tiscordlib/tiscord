@@ -63,12 +63,11 @@ import { PermissionType } from "../util/Permissions";
 export class Client extends EventEmitter {
 	token: string;
 	intents: number;
-	ws: WebSocketManager;
-	apiVersion: number;
+	ws: WebSocketManager = new WebSocketManager(this);
 	rest: REST;
-	users: UserManager;
-	guilds: GuildManager;
-	channels: ChannelManager;
+	users: UserManager = new UserManager(this);
+	guilds: GuildManager = new GuildManager(this);
+	channels: ChannelManager = new ChannelManager(this);
 	readyAt: Date;
 	user: User;
 	on: (<K extends keyof Events>(s: K, listener: Events[K]) => this) &
@@ -89,11 +88,13 @@ export class Client extends EventEmitter {
 	presence: Partial<GatewayPresenceUpdateData>;
 	allowedMentions: RawMentions;
 	applicationId: bigint;
-	applicationCommands: ApplicationCommandManager;
+	applicationCommands: ApplicationCommandManager =
+		new ApplicationCommandManager(this);
 	constructor(options: ClientOptions) {
 		super();
 		this.cacheOptions = options.cache;
 		Object.defineProperty(this, "token", { value: options.token });
+
 		if (typeof options.intents === "number") {
 			this.intents = options.intents;
 		} else {
@@ -101,20 +102,20 @@ export class Client extends EventEmitter {
 				this.intents |= GatewayIntentBits[intent];
 			});
 		}
+
 		this.raw = options.rawDataStorage;
-		this.apiVersion = options.api || 10;
+
 		this.rest = new REST(
 			this.token,
-			{ version: this.apiVersion },
+			{ version: 10 },
 			{ logger: { debug: this.debug.bind(this) } },
 		);
-		this.users = new UserManager(this);
-		this.guilds = new GuildManager(this);
-		this.channels = new ChannelManager(this);
-		this.applicationCommands = new ApplicationCommandManager(this);
+
 		this.debugLogs = options.debug;
+
 		if (options.allowedMentions)
 			this.allowedMentions = new AllowedMentions(options.allowedMentions);
+
 		this.presence = {
 			activities: [...(options.presence?.activities ?? [])],
 			status: options.presence?.status ?? PresenceUpdateStatus.Online,
@@ -122,39 +123,30 @@ export class Client extends EventEmitter {
 			afk: options.presence?.afk ?? false,
 		};
 		this.cache = {
-			members:
-				this.cacheOptions?.members === false
-					? new FakeCache()
-					: new Cache<Member>(),
-			guilds:
-				this.cacheOptions?.guilds === false
-					? new FakeMap()
-					: new Map<bigint, Guild>(),
-			channels:
-				this.cacheOptions?.channels === false
-					? new FakeMap()
-					: new Map<bigint, Channel>(),
-			users:
-				this.cacheOptions?.users === false
-					? new FakeMap()
-					: new Map<bigint, User>(),
-			messages:
-				this.cacheOptions?.users === false
-					? new FakeCache()
-					: new MessageCache(options?.cache?.messageLimit),
-			roles:
-				this.cacheOptions?.messages === false
-					? new FakeCache()
-					: new Cache<Role>(),
-			threadMembers:
-				this.cacheOptions?.messages === false
-					? new FakeCache()
-					: new Cache<ThreadMember>(),
+			members: !this.cacheOptions?.members
+				? new FakeCache()
+				: new Cache<Member>(),
+			guilds: !this.cacheOptions?.guilds
+				? new FakeMap()
+				: new Map<bigint, Guild>(),
+			channels: !this.cacheOptions?.channels
+				? new FakeMap()
+				: new Map<bigint, Channel>(),
+			users: !this.cacheOptions?.users
+				? new FakeMap()
+				: new Map<bigint, User>(),
+			messages: !this.cacheOptions?.users
+				? new FakeCache()
+				: new MessageCache(options?.cache?.messageLimit),
+			roles: !this.cacheOptions?.messages ? new FakeCache() : new Cache<Role>(),
+			threadMembers: !this.cacheOptions?.messages
+				? new FakeCache()
+				: new Cache<ThreadMember>(),
 		};
+
 		this.debug(`OS Version: ${type()} ${release()} ${arch()}`);
 		this.debug(`Node.js version: ${process.version}`);
 		this.debug(`Tiscord version: ${version}`);
-		this.debug(`API version: ${this.apiVersion}`);
 	}
 
 	/**
@@ -162,7 +154,6 @@ export class Client extends EventEmitter {
 	 * @returns {void}
 	 */
 	login(): void {
-		this.ws = new WebSocketManager(this);
 		this.ws.connect();
 		this.ws.connection.on("open", () => {
 			this.ws.identify();

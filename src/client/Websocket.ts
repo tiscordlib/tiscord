@@ -40,7 +40,7 @@ export class WebSocketManager {
 			.catch(() => {
 				throw new TiscordError(ErrorCode.Invalid_Token);
 			});
-		const url = this.getGateway(this.client.apiVersion);
+		const url = this.getGateway();
 		this.connection = new WebSocket(url);
 		this.connected = true;
 		this.connection.on("message", async (data: any) => {
@@ -160,12 +160,11 @@ export class WebSocketManager {
 
 	/**
 	 * Get gateway URL
-	 * @param {string} api - API version
 	 * @returns {string}
 	 */
-	getGateway(api: number): string {
+	getGateway(): string {
 		return `${
 			this.connected ? this.resumeGatewayUrl : "wss://gateway.discord.gg/"
-		}?v=${api}&encoding=json`;
+		}?v=10&encoding=json`;
 	}
 }

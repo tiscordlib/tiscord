@@ -20,7 +20,6 @@ import {
 export interface ClientOptions {
 	token: string;
 	intents: number | Array<keyof typeof GatewayIntentBits>;
-	api?: number;
 	rawDataStorage?: boolean;
 	cache?: CacheOptions;
 	debug?: typeof console.log;
