@@ -1,5 +1,5 @@
-import { Client, Sticker } from "../";
-import { APISticker } from "discord-api-types/v10";
+import type { APISticker } from "discord-api-types/v10";
+import { type Client, Sticker } from "../";
 
 export async function guildStickersUpdate(
 	client: Client,

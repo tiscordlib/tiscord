@@ -1,6 +1,6 @@
-import { APIError, Client, Message, TextChannel } from "../";
+import { APIError, type Client, Message, type TextChannel } from "../";
 
-import { APIMessage } from "discord-api-types/v10";
+import type { APIMessage } from "discord-api-types/v10";
 
 /**
  * Class managing messages

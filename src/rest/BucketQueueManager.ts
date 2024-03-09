@@ -1,15 +1,15 @@
-import { AsyncQueue } from "@sapphire/async-queue";
 import { setTimeout as sleep } from "node:timers/promises";
-import { Dispatcher } from "undici";
-import { APIRequest } from "./APIRequest";
-import { RequestManager } from "./RequestManager";
+import { AsyncQueue } from "@sapphire/async-queue";
+import type { Dispatcher } from "undici";
+import type { APIRequest } from "./APIRequest";
 import { RateLimitedError } from "./RESTError.js";
+import type { RequestManager } from "./RequestManager";
 
 export class BucketQueueManager {
 	#queue = new AsyncQueue();
 
 	/** The total amount of requests that can be made on this bucket before getting rate limited. */
-	public limit = Infinity;
+	public limit = Number.POSITIVE_INFINITY;
 
 	/** The remaining requests we can make until we are rate limited. */
 	public remaining = 1;

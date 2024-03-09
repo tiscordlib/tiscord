@@ -1,5 +1,5 @@
-import { APIGuildChannel, ChannelType } from "discord-api-types/v10";
-import { Client, channelType } from "../";
+import { type APIGuildChannel, ChannelType } from "discord-api-types/v10";
+import { type Client, channelType } from "../";
 
 export async function channelUpdate(
 	client: Client,

@@ -1,7 +1,7 @@
 import {
-	Client,
+	type Client,
 	Message,
-	RawMessageOptions,
+	type RawMessageOptions,
 	RepliableInteraction,
 	SelectMenuOption,
 } from "../../";

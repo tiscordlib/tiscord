@@ -1,5 +1,5 @@
-import { APIUser, UserFlags } from "discord-api-types/v10";
-import { Client } from "../../";
+import type { APIUser, UserFlags } from "discord-api-types/v10";
+import type { Client } from "../../";
 
 /**
  * User class

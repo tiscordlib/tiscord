@@ -18,8 +18,7 @@ export class BitField {
 			// @ts-expect-error
 			bits = bits.reduce((acc, val) => acc | BigInt(val), 0n);
 		}
-		// @ts-expect-error
-		if (bits) this.bits = BigInt(bits);
+		this.bits = BigInt(bits);
 	}
 
 	/**

@@ -3,14 +3,14 @@ Thanks for contributing to one of our packages!
 
 ## Contributing
 
-Before doing anything, make sure you have node.js (at least v16.x.x) and git installed.
+Before doing anything, make sure you have node.js (at least v18.x.x) and git installed.
 
 We use ESlint with Prettier to enforce consistent style in our code.  
 We recommend setting up ESlint in your favorite code editor.
 
-Before contributing, run `npm i` to install all dependencies.  
+Before contributing, run `pnpm i --frozen-lockfile` to install all dependencies.  
 Remember to write tests and documentation comments.  
-Afterwards, run `npx turbo run build lint docs` to check whether the tests pass and the code builds properly.  
+Afterwards, run `pnpm turbo run build lint docs` to check whether the tests pass and the code builds properly.  
 If you need any help with the code, visit our [support server](https://discord.gg/wKbtU5cBCk) on Discord.  
 
 ## Code of Conduct

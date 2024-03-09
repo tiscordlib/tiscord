@@ -1,4 +1,4 @@
-import { Client, Guild, User } from "../";
+import { type Client, type Guild, User } from "../";
 
 export async function guildMemberRemove(client: Client, data: { d: any }) {
 	const guild: Guild = client.cache.guilds.get(BigInt(data.d.guild_id));

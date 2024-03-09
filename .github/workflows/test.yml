@@ -1,43 +1,63 @@
-name: Build and lint
-on: [push, pull_request]
+name: Tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
-  lint:
-    name: linting and formatting
+  biome:
+    name: Biome
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Install Node v17
-        uses: actions/setup-node@v2
-        with:
-          node-version: 17
-          cache: npm
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
 
-      - name: Install dependencies
-        run: npm i
-
-      - name: Run ESLint
-        run: npm run lint && npm run format
+      - name: Run Biome
+        run: biome ci .
 
   typescript:
     name: TypeScript
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Install Node v17
-        uses: actions/setup-node@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: Install Node 20
+        uses: actions/setup-node@v4
         with:
-          node-version: 17
-          cache: npm
+          node-version: 20
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm i
-
-      - name: Register Problem Matcher
-        run: echo "##[add-matcher].github/tsc.json"
+        run: pnpm install --frozen-lockfile
 
       - name: Run TypeScript compiler
-        run: npm run typecheck
+        run: pnpm run typecheck
+
+  vitest:
+    name: Vitest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: Install Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Vitest
+        run: pnpm run test

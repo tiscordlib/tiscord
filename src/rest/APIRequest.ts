@@ -1,6 +1,6 @@
-import { Locale } from "discord-api-types/rest/v10";
-import { URLSearchParams } from "node:url";
-import { Dispatcher } from "undici";
+import type { URLSearchParams } from "node:url";
+import type { Locale } from "discord-api-types/rest/v10";
+import type { Dispatcher } from "undici";
 export interface APIRequest<T = any> {
 	route: string;
 	auth?: boolean;

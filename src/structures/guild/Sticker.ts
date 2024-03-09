@@ -1,9 +1,9 @@
-import {
+import type {
 	APISticker,
 	StickerFormatType,
 	StickerType,
 } from "discord-api-types/v10";
-import { Client, User } from "../../";
+import { type Client, User } from "../../";
 
 /**
  * Represents a sticker.

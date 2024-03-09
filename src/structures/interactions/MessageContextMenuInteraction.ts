@@ -1,5 +1,5 @@
-import { APIMessageApplicationCommandInteraction } from "discord-api-types/v10";
-import { Client, CommandInteraction, Message } from "../../";
+import type { APIMessageApplicationCommandInteraction } from "discord-api-types/v10";
+import { type Client, CommandInteraction, Message } from "../../";
 
 /**
  * Represents a message context menu command interaction.

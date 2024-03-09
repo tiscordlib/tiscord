@@ -1,13 +1,13 @@
 import { STATUS_CODES } from "node:http";
-import { Dispatcher } from "undici";
-import { APIRequest, resolveRequest } from "./APIRequest.js";
+import type { Dispatcher } from "undici";
+import { type APIRequest, resolveRequest } from "./APIRequest.js";
 import { BucketQueueManager } from "./BucketQueueManager.js";
-import { RESTClient } from "./RESTClient";
+import type { RESTClient } from "./RESTClient";
 import {
 	APIError,
-	parseErr,
-	RateLimitedError,
 	RESTError,
+	RateLimitedError,
+	parseErr,
 } from "./RESTError.js";
 
 export interface RequestManagerOptions {

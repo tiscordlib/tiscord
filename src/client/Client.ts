@@ -1,41 +1,41 @@
 import {
 	Cache,
-	CacheOptions,
-	Channel,
+	type CacheOptions,
+	type Channel,
 	ChannelManager,
-	ClientOptions,
+	type ClientOptions,
 	ErrorCode,
 	EventManager,
 	FakeCache,
 	FakeMap,
-	Guild,
+	type Guild,
 	GuildManager,
-	Member,
+	type Member,
 	MessageCache,
-	Role,
-	ThreadMember,
+	type Role,
+	type ThreadMember,
 	TiscordError,
-	User,
+	type User,
 	UserManager,
 	WebSocketManager,
 } from "../";
 
-import process from "node:process";
-import { arch, release, type } from "node:os";
 import { EventEmitter } from "node:events";
+import { arch, release, type } from "node:os";
+import process from "node:process";
 import {
 	GatewayIntentBits,
-	GatewayPresenceUpdateData,
-	OAuth2Scopes,
-	PresenceUpdateStatus,
+	type GatewayPresenceUpdateData,
+	type OAuth2Scopes,
 	PermissionFlagsBits,
+	PresenceUpdateStatus,
 } from "discord-api-types/v10";
-import { REST } from "../rest";
 import { version } from "../../package.json";
-import { Events } from "../util/Events";
-import { AllowedMentions, RawMentions } from "../util/AllowedMentions";
 import { ApplicationCommandManager } from "../managers/ApplicationCommandManager";
-import { PermissionType } from "../util/Permissions";
+import { REST } from "../rest";
+import { AllowedMentions, type RawMentions } from "../util/AllowedMentions";
+import type { Events } from "../util/Events";
+import type { PermissionType } from "../util/Permissions";
 
 /**
  *  The main client class

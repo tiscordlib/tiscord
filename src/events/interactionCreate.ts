@@ -6,7 +6,7 @@ import {
 import {
 	ButtonInteraction,
 	ChatInputCommandInteraction,
-	Client,
+	type Client,
 	CommandInteraction,
 	Interaction,
 	MessageContextMenuInteraction,

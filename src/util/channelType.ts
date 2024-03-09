@@ -1,7 +1,7 @@
-import { APIChannel, ChannelType } from "discord-api-types/v10";
+import { type APIChannel, ChannelType } from "discord-api-types/v10";
 import {
 	Channel,
-	Client,
+	type Client,
 	DMChannel,
 	TextChannel,
 	ThreadChannel,

@@ -1,15 +1,15 @@
 import {
 	APIError,
-	Client,
+	type Client,
 	Message,
 	MessageManager,
-	RawMessageOptions,
-	ThreadData,
+	type RawMessageOptions,
+	type ThreadData,
 	ThreadOptions,
 } from "../../";
-import { GuildChannel } from "./GuildChannel";
-import { threadWrapper } from "../../util/threadWrapper";
 import { MessageData } from "../../options/MessageOptions";
+import { threadWrapper } from "../../util/threadWrapper";
+import { GuildChannel } from "./GuildChannel";
 
 /**
  * A text channel class.

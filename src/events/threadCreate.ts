@@ -1,6 +1,6 @@
-import { Client, ThreadChannel } from "../";
+import { type Client, ThreadChannel } from "../";
 
-import { APIGuildChannel } from "discord-api-types/v10";
+import type { APIGuildChannel } from "discord-api-types/v10";
 
 export async function threadCreate(
 	client: Client,

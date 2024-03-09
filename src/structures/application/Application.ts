@@ -1,5 +1,5 @@
-import { APIApplication, ApplicationFlags } from "discord-api-types/v10";
-import { Client, Team, User } from "../../";
+import { type APIApplication, ApplicationFlags } from "discord-api-types/v10";
+import { type Client, Team, User } from "../../";
 
 /**
  * Represents an application.

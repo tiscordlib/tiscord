@@ -1,28 +1,28 @@
 import {
-	APIError,
-	BaseThreadOptions,
-	Client,
-	Guild,
-	Interaction,
-	Member,
-	MessageTypes,
-	RawMessageOptions,
-	SystemMessageTypes,
-	TextChannel,
-	ThreadChannel,
-	ThreadData,
-	User,
-} from "../../";
-import {
-	APIInteraction,
-	APIMessage,
-	APIMessageReference,
+	type APIInteraction,
+	type APIMessage,
+	type APIMessageReference,
 	ChannelType,
-	MessageFlags,
+	type MessageFlags,
 	MessageType,
 } from "discord-api-types/v10";
-import { Attachment } from "./Attachment";
+import {
+	APIError,
+	BaseThreadOptions,
+	type Client,
+	type Guild,
+	Interaction,
+	type Member,
+	MessageTypes,
+	type RawMessageOptions,
+	SystemMessageTypes,
+	type TextChannel,
+	ThreadChannel,
+	type ThreadData,
+	User,
+} from "../../";
 import { MessageData } from "../../options/MessageOptions";
+import { Attachment } from "./Attachment";
 
 /**
  * Message class

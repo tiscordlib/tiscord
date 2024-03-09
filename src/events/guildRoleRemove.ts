@@ -1,4 +1,4 @@
-import { Client } from "../";
+import type { Client } from "../";
 
 export async function guildRoleRemove(client: Client, data: { d: any }) {
 	const guild = client.cache.guilds.get(BigInt(data.d.guild_id));

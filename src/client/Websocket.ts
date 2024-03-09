@@ -1,7 +1,7 @@
-import { Client, ErrorCode, TiscordError } from "../";
-import { GatewayOpcodes } from "discord-api-types/v10";
 import process from "node:process";
+import { GatewayOpcodes } from "discord-api-types/v10";
 import WebSocket from "ws";
+import { type Client, ErrorCode, TiscordError } from "../";
 
 /**
  *  Main websocket class.

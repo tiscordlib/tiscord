@@ -1,4 +1,4 @@
-import { APIGuildVoiceChannel } from "discord-api-types/v10";
+import type { APIGuildVoiceChannel } from "discord-api-types/v10";
 import { TextChannel } from "../../";
 
 /**

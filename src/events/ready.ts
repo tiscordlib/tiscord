@@ -1,5 +1,5 @@
-import { GatewayReadyDispatchData } from "discord-api-types/v10";
-import { Client, User } from "../";
+import type { GatewayReadyDispatchData } from "discord-api-types/v10";
+import { type Client, User } from "../";
 
 export async function ready(
 	client: Client,

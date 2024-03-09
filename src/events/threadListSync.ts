@@ -1,5 +1,5 @@
-import { APIThreadChannel, APIThreadMember } from "discord-api-types/v10";
-import { Client, ThreadChannel, ThreadMember } from "../";
+import type { APIThreadChannel, APIThreadMember } from "discord-api-types/v10";
+import { type Client, ThreadChannel, ThreadMember } from "../";
 
 export async function threadListSync(
 	client: Client,

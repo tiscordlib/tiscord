@@ -1,4 +1,4 @@
-import { Client, CommandInteraction, InteractionOptions } from "../../";
+import { type Client, CommandInteraction, InteractionOptions } from "../../";
 
 /**
  * Text input command interaction class

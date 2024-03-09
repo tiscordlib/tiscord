@@ -1,7 +1,7 @@
-import { Member } from "../structures/guild/Member";
-import { RoleManager } from "./RoleManager";
-import { Role } from "../structures/guild/Role";
 import { ErrorCode, TiscordError } from "../errors/TiscordError";
+import type { Member } from "../structures/guild/Member";
+import { Role } from "../structures/guild/Role";
+import { RoleManager } from "./RoleManager";
 
 /**
  * Class managing roles of a member.

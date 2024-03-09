@@ -1,5 +1,5 @@
+import type { RESTClientOptions } from "./RESTClient.js";
 import { RequestManager } from "./RequestManager.js";
-import { RESTClientOptions } from "./RESTClient.js";
 import { version } from "./util.js";
 
 export const DefaultDiscordOptions: RESTClientOptions = {

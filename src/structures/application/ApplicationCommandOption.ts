@@ -1,4 +1,4 @@
-import {
+import type {
 	APIApplicationCommandOption,
 	APIApplicationCommandOptionChoice,
 } from "discord-api-types/v10";

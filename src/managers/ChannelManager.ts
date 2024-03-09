@@ -1,5 +1,5 @@
-import { APIChannel } from "discord-api-types/v10";
-import { Client, channelType, Channel } from "../";
+import type { APIChannel } from "discord-api-types/v10";
+import { type Channel, type Client, channelType } from "../";
 
 /**
  * Class managing channels

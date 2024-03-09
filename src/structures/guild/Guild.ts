@@ -1,4 +1,4 @@
-import {
+import type {
 	APIGuild,
 	APIGuildScheduledEvent,
 	APIStageInstance,
@@ -8,20 +8,20 @@ import {
 } from "discord-api-types/v10";
 import {
 	APIError,
-	CDNOptions,
-	ChannelManager,
+	type CDNOptions,
+	type ChannelManager,
 	ChannelOptions,
-	Client,
+	type Client,
 	Emoji,
 	GuildBan,
 	GuildEditOptions,
-	GuildEditOptionsType,
+	type GuildEditOptionsType,
 	Invite,
-	Member,
+	type Member,
 	MemberManager,
 	Role,
-	RoleOptions,
 	RoleManager,
+	type RoleOptions,
 	Sticker,
 	ThreadChannel,
 	channelType,
