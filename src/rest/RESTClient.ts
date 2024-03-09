@@ -1,8 +1,7 @@
 import { URLSearchParams } from "node:url";
 import { inspect } from "node:util";
 import FormData from "form-data";
-import undici from "undici";
-import type { Dispatcher } from "undici";
+import undici, { type Dispatcher } from "undici";
 import type { APIRequest } from "./APIRequest";
 import type { RouteLike } from "./RequestManager.js";
 
