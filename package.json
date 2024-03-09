@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.5.3",
-    "@types/node": "^18.0.0",
+    "@types/node": "^20.11.25",
     "@types/ws": "^8.5.0",
     "@vitest/coverage-c8": "^0.23.4",
     "clean-jsdoc-theme": "^4.2.17",
