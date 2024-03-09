@@ -1,11 +1,13 @@
-name: Generate documentation
-on: 
-  push:
-    branches: [ stable ]
-
+name: Publish Package
+on:
+  release:
+    types: [created]
 jobs:
-  report:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -22,15 +24,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build package
+      - name: Build
         run: pnpm run build
 
-      - name: Build docs
-        run: pnpm run docs
-
-      - name: Commit docs
-        run: |
-          git config --global user.name "actions"
-          git add docs
-          git commit -am "docs: create documentaton"
-          git push
+      - name: Publish to npm
+        run: pnpm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

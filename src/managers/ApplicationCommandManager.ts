@@ -1,8 +1,8 @@
-import {
+import type {
 	APIApplicationCommand,
 	RESTPatchAPIApplicationCommandJSONBody,
 } from "discord-api-types/v10";
-import { Client } from "../client/Client";
+import type { Client } from "../client/Client";
 import { ApplicationCommand } from "../structures/application/ApplicationCommand";
 
 /**

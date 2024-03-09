@@ -1,8 +1,8 @@
 import {
 	ChannelType,
-	GatewayChannelCreateDispatch,
+	type GatewayChannelCreateDispatch,
 } from "discord-api-types/v10";
-import { Client, channelType } from "../";
+import { type Client, channelType } from "../";
 
 export async function channelCreate(
 	client: Client,

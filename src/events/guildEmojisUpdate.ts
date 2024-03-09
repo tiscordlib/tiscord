@@ -1,5 +1,5 @@
-import { Client, Emoji } from "../";
-import { APIEmoji } from "discord-api-types/v10";
+import type { APIEmoji } from "discord-api-types/v10";
+import { type Client, Emoji } from "../";
 
 export async function guildEmojisUpdate(
 	client: Client,

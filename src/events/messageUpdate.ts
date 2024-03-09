@@ -1,5 +1,5 @@
-import { Client, Guild, Message, TextChannel } from "../";
-import { GatewayMessageUpdateDispatchData } from "discord-api-types/v10";
+import type { GatewayMessageUpdateDispatchData } from "discord-api-types/v10";
+import { type Client, type Guild, Message, type TextChannel } from "../";
 
 export async function messageUpdate(
 	client: Client,

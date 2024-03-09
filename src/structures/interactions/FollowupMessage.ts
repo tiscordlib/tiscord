@@ -1,4 +1,4 @@
-import { Client, Message, MessageOptions } from "../../";
+import { type Client, Message, type MessageOptions } from "../../";
 
 /**
  * Represents a message that is a followup to an interaction

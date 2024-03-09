@@ -1,5 +1,5 @@
-import { Client, Guild, TextChannel } from "../";
-import { GatewayMessageDeleteDispatchData } from "discord-api-types/v10";
+import type { GatewayMessageDeleteDispatchData } from "discord-api-types/v10";
+import type { Client, Guild, TextChannel } from "../";
 
 export async function messageDelete(
 	client: Client,

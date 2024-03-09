@@ -1,14 +1,14 @@
 import {
 	APIError,
-	Client,
-	Guild,
+	type Client,
+	type Guild,
 	MemberOptions,
 	Permissions,
-	RawMemberOptions,
+	type RawMemberOptions,
 	User,
 } from "../../";
 
-import { APIGuildMember } from "discord-api-types/v10";
+import type { APIGuildMember } from "discord-api-types/v10";
 import { MemberRoleManager } from "../../managers/MemberRoleManager";
 
 /**

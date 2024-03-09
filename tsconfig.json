@@ -1,25 +1,22 @@
 {
-    "compilerOptions": {
-        "target": "es2021",
-        "module": "esnext",
-        "moduleResolution": "bundler",
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "declaration": true,
-        "removeComments": false,
-        "pretty": true,
-        "outDir": "./dist",
-        "baseUrl": "./src",
-        "rootDir": "./src",
-    },
-    "exclude": [
-        "./node_modules",
-        "./docs",
-        "./dist/*"
-    ],
-    "include": [
-        "./src/**/*"
-    ],
+	"compilerOptions": {
+		"target": "es2022",
+		"lib": ["esnext"],
+
+		"module": "esnext",
+		"moduleResolution": "bundler",
+
+		"outDir": "dist",
+		"esModuleInterop": true,
+		"verbatimModuleSyntax": true,
+
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"noEmit": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"declaration": true,
+
+		"strict": true
+	}
 }

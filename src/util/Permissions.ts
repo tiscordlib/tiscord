@@ -1,5 +1,5 @@
-import { BitField } from "../";
 import { PermissionFlagsBits } from "discord-api-types/v10";
+import { BitField } from "../";
 
 /**
  * Valid values for permissions

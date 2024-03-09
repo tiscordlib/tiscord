@@ -1,7 +1,13 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
-	"organizeImports": {
-		"enabled": true
+	"$schema": "https://biomejs.dev/schemas/1.6.0/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"defaultBranch": "main",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"ignore": ["package.json"]
 	},
 	"linter": {
 		"enabled": true,
@@ -14,6 +20,9 @@
 				"recommended": true,
 				"noForEach": "off"
 			},
+			"correctness": {
+				"noUnusedImports": "error"
+			},
 			"style": {
 				"recommended": true,
 				"noParameterAssign": "off"
@@ -23,10 +32,11 @@
 				"noExplicitAny": "off"
 			},
 			"nursery": {
-				"noUnusedImports": "error",
-				"noDuplicateJsonKeys": "error",
-				"noUselessLoneBlockStatements": "error"
+				"noDuplicateJsonKeys": "error"
 			}
 		}
+	},
+	"organizeImports": {
+		"enabled": true
 	}
 }

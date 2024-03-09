@@ -1,3 +1,4 @@
+import type { Client } from "../client/Client";
 import { channelCreate } from "../events/channelCreate";
 import { channelDelete } from "../events/channelDelete";
 import { channelPinsUpdate } from "../events/channelPinsUpdate";
@@ -17,6 +18,7 @@ import { interactionCreate } from "../events/interactionCreate";
 import { messageCreate } from "../events/messageCreate";
 import { messageDelete } from "../events/messageDelete";
 import { messageUpdate } from "../events/messageUpdate";
+import { ready } from "../events/ready";
 import { reconnect } from "../events/reconnect";
 import { resumed } from "../events/resumed";
 import { threadCreate } from "../events/threadCreate";
@@ -26,8 +28,6 @@ import { threadMemberUpdate } from "../events/threadMemberUpdate";
 import { threadMembersUpdate } from "../events/threadMembersUpdate";
 import { threadUpdate } from "../events/threadUpdate";
 import { typingStart } from "../events/typingStart";
-import { ready } from "../events/ready";
-import type { Client } from "../client/Client";
 
 /**
  * An event manager class

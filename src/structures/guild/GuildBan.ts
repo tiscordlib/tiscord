@@ -1,6 +1,6 @@
-import { Client, User } from "../../";
+import { type Client, User } from "../../";
 
-import { APIBan } from "discord-api-types/v10";
+import type { APIBan } from "discord-api-types/v10";
 
 /**
  * Guild ban class

@@ -1,4 +1,4 @@
-// / <reference types="vitest" />
+/// <reference types="vitest" />
 
 // Configure Vitest (https://vitest.dev/config/)
 
@@ -9,7 +9,6 @@ export default defineConfig({
 		coverage: {
 			// include: ['/src/**/*'],
 			reporter: ["text-summary"],
-			src: ["/src/**/*"],
 		},
 	},
 });

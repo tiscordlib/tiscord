@@ -1,23 +1,16 @@
 {
-  "pipeline": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        " dist/**",
-        ".next/**"
-      ]
-    },
-    "lint": {
-      "outputs": []
-    },
-    "docs": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [],
-      "cache": false
-    }
-  }
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": [" dist/**", ".next/**"]
+		},
+		"lint": {
+			"outputs": []
+		},
+		"docs": {
+			"dependsOn": ["^build"],
+			"outputs": [],
+			"cache": false
+		}
+	}
 }

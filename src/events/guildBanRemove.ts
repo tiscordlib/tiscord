@@ -1,6 +1,6 @@
-import { Client, User } from "../";
+import { type Client, User } from "../";
 
-import { APIUser } from "discord-api-types/v10";
+import type { APIUser } from "discord-api-types/v10";
 
 export async function guildBanRemove(
 	client: Client,

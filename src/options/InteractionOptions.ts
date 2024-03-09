@@ -1,11 +1,11 @@
 import {
-	Client,
-	Guild,
+	Attachment,
+	type Client,
+	type Guild,
 	Member,
 	Role,
 	User,
 	channelType,
-	Attachment,
 } from "../";
 
 import {

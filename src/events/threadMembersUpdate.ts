@@ -1,6 +1,6 @@
-import { Client, ThreadMember } from "../";
+import { type Client, ThreadMember } from "../";
 
-import { APIThreadMember } from "discord-api-types/v10";
+import type { APIThreadMember } from "discord-api-types/v10";
 
 export async function threadMembersUpdate(
 	client: Client,

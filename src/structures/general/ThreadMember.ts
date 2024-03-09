@@ -1,4 +1,4 @@
-import { APIThreadMember } from "discord-api-types/v10";
+import type { APIThreadMember } from "discord-api-types/v10";
 
 /**
  * Represents a thread member.

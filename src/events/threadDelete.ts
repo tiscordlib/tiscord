@@ -1,6 +1,6 @@
-import { Client, ThreadChannel } from "../";
+import { type Client, ThreadChannel } from "../";
 
-import { APIThreadChannel } from "discord-api-types/v10";
+import type { APIThreadChannel } from "discord-api-types/v10";
 
 export async function threadDelete(
 	client: Client,

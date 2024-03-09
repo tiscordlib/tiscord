@@ -1,4 +1,4 @@
-import { Client } from "../";
+import type { Client } from "../";
 
 export async function reconnect(client: Client) {
 	client.debug("Received reconnect event, reconnecting to gateway", "gateway");

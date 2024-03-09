@@ -29,7 +29,7 @@ export const MessageTypes = [
  * System message types
  * @type {string[]}
  */
-export const SystemMessageTypes = exports.MessageTypes.filter(
+export const SystemMessageTypes = MessageTypes.filter(
 	(type) =>
 		type &&
 		![

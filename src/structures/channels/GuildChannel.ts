@@ -1,14 +1,14 @@
 import {
 	APIError,
 	ChannelOptions,
-	Client,
-	InviteData,
+	type Client,
+	type InviteData,
 	InviteOptions,
 } from "../../";
 
-import { Channel } from "./Channel";
-import { Guild } from "../guild/Guild";
+import type { Guild } from "../guild/Guild";
 import { Invite } from "../guild/Invite";
+import { Channel } from "./Channel";
 
 /**
  * A guild channel class.

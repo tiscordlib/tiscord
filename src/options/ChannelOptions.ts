@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import {
+import type {
 	APIVoiceRegion,
 	ChannelType,
 	OverwriteType,

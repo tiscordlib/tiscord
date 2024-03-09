@@ -1,9 +1,9 @@
-import { CacheOptions } from "./CacheOptions";
-import {
+import type {
 	APIAllowedMentions,
 	GatewayIntentBits,
 	GatewayPresenceUpdateData,
 } from "discord-api-types/v10";
+import type { CacheOptions } from "./CacheOptions";
 
 /**
  * Client options

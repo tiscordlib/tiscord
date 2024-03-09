@@ -1,19 +1,19 @@
 import {
-	APIInteraction,
+	type APIInteraction,
 	ApplicationCommandType,
 	ComponentType,
 	InteractionType,
 } from "discord-api-types/v10";
-import { Client, Guild, Member, User, Permissions } from "../../";
+import { type Client, type Guild, Member, Permissions, User } from "../../";
 // we cant import from ../../ because of circular dependency
-import { ButtonInteraction } from "./ButtonInteraction";
-import { CommandInteraction } from "./CommandInteraction";
-import { RepliableInteraction } from "./RepliableInteraction";
-import { SelectMenuInteraction } from "./SelectMenuInteraction";
-import { ChatInputCommandInteraction } from "./ChatInputCommandInteraction";
-import { UserContextMenuInteraction } from "./UserContextMenuInteraction";
-import { MessageContextMenuInteraction } from "./MessageContextMenuInteraction";
-import { ModalInteraction } from "./ModalInteraction";
+import type { ButtonInteraction } from "./ButtonInteraction";
+import type { ChatInputCommandInteraction } from "./ChatInputCommandInteraction";
+import type { CommandInteraction } from "./CommandInteraction";
+import type { MessageContextMenuInteraction } from "./MessageContextMenuInteraction";
+import type { ModalInteraction } from "./ModalInteraction";
+import type { RepliableInteraction } from "./RepliableInteraction";
+import type { SelectMenuInteraction } from "./SelectMenuInteraction";
+import type { UserContextMenuInteraction } from "./UserContextMenuInteraction";
 
 /**
  * Interaction class

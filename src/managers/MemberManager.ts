@@ -1,6 +1,6 @@
-import { Client, ErrorCode, Member, TiscordError, type Guild } from "../";
+import { type Client, ErrorCode, type Guild, Member, TiscordError } from "../";
 
-import { APIGuildMember } from "discord-api-types/v10";
+import type { APIGuildMember } from "discord-api-types/v10";
 
 /**
  * Class managing members

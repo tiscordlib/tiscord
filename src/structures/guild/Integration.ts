@@ -1,5 +1,5 @@
-import { APIGuildIntegration } from "discord-api-types/v10";
-import { Client, User } from "../../";
+import type { APIGuildIntegration } from "discord-api-types/v10";
+import { type Client, User } from "../../";
 
 /**
  * Represents a guild integration.

@@ -1,10 +1,10 @@
-import { InteractionData, MessageData } from "../../options/MessageOptions";
 import {
 	FollowupMessage,
 	Interaction,
 	Message,
-	RawMessageOptions,
+	type RawMessageOptions,
 } from "../../";
+import { InteractionData, MessageData } from "../../options/MessageOptions";
 
 /**
  * A interaction that can be replied to.

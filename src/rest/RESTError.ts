@@ -1,6 +1,6 @@
-import { STATUS_CODES } from "http";
-import { Dispatcher } from "undici";
-import { APIRequest, File } from "./APIRequest";
+import { STATUS_CODES } from "node:http";
+import type { Dispatcher } from "undici";
+import type { APIRequest, File } from "./APIRequest";
 
 export class RESTError extends Error {
 	public body: any;
@@ -73,7 +73,8 @@ function traverse(obj: any, keyPrefix = "", prev: Record<string, any> = {}) {
 		} else
 			prev = traverse(
 				obj[key],
-				keyPrefix + (!Number.isNaN(parseInt(key)) ? `[${key}]` : `.${key}`),
+				keyPrefix +
+					(!Number.isNaN(Number.parseInt(key)) ? `[${key}]` : `.${key}`),
 				prev,
 			);
 	}

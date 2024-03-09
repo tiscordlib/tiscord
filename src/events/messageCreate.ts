@@ -1,5 +1,5 @@
-import { Client, Message } from "../";
-import { APIMessage } from "discord-api-types/v10";
+import type { APIMessage } from "discord-api-types/v10";
+import { type Client, Message } from "../";
 
 export async function messageCreate(client: Client, data: { d: APIMessage }) {
 	const message = new Message(client, data.d);

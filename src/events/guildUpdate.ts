@@ -1,6 +1,6 @@
-import { Client, Guild } from "../";
+import { type Client, Guild } from "../";
 
-import { GatewayGuildUpdateDispatchData } from "discord-api-types/v10";
+import type { GatewayGuildUpdateDispatchData } from "discord-api-types/v10";
 
 export async function guildUpdate(
 	client: Client,

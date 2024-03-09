@@ -1,4 +1,4 @@
-import { Client } from "../";
+import type { Client } from "../";
 
 export async function guildIntegrationsUpdate(
 	client: Client,

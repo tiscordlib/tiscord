@@ -1,4 +1,4 @@
-import { AllowedMentionsTypes } from "discord-api-types/v10";
+import type { AllowedMentionsTypes } from "discord-api-types/v10";
 
 /**
  * A class for parsing allowed mentions to an API object.

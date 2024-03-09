@@ -1,11 +1,11 @@
 /* eslint-disable camelcase */
-import {
+import type {
 	APIAllowedMentions,
 	APIEmbed,
 	APIMessageComponent,
 	APIMessageReference,
 } from "discord-api-types/v10";
-import { AllowedMentions, MessageAttachment, RawMentions } from "../";
+import { AllowedMentions, type MessageAttachment, type RawMentions } from "../";
 
 /**
  * Message options, used for parsing messages to an api readable format
